@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Formal RQLRelational Algebra关系代数 是一种 过程化查询语言，它以 关系 作为输入，同时输出 关系 。 关系 是定义在一组域 上的 笛卡尔积 Basic Relational-AlgebraSelect Operation选择 (Select) \sigma 选出 满足给定谓词的元组。 Project Operation投影 (Project) \Pi 选出 指定的属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Database -  Relational Query Language">
+<meta property="og:url" content="https://sakurawald.github.io/2022/04/30/database-relational-query-language/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Formal RQLRelational Algebra关系代数 是一种 过程化查询语言，它以 关系 作为输入，同时输出 关系 。 关系 是定义在一组域 上的 笛卡尔积 Basic Relational-AlgebraSelect Operation选择 (Select) \sigma 选出 满足给定谓词的元组。 Project Operation投影 (Project) \Pi 选出 指定的属性">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-30T10:53:48.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/04/30/database-relational-query-language/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Database -  Relational Query Language | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/04/30/database-relational-query-language/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Database -  Relational Query Language
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-30 10:53:48" itemprop="dateCreated datePublished" datetime="2022-04-30T10:53:48+00:00">2022-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Formal-RQL"><a href="#Formal-RQL" class="headerlink" title="Formal RQL"></a>Formal RQL</h1><h2 id="Relational-Algebra"><a href="#Relational-Algebra" class="headerlink" title="Relational Algebra"></a>Relational Algebra</h2><p><code>关系代数</code> 是一种 <code>过程化查询语言</code>，它以 <code>关系</code> 作为输入，同时输出 <code>关系</code> 。</p>
+<p><code>关系</code> 是定义在一组<code>域</code> 上的 <code>笛卡尔积</code></p>
+<h3 id="Basic-Relational-Algebra"><a href="#Basic-Relational-Algebra" class="headerlink" title="Basic Relational-Algebra"></a>Basic Relational-Algebra</h3><h4 id="Select-Operation"><a href="#Select-Operation" class="headerlink" title="Select Operation"></a>Select Operation</h4><p><code>选择 (Select)</code> \sigma 选出 <code>满足给定谓词的元组</code>。</p>
+<h4 id="Project-Operation"><a href="#Project-Operation" class="headerlink" title="Project Operation"></a>Project Operation</h4><p><code>投影 (Project)</code> \Pi 选出 <code>指定的属性</code></p>
+<blockquote>
+<p>由于 <code>关系</code> 不允许 <code>重复元组</code>，所以 <code>投影</code> 运算之后需要再次 <code>对元组进行去重</code></p>
+</blockquote>
+<h4 id="Set-Union-Operation"><a href="#Set-Union-Operation" class="headerlink" title="Set-Union Operation"></a>Set-Union Operation</h4><blockquote>
+<p>参与 <code>集合运算</code> 的 <code>两个关系</code> 必须是 <code>相容的 (Compatible)</code>：</p>
+<ul>
+<li>r 和 s 是 <code>同元的</code>，即 <code>属性数量</code> 相同</li>
+<li>对所有的 <code>i</code>，<code>r的第i个属性的域</code> 与 <code>s的第i个属性的域</code> 要相同。</li>
+</ul>
+</blockquote>
+<h4 id="Set-Difference-Operation"><a href="#Set-Difference-Operation" class="headerlink" title="Set-Difference Operation"></a>Set-Difference Operation</h4><h4 id="Cartesian-Product-Operation"><a href="#Cartesian-Product-Operation" class="headerlink" title="Cartesian Product Operation"></a>Cartesian Product Operation</h4><p><code>笛卡尔积</code> 用于 <code>组合/串接</code> 两个 <code>关系</code>。</p>
+<p>参与 <code>笛卡尔积</code> 的两个 <code>关系</code> 的 <code>属性名</code> 必须 <code>不同</code>，当存在 <code>同名属性 (Common Attribute)</code> 时，需要添加 <code>关系名前缀</code> 用于 <code>区分</code>。</p>
+<blockquote>
+<p>n.b. r \times s &#x3D; r * s，即 <code>笛卡尔积</code> 保留了 <code>关系r的元组</code> 和 <code>关系s元组</code> 的 <code>所有可能的串接方式</code>。</p>
+<p>所得的 <code>结果关系</code> 可能有 <code>某些元组</code> 是 <code>不符合</code> <code>关系r</code> 和 <code>关系s</code> 所提供的 <code>信息</code> 的。</p>
+<p>可以使用下列的 <code>选择运算</code> 来 <code>过滤掉</code> <code>这些不符合事实的元组</code></p>
+</blockquote>
+<h4 id="Renaming-Operation"><a href="#Renaming-Operation" class="headerlink" title="Renaming Operation"></a>Renaming Operation</h4><p><code>更名 (Rename)</code> \rho 用于为 <code>关系代数表达式</code> 提供 <code>可供后续进行引用的标识符</code>。</p>
+<hr>
+<p>考虑 <code>查询最高工资</code> 的例子。</p>
+<hr>
+<p>任何 <code>更名运算</code> 都是 <code>可替代的</code>。可以使用 <code>位置标记</code> 来 <code>隐含地</code> <code>引用</code> <code>关系的属性</code>。如 <code>$1 = 第1个属性</code></p>
+<p>前面的例子可以 <code>改写</code> 为</p>
+<h3 id="Additional-Relational-Algebra"><a href="#Additional-Relational-Algebra" class="headerlink" title="Additional Relational-Algebra"></a>Additional Relational-Algebra</h3><p>所有的 <code>附加关系代数运算</code> 都可以用 <code>基本关系运算</code> 来 <code>描述</code>。</p>
+<h4 id="Set-Intersection-Operation"><a href="#Set-Intersection-Operation" class="headerlink" title="Set-Intersection Operation"></a>Set-Intersection Operation</h4><hr>
+<h4 id="Natural-Join-Operation"><a href="#Natural-Join-Operation" class="headerlink" title="Natural-Join Operation"></a>Natural-Join Operation</h4><p><code>自然连接</code> \Join 是 <code>笛卡尔积</code> 和 <code>选择</code> 的一种 <code>合并</code>。</p>
+<blockquote>
+<p>当 <code>两个关系</code> 不存在 <code>相同属性</code> 时， r \Join s &#x3D; r \times s</p>
+</blockquote>
+<blockquote>
+<p><code>自然连接</code> 只不过是 <code>Theta连接</code> 的一个 <code>特例</code></p>
+<p>我们经常需要 <code>笛卡尔积</code> 和 <code>选择</code> 一起使用，那么可以转而使用 <code>Theta连接</code> 来 <code>简化书写</code></p>
+</blockquote>
+<hr>
+<blockquote>
+<p><code>自然连接</code> 满足 <code>结合律</code>。</p>
+</blockquote>
+<h4 id="Assignment-Operation"><a href="#Assignment-Operation" class="headerlink" title="Assignment Operation"></a>Assignment Operation</h4><p><code>赋值运算</code> \gets 用于将 <code>关系代数表达式</code> 存储为 <code>常量</code>，以便后续的 <code>引用</code> 。</p>
+<blockquote>
+<p>这非常类似于 <code>PL的赋值</code></p>
+</blockquote>
+<blockquote>
+<p>n.b. <code>赋值运算</code> 必须 <code>赋值</code> 给 <code>临时变量</code>，而不能直接 <code>赋值</code> 给 <code>永久关系</code>，否则将造成对 <code>数据库的修改</code>。</p>
+</blockquote>
+<h4 id="Outer-Join-Operation"><a href="#Outer-Join-Operation" class="headerlink" title="Outer-Join Operation"></a>Outer-Join Operation</h4><p><code>外连接运算</code> 可以处理 <code>缺失的信息</code>。</p>
+<p>共有3种类型：</p>
+<ul>
+<li><code>左外连接</code> \sqsupset \Join</li>
+<li><code>右外连接</code> \Join \sqsubset</li>
+<li><code>全外连接</code> \sqsupset \Join \sqsubset</li>
+</ul>
+<h3 id="Extended-Relational-Algebra"><a href="#Extended-Relational-Algebra" class="headerlink" title="Extended Relational-Algebra"></a>Extended Relational-Algebra</h3><p>不同于 <code>附加关系代数</code>，<code>拓展关系代数</code> 不能用 <code>基本关系代数</code> 来 <code>描述</code>。</p>
+<h4 id="Generalized-Project"><a href="#Generalized-Project" class="headerlink" title="Generalized-Project"></a>Generalized-Project</h4><p><code>广义投影 (Generalized Project)</code>：可以对 <code>投影的属性</code> 进行 <code>常量运算</code></p>
+<h4 id="Aggregate"><a href="#Aggregate" class="headerlink" title="Aggregate"></a>Aggregate</h4><p><code>聚集运算 (Aggregate Operation)</code> 的输入是 <code>值的集合</code>，输出 <code>单个值</code>。</p>
+<hr>
+<p>上面例子给出 <code>查询所有系的教师的平局工资</code> 和 <code>查询每个系的教师的平均工资</code> 的例子。</p>
+<blockquote>
+<p>当 <code>省略左侧分组</code> 时，默认为：将 <code>输入关系的所有元组</code> <code>分组</code> 为 <code>唯一的一组</code></p>
+</blockquote>
+<h2 id="Tuple-Relational-Calculus"><a href="#Tuple-Relational-Calculus" class="headerlink" title="Tuple Relational Calculus"></a>Tuple Relational Calculus</h2><h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h4><p><code>元组关系演算</code> 的 <code>形式</code> 如下：\s{t P(t)}</p>
+<p>其中 P 为 <code>公式</code>。<code>公式</code> 中出现的 <code>变量</code> 分为 <code>自由变量</code> 和 <code>受限变量</code>。</p>
+<p><code>公式</code> 由 如下的 <code>原子</code> <code>构成</code>：</p>
+<ul>
+<li><p>t \in r</p>
+<blockquote>
+<p>\notin 运算符未定义</p>
+</blockquote>
+</li>
+<li><p>t_1[x] \Theta t_2[y]</p>
+<blockquote>
+<p>\Theta 为 <code>5个比较运算符</code></p>
+</blockquote>
+</li>
+<li><p>t[x] \Theta c</p>
+</li>
+</ul>
+<p><code>公式</code> 可以由 如下的 <code>规则</code> 来 <code>构造</code>：</p>
+<ul>
+<li><code>原子</code> 是 <code>公式</code></li>
+<li>如果 P_1 是 <code>公式</code>，则 \neg P_1 和 (P_1) 也是 <code>公式</code></li>
+<li>如果 P_1 和 P_2 是 <code>公式</code>，则 P_1 \or P_2 ，P_1 \and P_2 以及 P_1 \implies P_2 均是 <code>公式</code></li>
+<li>如果 P_1(t) 是包含 <code>自由元组变量</code> t 的 <code>公式</code>，且 r 是 <code>关系</code>，则 \exists t \in r(P_1(t)) 和 \forall t \in r (P_1(t)) 也是 <code>公式</code></li>
+</ul>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ul>
+<li><p>查询 <code>2009年秋季学期</code> 或 <code>2010年春季学期</code> 这两个学期 <code>都开设</code> 的 <code>所有课程的集合</code></p>
+</li>
+<li><p>查询 <code>所有选修了生物系的全部课程的学生</code></p>
+</li>
+</ul>
+<blockquote>
+<p>n.b. <code>红色部分</code> 可以正确处理 <code>当生物系没有开设任何课程</code> 的情况</p>
+</blockquote>
+<h4 id="Expression-Security"><a href="#Expression-Security" class="headerlink" title="Expression Security"></a>Expression Security</h4><p>考虑如下的 <code>元组关系表达式</code></p>
+<p>我们称 <code>该表达式</code> 是 <code>不安全的表达式</code>。原因在于：<code>neg</code> 会产生 <code>无限的结果</code>。</p>
+<p>进一步地，这是因为我们并没有事先定义 instructor 的 <code>取值范围</code>。</p>
+<hr>
+<p>为了解决上述问题，我们引入 <code>域 (Domain)</code> 的概念：</p>
+<p><code>公式</code> P 的 <code>域</code> dom(P) 用于描述 P <code>所引用的所有值的集合</code>：</p>
+<ul>
+<li>P 自身所用到的值</li>
+<li>P 中涉及的关系的元组中所出现的值</li>
+</ul>
+<blockquote>
+<p>即：<code>P的域</code> &#x3D; <code>P中显式出现的值</code> +<code>名称出现在P中的那些关系的所有值</code></p>
+</blockquote>
+<hr>
+<p>如果 <code>元组关系表达式</code> \s{t P(t)} <code>结果中的所有值</code> 均来自 dom(P)，则称该表达式是 <code>安全的</code>。</p>
+<blockquote>
+<p><code>安全的表达式</code> 必定包含 <code>有限个结果</code></p>
+</blockquote>
+<h2 id="Domain-Relational-Calculus"><a href="#Domain-Relational-Calculus" class="headerlink" title="Domain Relational Calculus"></a>Domain Relational Calculus</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p><code>域关系演算</code> 的 <code>形式</code> 如下：\s{&lt;x_1,x_2,\cdots,x_n&gt; P(x_1,x_2,\cdots,x_n)}</p>
+<p><code>域关系演算</code> 由 如下的 <code>原子</code> <code>构成</code>：</p>
+<ul>
+<li>&lt;x_1,x_2,\cdots,x_n&gt; \in r</li>
+<li>x \Theta y</li>
+<li>x \Theta c</li>
+</ul>
+<blockquote>
+<p><code>公式</code> 的 <code>构造规则</code> 类比 <code>元组关系演算</code>。</p>
+</blockquote>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><ul>
+<li><p>找出 <code>工资在80000美元以上</code> 的教师的信息</p>
+</li>
+<li><p>查询 <code>2009年秋季学期</code> 或 <code>2010年春季学期</code> 这两个学期 <code>都开设</code> 的 <code>所有课程的集合</code></p>
+</li>
+<li><p>查询 <code>所有选修了生物系的全部课程的学生</code></p>
+</li>
+</ul>
+<h3 id="Expression-Security-1"><a href="#Expression-Security-1" class="headerlink" title="Expression Security"></a>Expression Security</h3><p>我们使用与 <code>元组关系演算</code> 同样的策略来解决 <code>表达式安全性问题</code>：引入 <code>域</code> 的概念</p>
+<blockquote>
+<p>下面几种 <code>语言</code> 在 <code>表达能力</code> 上是 <code>等价的</code>：</p>
+<ul>
+<li><code>基本关系代数</code></li>
+<li><code>安全的元组关系演算</code></li>
+<li><code>安全的域关系演算</code></li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/29/database-advanced-sql/" rel="prev" title="Dtabase - Advanced SQL">
+      <i class="fa fa-chevron-left"></i> Dtabase - Advanced SQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/01/database-database-design-e-r-model/" rel="next" title="Database - Database Design & E-R Model">
+      Database - Database Design & E-R Model <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Formal-RQL"><span class="nav-number">1.</span> <span class="nav-text">Formal RQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Relational-Algebra"><span class="nav-number">1.1.</span> <span class="nav-text">Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Relational-Algebra"><span class="nav-number">1.1.1.</span> <span class="nav-text">Basic Relational-Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Select-Operation"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Select Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Project-Operation"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Project Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Union-Operation"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">Set-Union Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Difference-Operation"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">Set-Difference Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cartesian-Product-Operation"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">Cartesian Product Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Renaming-Operation"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">Renaming Operation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Additional-Relational-Algebra"><span class="nav-number">1.1.2.</span> <span class="nav-text">Additional Relational-Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-Intersection-Operation"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Set-Intersection Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Natural-Join-Operation"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Natural-Join Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Assignment-Operation"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Assignment Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Outer-Join-Operation"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">Outer-Join Operation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extended-Relational-Algebra"><span class="nav-number">1.1.3.</span> <span class="nav-text">Extended Relational-Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Generalized-Project"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Generalized-Project</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Aggregate"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Aggregate</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuple-Relational-Calculus"><span class="nav-number">1.2.</span> <span class="nav-text">Tuple Relational Calculus</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression-Security"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">Expression Security</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Domain-Relational-Calculus"><span class="nav-number">1.3.</span> <span class="nav-text">Domain Relational Calculus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expression-Security-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">Expression Security</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

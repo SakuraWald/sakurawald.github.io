@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Computer Organization OutlineShort-Hand 固件功能类似软件，形态类似硬件。 软件与硬件具有逻辑功能的等价性。 计算机系统层级结构中，微程序属于硬件级 完整的计算机系统通常包括：硬件系统与软件系统 CPU地址线数量 与 内存容量 密切相关 冯诺依曼计算机的核心思想是 存储程序和程序控制 计算机中表示地址时使用 无符号数 当 -1 &lt; x &lt; 0 时，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Organizaion - A simple outline">
+<meta property="og:url" content="https://sakurawald.github.io/2022/08/15/computer-organizaion-a-simple-outline/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Computer Organization OutlineShort-Hand 固件功能类似软件，形态类似硬件。 软件与硬件具有逻辑功能的等价性。 计算机系统层级结构中，微程序属于硬件级 完整的计算机系统通常包括：硬件系统与软件系统 CPU地址线数量 与 内存容量 密切相关 冯诺依曼计算机的核心思想是 存储程序和程序控制 计算机中表示地址时使用 无符号数 当 -1 &lt; x &lt; 0 时，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/06/13/3bjEgqcaRrk4i7l.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/13/YhDUx75P41pdKTf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/13/g6izADBVkIeQLSC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/13/BCqf3z1opSR6LcT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/13/nUBElbMJQR2fv7a.png">
+<meta property="og:image" content="https://sakurawald.github.io/home/teeth/.config/Typora/typora-user-images/image-20220613181533451.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/14/59DMQHj2qPas1bZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/14/wS3nGgrzeW5HDP2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/14/wCAkLVEu9Hs368e.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/14/wruAWkomqdnzGiE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/14/HFv3D1awW9YcZrm.png">
+<meta property="article:published_time" content="2022-08-15T10:40:00.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/13/3bjEgqcaRrk4i7l.png">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/08/15/computer-organizaion-a-simple-outline/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Computer Organizaion - A simple outline | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/08/15/computer-organizaion-a-simple-outline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Computer Organizaion - A simple outline
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-15 10:40:00" itemprop="dateCreated datePublished" datetime="2022-08-15T10:40:00+00:00">2022-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Computer-Organization-Outline"><a href="#Computer-Organization-Outline" class="headerlink" title="Computer Organization Outline"></a>Computer Organization Outline</h1><h2 id="Short-Hand"><a href="#Short-Hand" class="headerlink" title="Short-Hand"></a>Short-Hand</h2><ul>
+<li>固件功能类似软件，形态类似硬件。</li>
+<li>软件与硬件具有逻辑功能的等价性。</li>
+<li>计算机系统层级结构中，微程序属于硬件级</li>
+<li>完整的计算机系统通常包括：硬件系统与软件系统</li>
+<li>CPU地址线数量 与 内存容量 密切相关</li>
+<li>冯诺依曼计算机的核心思想是 存储程序和程序控制</li>
+<li>计算机中表示地址时使用 无符号数</li>
+<li>当 -1 &lt; x &lt; 0 时，[x]补 &#x3D; 2+x</li>
+<li>字长8位的某二进制补码整数为 11011010 ，则该数的标准移码为 01011010</li>
+<li>对于IEEE754格式的浮点数：阶码用 <code>移码</code> 表示，尾数用 <code>原码</code> 表示。</li>
+<li>同一个数的补码和移码，其数值部分相同，而符号部分相反。</li>
+<li>相同位数的补码和移码，具有相同的 数据表示范围</li>
+<li>一般用移码表示浮点数的阶码，用补码表示定点数。</li>
+<li>执行算数右移指令的过程：操作数的符号位不变，各位顺次右移1次，符号位拷贝到最高位。</li>
+<li>原码除法：操作数取绝对值相除，符号位单独处理。</li>
+<li>在定点二进制运算器中，减法运算一般通过：补码运算的二进制加法器 来实现</li>
+<li>若浮点数用补码表示，则判断运算结果是否为规格化数的方法：数符与尾数小数点后第一位 是否相异</li>
+<li>在小数除法中，为了避免溢出，要求被除数的绝对值 小于 除数的绝对值。</li>
+<li>并行加法器中虽然不存在进位的串行传递，但高位的进位依然依赖于数据的低位。</li>
+<li>运算器中通常有一个状态标记寄存器，为计算机提供判断条件，以实现程序转移。</li>
+<li>在计算机中，对于正数，其三种机器数右移后符号位均不变，但若右移时最低数位丢1，则可能导致 影响运算精度</li>
+<li>CPU可以直接访问主存</li>
+<li>计算机字长为32位，主存容量为128MB，按字编址，其寻址范围为 0~32M-1</li>
+<li>字位结构为256K × 4位的SRAM存储器芯片，其地址引脚和数据引脚之和为8+10+4&#x3D;22 根</li>
+<li>某 <code>存储容量</code> 为 <code>64K × 16的SRAM存储器芯片</code>，该芯片的地址线为16根，数据线为16根。</li>
+<li>计算机系统中的存储器系统：Cache，主存储器，外存储器</li>
+<li>动态存储器的刷新以行为单位进行。</li>
+<li>若某计算机字长为32位，则下列地址属性属于按双字长边界对齐的是：存储器地址线的低3位全为0</li>
+<li>功能部件MMu将虚拟地址转化为物理地址。</li>
+<li>采用虚拟存储器的主要目的是：扩大 <code>主存储器</code> 的存储空间，且能进行自动管理和调度。</li>
+<li>对于 <code>虚拟存储器</code>，程序执行过程中实现 <code>虚拟地址</code> 转化为 <code>物理地址</code> 的部件是：<code>操作系统</code> 和 <code>MMU</code></li>
+<li>相联存储器是按照 <code>内容</code> 进行寻址的存储器。</li>
+<li><code>Cache行</code> 大小 &#x3D; <code>主存的内存块</code> 大小</li>
+<li><code>哈佛体系结构 （分离Cache）</code> ：将<code>Cache</code> 分为 <code>指令Cache</code> 和 <code>数据Cache</code></li>
+<li><code>Cache</code> 采用 <code>直接映射方式</code>，无需使用 <code>Cache块替换算法</code></li>
+<li><code>浮点数</code> 的 <code>尾数</code> 采用 <code>补码</code> 表示，则 <code>符号位</code> 与 <code>最高数值位</code> 不同即为 <code>规格化的浮点数</code>。</li>
+<li>指令采用跳跃寻址方式的主要作用是：实现程序的有条件，无条件转移</li>
+<li><code>间接寻址</code> 有利于缩短指令 <code>地址码</code> 长度。</li>
+<li>二地址指令的运算结果，通常存放在其中一个地址码字段所指向的地址。</li>
+<li>冯诺依曼体系结构 <code>不包含Cache</code>。</li>
+<li>冯诺依曼体系结构中的 <code>指令</code> 和 <code>数据</code> 均以 二进制形式 存储在 <code>存储器</code> 中，CPU通过该 <code>指令和数据的访问时间不同</code> 来 <code>区分</code>。</li>
+<li><code>指令寄存器 （存放取到的单条指令）</code> 的位数 取决于 <code>机器字长</code></li>
+<li>PC的位数 与 <code>主存地址寄存器 MAR</code> 的位数相同</li>
+<li>在控制器的控制方式中，机器周期内的时钟周期个数可以不同，该种方式称为 <code>异步控制</code></li>
+<li>控制器的功能：操作控制，指令的顺序控制，异常控制。</li>
+<li>若某 <code>互斥命令组</code> 由 <code>4个微命令</code> 组成，则 <code>微指令寄存器</code> 中相应的字段的位数 至少需要 3位（2位 + 额外的1位用于说明该互斥命令组是否有效）。</li>
+<li><code>一条机器指令</code> 的功能通过执行 <code>一个微程序</code> 来实现。</li>
+<li>从信息流的传送效率来看，<code>单总线系统</code> 的工作效率是最低的。</li>
+<li><code>系统总线地址</code> 的功能是：<code>指定主存</code> 和 <code>IO设备接口电路的地址</code></li>
+<li>IEEE1394的高速特性适合于新型高速硬盘和多媒体数据传送，它的数据传输率最高可以达到 400Mb&#x2F;s</li>
+<li>在 <code>单总线结构计算机</code> 中访问 <code>主存与外围设备</code> 时，<code>异步控制</code> 常用于主要控制方式</li>
+<li>当采用 <code>统一编址法</code> 对设备进行编址的情况下,不需要专门的IO指令</li>
+<li>8086 CPU 对 IO接口的编址 采用:IO端口独立编址</li>
+<li>中断向量地址 是 <code>中断服务例行程序入口地址</code> 的 <code>指示器</code></li>
+<li><code>通道</code> 对 <code>CPU</code> 的请求形式是 <code>中断</code></li>
+<li>某计算机 <code>字长</code> 为32位,下列 <code>地址属性</code> 中属于按 <code>双字长边界对齐</code> 的是: 存储器地址线的 <code>低3位</code> 全部为 0</li>
+<li>采用 <code>最优替换算法</code>, 则 <code>Cache的命中率</code> 可以达到 100%</li>
+<li><code>读操作</code> <code>不需要</code> 考虑 <code>Cache与主存的一致性问题</code></li>
+<li>假定主存 <code>按字节编址</code>,cache共有 <code>64行</code>,采用 <code>4路组相联映射方式</code>, <code>主存块</code> 的大小为 32字节,所有编号都从0开始.问 <code>主存</code> <code>第3000号单元</code> 所在的主存块对应的cache组号: (3000&#x2F;32) \mod (64&#x2F;4) &#x3D; 13</li>
+<li>某计算机系统中,Cache容量为512KB, 主存容量为 256MB,则 <code>Cache-主存层次的等效容量</code> 为 256MB</li>
+<li><code>程序</code> 必须放在 <code>主存</code> 或 <code>CACHE</code> 才能够被 <code>CPU</code> 进行访问。</li>
+<li>访问 256KB 的存储空间，需要的 <code>地址线</code> 最少为 8 + 10 &#x3D; 18 根 （1KB &#x3D; 2^{10} bit）</li>
+<li>采用 <code>PC相对寻址</code> 的 <code>指令</code> 的 <code>当前地址</code> 在计算基础值时，需要额外加上 <code>当前指令的长度</code>，然后加上 <code>当前指令的地址码字段所给出的内容</code> 作为 <code>偏移量</code>。</li>
+<li>设 A&#x3D;123456H，计算机 <code>内存地址由低到高</code> ，则采用 <code>小端序</code> 的情况下，<code>最高地址</code> 存放的内容是：12</li>
+</ul>
+<h2 id="Chapter-3-Compute-Approaches-and-ALU"><a href="#Chapter-3-Compute-Approaches-and-ALU" class="headerlink" title="Chapter 3: Compute Approaches and ALU"></a>Chapter 3: Compute Approaches and ALU</h2><h3 id="The-Conversion-among-Sign-Magnitude-Ones’-Complement-and-Two’s-Complement"><a href="#The-Conversion-among-Sign-Magnitude-Ones’-Complement-and-Two’s-Complement" class="headerlink" title="The Conversion among Sign-Magnitude, Ones’ Complement and Two’s Complement"></a>The Conversion among Sign-Magnitude, Ones’ Complement and Two’s Complement</h3><p>(number)_2</p>
+<p>\c{hotpink}{Sign-Magnitude}</p>
+<p>Ones’ Complement</p>
+<p>Two’s Complement</p>
+<p>\g{0}</p>
+<p>\g{\vec{x} &#x3D; [0.0\cdots0]}</p>
+<p>\g{\vec{x} &#x3D; [0.0\cdots0]}</p>
+<p>\g{\vec{x} &#x3D; [0.0\cdots0]}</p>
+<p>\r{-}0</p>
+<p>\vec{x} &#x3D; [\r{1}.\b{0\cdots0}]</p>
+<p>\vec{x} &#x3D; [1.\b{1\cdots 1}]</p>
+<p>\vec{x} &#x3D; [0.0\cdots0]</p>
+<p>\g{0.10101}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D; [0.10101]}}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D; [0.10101]}}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D; [0.10101]}}</p>
+<p>\r{-}0.10101</p>
+<p>\a{&amp;\vec{x}&#x3D;[\r{1}.\b{10101}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.\b{01010}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.01011] }</p>
+<p>\r-0.11111</p>
+<p>\a{&amp;\vec{x}&#x3D;[\r1.\b{11111]} }</p>
+<p>\a{&amp;\vec{x}&#x3D;[0.\b{00000}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[0.00001] }</p>
+<p>\r{-}0.11111</p>
+<p>\a{&amp;\vec{x}&#x3D;[\r{1}.\b{11111}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.\b{00000}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.00001] }</p>
+<p>\r{-}0.10000</p>
+<p>\a{&amp;\vec{x}&#x3D;[\r{1}.\b{10000}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.\b{01111}] }</p>
+<p>\a{&amp;\vec{x}&#x3D;[1.10000] }</p>
+<p>\g{0.10000}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D;[0.10000] }}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D;[0.10000] }}</p>
+<p>\g{\a{&amp;\vec{x}&#x3D;[0.10000] }}</p>
+<h3 id="Fixed-Point-Number-Addition-amp-Subtraction"><a href="#Fixed-Point-Number-Addition-amp-Subtraction" class="headerlink" title="Fixed-Point Number: Addition &amp; Subtraction"></a>Fixed-Point Number: Addition &amp; Subtraction</h3><h4 id="Two’s-Complement-Addition"><a href="#Two’s-Complement-Addition" class="headerlink" title="Two’s Complement Addition"></a>Two’s Complement Addition</h4><hr>
+<h4 id="Two’s-Complement-Subtraction"><a href="#Two’s-Complement-Subtraction" class="headerlink" title="Two’s Complement Subtraction"></a>Two’s Complement Subtraction</h4><hr>
+<h3 id="Overflow-Detection"><a href="#Overflow-Detection" class="headerlink" title="Overflow Detection"></a>Overflow Detection</h3><h4 id="Two’s-Complement"><a href="#Two’s-Complement" class="headerlink" title="Two’s Complement"></a>Two’s Complement</h4><h4 id="Modified-Complement"><a href="#Modified-Complement" class="headerlink" title="Modified Complement"></a>Modified Complement</h4><hr>
+<h3 id="Basic-Logic-Gate"><a href="#Basic-Logic-Gate" class="headerlink" title="Basic Logic-Gate"></a>Basic Logic-Gate</h3><p><img src="https://s2.loli.net/2022/06/13/3bjEgqcaRrk4i7l.png" alt="image-20220613140616912"></p>
+<h3 id="Float-Point-Number-Addition-Subtraction"><a href="#Float-Point-Number-Addition-Subtraction" class="headerlink" title="Float-Point Number: Addition Subtraction"></a>Float-Point Number: Addition Subtraction</h3><h4 id="Addition"><a href="#Addition" class="headerlink" title="Addition"></a>Addition</h4><p>基本步骤：</p>
+<ul>
+<li><p>零操作数检查：若其中1个操作数为0，则只需要对符号位做处理。</p>
+</li>
+<li><p>对阶：移动 <code>阶码小的浮点数的尾数</code>，使得 <code>两个浮点数的阶码</code> 相同。</p>
+<ul>
+<li>求 <code>阶差</code>：\Delta E &#x3D; [E_X]_T + [-E_Y]_T</li>
+<li><code>右移</code> <code>阶码小的浮点数的尾数</code> \Delta E 位</li>
+</ul>
+</li>
+<li><p>计算尾数</p>
+</li>
+<li><p><code>规格化</code> <code>结果浮点数</code></p>
+<ul>
+<li>当 <code>尾数</code> 的结果为 <code>0.00</code> 或 <code>11.1</code> 时，<code>左移尾数 （每次阶码减一）</code> 直到 <code>尾数</code> 变为 <code>00.1</code> 或 <code>11.0</code></li>
+<li>当 <code>尾数</code> 的结果为 <code>01.</code> 或 <code>10.</code> 时，<code>右移尾数 （每次阶码加一）</code> 直到 <code>尾数</code> 变为 <code>00.1</code> 或 <code>11.0</code></li>
+</ul>
+</li>
+<li><p>舍入：在进行 <code>右规格化</code> 时，可能会丢失 <code>一些低位的数值</code>。</p>
+<ul>
+<li><code>0舍1入策略</code>：如果 <code>向右移出</code> 的是 <code>1</code>，则在 <code>最低位 + 1</code>。</li>
+<li><code>恒置0策略</code>：只要 <code>数字位1</code> 被 <code>移出</code> ，则将 <code>最低位 恒置1</code></li>
+</ul>
+</li>
+<li><p>溢出处理：通过判断 <code>阶码是否溢出</code> 来判断 <code>浮点数是否溢出</code></p>
+<ul>
+<li><code>阶码上溢</code>：阶码的符号位为 <code>01</code></li>
+<li><code>阶码下溢</code>：阶码的符号位为 <code>10</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Subtraction"><a href="#Subtraction" class="headerlink" title="Subtraction"></a>Subtraction</h4><p>…</p>
+<blockquote>
+<p>关于 <code>数值表示</code> 的相关链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.sakurawald.com/?p=33736">https://www.sakurawald.com/?p=33736</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.sakurawald.com/?p=33679">https://www.sakurawald.com/?p=33679</a></p>
+</blockquote>
+<h2 id="Chapter-4-Memory-Hierarchy"><a href="#Chapter-4-Memory-Hierarchy" class="headerlink" title="Chapter 4: Memory Hierarchy"></a>Chapter 4: Memory Hierarchy</h2><h3 id="Memory-Indicators"><a href="#Memory-Indicators" class="headerlink" title="Memory Indicators"></a>Memory Indicators</h3><p>存储器的技术指标：</p>
+<ul>
+<li><p><code>存储容量</code>：<code>存储器</code> 所能存储的 <code>二进制的位数</code></p>
+</li>
+<li><p><code>速度</code></p>
+<ul>
+<li><code>存取时间 （存储器访问时间）</code>：从 <code>启动</code> <code>存取操作</code> 到 <code>完成</code> 该操作 <code>所经历的时间</code></li>
+<li><code>存储周期 （读写周期）</code>：对 <code>存储器</code> 进行 <code>连续两次存取</code> 所需的 <code>最短时间间隔</code></li>
+<li><code>存储器带宽 （数据传输率）</code>：<code>单位时间</code> 内 <code>存储器所能存取的信息位数</code>。存储器总线宽度存储周期存储器总线宽度 &#x2F; 存储周期）</li>
+</ul>
+</li>
+</ul>
+<h3 id="SRAM-amp-DRAM"><a href="#SRAM-amp-DRAM" class="headerlink" title="SRAM &amp; DRAM"></a>SRAM &amp; DRAM</h3><p>种类</p>
+<p>SRAM</p>
+<p>DRAM</p>
+<p>访问速度</p>
+<p>快</p>
+<p>慢</p>
+<p>刷新电路</p>
+<p>不需要</p>
+<p>需要</p>
+<p>使用场合</p>
+<p>告诉缓存</p>
+<p>系统微机内存</p>
+<p>价格</p>
+<p>高</p>
+<p>低</p>
+<h3 id="Memory-Expansion"><a href="#Memory-Expansion" class="headerlink" title="Memory Expansion"></a>Memory Expansion</h3><blockquote>
+<ul>
+<li>双译码结构</li>
+</ul>
+<p>即将 <code>来自CPU的地址线</code> 分为 <code>行选择线</code> 和 <code>列选择线</code>，分别送到 <code>2个译码器</code> 中进行 <code>译码</code>，以便 <code>大大减少</code> <code>译码输出线</code> 的数量。</p>
+<p>如：以 <code>12位地址</code> 为例</p>
+<ul>
+<li><code>单译码结构</code>：<code>译码输出</code> 的 <code>状态线</code> 为 2^{12} &#x3D; 4096 根</li>
+<li><code>双译码结构</code>：<code>X译码输出</code> 和 <code>Y译码输出</code> 的 <code>状态线</code> 均为 2^6 &#x3D; 64 根，总共需要128 根。</li>
+</ul>
+<p>总之，对于 <code>小容量的存储器</code>，可以采用 <code>单译码结构</code>。但对于 <code>大容量存储器</code> 则没有 <code>选择的余地</code>。</p>
+</blockquote>
+<blockquote>
+<p><code>存储字长</code>：<code>主存</code> 的 <code>1个存储单元</code> 所包含的 <code>二进制位</code></p>
+<p><code>数据字长 （计算机字长）</code>：<code>计算机</code> <code>1次所能处理的二进制位</code></p>
+<blockquote>
+<p>目前大部分的计算机的 <code>主存</code> 采用 <code>按字节编址</code>。</p>
+<p>常见的 <code>计算机字长</code> 为 <code>16位字长 （2字节）</code>，<code>32位字长 （4字节）</code>，<code>64位字长（8字节）</code></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>大端序存储方式 (Big-Endian)</code>：<code>MSB (Most-Siginificant-Bit)</code> 作为 <code>字地址</code></p>
+<p><code>小端序存储方式 (Little-Endian)</code>：<code>LSB</code> 作为 <code>字地址</code></p>
+<blockquote>
+<p>68000采用大端，Intel采用小端，ARM两者都支持。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>存储器拓展</code></p>
+<ul>
+<li><p><code>字拓展</code>：<code>容量</code> 不足时</p>
+<ul>
+<li><p>所需存储器芯片的数量主存容量存储体容量存储器芯片容量地址线数存储器地址线数所需存储器芯片的数量 &#x3D; 主存容量 &#x2F; 存储体容量(存储器芯片容量) &#x3D; 2^{CPU地址线数- 存储器地址线数}</p>
+</li>
+<li><p>片选产生方法</p>
+<ul>
+<li>线选法</li>
+<li>全译码法</li>
+<li>部分译码法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>位拓展</code>：<code>数据位</code> 不足时</p>
+<ul>
+<li>所需存储器芯片的数量数据线位数存储体数据位所需存储器芯片的数量 &#x3D; 数据线位数 &#x2F; 存储体数据位</li>
+</ul>
+</li>
+<li><p><code>字位同时拓展</code></p>
+</li>
+</ul>
+<blockquote>
+<p><code>字拓展</code> 类似于 <code>伸缩因子 (Scale Factor)</code>，<code>位拓展</code> 类似于 <code>并行读写</code></p>
+</blockquote>
+<blockquote>
+<p>e.g. 某计算机的主存地址空间中，从地址 0000_{16} 到 3FFF_{16} 为 ROM存储区域，从 4000_{16} 到 5FFF_{16} 为 保留地址区域，暂时不使用。从 6000_{16} 到 FFFF_{16} 为RAM地址区域。RAM的控制信号为 CS# 和 WE#，CP</p>
+<p>的地址线为 A_{15} \cdots A_0，数据线为 D_7 \cdots D_0</p>
+<p>控制信号有 R&#x2F;W# 和 访存请求MREQ#</p>
+<p>(1) 若ROM和RAM的 <code>存储器芯片</code> 均采用 <code>8K × 1 存储器芯片</code>，试画出存储器与CPU的连接图。</p>
+<blockquote>
+<p>分析 <code>地址空间分布</code></p>
+<p>0000H ~ 3FFFH (16K)：ROM</p>
+<p>4000H ~ 5FFFH (8K)：保留区</p>
+<p>6000H ~ FFFFH (40K)：RAM</p>
+<p>故 ROM需要的存储器芯片数量 &#x3D; \frac{16K * 8}{8K * 1} &#x3D; 16 片</p>
+<p>故 RAM需要的存储器芯片数量 &#x3D; \frac{40K * 8}{8K * 1} &#x3D; 40 片</p>
+<p>RAM和ROM 均需要 <code>字位同时拓展</code></p>
+<p><code>字拓展</code> 时 <code>译码输入线的数量</code> &#x3D; 16 - \log{8K} &#x3D; 16 - 13 &#x3D; 3 根</p>
+<p>故 <code>译码器的输出线</code> 有 2^3 &#x3D; 8 根，每根线选中 64K &#x2F; 8 &#x3D; 8K 的 <code>存储单元</code>，即 <code>3-8译码</code>。总共选中 64K 个 <code>存储单元</code></p>
+<p><img src="https://s2.loli.net/2022/06/13/YhDUx75P41pdKTf.png" alt="image-20220613165628307"></p>
+</blockquote>
+<p>(2) 如果 ROM 采用 <code>8K × 8 存储器芯片</code>，而 RAM 采用 <code>4K × 8 存储器芯片</code>，试画出存储器与CPU的连接图。</p>
+<blockquote>
+<p><code>地址空间分布</code> 分析相同。但 ROM 和 RAM 所需的 <code>存储器芯片</code> 数量有所变化。</p>
+<p>ROM需要的存储器芯片的数量 &#x3D; \frac{16K * 8}{8K * 8} &#x3D; 2 片</p>
+<p>RAM需要的存储器芯片的数量 &#x3D; \frac{40K * 8}{4K * 8} &#x3D; 10 片</p>
+<p>ROM和RAM均只需要进行 <code>字拓展</code></p>
+<blockquote>
+<p>对于 <code>译码输入</code> 的选择？</p>
+<ul>
+<li><p>以 <code>大容量存储器芯片</code> （8K）为目标</p>
+<p><code>字拓展</code> 时 <code>译码输入线的数量</code> &#x3D; 16 - \log{8K} &#x3D; 16 - 13 &#x3D; 3 根</p>
+<p>共产生 2^3 &#x3D; 8 根 <code>译码输出线</code>，每根 <code>选择的内存空间范围</code> 为 64K &#x2F; 8 &#x3D; 8K</p>
+<p><img src="https://s2.loli.net/2022/06/13/g6izADBVkIeQLSC.png" alt="image-20220613171936954"></p>
+</li>
+<li><p>以 <code>小容量存储器芯片</code> （4K）为目标</p>
+<p><code>字拓展</code> 时 <code>译码输入线的数量</code> &#x3D; 16 - \log{4K} &#x3D; 16 - 12 &#x3D; 4 根</p>
+<p>共产生 2^4&#x3D;16 根 <code>译码输出线</code>，每根 <code>选择的内存空间范围</code> 为 64K &#x2F; 16 &#x3D; 4K</p>
+<p>为了 <code>留出8K的保留区</code>，必须留出 <code>2根片选信号</code></p>
+<p><img src="https://s2.loli.net/2022/06/13/BCqf3z1opSR6LcT.png" alt="image-20220613171951554"></p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>(3) 如果 ROM 采用 <code>16 × 8 存储器芯片</code>， RAM 采用 <code>8K × 8 存储器芯片</code>，试画出存储器与CPU的连接图。</p>
+<blockquote>
+<p><code>地址空间分布</code> 同前。</p>
+<p>ROM所需要的存储器芯片的数量 &#x3D; \frac{16K * 8}{16K * 8} &#x3D; 1 片</p>
+<p>RAM所需要的存储器芯片的数量 &#x3D; \frac{40K * 8}{8K * 8} &#x3D; 5 片</p>
+<p>进行 <code>字拓展</code> 的 <code>片选译码</code> 可以选择两种方式</p>
+<blockquote>
+<ul>
+<li><p>以 <code>16K存储器芯片</code> 为目标，每个 <code>片选译码线</code> 选择 <code>16K的存储空间</code></p>
+<p><img src="https://s2.loli.net/2022/06/13/nUBElbMJQR2fv7a.png" alt="image-20220613181522250"></p>
+</li>
+<li><p>以 <code>8K存储器芯片</code> 为目标，每个 <code>片选译码线</code> 选择 <code>8K的存储空间</code></p>
+<p><img src="/home/teeth/.config/Typora/typora-user-images/image-20220613181533451.png" alt="image-20220613181533451"></p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><p><code>信息交换的基本单位</code>：</p>
+<ul>
+<li><code>CPU</code> 与 <code>Cache</code> 之间 \to <code>字 (Word)</code></li>
+<li><code>Cache</code> 与 <code>主存</code> 之间 \to <code>块 (Block)</code></li>
+<li><code>主存</code> 与 <code>辅存</code> 之间 \to <code>段 (Segment)</code> ，<code>页 (Page)</code>，段页</li>
+</ul>
+<blockquote>
+<p>1个 <code>Cache块</code> 包含 <code>若干个字</code></p>
+</blockquote>
+<h3 id="Virtual-Memory"><a href="#Virtual-Memory" class="headerlink" title="Virtual Memory"></a>Virtual Memory</h3><p><code>虚拟存储器</code> 的类别：</p>
+<ul>
+<li><p><code>段式虚拟存储器</code>：按 <code>程序的自然段</code> 作为 <code>主存和辅存之间</code> 的 <code>信息交换基本单位</code>。使用 <code>段表</code> 来登记 <code>段</code> 的 <code>调入情况</code>，<code>段表</code> 是 <code>主存</code> 的一部分。</p>
+<ul>
+<li>优点：保护用户程序的相对独立性</li>
+<li>缺点：管理复杂，容易造成主存的碎片</li>
+</ul>
+</li>
+<li><p><code>页式虚拟存储器</code>：将 <code>程序</code> 分成 <code>固定长度的页</code>，作为 <code>主存和辅存之间</code> 的 <code>信息交换基本单位</code>。使用 <code>页表</code> 来登记 <code>页</code> 的 <code>调入情况</code>，<code>页表</code> 是 <code>主存</code> 的一部分。</p>
+<ul>
+<li>优点：管理方便，主存的空间浪费少</li>
+<li>缺点：破坏了程序的相对独立性</li>
+</ul>
+</li>
+<li><p><code>段页式虚拟存储器</code>：先对 <code>程序</code> 分为 <code>程序段</code>，然后将 <code>程序段</code> 分为 <code>固定长度的页</code>，作为 <code>主存和辅存之间</code> 的 <code>信息交换基本单位</code>。但 <code>共享和保护</code> 按照 <code>程序段</code> 进行。同时使用 <code>段表</code> 和 <code>页表</code> 来登记 <code>段</code> 和 <code>页</code> 的 <code>调入情况</code></p>
+<ul>
+<li>优点：管理方便，主存空间浪费少，保持程序自身的相对独立性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Magnetic-Disk"><a href="#Magnetic-Disk" class="headerlink" title="Magnetic Disk"></a>Magnetic Disk</h3><h4 id="Magnetic-Disk-Indicators"><a href="#Magnetic-Disk-Indicators" class="headerlink" title="Magnetic Disk Indicators"></a>Magnetic Disk Indicators</h4><ul>
+<li><p><code>存储密度</code></p>
+<ul>
+<li><code>道密度</code>：沿 <code>磁盘半径方向</code> 单位长度的 <code>磁道数</code>。道&#x2F;英寸</li>
+<li><code>位密度</code>：沿 <code>磁道方向</code> 单位长度的 <code>所记录的二进制位数</code>。位&#x2F;英寸</li>
+<li><code>面密度</code>：面密度道密度位密度面密度 &#x3D; 道密度 \times 位密度</li>
+</ul>
+</li>
+<li><p><code>存储容量</code>：一个 <code>磁盘</code> 所能存储的 <code>字节总数</code></p>
+</li>
+<li><p><code>数据传输率</code>：<code>磁盘</code> 在 <code>单位时间</code> 内向主机 <code>传送的字节数 （考虑缓存）</code></p>
+<blockquote>
+<p>磁盘速度公式转速磁道容量道密度位密度</p>
+</blockquote>
+</li>
+<li><p><code>平均存取时间</code>：从 <code>发出读写操作</code>，到 <code>找到正确位置并开始读写</code> 所用的时间。</p>
+<blockquote>
+<p>平均存取时间平均寻道时间平均等待时间</p>
+<p>平均寻道时间：10~20ms</p>
+<p>平均等待时间：磁盘旋转一周所用的时间\approx \frac{1}{2} 磁盘旋转一周所用的时间</p>
+<blockquote>
+<p>7200转 \to 60&#x2F;7200 &#x2F;2 &#x3D; 8 &#x2F; 2 &#x3D; 4ms</p>
+<p>大部分磁盘的等待时间在这个数值附近。</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>eg. <code>磁盘组</code> 有6片 <code>磁盘</code>，每片有2个 <code>记录面</code>，最上和最下两个面不适用。</p>
+<p><code>存储区域</code> 内径22cm，外径33cm。<code>道密度</code> 为 40道&#x2F;cm，内层位密度 为 400位&#x2F;cm，转速 2400r&#x2F;min 问：</p>
+<p>(1) 共有多少柱面？</p>
+<blockquote>
+<p>有效存储区域半径有效存储区域半径 R &#x3D; (33 - 22) &#x2F; 2 &#x3D; 5.5cm</p>
+<blockquote>
+<p>注意：<code>内径</code> 和 <code>外径</code> 都是 <code>直径</code></p>
+</blockquote>
+<p>总道数道密度道道总道数 &#x3D; R \times 道密度 &#x3D; 5.5cm \times 40道&#x2F;cm &#x3D; 220道</p>
+<p>故共有 220个柱面。</p>
+</blockquote>
+<p>(2) 盘组总存储容量是多少 ？</p>
+<blockquote>
+<p>内磁道周长内磁道周长 &#x3D; 2\pi R &#x3D; 2 \times 3.14 \times (22&#x2F;2) &#x3D; 69.08cm</p>
+<p>每道信息量内层位密度内磁道周长字节\r{每道信息量 &#x3D; 内层位密度 \times 内磁道周长 &#x3D; 3454字节}</p>
+<p>每面信息量每道信息量总道数字节\r{每面信息量 &#x3D; 每道信息量 \times 总道数 &#x3D; 759880字节}</p>
+<blockquote>
+<p>计算 <code>某个面的信息量</code> 的过程，类似于 <code>求圆形的面积的积分过程</code>：位道面位 \to 道 \to 面</p>
+</blockquote>
+<p>盘组总容量每面信息量总可用面数每面信息量字节盘组总容量 &#x3D; 每面信息量 \times 总可用面数 &#x3D; 每面信息量 \times (2\times 6 - 2) &#x3D; 7598800字节</p>
+</blockquote>
+<p>(3) 数据传输率为多少 ？</p>
+<blockquote>
+<p>数据传输率磁盘转速每条磁道容量字节数据传输率 &#x3D; 磁盘转速 \times 每条磁道容量 &#x3D; 2400&#x2F;60 \times 3454 &#x3D; 13816 字节&#x2F;s</p>
+<blockquote>
+<p>在 <code>磁盘</code>自身进行 <code>高速旋转</code> 时， <code>读写头</code> 会 <code>停留在某条特定的磁道上</code> 进行 <code>读写数据</code>。所以 <code>数据传输率</code> 只需要计算 <code>1条磁道的信息容量</code> 即可。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="Network-Memory"><a href="#Network-Memory" class="headerlink" title="Network Memory"></a>Network Memory</h3><p><code>网络存储器</code> 技术：</p>
+<ul>
+<li><code>存储区域网络 （SAN, Storage Area Network）</code></li>
+<li><code>附网存储 （NAS, Network Attached Storage）</code></li>
+<li><code>iSCSI （IP on SCSI）</code></li>
+</ul>
+<h2 id="Chapter-5-Instruction-System"><a href="#Chapter-5-Instruction-System" class="headerlink" title="Chapter 5: Instruction System"></a>Chapter 5: Instruction System</h2><h3 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h3><p><code>指令系统</code></p>
+<ul>
+<li><p>定义：是 <code>机器指令</code> 的 <code>集合</code></p>
+</li>
+<li><p>发展方向</p>
+<ul>
+<li>复杂指令系统计算机 （CISC）：指令数量多，单条指令功能简单的计算机。</li>
+<li>精简指令系统计算机 （RISC）：指令数量少，单条指令功能复杂的计算机。</li>
+</ul>
+</li>
+<li><p>设计要求</p>
+<ul>
+<li>完备性：指令足够使用</li>
+<li>有效性：程序可以高效运行，所需内存少，速度快</li>
+<li>规整性：对内存和寄存器透明，对多种数据类型透明，指令格式和数据格式一致</li>
+<li>兼容性：系列机中的软件可以向上兼容</li>
+</ul>
+</li>
+</ul>
+<h3 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h3><p>指令操作码地址码</p>
+<blockquote>
+<p><code>地址码字段</code></p>
+<ul>
+<li><code>地址码</code> 不一定存放的是 <code>地址</code>，也可能是 <code>操作数本身</code> （立即数）</li>
+<li>根据 <code>1条指令中地址码字段的个数</code>，将指令分类位：<code>无操作数指令</code>，<code>单操作数指令</code>，<code>双操作数指令</code>，<code>三操作数指令</code>。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>指令字长</code>：<code>单条指令</code> 中包含的 <code>二进制位数</code></p>
+<p><code>机器字长</code>：<code>计算机</code> 所能够 <code>直接处理</code> 的 <code>二进制位数</code>。</p>
+<ul>
+<li><p><code>机器字长</code> 一般与 <code>主存的存储单元的位数</code> 一致</p>
+</li>
+<li><p><code>单字长指令</code>：<code>指令字长</code> &#x3D; <code>机器字长</code> 的指令</p>
+<blockquote>
+<p>类似地，还有 <code>半字长指令</code>，<code>多字长指令</code></p>
+</blockquote>
+</li>
+<li><p><code>等长指令字结构</code> 和 <code>变长指令字结构</code></p>
+<ul>
+<li>等长指令字结构：<code>所有指令</code> 的长度相等</li>
+<li>变长指令字结构</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Addressing-Mode"><a href="#Addressing-Mode" class="headerlink" title="Addressing Mode"></a>Addressing Mode</h3><p><code>指令</code> 和 <code>操作数</code> 均存放在 <code>主存</code> 当中。</p>
+<p><code>寻址方式</code></p>
+<ul>
+<li><p>指令的寻址方式</p>
+<ul>
+<li>顺序寻址：<code>下一条指令的地址</code> &#x3D; <code>当前指令的地址</code> + 1</li>
+<li>跳跃寻址：<code>下一条指令的地址</code> &#x3D; <code>当前指令所给出的地址</code></li>
+</ul>
+</li>
+<li><p>操作数的寻址方式</p>
+<blockquote>
+<p><code>有效地址 (Effective Address)</code>：<code>操作数</code> 在 <code>内存</code> 中的地址</p>
+</blockquote>
+<ul>
+<li><p>隐含寻址：在 <code>指令</code> 中 <code>隐含地给出</code>。</p>
+<blockquote>
+<p>不计算 EA</p>
+<p>指令中给出S &#x3D; 指令中给出</p>
+</blockquote>
+</li>
+<li><p>立即数寻址：<code>指令</code> 的 <code>地址码字段</code> 给出的是 <code>操作数本身</code> （而不是 <code>地址</code>）</p>
+<blockquote>
+<p>不计算 EA</p>
+<p>S &#x3D; D</p>
+</blockquote>
+</li>
+<li><p>直接寻址：<code>指令</code> 的 <code>地址码字段</code> <code>直接</code> 给出 <code>操作数的有效地址</code></p>
+<blockquote>
+<p>EA &#x3D; D</p>
+<p>S &#x3D; (D)</p>
+</blockquote>
+</li>
+<li><p>间接寻址（相对于直接寻址）：<code>指令</code> 的 <code>地址码字段</code> 给出的是 <code>操作数的有效地址的地址</code></p>
+<blockquote>
+<p><code>间接寻址</code> 相当于 <code>编程语言</code> 中的 <code>指针 (Pointer)</code>。</p>
+<p>EA &#x3D; (D)</p>
+<p>\t{S} &#x3D; \t{(EA)} &#x3D; \t{((D))}</p>
+</blockquote>
+</li>
+<li><p>寄存器（直接）寻址：<code>操作数</code> 放在 <code>通用寄存器</code> 中 （而不是 <code>内存</code> 中），通过 <code>地址码字段</code> 给出 <code>寄存器号</code></p>
+<blockquote>
+<p>不计算 EA</p>
+<p>S &#x3D; (R_D)</p>
+</blockquote>
+</li>
+<li><p>寄存器间接寻址：<code>操作数的地址</code> 放在 <code>通用寄存器</code> 中（而不是内存中），通过 <code>地址码字段</code> 给出 <code>寄存器号</code></p>
+<blockquote>
+<p>EA &#x3D; (R_D)</p>
+<p>S &#x3D; (EA) &#x3D; ((R_D))</p>
+</blockquote>
+</li>
+<li><p>偏移寻址 \hotpink{EA &#x3D; (R) +D}</p>
+<ul>
+<li><p>PC相对寻址：地址码字段的内容EA &#x3D; \r{PC} + 地址码字段的内容</p>
+<blockquote>
+<p>注意 <code>题目中</code> PC 的值是 <code>当前指令的地址</code> 还是 <code>当前指令的下一条指令的地址</code></p>
+</blockquote>
+<blockquote>
+<p>EA &#x3D; (PC) + D</p>
+<p>S &#x3D; (EA) &#x3D; ((PC) + D)</p>
+</blockquote>
+</li>
+<li><p>基址寻址：基址寄存器的内容地址码字段的内容EA &#x3D; 基址寄存器的内容 + 地址码字段的内容</p>
+<blockquote>
+<p>EA &#x3D; (BX_{\r{immutable}}) + D_{mutable}</p>
+<p>S &#x3D; (EA) &#x3D; ((BX) + D)</p>
+</blockquote>
+</li>
+<li><p>变址寻址：变址寄存器的内容地址码字段的内容EA &#x3D; 变址寄存器的内容 +地址码字段的内容</p>
+<blockquote>
+<p>EA &#x3D; (X)_{mutable} + D_{\r{immutable}}</p>
+<p>S &#x3D; (EA) &#x3D; ((X) + D)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>复合寻址</p>
+<ul>
+<li>变址间址\g{变址}\b{间址}：EA &#x3D; \b(\g{(R) + D}\b)</li>
+<li>间址变址\b{间址}\g{变址}：EA &#x3D; \g{(R) + \b{(D)}}</li>
+<li>相对间址\orange{相对}\b{间址}：EA &#x3D; \b{(\orange{(PC) + D})}</li>
+</ul>
+</li>
+<li><p>堆栈寻址</p>
+<ul>
+<li><p>串联堆栈：<code>CPU内</code> 的 <code>一组专用寄存器</code>。</p>
+<ul>
+<li><p>操作</p>
+<ul>
+<li>入栈：某个通用寄存器的数据 \to 堆栈顶部</li>
+<li>出栈：堆栈顶部的数据 \to 某个通用寄存器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>存储器堆栈：将 <code>主存的一部分连续区域</code> 作为 <code>堆栈</code>。（有用于指示 <code>栈顶</code> 的 <code>堆栈指示器</code> ）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>根据 <code>寻址方式</code> 的 <code>是否需要计算EA</code> 来区分为 <code>是否需要访问内存</code></p>
+<blockquote>
+<p>eg. 字长16位，主存\r{64K}，指令单字长单地址，80条指令，寻址方式共4种。请设计指令格式？</p>
+<blockquote>
+<p>指令格式 &#x3D; 7位OP字段 + 2位寻址方式字段 + 剩余的7位作为地址码字段</p>
+<blockquote>
+<p>寄存器位寄存器 \to 16位</p>
+<p>相对寻址相对寻址 EA &#x3D; (PC) + D \to \r{64K}</p>
+<p>变址寻址变址寻址EA &#x3D; (R) + D \to \r{64K}</p>
+<p>直接寻址直接寻址EA &#x3D; D \to 128</p>
+<p>间接寻址间接寻址 EA &#x3D; (D) \to \r{64K}</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="Operation-Code-Expansion"><a href="#Operation-Code-Expansion" class="headerlink" title="Operation-Code Expansion"></a>Operation-Code Expansion</h3><p><code>操作码拓展</code> 可以在不增加 <code>指令长度</code> 的前提下，增加 <code>指令种类数量</code>。</p>
+<p><code>指令的操作码的编码格式</code></p>
+<ul>
+<li>不拓展 \to 定长编码：<code>操作码字段</code> 的长度 <code>固定</code>。</li>
+<li>定长拓展 \to 哈弗曼编码：根据 <code>指令使用的频度</code> 来分配 <code>操作码字段的长度</code>。</li>
+<li>不定长拓展 \to 变长拓展格式：<code>操作码字段</code> 向 <code>地址码字段</code> 进行 <code>拓展</code>。</li>
+</ul>
+<blockquote>
+<p>指令拓展的核心思想是：短码不能作为长码的 <code>前缀</code> ！</p>
+<p>留给短码使用的拓展标记的数量不考虑拓展时长码的总指令数当前已经使用掉的长码的指令数留给短码使用的拓展标记的数量 &#x3D; 不考虑拓展时长码的总指令数 - 当前已经使用掉的长码的指令数</p>
+</blockquote>
+<blockquote>
+<p>eg. 某指令系统的指令字长为 16位，每个地址码为6位。</p>
+<p>若双地址指令有 \r{15} 条，单地址指令有 \b{34} 条，则剩下零地址指令有多少条？</p>
+<blockquote>
+<p>指令格式 &#x3D; 4位操作码字段 + 6位地址码字段 + 6位地址码字段</p>
+<p>双地址指令 ： 0000 ~ 1110 总共 \r{15} 条指令 （不拓展时为 2^4&#x3D;16 条）</p>
+<p>单地址指令：1111 (000000 ~ 111111) 总共 2^6&#x3D;64 条指令 （已经用了34条）</p>
+<p>零地址指令：1111 (100010 ~ 111111) (000000 ~ 111111) 总共 64\b{-34}&#x3D;30 个拓展标记，每个拓展标记都有 2^6 &#x3D; 64 条 零地址指令。</p>
+<p>故：零地址指令 最多有 30 \times 2^6 &#x3D; 15 \times 2^7 种</p>
+</blockquote>
+</blockquote>
+<h2 id="Chapter-6-Central-Controller-Unit"><a href="#Chapter-6-Central-Controller-Unit" class="headerlink" title="Chapter 6: Central Controller Unit"></a>Chapter 6: Central Controller Unit</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><p>控制器</p>
+<ul>
+<li><p>功能</p>
+<ul>
+<li><p>指令控制：保证指令按照程序规定的顺序进行执行</p>
+</li>
+<li><p>操作控制：<code>产生</code> 每条指令执行所需要的各种 <code>控制信号</code>，并送到 <code>相应部件</code> 产生相应的 <code>动作</code></p>
+</li>
+<li><p>时间控制：用于 <code>同步</code> 不同的操作</p>
+</li>
+<li><p>异常和中断处理</p>
+</li>
+</ul>
+</li>
+<li><p>基本组成</p>
+<ul>
+<li><p>程序计数器 PC</p>
+<ul>
+<li>保存 <code>下一条指令</code> 的地址</li>
+<li>完成顺序控制的功能</li>
+<li>内容在取址完成后即可改变！</li>
+<li>转移指令可以直接修改PC值</li>
+</ul>
+</li>
+<li><p>指令寄存器 IR</p>
+<ul>
+<li>保存 <code>当前正在执行的指令</code></li>
+<li>指令的操作码字段和寻址方式送译码</li>
+</ul>
+</li>
+<li><p>指令译码器 ID</p>
+<ul>
+<li>对指令的 <code>操作码字段</code> 和 <code>寻址方式</code> 进行译码，指出指令的操作方式</li>
+<li>译码的结果：找出该指令相关的 <code>微程序的入口</code></li>
+</ul>
+</li>
+<li><p>操作控制器 OC</p>
+<ul>
+<li>产生指令执行过程中所需的 <code>控制信号</code></li>
+<li>实现指令的操作控制功能</li>
+</ul>
+</li>
+<li><p>时序产生器 TG</p>
+<ul>
+<li>对操作 <code>控制信号</code> 进行 <code>同步</code></li>
+<li>实现 <code>控制器</code> 的 <code>时间控制功能</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实现方式</p>
+<ul>
+<li>微程序控制器</li>
+<li>硬布线控制器</li>
+</ul>
+<h3 id="Instruction-Cycle"><a href="#Instruction-Cycle" class="headerlink" title="Instruction-Cycle"></a>Instruction-Cycle</h3><p><code>数据通路</code>：<code>数据</code> 在 <code>功能部件</code> 之间传送的 <code>路径</code>。</p>
+<p><code>指令周期</code>：<code>取出</code> 一条指令，并 <code>执行</code> 一条指令所需要的时间。</p>
+<p><code>CPU周期</code> （<code>机器周期</code>）：<code>CPU</code> 从 <code>内存</code> 中取出 1个 <code>机器字</code> 所需的最短时间。通常由若干个 <code>时钟周期</code> 组成。</p>
+<p><code>时钟周期</code>（T周期）：<code>计算机</code> 的 <code>节拍周期</code>，是计算机中处理 <code>操作</code> 的 <code>最基本的时间单位</code>。</p>
+<p><img src="https://s2.loli.net/2022/06/14/59DMQHj2qPas1bZ.png" alt="image-20220614141138895"></p>
+</li>
+</ul>
+<h3 id="Time-Generator"><a href="#Time-Generator" class="headerlink" title="Time Generator"></a>Time Generator</h3><p><code>多级时序体制</code>：</p>
+<ul>
+<li><p>属于 <code>电位-脉冲制</code>，<code>电位</code> 对应 <code>CPU时间</code> ， <code>脉冲</code> 对应 <code>时钟周期</code>。 （数据在寄存器之间的传送）</p>
+</li>
+<li><p>采用 <code>硬布线逻辑 （门电路 + 触发器组成）</code> 的 <code>计算机多级时序体制</code> 是 <code>主状态周期-节拍电位-节拍脉冲 三级时序体制</code></p>
+<ul>
+<li><code>主状态周期</code>：反映 <code>某个状态周期的持续时间</code>，通常用 <code>触发器的状态持续时间</code> 表现。（1个主状态周期包含多个 节拍电位，对应1条指令的执行时间）</li>
+<li><code>节拍电位</code>：表示一个 <code>CPU周期</code> 的时间。（包含多个节拍脉冲）</li>
+<li><code>节拍脉冲</code>：<code>节拍电位</code> 内的 <code>控制脉冲</code>，对应了最基本的 <code>定时信号</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Micro-Program-Controller"><a href="#Micro-Program-Controller" class="headerlink" title="Micro-Program Controller"></a>Micro-Program Controller</h3><p><code>微程序设计技术</code> 是使用 <code>软件</code> 来设计 <code>硬件</code> 的技术。</p>
+<p>通过将 <code>每条指令</code> 所需的 <code>操作控制信号</code> 编码为 <code>微指令</code>，存放到 <code>控制存储器 （只读）</code> 中。而每条 <code>机器指令</code> 对应 <code>一段微程序</code>，当机器执行 <code>机器指令</code> 时，依次执行 <code>该机器指令所对应的微指令</code>。</p>
+<p><code>微操作</code>：<code>执行部件</code> 接受 <code>微命令</code> 后所进行的 <code>操作</code></p>
+<p><code>微命令</code>：<code>控制部件</code> 通过 <code>控制线</code> 向 <code>执行部件</code> 发出的各种 <code>控制信号</code>。 （打开和关闭控制门）</p>
+<blockquote>
+<p><code>微命令的编码</code> 就是 <code>微指令的编码中的控制字段</code>：<code>微指令的控制码字段的每一个位</code> 就是一个 <code>微命令</code></p>
+</blockquote>
+<p><code>微指令</code>：在机器的一个 <code>CPU周期</code> 之内，一组实现一定功能的 <code>微命令的集合</code>。</p>
+<blockquote>
+<p>微指令格式操作控制字段顺序控制字段 微指令格式 &#x3D; 操作控制字段 + 顺序控制字段</p>
+<p><img src="https://s2.loli.net/2022/06/14/wS3nGgrzeW5HDP2.png" alt="image-20220614171645818"></p>
+<ul>
+<li>操作控制字段：管理和指挥全机工作的 <code>所有控制信号</code>。</li>
+<li>顺序控制字段：用于进行判别测试和给出 <code>下一条微指令的地址</code></li>
+</ul>
+<p><code>微（指令）周期</code>：从 <code>控制存储器</code> <code>取出一条微指令</code>，并 <code>执行微指令</code> 所需要的时间。</p>
+<ul>
+<li><p>在 <code>串行执行</code> 时，一般 <code>微指令周期</code> &#x3D; <code>机器周期</code>，以便系统的同步控制</p>
+<blockquote>
+<p><img src="https://s2.loli.net/2022/06/14/wCAkLVEu9Hs368e.png" alt="image-20220614171939492"></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/06/14/wruAWkomqdnzGiE.png" alt="image-20220614172447065"></p>
+<p><code>微程序控制器的组成部分</code>：</p>
+<ul>
+<li><p>微指令寄存器 IR：存放从 <code>控制存储器</code> 中读出的 <code>微指令</code></p>
+</li>
+<li><p>微地址寄存器 AR：存储访问 <code>控制存储器的微地址</code></p>
+<blockquote>
+<ul>
+<li>AR 类似于 PC</li>
+<li><code>微程序的入口地址</code> 由 OP 通过 <code>测试</code> 装入</li>
+<li><code>顺序执行时的后续微指令的地址</code> &#x3D; AR +1</li>
+<li>转移时，使用 <code>P字段的相关位</code> 测试 <code>外部条件</code>，并根据 <code>测试结果</code> 来决定是否修改 AR，以实现 <code>转移</code></li>
+<li>根据 <code>机器指令的OP字段</code> ，通过某种 <code>映射方式</code>，获得 <code>该机器指令相应的微程序的入口地址</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><code>一条机器指令</code> 对应 <code>一段微程序</code> （包含该 <code>机器指令</code> 在执行过程中的 <code>所有控制信号</code>）。</p>
+<p><code>微程序</code> 是 <code>微指令的集合</code></p>
+<h3 id="Hard-Wiring-Controller"><a href="#Hard-Wiring-Controller" class="headerlink" title="Hard-Wiring Controller"></a>Hard-Wiring Controller</h3><p><code>硬布线控制器</code></p>
+<ul>
+<li>采用 <code>硬布线方式</code> 设计的控制器称为 <code>硬布线控制器</code>。</li>
+<li>采用 <code>组合逻辑</code> 方式设计 <code>控制器</code>，并由 <code>组合逻辑</code> 来 <code>产生指令执行过程中所需的所有控制信号</code>。</li>
+<li>Control &#x3D; f(Instruction, Status, Time)</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/06/14/HFv3D1awW9YcZrm.png" alt="image-20220614180810636"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/13/jsp-servlet-jsp-short-hand/" rel="prev" title="JSP - Servlet & JSP Short-Hand">
+      <i class="fa fa-chevron-left"></i> JSP - Servlet & JSP Short-Hand
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/16/a-discussion-about-minecraft-server-configurations/" rel="next" title="A Discussion About Minecraft Server Configurations">
+      A Discussion About Minecraft Server Configurations <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Computer-Organization-Outline"><span class="nav-number">1.</span> <span class="nav-text">Computer Organization Outline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Short-Hand"><span class="nav-number">1.1.</span> <span class="nav-text">Short-Hand</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Compute-Approaches-and-ALU"><span class="nav-number">1.2.</span> <span class="nav-text">Chapter 3: Compute Approaches and ALU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Conversion-among-Sign-Magnitude-Ones%E2%80%99-Complement-and-Two%E2%80%99s-Complement"><span class="nav-number">1.2.1.</span> <span class="nav-text">The Conversion among Sign-Magnitude, Ones’ Complement and Two’s Complement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixed-Point-Number-Addition-amp-Subtraction"><span class="nav-number">1.2.2.</span> <span class="nav-text">Fixed-Point Number: Addition &amp; Subtraction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two%E2%80%99s-Complement-Addition"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Two’s Complement Addition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Two%E2%80%99s-Complement-Subtraction"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Two’s Complement Subtraction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overflow-Detection"><span class="nav-number">1.2.3.</span> <span class="nav-text">Overflow Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two%E2%80%99s-Complement"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Two’s Complement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Modified-Complement"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Modified Complement</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Logic-Gate"><span class="nav-number">1.2.4.</span> <span class="nav-text">Basic Logic-Gate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Float-Point-Number-Addition-Subtraction"><span class="nav-number">1.2.5.</span> <span class="nav-text">Float-Point Number: Addition Subtraction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Addition"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">Addition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subtraction"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">Subtraction</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-4-Memory-Hierarchy"><span class="nav-number">1.3.</span> <span class="nav-text">Chapter 4: Memory Hierarchy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Indicators"><span class="nav-number">1.3.1.</span> <span class="nav-text">Memory Indicators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRAM-amp-DRAM"><span class="nav-number">1.3.2.</span> <span class="nav-text">SRAM &amp; DRAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-Expansion"><span class="nav-number">1.3.3.</span> <span class="nav-text">Memory Expansion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache"><span class="nav-number">1.3.4.</span> <span class="nav-text">Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-Memory"><span class="nav-number">1.3.5.</span> <span class="nav-text">Virtual Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magnetic-Disk"><span class="nav-number">1.3.6.</span> <span class="nav-text">Magnetic Disk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Magnetic-Disk-Indicators"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">Magnetic Disk Indicators</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Network-Memory"><span class="nav-number">1.3.7.</span> <span class="nav-text">Network Memory</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-5-Instruction-System"><span class="nav-number">1.4.</span> <span class="nav-text">Chapter 5: Instruction System</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Category"><span class="nav-number">1.4.1.</span> <span class="nav-text">Category</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Format"><span class="nav-number">1.4.2.</span> <span class="nav-text">Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Addressing-Mode"><span class="nav-number">1.4.3.</span> <span class="nav-text">Addressing Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operation-Code-Expansion"><span class="nav-number">1.4.4.</span> <span class="nav-text">Operation-Code Expansion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-6-Central-Controller-Unit"><span class="nav-number">1.5.</span> <span class="nav-text">Chapter 6: Central Controller Unit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller"><span class="nav-number">1.5.1.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction-Cycle"><span class="nav-number">1.5.2.</span> <span class="nav-text">Instruction-Cycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Generator"><span class="nav-number">1.5.3.</span> <span class="nav-text">Time Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Micro-Program-Controller"><span class="nav-number">1.5.4.</span> <span class="nav-text">Micro-Program Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hard-Wiring-Controller"><span class="nav-number">1.5.5.</span> <span class="nav-text">Hard-Wiring Controller</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

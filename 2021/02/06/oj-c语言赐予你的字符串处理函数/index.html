@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="C语言赐予你的字符串处理函数string.h库中包含一系列处理字符串常用的函数，来看看吧。  阅览过string.h的函数列表后，以后遇到类似的字符串处理问题，就可以先查查这个表，看看有没有能直接使用的函数。 用字符串函数来解题！获取字符串长度 -&gt; strlen()123&#x2F;&#x2F; 获取指定字符串的长度（不包含&amp;#x27;\0&amp;#x27;字符）&#x2F;&#x2F; str: 目标字符串size_t strlen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OJ - C语言赐予你的字符串处理函数">
+<meta property="og:url" content="https://sakurawald.github.io/2021/02/06/oj-c%E8%AF%AD%E8%A8%80%E8%B5%90%E4%BA%88%E4%BD%A0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="C语言赐予你的字符串处理函数string.h库中包含一系列处理字符串常用的函数，来看看吧。  阅览过string.h的函数列表后，以后遇到类似的字符串处理问题，就可以先查查这个表，看看有没有能直接使用的函数。 用字符串函数来解题！获取字符串长度 -&gt; strlen()123&#x2F;&#x2F; 获取指定字符串的长度（不包含&amp;#x27;\0&amp;#x27;字符）&#x2F;&#x2F; str: 目标字符串size_t strlen">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg">
+<meta property="article:published_time" content="2021-02-06T13:53:32.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg">
+
+<link rel="canonical" href="https://sakurawald.github.io/2021/02/06/oj-c%E8%AF%AD%E8%A8%80%E8%B5%90%E4%BA%88%E4%BD%A0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>OJ - C语言赐予你的字符串处理函数 | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2021/02/06/oj-c%E8%AF%AD%E8%A8%80%E8%B5%90%E4%BA%88%E4%BD%A0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OJ - C语言赐予你的字符串处理函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-06 13:53:32" itemprop="dateCreated datePublished" datetime="2021-02-06T13:53:32+00:00">2021-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oj/" itemprop="url" rel="index"><span itemprop="name">oj</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/oj/SOJ/" itemprop="url" rel="index"><span itemprop="name">SOJ</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="C语言赐予你的字符串处理函数"><a href="#C语言赐予你的字符串处理函数" class="headerlink" title="C语言赐予你的字符串处理函数"></a>C语言赐予你的字符串处理函数</h1><p>string.h库中包含一系列处理字符串常用的函数，来看看吧。 <a target="_blank" rel="noopener" href="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg"><img src="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg"></a> 阅览过string.h的函数列表后，以后遇到类似的字符串处理问题，就可以先查查这个表，看看有没有能直接使用的函数。</p>
+<h1 id="用字符串函数来解题！"><a href="#用字符串函数来解题！" class="headerlink" title="用字符串函数来解题！"></a>用字符串函数来解题！</h1><h3 id="获取字符串长度-gt-strlen"><a href="#获取字符串长度-gt-strlen" class="headerlink" title="获取字符串长度 -&gt; strlen()"></a>获取字符串长度 -&gt; strlen()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取指定字符串的长度（不包含&#x27;\0&#x27;字符）</span></span><br><span class="line"><span class="comment">// str: 目标字符串</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span></span><br></pre></td></tr></table></figure>
+
+<p>关键点：题目的单词要么是“click”要么是“double click”，因此没有必要真正去解析词语，只需要运用字符串的长度关系，直接计算出“click”出现次数即可。</p>
+<h6 id="SOJ1409-双击666-AC-c"><a href="#SOJ1409-双击666-AC-c" class="headerlink" title="SOJ1409 双击666 AC.c"></a>SOJ1409 双击666 AC.c</h6><p>s[];main(n){gets(&amp;n);strchr(gets(s),’d’)?puts(“666”):printf(“%d”,strlen(s)&#x2F;6+1);}</p>
+<p>实际上，这道题的“click”出现次数也可以不计算。</p>
+<p>s[];main(n){gets(&amp;n);puts(strchr(gets(s),’d’)?”666”:&amp;n);}</p>
+<h3 id="比较字符串-gt-strcmp"><a href="#比较字符串-gt-strcmp" class="headerlink" title="比较字符串 -&gt; strcmp()"></a>比较字符串 -&gt; strcmp()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2)</span></span><br><span class="line"><span class="comment">// str1: 要比较的字符串1</span></span><br><span class="line"><span class="comment">// str2: 要比较的字符串2</span></span><br></pre></td></tr></table></figure>
+
+<p>该函数返回值为int, 分为3种情况. 1. 字符串相等: 返回 0 2. 字符串str1 &lt; 字符串str2: 返回负数 3. 字符串str1 &gt; 字符串str2: 返回正数</p>
+<h3 id="连接字符串-gt-strcat"><a href="#连接字符串-gt-strcat" class="headerlink" title="连接字符串 -&gt; strcat()"></a>连接字符串 -&gt; strcat()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcat</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span></span><br><span class="line"><span class="comment">// dest: 目标字符串</span></span><br><span class="line"><span class="comment">// src: 来源字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>将src字符串 连接到 dest字符串的末尾(请保证dest字符串拥有足够的大小) strcat(A, B) &#x3D; A + B</p>
+<h3 id="找出首个不满足字符集的下标-gt-strspn"><a href="#找出首个不满足字符集的下标-gt-strspn" class="headerlink" title="找出首个不满足字符集的下标 -&gt; strspn()"></a>找出首个不满足字符集的下标 -&gt; strspn()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strspn</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2)</span></span><br><span class="line"><span class="comment">// str1: 被检索的字符串</span></span><br><span class="line"><span class="comment">// str2: 用于检索的字符串 (可为单字符的字符串)</span></span><br></pre></td></tr></table></figure>
+
+<p>该函数用于在str1中找出 第一个不在str2中出现的字符的下标</p>
+<h6 id="SOJ1082-字符串-AC-c"><a href="#SOJ1082-字符串-AC-c" class="headerlink" title="SOJ1082 字符串 AC.c"></a>SOJ1082 字符串 AC.c</h6><p>char s[];main(t){t&#x3D;strspn(gets(s),”#”);for(printf(“%s”,s+t);t–;putchar(35));}</p>
+<h3 id="大小写转换-gt-strupr-amp-strlwr"><a href="#大小写转换-gt-strupr-amp-strlwr" class="headerlink" title="大小写转换 -&gt; strupr() &amp; strlwr()"></a>大小写转换 -&gt; strupr() &amp; strlwr()</h3><p>注意: strupr()和strlwr()并不是string.h的函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> * <span class="title function_">strupr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> * str)</span></span><br><span class="line"><span class="comment">// str: 被转换的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> * <span class="title function_">strlwr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> * str)</span></span><br><span class="line"><span class="comment">// 被转换的字符串</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="SOJ1279-转换为大写-AC-c"><a href="#SOJ1279-转换为大写-AC-c" class="headerlink" title="SOJ1279 转换为大写 AC.c"></a>SOJ1279 转换为大写 AC.c</h6><p>main(n){puts(strupr(gets(&amp;n)));}</p>
+<h6 id="SOJ1290-转换为小写-AC-c"><a href="#SOJ1290-转换为小写-AC-c" class="headerlink" title="SOJ1290 转换为小写 AC.c"></a>SOJ1290 转换为小写 AC.c</h6><p>main(n){puts(strlwr(gets(&amp;n)));}</p>
+<h3 id="反转字符串-gt-strrev"><a href="#反转字符串-gt-strrev" class="headerlink" title="反转字符串 -&gt; strrev()"></a>反转字符串 -&gt; strrev()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> * <span class="title function_">strrev</span><span class="params">(<span class="type">const</span> <span class="type">char</span> * str)</span></span><br><span class="line"><span class="comment">// str: 待反转的字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>注意: 该方法是原址性的, 如果需要保留原始字符串, 则应该事先用strcpy()复制一份原始字符串的副本.</p>
+<h6 id="SOJ1284-字符串正反连接-AC-c"><a href="#SOJ1284-字符串正反连接-AC-c" class="headerlink" title="SOJ1284 字符串正反连接 AC.c"></a>SOJ1284 字符串正反连接 AC.c</h6><p>s[];S[];main(){gets(s);printf(“%s%s”,s,strrev(strcpy(S,s)));}</p>
+<h6 id="SOJ1305-判断是否为对称字符串-AC-c"><a href="#SOJ1305-判断是否为对称字符串-AC-c" class="headerlink" title="SOJ1305 判断是否为对称字符串 AC.c"></a>SOJ1305 判断是否为对称字符串 AC.c</h6><p>s1[];s2[];main(){puts(strcmp(s1,strrev(strcpy(s2,gets(s1))))?”No”:”Yes”);}</p>
+<h6 id="SOJ1615-英语单词逆序-AC-c"><a href="#SOJ1615-英语单词逆序-AC-c" class="headerlink" title="SOJ1615 英语单词逆序 AC.c"></a>SOJ1615 英语单词逆序 AC.c</h6><p>m[];main(){for(;~scanf(“%s”,&amp;m);printf(“%s “,strrev(m)));}</p>
+<h3 id="找出指定字符的出现下标-gt-strchr"><a href="#找出指定字符的出现下标-gt-strchr" class="headerlink" title="找出指定字符的出现下标 -&gt; strchr()"></a>找出指定字符的出现下标 -&gt; strchr()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strchr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str, <span class="type">int</span> c)</span></span><br><span class="line"><span class="comment">// str: 被检索的字符串</span></span><br><span class="line"><span class="comment">// c: 要查找的指定字符 (输入char类型自动转为int)</span></span><br></pre></td></tr></table></figure>
+
+<p>注意: 该方法返回的是 首个符合的字符的指针(char*), 因此，如果需要算出该字符在原字符串中的下标, 应该运用指针算术来得到: index &#x3D; strchr(str, 指定字符) - str</p>
+<h6 id="SOJ1336-我已经不是三岁小孩了-AC-c"><a href="#SOJ1336-我已经不是三岁小孩了-AC-c" class="headerlink" title="SOJ1336 我已经不是三岁小孩了 AC.c"></a>SOJ1336 我已经不是三岁小孩了 AC.c</h6><p>s[];main(N,M){gets(s);N&#x3D;*(strchr(s,45)-1)%48;M&#x3D;*(strchr(s,45)+1)%48;puts(4&gt;&#x3D;N&amp;&amp;4&lt;&#x3D;M?”Yes”:”No”);}</p>
+<h6 id="SOJ1604-英语姓名简写-AC-c"><a href="#SOJ1604-英语姓名简写-AC-c" class="headerlink" title="SOJ1604 英语姓名简写 AC.c"></a>SOJ1604 英语姓名简写 AC.c</h6><p>m[];main(){*strrchr(gets(m),46)&#x3D;0;puts(m);}</p>
+<h3 id="连接部分字符串-gt-strncat"><a href="#连接部分字符串-gt-strncat" class="headerlink" title="连接部分字符串 -&gt; strncat()"></a>连接部分字符串 -&gt; strncat()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strncat</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src, <span class="type">size_t</span> n)</span></span><br><span class="line"><span class="comment">// dest: 目标字符串</span></span><br><span class="line"><span class="comment">// src: 来源字符串</span></span><br><span class="line"><span class="comment">// n: 将来源字符串的前n个字符 追加到 目标字符串 中</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="比较部分字符串-gt-strncmp"><a href="#比较部分字符串-gt-strncmp" class="headerlink" title="比较部分字符串 -&gt; strncmp()"></a>比较部分字符串 -&gt; strncmp()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strncmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2, <span class="type">size_t</span> n)</span></span><br><span class="line"><span class="comment">// str1: 字符串1</span></span><br><span class="line"><span class="comment">// str2: 字符串2</span></span><br><span class="line"><span class="comment">// n: 比较字符串1和字符串2的 前n个字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="复制字符串-gt-strcpy"><a href="#复制字符串-gt-strcpy" class="headerlink" title="复制字符串 -&gt; strcpy()"></a>复制字符串 -&gt; strcpy()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span></span><br><span class="line"><span class="comment">// dest: 目标字符串 (请保证有充足的内存空间)</span></span><br><span class="line"><span class="comment">// src: 来源字符串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="复制部分字符串-gt-strncpy"><a href="#复制部分字符串-gt-strncpy" class="headerlink" title="复制部分字符串 -&gt; strncpy()"></a>复制部分字符串 -&gt; strncpy()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strncpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src, <span class="type">size_t</span> n)</span></span><br><span class="line"><span class="comment">// dest: 目标字符串 (请保证有充足的内存空间)</span></span><br><span class="line"><span class="comment">// src: 来源字符串</span></span><br><span class="line"><span class="comment">// n: 复制src的前n个字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="检索开头有几个字符不符合条件-gt-strnspn"><a href="#检索开头有几个字符不符合条件-gt-strnspn" class="headerlink" title="检索开头有几个字符不符合条件 -&gt; strnspn()"></a>检索开头有几个字符不符合条件 -&gt; strnspn()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strcspn</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2)</span></span><br><span class="line"><span class="comment">// str1: 被检索的字符串</span></span><br><span class="line"><span class="comment">// str2: 检索字符的列表</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="检索第一个匹配指定字符列表的字符-gt-strpbrk"><a href="#检索第一个匹配指定字符列表的字符-gt-strpbrk" class="headerlink" title="检索第一个匹配指定字符列表的字符 -&gt; strpbrk()"></a>检索第一个匹配指定字符列表的字符 -&gt; strpbrk()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strpbrk</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str1, <span class="type">const</span> <span class="type">char</span> *str2)</span></span><br><span class="line"><span class="comment">// str1: 被检索的字符串</span></span><br><span class="line"><span class="comment">// str2: 检索字符的列表</span></span><br></pre></td></tr></table></figure>
+
+<p>注意: strpbrk() 与 strspn() 相反.</p>
+<h3 id="找出指定字符最后一次出现的位置-gt-strrchr"><a href="#找出指定字符最后一次出现的位置-gt-strrchr" class="headerlink" title="找出指定字符最后一次出现的位置 -&gt; strrchr()"></a>找出指定字符最后一次出现的位置 -&gt; strrchr()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strrchr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str, <span class="type">int</span> c)</span></span><br><span class="line"><span class="comment">// str: 被检索的字符串</span></span><br><span class="line"><span class="comment">// c: 指定字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查找指定子串首次出现位置-gt-strstr"><a href="#查找指定子串首次出现位置-gt-strstr" class="headerlink" title="查找指定子串首次出现位置 -&gt; strstr()"></a>查找指定子串首次出现位置 -&gt; strstr()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *haystack, <span class="type">const</span> <span class="type">char</span> *needle)</span></span><br><span class="line"><span class="comment">// haystack: 被检索的字符串</span></span><br><span class="line"><span class="comment">// needle: 指定子串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="分隔字符串-gt-strtok"><a href="#分隔字符串-gt-strtok" class="headerlink" title="分隔字符串 -&gt; strtok()"></a>分隔字符串 -&gt; strtok()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strtok</span><span class="params">(<span class="type">char</span> *str, <span class="type">const</span> <span class="type">char</span> *delim)</span></span><br><span class="line"><span class="comment">// str: 目标字符串</span></span><br><span class="line"><span class="comment">// delim: 用于分割的字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>注意: strtok()函数会破坏str的数据, 若需要保留数据, 请使用str的副本. 注意: strtok()函数只需要首次调用时传入str即可, 后续调用可传入NULL</p>
+<p>void split(char * str, char * delim) {<br>    &#x2F;* 首次调用strtok(): 初始化strtok()函数 且 获取第一个被切割的子串*&#x2F;<br>    char * token &#x3D; strtok(str, delim);</p>
+<pre><code>/\* 后续调用strtok(): 获取 其他被切割处理的子串 \*/
+while (token != NULL) &#123;
+    printf(&quot;str = %s\\n&quot;, str);
+    printf(&quot;delim = %s\\n&quot;, delim);
+    printf(&quot;token = %s\\n\\n&quot;, token);
+    
+    token = strtok(NULL, delim);
+&#125;
+</code></pre>
+<p>}</p>
+<p>int main() {<br>    char str1[80] &#x3D; “First233Second233Third”;<br>    char str2[80] &#x3D; “233”;</p>
+<pre><code>split(str1, str2);
+</code></pre>
+<p>}</p>
+<p>&#x2F;* Output:<br>str &#x3D; First<br>delim &#x3D; 233<br>token &#x3D; First</p>
+<p>str &#x3D; First<br>delim &#x3D; 233<br>token &#x3D; Second</p>
+<p>str &#x3D; First<br>delim &#x3D; 233<br>token &#x3D; Third<br>*&#x2F;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/04/soj-1659-1647-%E4%B8%8E%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE%E7%9A%84%E9%80%9F%E8%A7%A3/" rel="prev" title="SOJ 1647 & 1659 -  进制转换（一 / 二）">
+      <i class="fa fa-chevron-left"></i> SOJ 1647 & 1659 -  进制转换（一 / 二）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/15/soj-1003-1377-%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E5%86%85%E7%9A%84%E9%AB%98%E9%80%9F%E8%AE%A1%E6%95%B0%E5%99%A8/" rel="next" title="SOJ 1377 - 字符串统计(时间限制：3秒)">
+      SOJ 1377 - 字符串统计(时间限制：3秒) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E8%B5%90%E4%BA%88%E4%BD%A0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">C语言赐予你的字符串处理函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0%E6%9D%A5%E8%A7%A3%E9%A2%98%EF%BC%81"><span class="nav-number">2.</span> <span class="nav-text">用字符串函数来解题！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-gt-strlen"><span class="nav-number">2.0.1.</span> <span class="nav-text">获取字符串长度 -&gt; strlen()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1409-%E5%8F%8C%E5%87%BB666-AC-c"><span class="nav-number">2.0.1.0.0.1.</span> <span class="nav-text">SOJ1409 双击666 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strcmp"><span class="nav-number">2.0.2.</span> <span class="nav-text">比较字符串 -&gt; strcmp()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strcat"><span class="nav-number">2.0.3.</span> <span class="nav-text">连接字符串 -&gt; strcat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E9%A6%96%E4%B8%AA%E4%B8%8D%E6%BB%A1%E8%B6%B3%E5%AD%97%E7%AC%A6%E9%9B%86%E7%9A%84%E4%B8%8B%E6%A0%87-gt-strspn"><span class="nav-number">2.0.4.</span> <span class="nav-text">找出首个不满足字符集的下标 -&gt; strspn()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1082-%E5%AD%97%E7%AC%A6%E4%B8%B2-AC-c"><span class="nav-number">2.0.4.0.0.1.</span> <span class="nav-text">SOJ1082 字符串 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2-gt-strupr-amp-strlwr"><span class="nav-number">2.0.5.</span> <span class="nav-text">大小写转换 -&gt; strupr() &amp; strlwr()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1279-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%A4%A7%E5%86%99-AC-c"><span class="nav-number">2.0.5.0.0.1.</span> <span class="nav-text">SOJ1279 转换为大写 AC.c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1290-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%B0%8F%E5%86%99-AC-c"><span class="nav-number">2.0.5.0.0.2.</span> <span class="nav-text">SOJ1290 转换为小写 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strrev"><span class="nav-number">2.0.6.</span> <span class="nav-text">反转字符串 -&gt; strrev()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1284-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AD%A3%E5%8F%8D%E8%BF%9E%E6%8E%A5-AC-c"><span class="nav-number">2.0.6.0.0.1.</span> <span class="nav-text">SOJ1284 字符串正反连接 AC.c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1305-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E5%AF%B9%E7%A7%B0%E5%AD%97%E7%AC%A6%E4%B8%B2-AC-c"><span class="nav-number">2.0.6.0.0.2.</span> <span class="nav-text">SOJ1305 判断是否为对称字符串 AC.c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1615-%E8%8B%B1%E8%AF%AD%E5%8D%95%E8%AF%8D%E9%80%86%E5%BA%8F-AC-c"><span class="nav-number">2.0.6.0.0.3.</span> <span class="nav-text">SOJ1615 英语单词逆序 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%87%BA%E7%8E%B0%E4%B8%8B%E6%A0%87-gt-strchr"><span class="nav-number">2.0.7.</span> <span class="nav-text">找出指定字符的出现下标 -&gt; strchr()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1336-%E6%88%91%E5%B7%B2%E7%BB%8F%E4%B8%8D%E6%98%AF%E4%B8%89%E5%B2%81%E5%B0%8F%E5%AD%A9%E4%BA%86-AC-c"><span class="nav-number">2.0.7.0.0.1.</span> <span class="nav-text">SOJ1336 我已经不是三岁小孩了 AC.c</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#SOJ1604-%E8%8B%B1%E8%AF%AD%E5%A7%93%E5%90%8D%E7%AE%80%E5%86%99-AC-c"><span class="nav-number">2.0.7.0.0.2.</span> <span class="nav-text">SOJ1604 英语姓名简写 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E9%83%A8%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strncat"><span class="nav-number">2.0.8.</span> <span class="nav-text">连接部分字符串 -&gt; strncat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E9%83%A8%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strncmp"><span class="nav-number">2.0.9.</span> <span class="nav-text">比较部分字符串 -&gt; strncmp()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strcpy"><span class="nav-number">2.0.10.</span> <span class="nav-text">复制字符串 -&gt; strcpy()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E9%83%A8%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strncpy"><span class="nav-number">2.0.11.</span> <span class="nav-text">复制部分字符串 -&gt; strncpy()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E5%BC%80%E5%A4%B4%E6%9C%89%E5%87%A0%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%8D%E7%AC%A6%E5%90%88%E6%9D%A1%E4%BB%B6-gt-strnspn"><span class="nav-number">2.0.12.</span> <span class="nav-text">检索开头有几个字符不符合条件 -&gt; strnspn()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E5%88%97%E8%A1%A8%E7%9A%84%E5%AD%97%E7%AC%A6-gt-strpbrk"><span class="nav-number">2.0.13.</span> <span class="nav-text">检索第一个匹配指定字符列表的字符 -&gt; strpbrk()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E5%87%BA%E7%8E%B0%E7%9A%84%E4%BD%8D%E7%BD%AE-gt-strrchr"><span class="nav-number">2.0.14.</span> <span class="nav-text">找出指定字符最后一次出现的位置 -&gt; strrchr()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9A%E5%AD%90%E4%B8%B2%E9%A6%96%E6%AC%A1%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE-gt-strstr"><span class="nav-number">2.0.15.</span> <span class="nav-text">查找指定子串首次出现位置 -&gt; strstr()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%9A%94%E5%AD%97%E7%AC%A6%E4%B8%B2-gt-strtok"><span class="nav-number">2.0.16.</span> <span class="nav-text">分隔字符串 -&gt; strtok()</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

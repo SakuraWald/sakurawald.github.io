@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="[Counting] Stirling NumberDifference SequenceDefinition若 是一个序列。 则我们定义一阶差分序列为 其中\Delta h_n &#x3D; h_{n+1} - h_n  同理，二阶差分序列为\Delta^2 h_n &#x3D; \Delta(\Delta h_n)&#x3D;\Delta h_{n+1} - \Delta h_n 而零阶差分序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics - Stirling Number">
+<meta property="og:url" content="https://sakurawald.github.io/2022/03/27/test-2/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="[Counting] Stirling NumberDifference SequenceDefinition若 是一个序列。 则我们定义一阶差分序列为 其中\Delta h_n &#x3D; h_{n+1} - h_n  同理，二阶差分序列为\Delta^2 h_n &#x3D; \Delta(\Delta h_n)&#x3D;\Delta h_{n+1} - \Delta h_n 而零阶差分序">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/03/27/Qxh3UTq7l14PD2N.png">
+<meta property="article:published_time" content="2022-03-27T03:15:58.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/27/Qxh3UTq7l14PD2N.png">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/03/27/test-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics - Stirling Number | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/03/27/test-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics - Stirling Number
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-27 03:15:58" itemprop="dateCreated datePublished" datetime="2022-03-27T03:15:58+00:00">2022-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Counting-Stirling-Number"><a href="#Counting-Stirling-Number" class="headerlink" title="[Counting] Stirling Number"></a>[Counting] Stirling Number</h1><h2 id="Difference-Sequence"><a href="#Difference-Sequence" class="headerlink" title="Difference Sequence"></a>Difference Sequence</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>若</p>
+<p>是一个序列。</p>
+<p>则我们定义<code>一阶差分序列</code>为</p>
+<p>其中\Delta h_n &#x3D; h_{n+1} - h_n</p>
+<blockquote>
+<p>同理，<code>二阶差分序列</code>为\Delta^2 h_n &#x3D; \Delta(\Delta h_n)&#x3D;\Delta h_{n+1} - \Delta h_n</p>
+<p>而<code>零阶差分序列</code>即为<code>原始序列</code></p>
+</blockquote>
+<h2 id="Difference-Table"><a href="#Difference-Table" class="headerlink" title="Difference Table"></a>Difference Table</h2><p>差分表（Difference Table)的定义是：将<code>每个p=0,1,2,...,阶的差分序列</code>排成一行而得到。</p>
+<p>如：</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h5><p>设<code>序列的通项是n的p次多项式</code>，即</p>
+<p>则对于所有的n \ge 0, \Delta^{p+1}h_n &#x3D; 0</p>
+<blockquote>
+<p>换句话说，如果某个序列的通项的最高次是p，那么\Delta^{p+1}h_n &#x3D; 0</p>
+</blockquote>
+<h5 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h5><p>我们不妨采用<code>归纳法</code>来证明这个结论。</p>
+<p>已知</p>
+<p>对于p&#x3D;0，则h_n &#x3D; a_0</p>
+<p>故\Delta h_n &#x3D; h_{n+1} - h_n &#x3D; a_0 - a_0 &#x3D; 0 \quad (n \ge 0)满足题意</p>
+<hr>
+<p>使用<code>n+1</code>代替<code>n</code>得到</p>
+<p>根据定义 \Delta h_n &#x3D; h_{n+1} - h_n得</p>
+<p>我们考察a_p(n+1)^p和a_pn^p这两项</p>
+<p>通过观察可以发现，a_pn^p这一项被<code>消掉</code>了。</p>
+<blockquote>
+<p>h_{n+1}和h_{n}中a_pn^p这一项的<code>系数</code>必定相等，因为对于 (n+1)^p的<code>多项式展开</code>，只有<code>所有的选择</code>都<code>取n这项</code>才足够达到<code>n次多项式</code></p>
+</blockquote>
+<p>同理，通过其他方式，比如直接考察a_1(n+1)和a_1n我们也可以发现，n被<code>消除</code>，从而<code>多项式被降次</code></p>
+<blockquote>
+<p>换句话说，通过\Delta h_n &#x3D; h_{n+1} - h_n，我们<code>得到的多项式中的每一项都相比原来的项被降了1次</code>。</p>
+</blockquote>
+<p>因此，<code>每升高一阶差分序列</code>均会对<code>先前的序列（的所有项）</code> <code>降低1次</code>。</p>
+<p>故对于<code>序列的通项是n的p次多项式</code>，我们只需要<code>重复p+1</code>次（若重复p次，则序列的最高次为0次，为常数项序列。但不一定所有的常数都为0）即可将<code>序列的所有项都变为0</code>，满足\Delta^{p+1} h_n &#x3D; 0</p>
+<h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><h5 id="Content-1"><a href="#Content-1" class="headerlink" title="Content"></a>Content</h5><p><code>差分表</code>的<code>第0条对角线</code>（即最左边的那一条对角线）等于</p>
+<p><code>的序列的通项</code>是满足</p>
+<p>的<code>n的p次多项式</code></p>
+<h5 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h5><p>考察具体例子：若已知<code>差分表的第0条对角线</code>上的<code>元素是：0,0,0,0,1,0,0,...</code></p>
+<p>通过<code>第0条对角线上的元素</code>可以<code>确定整个差分表的元素</code>。可知：h_0 &#x3D; 0, h_1 &#x3D; 0, h_2 &#x3D; 0, h_3 &#x3D; 0, h_4 &#x3D; 1</p>
+<p>且可知是一个次多项式h_n是一个4次多项式，这个<code>多项式具有根0,1,2,3</code></p>
+<blockquote>
+<p>可以把h_n当成是关于n的函数，则这个多项式具有根0,1,2,3，因为当n取0,1,2,3时，h_n &#x3D; 0</p>
+</blockquote>
+<p>根据初始条件h_4 &#x3D; 1可确认c &#x3D; \frac{1}{4!}</p>
+<p>故</p>
+<hr>
+<h5 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h5><p>该定理可用于<code>求部分和</code> H_n</p>
+<p>根据计算公式得出结果。</p>
+<p>整合得</p>
+<h5 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h5><h6 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h6><p>求通项为h_n &#x3D; n^p的序列的前n个数的和。</p>
+<h6 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h6><p>设k_n &#x3D; n^p的差分表的<code>第0条对角线上的元素为</code></p>
+<p>则可知h_n的表示为</p>
+<p>根据</p>
+<p>整合得</p>
+<hr>
+<h2 id="The-Second-Stirling-Number"><a href="#The-Second-Stirling-Number" class="headerlink" title="The Second Stirling Number"></a>The Second Stirling Number</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>定义<code>第二类Stirling数</code> <code>S(p, k)</code></p>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1-1"><a href="#Theorem-1-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content-2"><a href="#Content-2" class="headerlink" title="Content"></a>Content</h5><p>如果1 \le k \le p-1，则S(p, k) &#x3D; k\times S(p-1,k) + S(p-1, k-1)</p>
+<h5 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h5><p>通过将<code>第二类Stirling数</code>代入<code>部分和公式</code>整合得到</p>
+<p>为了得出n^p和n^{p-1}之间的关系，我们用p-1代替p得到</p>
+<p>接着，我们构造n^{p-1}和n^p之间的联系</p>
+<blockquote>
+<p>最后两步是通过用k-1代替求和中的k得到的。</p>
+</blockquote>
+<p>综上，</p>
+<h5 id="Stirling-Triangle"><a href="#Stirling-Triangle" class="headerlink" title="Stirling Triangle"></a>Stirling Triangle</h5><p><img src="https://s2.loli.net/2022/03/27/Qxh3UTq7l14PD2N.png" alt="image-20220327074734056"></p>
+<p>性质</p>
+<h4 id="Theorem-2-1"><a href="#Theorem-2-1" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><h5 id="Content-3"><a href="#Content-3" class="headerlink" title="Content"></a>Content</h5><p><code>第二类Stirling数</code>计数的是<code>把p元素集合划分到k个不可区分的盒子中且没有空盒子的划分个数</code></p>
+<h5 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h5><p>考虑将<code>前p个正整数1,2,3,...,p</code>划分到<code>k个不可区分的盒子</code>中。</p>
+<p>对于<code>元素p</code>而言，有<code>两种划分方式</code></p>
+<ol>
+<li>让元素p<code>单独占据</code>一个<code>盒子</code></li>
+<li>让元素p<code>不单独占据</code>一个<code>盒子</code></li>
+</ol>
+<p>在第1种情况下，如果我们从<code>包含元素p的盒子</code>中拿走<code>元素p</code>，那么<code>非空集合的数量</code>应当从<code>k个</code>减少到<code>k-1个</code>。</p>
+<p>即：S(p - 1, k - 1)种方案</p>
+<p>在第2种情况下，如果我们从<code>包含元素p的盒子</code>中拿走<code>元素p</code>，由于<code>元素p</code>可能存在于<code>k个盒子中的任何一个</code>，而我们无法确认<code>这个盒子</code>到底是哪一个，故<code>这k个盒子的每一个都可以构成一种方案</code>。即： k * S(p - 1, k)</p>
+<p>综上，在<code>p-1个元素的基础上</code>所能产生的划分个数为</p>
+<blockquote>
+<p>注：上述解释是基于<code>从p个元素中取走1个元素</code>来进行的。解释也可以基于<code>从p-1个元素中加入1个新元素</code>来进行。解释方式是对称的。</p>
+</blockquote>
+<h4 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem 3"></a>Theorem 3</h4><h5 id="Content-4"><a href="#Content-4" class="headerlink" title="Content"></a>Content</h5><p>求将<code>p个元素集合划分到k个可区分的盒子中且没有空盒子的划分个数</code> S^\#(p, k)。</p>
+<p>对此而言，可以理解为<code>这k个可区分的盒子</code>是由<code>k种颜色涂色的盒子</code>。</p>
+<p>而 S^\#(p, k) &#x3D; k! \times S(p, k) &#x3D; c(p, k)</p>
+<blockquote>
+<p>见前面对第二类Stirling数的定义</p>
+</blockquote>
+<h4 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem 4"></a>Theorem 4</h4><h5 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h5><p>求将<code>p个元素集合划分到k个可区分的盒子中，且可能存在空盒子的划分个数</code></p>
+<h5 id="Content-5"><a href="#Content-5" class="headerlink" title="Content"></a>Content</h5><p>对每一个满足0 \le k \le p的整数k，都有</p>
+<p>因而</p>
+<h5 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h5><p>运用<code>容斥原理</code>，设U表示<code>将p个元素集合划分到k个可区分的盒子中的划分个数</code> &#x3D; k^p</p>
+<p>定义<code>k个性质</code>P_1, P_2, \dots, P_k，其中P_i是第i个盒子B_i是空盒的性质</p>
+<p>设A_i表示盒子B_i是空盒的那些划分组成的子集。</p>
+<p>故</p>
+<p>且</p>
+<p>设t是一个满足1 \le t \le k的整数，使得B_1, B_2, \dots, B_t中<code>共t个盒子</code>是<code>空盒子</code>，而<code>剩下的k-t个盒子可空可不空</code>：B_{t+1}, B_{t+2}, \dots, B_k</p>
+<p>故\overline{A_1} \cap \overline{A_2} \cap \dots \cap \overline{A_t}计数的是<code>将p个元素结合划分到k-t个可区分盒子的个数（这些k-t个盒子可空可不空）</code>=(k-t)^p</p>
+<p>无论假设的是哪t个盒子是空的，所得的结果都相同。</p>
+<p>即：对于\{1,2,3,\dots,k\}的每个t子集\{i_1,i_2,i_3,\dots,i_t\}而言</p>
+<p>综上，</p>
+<blockquote>
+<p>t满足1 \le t \le k时会将<code>箱子</code>分成<code>两部分不同性质的箱子且两部分箱子均至少有1个箱子</code>。而当t &#x3D; 0时，即为 全集U，此时<code>两部分箱子中的一部分没有分到任何的箱子</code></p>
+</blockquote>
+<h4 id="Theorem-5"><a href="#Theorem-5" class="headerlink" title="Theorem 5"></a>Theorem 5</h4><h5 id="Background-1"><a href="#Background-1" class="headerlink" title="Background"></a>Background</h5><p><code>Bell数</code>指的是<code>将p个元素集合</code>划分到<code>非空且不可区分的集合的划分个数</code>。即</p>
+<blockquote>
+<p>注意这里将 S(p, 0)即没有任何盒子的这一种特殊情况也算入</p>
+</blockquote>
+<h5 id="Content-6"><a href="#Content-6" class="headerlink" title="Content"></a>Content</h5><p>若p \ge 1，则</p>
+<h5 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h5><p>考虑<code>包含p元素的这个盒子</code>，<code>该盒子除了包含p元素之外</code>，还包含\{1, 2, ,3, \dots, p-1\}中的子集X。</p>
+<p>所以对于<code>包含p元素的这个盒子</code>，它的元素由<code>2部分构成</code></p>
+<ol>
+<li>p元素</li>
+<li>包含\{1,2,3,\dots,p-1\}中的子集X （子集X可能是空集，也就是说此时p元素独自占有这个盒子）</li>
+</ol>
+<p>为了<code>确定这个盒子的元素</code>，我们需要从\{1,2,3,\dots,p-1\}中选择子集X。</p>
+<p>设t满足0 \le t \le p-1，则我们可以从\{1,2,3,\dots,p-1\}中选出<code>t个元素</code>来和<code>p元素</code>作伴，同时将<code>剩余的p - 1 - t个元素划分到非空且不可区分的集合</code>中</p>
+<p>即</p>
+<p>Q.E.D</p>
+<h2 id="The-First-Stirling-Number"><a href="#The-First-Stirling-Number" class="headerlink" title="The First Stirling Number"></a>The First Stirling Number</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><p>将\left[n\right]_p完全展开后得到形如下式的含有n的幂的多项式：</p>
+<p>其中，定义<code>第一类Stirling数</code>即为上列多项式的<code>系数</code>s(p,k) \quad (0 \le k \le p)</p>
+<p>其中s(p,0) &#x3D; 0 \quad (p \ge 1) 和 s(p,p) &#x3D; 1 \quad (p \ge 0)</p>
+<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1-2"><a href="#Theorem-1-2" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content-7"><a href="#Content-7" class="headerlink" title="Content"></a>Content</h5><p>如果1 \le k \le p-1，则</p>
+<h5 id="Proof-6"><a href="#Proof-6" class="headerlink" title="Proof"></a>Proof</h5><p>尝试采用<code>数学归纳法</code>证明结论。</p>
+<p>对s(p,k)使用<code>p-1</code>代替<code>p</code>得</p>
+<p>观察得出</p>
+<blockquote>
+<p>这个观察并不会简单</p>
+</blockquote>
+<p>通过<code>比较</code>n^k<code>的相应系数可得出</code></p>
+<p>Q.E.D</p>
+<h4 id="Theorem-2-2"><a href="#Theorem-2-2" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><h5 id="Content-8"><a href="#Content-8" class="headerlink" title="Content"></a>Content</h5><p><code>第一类Stirling数</code>s(p,k)计数的是把<code>p个对象</code>排列成<code>k个非空循环排列</code>的方案数。</p>
+<h5 id="Proof-7"><a href="#Proof-7" class="headerlink" title="Proof"></a>Proof</h5><p>考虑<code>第p个对象的选择方案</code></p>
+<ol>
+<li>让<code>第p个对象</code>独自成为1个队列</li>
+<li>让<code>第p个对象</code>插入到<code>已存在队列</code>的<code>总共p-1个人</code>的<code>前面</code>（或者说<code>后面</code>也行）</li>
+</ol>
+<p>故</p>
+<blockquote>
+<p>在这个递推分析中，我们只关注<code>第p个对象</code>和<code>前面p-1个对象</code>之间的关系，而不关注具体的循环排列是如何计算的。通过考虑<code>第p个对象的处置方案数</code>从而得出递推关系。</p>
+</blockquote>
+<p>Q.E.D</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/27/stirling-number-set-partition-problem/" rel="prev" title="Stirling-Number-  Set Partition Problem">
+      <i class="fa fa-chevron-left"></i> Stirling-Number-  Set Partition Problem
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/27/combinatorics-partition-number/" rel="next" title="Combinatorics - Partition Number">
+      Combinatorics - Partition Number <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Counting-Stirling-Number"><span class="nav-number">1.</span> <span class="nav-text">[Counting] Stirling Number</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Difference-Sequence"><span class="nav-number">1.1.</span> <span class="nav-text">Difference Sequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">1.1.1.</span> <span class="nav-text">Definition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Difference-Table"><span class="nav-number">1.2.</span> <span class="nav-text">Difference Table</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Theorem 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-1"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Application"><span class="nav-number">1.2.1.2.3.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Example"><span class="nav-number">1.2.1.2.4.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Description"><span class="nav-number">1.2.1.2.4.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.1.2.4.2.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Second-Stirling-Number"><span class="nav-number">1.3.</span> <span class="nav-text">The Second Stirling Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-2"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-2"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stirling-Triangle"><span class="nav-number">1.3.2.1.3.</span> <span class="nav-text">Stirling Triangle</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2-1"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Theorem 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-3"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-3"><span class="nav-number">1.3.2.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">Theorem 3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-4"><span class="nav-number">1.3.2.3.1.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">Theorem 4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Background"><span class="nav-number">1.3.2.4.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-5"><span class="nav-number">1.3.2.4.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-4"><span class="nav-number">1.3.2.4.3.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-5"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">Theorem 5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Background-1"><span class="nav-number">1.3.2.5.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-6"><span class="nav-number">1.3.2.5.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-5"><span class="nav-number">1.3.2.5.3.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-First-Stirling-Number"><span class="nav-number">1.4.</span> <span class="nav-text">The First Stirling Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.4.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1-2"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-7"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-6"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2-2"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">Theorem 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-8"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-7"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

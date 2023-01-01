@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Greedy ProblemsOiling Car ProblemDescription一辆汽车加满油后可行驶 n 公里。旅途中有若干个加油站。设计一个有效算法，指出应 在哪些加油站停靠加油，使沿途加油次数最少。并证明算法能产生一个最优解。 Input由文件 input.txt 给出输入数据。第一行有 2 个正整数 n 和 k，表示汽车加满油后可行驶 n 公里，且旅途中有 k 个加油站。接下来的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Greedy - Oiling Car &amp; Optimal Merge">
+<meta property="og:url" content="https://sakurawald.github.io/2022/04/27/greedy-oiling-car-optimal-merge/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Greedy ProblemsOiling Car ProblemDescription一辆汽车加满油后可行驶 n 公里。旅途中有若干个加油站。设计一个有效算法，指出应 在哪些加油站停靠加油，使沿途加油次数最少。并证明算法能产生一个最优解。 Input由文件 input.txt 给出输入数据。第一行有 2 个正整数 n 和 k，表示汽车加满油后可行驶 n 公里，且旅途中有 k 个加油站。接下来的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T06:16:01.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/04/27/greedy-oiling-car-optimal-merge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Greedy - Oiling Car & Optimal Merge | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/04/27/greedy-oiling-car-optimal-merge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Greedy - Oiling Car & Optimal Merge
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-27 06:16:01" itemprop="dateCreated datePublished" datetime="2022-04-27T06:16:01+00:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Greedy-Problems"><a href="#Greedy-Problems" class="headerlink" title="Greedy Problems"></a>Greedy Problems</h1><h2 id="Oiling-Car-Problem"><a href="#Oiling-Car-Problem" class="headerlink" title="Oiling Car Problem"></a>Oiling Car Problem</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>一辆汽车加满油后可行驶 n 公里。旅途中有若干个加油站。设计一个有效算法，指出应</p>
+<p>在哪些加油站停靠加油，使沿途加油次数最少。并证明算法能产生一个最优解。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 给出输入数据。第一行有 2 个正整数 n 和 k，表示汽车加满油后可行驶</p>
+<p>n 公里，且旅途中有 k 个加油站。接下来的 1 行中，有 k+1 个整数，表示第 k 个加油站与第</p>
+<p>k-1 个加油站之间的距离。第 0 个加油站表示出发地，汽车已加满油。第 k+1 个加油站表示</p>
+<p>目的地。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>将编程计算出的最少加油次数输出到文件 output.txt。如果无法到达目的地，则输出”No</p>
+<p>Solution”。</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong></p>
+<p>input.txt</p>
+<p>7 7</p>
+<p>1 2 3 4 5 1 6 6</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt</p>
+<p>4</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>将该题建模在<code>图</code>上，设<code>节点</code>为<code>加油站</code>，而<code>边</code>的权重表示<code>两个加油站之间的距离</code>，设<code>汽车</code>初始位置在<code>节点0</code>，</p>
+<p>将<code>加油站</code>根据题目所给的相对距离，也建立在<code>数轴</code>上。</p>
+<p>同时，<code>合并</code>我们的<code>终点</code>到<code>最后一个加油站</code></p>
+<blockquote>
+<p>也就是说，我们实际上将<code>源点</code>和<code>终点</code>也一般化为<code>加油站</code>。</p>
+<p>我们将<code>起点</code>视为<code>第0个加油站</code>，<code>距离前一个加油站的距离 = 0</code>。</p>
+<p>同时将<code>终点</code>视为<code>第k个加油站</code>。</p>
+<p>从而，我们得到<code>加油站列表</code>a_0,\cdots,a_k</p>
+<p>这样有利于算法逻辑的统一，方便算法进行初始化。</p>
+</blockquote>
+<ul>
+<li>加油次数最少的策略绝对不会存在<code>往左走的路径</code></li>
+</ul>
+<p>设<code>函数</code>cost(path) &#x3D; \sum_{i&#x3D;0}^{k}{a_i - a_{i+1}}</p>
+<p>假设有<code>任意一个策略为</code>p_1，</p>
+<p>设<code>路径</code>p_2为<code>在策略</code>p_1<code>的基础上对路径做出如下修改的策略</code>：</p>
+<p>将<code>路径</code>a_i, a_i \quad (i \gt 0)修改为(a_i, a_{i-1}, \cdots, a_{i-1}, a_i)</p>
+<p>而由于cost{(a_{i-1},\cdots,a_{i-1})} \ge 0，</p>
+<p>所以<code>包含这一段子路径</code>并不会对我们<code>减少加油次数</code>有帮助。</p>
+<p>因而，我们得出结论：<code>任何包含环的路径所得出的策略的加油次数，并不会好于把环去掉后的策略</code>。也就是最优的策略必然是无环的路径。</p>
+<ul>
+<li>只在无法到达下一个加油站时才在当前加油站加油可以获得最优解</li>
+</ul>
+<p>由于要求达到优化目标为<code>加油次数最少</code>，但<code>不限制每次加油的量</code>，且<code>每个加油站都可以把油量加到指定的n值</code>，所以<code>在任何加油站进行加油是没有区别的</code>。</p>
+<p>所以，只需要<code>尽可能地不进行加油</code>即可达到<code>最少的加油次数</code>。</p>
+<p>如果<code>初始时的油量是无穷的</code>，则我们不需要进行任何加油。</p>
+<p>但如果油量是有限的，我们除了需要满足<code>能使得汽车到达下一个加油站</code>即可。</p>
+<p>而由于<code>每个加油站除了距离前一个加油站的距离可能不同外，都是相同的加油站</code>。</p>
+<p>因而，我们<code>只需考虑当前油量是否足够让汽车从当前加油站到下一个</code>即可。</p>
+<p>从而，<code>一旦汽车从当前加油站到达下一个加油站</code>，则<code>可以从原问题中删除掉这个加油站</code>，而使得<code>题目的性质没有发生改变</code>。</p>
+<p>换句话说，<code>每次仅考虑前k个加油站时获得的最优步骤，可以组成原问题的最优步骤</code>。</p>
+<p>因此，我们采用这种策略可以获得最优解。</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*  7</span></span><br><span class="line"><span class="comment">*  [0] 1 2 (3) (4) 5 (1) (6) 6</span></span><br><span class="line"><span class="comment">*  */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">solve</span><span class="params">(<span class="type">int</span> n, ArrayList&lt;Integer&gt; stations)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">gas</span> <span class="operator">=</span> n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; stations.size() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; stations.get(i+<span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;No Solution!&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        gas -= stations.get(i);</span><br><span class="line">        <span class="keyword">if</span> (gas &lt; stations.get(i + <span class="number">1</span>)) &#123;</span><br><span class="line">            ans++;</span><br><span class="line">            gas = n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Integer.toString(ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL0.in</span> <span class="string">&amp;</span> <span class="string">OIL0.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">7</span> <span class="number">7</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">4</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">4</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.138600</span> <span class="string">ms</span> <span class="string">(138600</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL1.in</span> <span class="string">&amp;</span> <span class="string">OIL1.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">3708 </span><span class="number">6</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">0</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">0</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.111400</span> <span class="string">ms</span> <span class="string">(111400</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL10.in</span> <span class="string">&amp;</span> <span class="string">OIL10.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">36</span> <span class="number">942</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="literal">No</span> <span class="string">Solution!</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="literal">No</span> <span class="string">Solution!</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.132500</span> <span class="string">ms</span> <span class="string">(132500</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL2.in</span> <span class="string">&amp;</span> <span class="string">OIL2.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">630</span> <span class="number">37</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">3</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">3</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.167700</span> <span class="string">ms</span> <span class="string">(167700</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL3.in</span> <span class="string">&amp;</span> <span class="string">OIL3.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">181</span> <span class="number">46</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">18</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">18</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.156300</span> <span class="string">ms</span> <span class="string">(156300</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL4.in</span> <span class="string">&amp;</span> <span class="string">OIL4.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">809</span> <span class="number">638</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">40</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">40</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.312200</span> <span class="string">ms</span> <span class="string">(312200</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL5.in</span> <span class="string">&amp;</span> <span class="string">OIL5.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">887</span> <span class="number">598</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">35</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">35</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.207000</span> <span class="string">ms</span> <span class="string">(207000</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL6.in</span> <span class="string">&amp;</span> <span class="string">OIL6.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">532</span> <span class="number">813</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">79</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">79</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.228500</span> <span class="string">ms</span> <span class="string">(228500</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL7.in</span> <span class="string">&amp;</span> <span class="string">OIL7.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">301</span> <span class="number">402</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">69</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">69</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.158300</span> <span class="string">ms</span> <span class="string">(158300</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL8.in</span> <span class="string">&amp;</span> <span class="string">OIL8.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">716</span> <span class="number">950</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">70</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">70</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.243100</span> <span class="string">ms</span> <span class="string">(243100</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">OIL9.in</span> <span class="string">&amp;</span> <span class="string">OIL9.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">506</span> <span class="number">448</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">49</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">49</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.162700</span> <span class="string">ms</span> <span class="string">(162700</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Result Statistics:</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> </span><br></pre></td></tr></table></figure>
+
+<h2 id="Optimal-Merge-Problem"><a href="#Optimal-Merge-Problem" class="headerlink" title="Optimal Merge Problem"></a>Optimal Merge Problem</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>给定_k_ 个排好序的序列_s_1 ,<em>s_2 ,…,sk , 用 2 路合并算法将这_k</em> 个序列合并成一个序列。</p>
+<p>假设所采用的 2 路合并算法合并 2 个长度分别为_m_ 和 <em>n</em> 的序列需要_m_ + <em>n</em> - 1次比较。试设</p>
+<p>计一个算法确定合并这个序列的最优合并顺序，使所需的总比较次数最少。</p>
+<p>为了进行比较，还需要确定合并这个序列的最差合并顺序，使所需的总比较次数最多。</p>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 给出输入数据。第一行有 1 个正整数 k，表示有 k 个待合并序列。接下</p>
+<p>来的 1 行中，有 k 个正整数，表示 k 个待合并序列的长度。</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><p>将编程计算出的最多比较次数和最少比较次数输出到文件 output.txt。</p>
+<h3 id="Sample-1"><a href="#Sample-1" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong></p>
+<p>input.txt</p>
+<p>4</p>
+<p>5 12 11 2</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt</p>
+<p>78 52</p>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>对于<code>归并操作</code>，如果我们仅使用<code>k路归并</code>，且输入规模为<code>n个序列</code>。</p>
+<p>则我们可以观察发现，<code>对于每一轮步骤，我们从n个序列中的一个序列中取出头部元素，放入到结果序列中</code>，而这需要<code>比较所有的n个序列的头部元素</code>，总共花费<code>n-1次比较</code></p>
+<p>因此，<code>这n个序列的长度是多少</code>是无关紧要的，我们在意的是<code>有几个序列</code>。</p>
+<p>换句话说，如果<code>t</code>是当前剩余的序列的总数，则每次取出1个元素，需要<code>比较t-1次</code>。</p>
+<ul>
+<li>比较次数最多的情况：让将每个序列取到只剩1个元素后换其他序列，直到所有序列均只剩1个元素</li>
+<li>比较次数最少的情况：尽可能地减少序列的数量，也就是尽可能地把长度较小的序列先取完，如此反复，直到所有序列都取完。</li>
+</ul>
+<hr>
+<p>假设共有 k 个给定的 <code>序列</code> 的 <code>长度</code> 为 s_1,s_2,\cdots, s_k</p>
+<p>设 <code>第i轮开始时剩余的序列的数量</code> 为 k_i</p>
+<p>若需要使用 <code>k路合并</code> 将所有的 <code>序列</code> 都进行 <code>归并</code>，则 <code>每一轮归并操作</code> 需要进行的 <code>比较次数</code> 为 k_i，使得一个 <code>元素</code> 有序。</p>
+<p>总共 s_1 + s_2 + \cdots + s_k &#x3D; s 个元素，共需要进行 s 轮。</p>
+<p>则整个过程 <code>总共需要比较次数</code> 为</p>
+<p>由上式可以知道，<code>每轮归并</code> 取走 <code>剩余序列中的其中一个序列的头部元素</code> 所需要进行的 <code>比较次数</code> 与 <code>各个序列自身的长度</code> 无关，仅与 <code>当前剩余的序列数量</code> 有关。</p>
+<p>所以，可以得出结论：</p>
+<ul>
+<li><code>比较次数</code> 最少的情况：每次 <code>取走元素</code> 时，尽可能使得 <code>剩余序列数目</code> 更少。</li>
+<li><code>比较次数</code> 最多的情况：每次 <code>取走元素</code> 时，尽可能使得 <code>剩余序列数目</code> 更多。</li>
+</ul>
+<h3 id="Source-1"><a href="#Source-1" class="headerlink" title="Source"></a>Source</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Lab4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> util.Judger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.PriorityQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OptimalMergeSolver</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Judger</span> <span class="variable">judger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Judger</span>(<span class="string">&quot;/Cases/Lab4/OPTIMAL MERGE&quot;</span>).redirectError().ignoreExceptCase(<span class="string">&quot;11&quot;</span>).setMaxExpectedInputLines(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Judger.Pair&lt;Integer, Integer&gt; <span class="title function_">solve</span><span class="params">(ArrayList&lt;Integer&gt; list)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Calc min: Priority-Queue</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; minHeap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(list);</span><br><span class="line">        <span class="keyword">while</span> (minHeap.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> minHeap.poll() + minHeap.poll();</span><br><span class="line">            min += sum - <span class="number">1</span>;</span><br><span class="line">            minHeap.add(sum);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Calc max</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; maxHeap = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;(Comparator.reverseOrder());</span><br><span class="line">        maxHeap.addAll(list);</span><br><span class="line">        <span class="keyword">while</span> (maxHeap.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> maxHeap.poll() + maxHeap.poll();</span><br><span class="line">            max += sum - <span class="number">1</span>;</span><br><span class="line">            maxHeap.add(sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Judger</span>.Pair&lt;&gt;(max, min);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (Scanner scanner : judger) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">            ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">                list.add(scanner.nextInt());</span><br><span class="line">            &#125;</span><br><span class="line">            judger.manuallyStartTimer();</span><br><span class="line">            Judger.Pair&lt;Integer, Integer&gt; result = solve(list);</span><br><span class="line">            System.out.printf(<span class="string">&quot;%d %d\n&quot;</span>, result.getKey(), result.getValue());</span><br><span class="line">            judger.manuallyStopTimer();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Benchmark-1"><a href="#Benchmark-1" class="headerlink" title="Benchmark"></a>Benchmark</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE0.in</span> <span class="string">&amp;</span> <span class="string">MERGE0.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">4</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">78</span> <span class="number">52</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">78</span> <span class="number">52</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">3.060100</span> <span class="string">ms</span> <span class="string">(3060100</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE1.in</span> <span class="string">&amp;</span> <span class="string">MERGE1.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">620</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">13008644</span> <span class="number">285991</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">13008644</span> <span class="number">285991</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">3.215400</span> <span class="string">ms</span> <span class="string">(3215400</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE10.in</span> <span class="string">&amp;</span> <span class="string">MERGE10.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">813</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">22558660</span> <span class="number">394886</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">22558660</span> <span class="number">394886</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">1.361100</span> <span class="string">ms</span> <span class="string">(1361100</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE2.in</span> <span class="string">&amp;</span> <span class="string">MERGE2.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">352</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">4111334</span> <span class="number">142290</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">4111334</span> <span class="number">142290</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.580700</span> <span class="string">ms</span> <span class="string">(580700</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE3.in</span> <span class="string">&amp;</span> <span class="string">MERGE3.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">235</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">1820172</span> <span class="number">88000</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">1820172</span> <span class="number">88000</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.731000</span> <span class="string">ms</span> <span class="string">(731000</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE4.in</span> <span class="string">&amp;</span> <span class="string">MERGE4.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">222</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">1643475</span> <span class="number">82557</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">1643475</span> <span class="number">82557</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.396400</span> <span class="string">ms</span> <span class="string">(396400</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE5.in</span> <span class="string">&amp;</span> <span class="string">MERGE5.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">792</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">21235932</span> <span class="number">375348</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">21235932</span> <span class="number">375348</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.848700</span> <span class="string">ms</span> <span class="string">(848700</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE6.in</span> <span class="string">&amp;</span> <span class="string">MERGE6.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">940</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">30287355</span> <span class="number">470933</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">30287355</span> <span class="number">470933</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.966800</span> <span class="string">ms</span> <span class="string">(966800</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE7.in</span> <span class="string">&amp;</span> <span class="string">MERGE7.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">936</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">29521637</span> <span class="number">456380</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">29521637</span> <span class="number">456380</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">1.349700</span> <span class="string">ms</span> <span class="string">(1349700</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE8.in</span> <span class="string">&amp;</span> <span class="string">MERGE8.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">380</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">4837331</span> <span class="number">157940</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">4837331</span> <span class="number">157940</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.618000</span> <span class="string">ms</span> <span class="string">(618000</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Current Case:</span> <span class="string">MERGE9.in</span> <span class="string">&amp;</span> <span class="string">MERGE9.out</span></span><br><span class="line"><span class="attr">Expected  Input:</span> [<span class="number">924</span>, <span class="string">Omit</span> <span class="string">the</span> <span class="string">remaining</span> <span class="number">1</span> <span class="string">line(s)...</span>]</span><br><span class="line"><span class="attr">Expected Output:</span> [<span class="number">28269476</span> <span class="number">436352</span>]</span><br><span class="line"><span class="attr">Your     Output:</span> [<span class="number">28269476</span> <span class="number">436352</span>]</span><br><span class="line"><span class="attr">Time Cost:</span> <span class="number">0.808000</span> <span class="string">ms</span> <span class="string">(808000</span> <span class="string">ns)</span></span><br><span class="line"><span class="string">Accepted.</span></span><br><span class="line"><span class="string">-----------------------------------------------------</span></span><br><span class="line"><span class="attr">Result Statistics:</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> <span class="string">√</span> </span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/25/codesnippet-markdown-builder/" rel="prev" title="CodeSnippet Markdown Builder">
+      <i class="fa fa-chevron-left"></i> CodeSnippet Markdown Builder
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/28/database-elementary-sql/" rel="next" title="Database - Elementary SQL">
+      Database - Elementary SQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Greedy-Problems"><span class="nav-number">1.</span> <span class="nav-text">Greedy Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oiling-Car-Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Oiling Car Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample"><span class="nav-number">1.1.4.</span> <span class="nav-text">Sample</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.1.5.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source"><span class="nav-number">1.1.6.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benchmark"><span class="nav-number">1.1.7.</span> <span class="nav-text">Benchmark</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimal-Merge-Problem"><span class="nav-number">1.2.</span> <span class="nav-text">Optimal Merge Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">Sample</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benchmark-1"><span class="nav-number">1.2.7.</span> <span class="nav-text">Benchmark</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Lattice &amp; Schroder NumberLatticeDefinition考虑坐标平面上具有整数坐标的点的 整格 (Integral Lattice)。 给定2个点 从(p,q)到(r,s)的矩形格路径 (Rectangular Lattice Path)指的是这样的一条路径：从(r,s)到(p,q)由 水平步(Horizontal Step) H &#x3D; (1,0)和垂直步 (Ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics -  Schroder Number">
+<meta property="og:url" content="https://sakurawald.github.io/2022/03/27/counting-schroder-number/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Lattice &amp; Schroder NumberLatticeDefinition考虑坐标平面上具有整数坐标的点的 整格 (Integral Lattice)。 给定2个点 从(p,q)到(r,s)的矩形格路径 (Rectangular Lattice Path)指的是这样的一条路径：从(r,s)到(p,q)由 水平步(Horizontal Step) H &#x3D; (1,0)和垂直步 (Ve">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/03/27/TxfX5UbQcAoHRit.png">
+<meta property="article:published_time" content="2022-03-27T21:08:14.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/27/TxfX5UbQcAoHRit.png">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/03/27/counting-schroder-number/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics -  Schroder Number | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/03/27/counting-schroder-number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics -  Schroder Number
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-27 21:08:14" itemprop="dateCreated datePublished" datetime="2022-03-27T21:08:14+00:00">2022-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Lattice-amp-Schroder-Number"><a href="#Lattice-amp-Schroder-Number" class="headerlink" title="Lattice &amp; Schroder Number"></a>Lattice &amp; Schroder Number</h1><h2 id="Lattice"><a href="#Lattice" class="headerlink" title="Lattice"></a>Lattice</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>考虑坐标平面上<code>具有整数坐标的点的</code> <code>整格 (Integral Lattice)</code>。</p>
+<p>给定2个点</p>
+<p><code>从(p,q)到(r,s)的矩形格路径 (Rectangular Lattice Path)</code>指的是这样的一条路径：<code>从(r,s)到(p,q)</code>由 <code>水平步(Horizontal Step) H = (1,0)</code>和<code>垂直步 (Vertical Step) V = (0, 1)</code>所组成。</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h5><p>从<code>(r,s)到(p,q)的矩形格路径的数目</code>等于<code>二项式系数</code>：</p>
+<h5 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h5><p><code>从(r,s)到(p,q)的路径</code>总共包含<code>(p-r)+(q-s)个水平步和垂直步</code>，</p>
+<p>因此我们需要在<code>(p-r)+(q-s)个步</code>中<code>选择</code> <code>(p-r)个水平步</code>或者<code>确定(q-s)个垂直步</code>。</p>
+<p>即使用<code>组合数的概念</code></p>
+<h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><h5 id="Content-1"><a href="#Content-1" class="headerlink" title="Content"></a>Content</h5><p>设n是非负整数，则<code>从(0,0)到(n,n)的下对角线矩形格路径</code>的数目&#x3D;<code>第n个Catalan数</code></p>
+<h5 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h5><p>考虑<code>Catalan数的经典模型</code>，令<code>水平步为+1元素</code>，<code>垂直步为-1元素</code>。</p>
+<p>则实际上我们要求的是<code>由n个水平步和n个垂直步所构成的2n个元素的所有序列</code>中<code>可接受序列的数量</code></p>
+<blockquote>
+<p>可以<code>接触对角线</code>，这并不算<code>越过对角线</code></p>
+</blockquote>
+<p>Q.E.D</p>
+<h4 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem 3"></a>Theorem 3</h4><h5 id="Content-2"><a href="#Content-2" class="headerlink" title="Content"></a>Content</h5><p>设p和q是正整数，且p \ge q，则<code>从(0,0)到(p,q)的下对角线矩形格路径(Subdiagonal Rectangular Lattice Path)</code>的数目等于</p>
+<h5 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h5><p><img src="https://s2.loli.net/2022/03/27/TxfX5UbQcAoHRit.png" alt="image-20220327183907639"></p>
+<p>设<code>从(0,0)到(p,q)的穿过对角线的矩形格路径</code>\gamma<code>的数目</code>l(p,q)</p>
+<p>设<code>从(0,0)到(p,q)的矩形格路径的数目</code>=\binom{p+q}{p}</p>
+<p>l(p,q)的数目等于<code>从(0, -1)到(p, q-1)的接触到对角线y=x的矩形格路径</code>\gamma^\prime的数目相同</p>
+<blockquote>
+<p>矩形格路径\gamma^\prime相当于是将原路径\gamma<code>整体向下平移1个单位格</code>所得到的。如果<code>在路径</code>\gamma^\prime中<code>恰好接触到对角线y=x</code>，则意味着<code>在原路径</code>\gamma中，<code>恰好已经穿过了对角线1个单位格</code>！所以，我们实际上建立了路径\gamma^\prime和路径\gamma之间的<code>一一对应关系</code></p>
+</blockquote>
+<p>故，</p>
+<p>从到的下对角线矩形格路径的数目从到的矩形格路径的数目从到的穿过对角线的矩形格路径的数目</p>
+<hr>
+<p>我们将路径\gamma^\prime <code>分解</code>为两部分：\gamma^\prime &#x3D; \gamma_1 + \gamma_2</p>
+<p>其中，</p>
+<p>\gamma_1指<code>从(0,-1)到该路径接触到的第一个对角线点(d,d)的路径</code></p>
+<p>\gamma_2指<code>从(d,d)到(p, q-1)的路径</code></p>
+<blockquote>
+<p>注意：路径\gamma^\prime是指<code>接触到对角线的路径</code>，有可能<code>不止接触对角线1次</code></p>
+</blockquote>
+<p>然后，我们将\gamma_1关于对角线y&#x3D;x进行<code>反射</code>得到</p>
+<p>\gamma_1^*是<code>从(-1,0)到该路径接触到的第一个对角线点(d,d)的路径</code></p>
+<p>由于\gamma_1^*是\gamma_1关于对角线y&#x3D;x的反射，若令 \gamma^* &#x3D; \gamma_1^* + \gamma_2，则</p>
+<p>\gamma*&#x3D;\gamma_1^*+\gamma_2 与\gamma^\prime&#x3D;\gamma_1+\gamma_2之间存在<code>一一对应关系</code></p>
+<p>故l(p,q)等于<code>从(-1,0)到(p,q-1)的矩形格路径的数目</code>，即</p>
+<blockquote>
+<p>注：由于\gamma_1^*是\gamma_1关于对角线y&#x3D;x进行<code>反射</code>而得到的。路径\gamma_1^*的<code>起点(-1,0)</code>和<code>终点(p, q-1)</code> 分别<code>位于对角线y=x的两侧</code>。</p>
+<p>故：<code>所有的从(-1,0)到(p,q-1)的矩形格路径</code>均会<code>穿过对角线</code>！</p>
+</blockquote>
+<hr>
+<p>综上，<code>从(0,0)到(p,q)的下对角线矩形格路径</code>的数目等于</p>
+<h4 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem 4"></a>Theorem 4</h4><h5 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h5><p><code>HVD格路径</code>指的是允许<code>水平步 (Horizontal Step)</code>，<code>垂直步 (Vertical Step)</code>和<code>对角步 (Diagonal Step)</code>的格路径。</p>
+<p>设K(p,q)是<code>从(0,0)到(p,q)的HVD格路径的数目</code></p>
+<p>设K(p,q:rD)是<code>从(0,0)到(p,q)的恰好使用r个对角步的HVD格路径的数目</code></p>
+<h5 id="Content-3"><a href="#Content-3" class="headerlink" title="Content"></a>Content</h5><p>设r \le min\{p, q\}，则</p>
+<p>以及</p>
+<h5 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h5><p>如果<code>某条HVD格路径恰好使用了</code> <code>r个对角步</code>，则意味着<code>这条格路径必定恰好使用了</code> <code>p-r个水平步</code>和<code>q-r个垂直步</code></p>
+<p>于是，K(p,q:rD)的值 等同于 <code>求多重集合&#123;(p-r) · H, (q-r) · V, r · D&#125;的排列数</code> 即：</p>
+<p>Q.E.D</p>
+<h4 id="Theorem-5"><a href="#Theorem-5" class="headerlink" title="Theorem 5"></a>Theorem 5</h4><h5 id="Background-1"><a href="#Background-1" class="headerlink" title="Background"></a>Background</h5><p>设R(p,q) \quad p \ge q为<code>从(0,0)到(p,q)的下对角线HVD格路径的数目</code></p>
+<p>另外，设R(p,q:rD) 是<code>从(0,0)到(p,q)的恰好使用r个对角步的HVD格路径的数目</code></p>
+<p>则，</p>
+<h5 id="Content-4"><a href="#Content-4" class="headerlink" title="Content"></a>Content</h5><p>设p和q是正整数，且p \ge q，并设r是满足r \le q的非负整数。则有</p>
+<h5 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h5><p><code>从(0,0)到(p,q)的恰好使用r个对角步的下对角线HVD格路径</code>\gamma 可以在<code>去除了r个对角步</code>之后，转化为</p>
+<p><code>从(0,0)到(p-r,q-r)的下对角线HVD格路径</code>\pi</p>
+<p>同理，相反的。我们可以对<code>从(0,0)到（p-r,q-r)的下对角线HVD格路径</code>pi的基础上，通过在<code>p-r个水平步</code>，<code>q-r个垂直平</code>的<code>共(p-r)+(q-r)+1=p+q-2r+1个位置中的任意地方</code>插入<code>r个对角步</code>后得到<code>从(0,0)到(p,q)的恰好使用r个对角步的下对角线HVD格路径</code>\pi的数量</p>
+<p>在\pi中插入<code>r个对角步的方案数</code> 等于 <code>下述方程的非负整数解的个数</code></p>
+<p>而<code>解的个数</code>是</p>
+<p>综上，我们得到</p>
+<p>Q.E.D</p>
+<h2 id="Schroder-Number"><a href="#Schroder-Number" class="headerlink" title="Schroder Number"></a>Schroder Number</h2><h3 id="Large-Schroder-Numebr"><a href="#Large-Schroder-Numebr" class="headerlink" title="Large Schroder Numebr"></a>Large Schroder Numebr</h3><h4 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h4><p>假设p &#x3D; q &#x3D; n，则<code>从(0,0)到(n,n)的下对角线HVD格路径</code>即为<code>Schroder路径</code></p>
+<p><code>大Schroder数</code>R_n表示<code>从(0,0)到(n,n)的Schroder路径的数目（即下对角线的HVD格路径的数目）</code></p>
+<h3 id="Small-Schroder-Number"><a href="#Small-Schroder-Number" class="headerlink" title="Small Schroder Number"></a>Small Schroder Number</h3><h4 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h4><p>设n \ge 1 ，且a_1,a_2,\cdots\,a_n是<code>n个符号的序列</code>。<code>小Schroder数</code>s_n表示<code>对n个符号的序列加括号的方案数</code></p>
+<blockquote>
+<p>每个括号内的符号不一定只能是2个，可以任意多个。换句话说，不一定只是<code>二元加括号方式</code></p>
+</blockquote>
+<p>给序列a_1,a_2,\cdots,a_n加括号的递归定义为：</p>
+<ol>
+<li>对于每一个符号a_i，它本身就是一种加括号的方案。</li>
+<li>任意<code>两个或多个加括号序列</code>被<code>一对括号</code>括起来，则也是一种加括号的方案。</li>
+</ol>
+<h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h4><h5 id="Theorem-1-1"><a href="#Theorem-1-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h5><h6 id="Content-5"><a href="#Content-5" class="headerlink" title="Content"></a>Content</h6><p><code>小Schroder数</code>的<code>生成函数</code>为</p>
+<h6 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h6><p>设g(x) &#x3D; \sum_{n&#x3D;1}^{\infty}{s_nx^n}为<code>小Schroder数的生成函数</code>。</p>
+<p>则根据<code>小Schroder数的递归定义</code>得</p>
+<p>g(x) &#x3D; x + g(x)^2 + g(x)^3 + g(x)^4 + \cdots &#x3D; x + g(x)^2(1+ g(x) + g(x)^2 + \cdots)&#x3D; x + \frac{g(x)^2}{1-g(x)}</p>
+<p>化简得</p>
+<p>2g(x)^2-(1+x)g(x)+x &#x3D; 0</p>
+<p>使用<code>y</code>代替<code>g(x)</code>得</p>
+<p>2y^2 - (1+x)y + x &#x3D; 0</p>
+<blockquote>
+<p>此处x被当做常数处理</p>
+</blockquote>
+<p>解方程得出</p>
+<p>代入<code>递推关系的初始条件</code>g(0)&#x3D;0进行<code>检验根</code>得知应舍去y_1(x)。故</p>
+<p>Q.E.D</p>
+<blockquote>
+<p>根据<code>小Schroder数的递推关系的生成函数</code>，我们可以通过<code>求解微分方程</code>来得到<code>小Schroder数的递推关系</code>。</p>
+<p><code>求解生成函数的过程</code>不在这里详细展开。</p>
+</blockquote>
+<h5 id="Theorem-2-1"><a href="#Theorem-2-1" class="headerlink" title="Theorem 2"></a>Theorem 2</h5><h6 id="Content-6"><a href="#Content-6" class="headerlink" title="Content"></a>Content</h6><p><code>大Schroder数的生成函数</code>为</p>
+<h6 id="Proof-6"><a href="#Proof-6" class="headerlink" title="Proof"></a>Proof</h6><p><code>从(0,0)到(n,n)的下对角线的格路径</code>可以被分为3类：</p>
+<ol>
+<li>空路径（当n&#x3D;0时）</li>
+<li>该路径从一个 对角步 D 开始</li>
+<li>该路径从一个 水平步 H 开始</li>
+</ol>
+<blockquote>
+<p><code>Sychroder路径</code>不会从一个<code>垂直步</code>开始，否则将会<code>立即越过对角线</code>，从而<code>违反定义</code></p>
+</blockquote>
+<ul>
+<li>对于类型1：因为根本不存在方案，故不需要计数。（或者计数为<code>+0个方案</code>）</li>
+<li>对于类型2：<code>原问题</code>相当于求<code>从(1,1)到(n,n)的下对角线的格路径</code>的数目</li>
+</ul>
+<p>即R_{n-1} （相当于把<code>原问题</code>的规模从<code>n</code>缩小到<code>n-1</code>）</p>
+<ul>
+<li>对于类型3：<code>原问题</code>相当于求<code>从（1,0)到(n,n)的下对角线的格路径</code> 数目。</li>
+</ul>
+<p>设\gamma表示该路径，且\gamma起始于(1,0)，终止于(n,n)。</p>
+<p>设(k,k) \quad 1 \le k \le n 为路径\gamma<code>所接触的第一个对角线上的点</code></p>
+<p>考察<code>路径</code>\gamma（<code>从(1,0)到(n,n)的路径</code>）到达所接触的第一个对角线上的点(k,k)的方式：</p>
+<ol>
+<li><p>如果\gamma通过<code>1个垂直步</code>从(k, k-1)步进到(k,k)：则分解\gamma&#x3D;\gamma_1 +\gamma_2，设\gamma_1是<code>从(1,0)到(k,k-1)的部分上是一条格路径</code>。\gamma_1不会<code>接触到对角线上的点</code>，所以\gamma_1存在R_{k-1}种选择。</p>
+<blockquote>
+<p>即基于<code>求从(1,0)到(k,k-1)的下对角线的格路径数目</code>中选取一个子问题规模：(k)-(1) &#x3D; (k-1) - (0) &#x3D; k - 1）。</p>
+</blockquote>
+<p>而\gamma_2是<code>从(k,k)到(n,n)的下对角线的格路径数目</code>，因而存在R_{n-k}个选择。</p>
+</li>
+<li><p>\gamma不可能通过<code>1个水平步</code>从(k -1, k)步进到(k,k)，否则这将意味着<code>这条路径早已越过了对角线</code></p>
+</li>
+</ol>
+<hr>
+<p>综上</p>
+<p>或等价地</p>
+<p>故</p>
+<blockquote>
+<p>整合上面两个式子</p>
+</blockquote>
+<p>代入R_0 &#x3D; 1得出</p>
+<p>同理解<code>一元二次方程</code>得出</p>
+<h5 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h5><h6 id="Content-7"><a href="#Content-7" class="headerlink" title="Content"></a>Content</h6><p><code>大Schroder数</code>和<code>小Schroder数</code>之间存在关系</p>
+<h5 id="Theorem-3-1"><a href="#Theorem-3-1" class="headerlink" title="Theorem 3"></a>Theorem 3</h5><h6 id="Content-8"><a href="#Content-8" class="headerlink" title="Content"></a>Content</h6><p>设n为正整数，<code>有n+1条边的凸多边形区域</code>的<code>剖分数</code>（即\Pi_{n+1}）等于 <code>小Schroder数</code>s_n</p>
+<blockquote>
+<p>相类似的：对于<code>有n+1条边的凸多边形区域</code>的<code>三角剖分数</code> 等于<code>第n-1个Catalan数</code></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/27/combinatorics-partition-number/" rel="prev" title="Combinatorics - Partition Number">
+      <i class="fa fa-chevron-left"></i> Combinatorics - Partition Number
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/28/counting-pascals-triangle-binomial-coefficient/" rel="next" title="Combinatorics - Pascal's Triangle & Binomial Coefficient">
+      Combinatorics - Pascal's Triangle & Binomial Coefficient <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lattice-amp-Schroder-Number"><span class="nav-number">1.</span> <span class="nav-text">Lattice &amp; Schroder Number</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lattice"><span class="nav-number">1.1.</span> <span class="nav-text">Lattice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">1.1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Theorem 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-1"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-1"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">Theorem 3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-2"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-2"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">Theorem 4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Background"><span class="nav-number">1.1.2.4.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-3"><span class="nav-number">1.1.2.4.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-3"><span class="nav-number">1.1.2.4.3.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-5"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">Theorem 5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Background-1"><span class="nav-number">1.1.2.5.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-4"><span class="nav-number">1.1.2.5.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-4"><span class="nav-number">1.1.2.5.3.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Schroder-Number"><span class="nav-number">1.2.</span> <span class="nav-text">Schroder Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Schroder-Numebr"><span class="nav-number">1.2.1.</span> <span class="nav-text">Large Schroder Numebr</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Definition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Small-Schroder-Number"><span class="nav-number">1.2.2.</span> <span class="nav-text">Small Schroder Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition-2"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theorem-1-1"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-5"><span class="nav-number">1.2.2.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Proof-5"><span class="nav-number">1.2.2.2.1.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theorem-2-1"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">Theorem 2</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-6"><span class="nav-number">1.2.2.2.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Proof-6"><span class="nav-number">1.2.2.2.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inference"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-7"><span class="nav-number">1.2.2.2.3.1.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theorem-3-1"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">Theorem 3</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-8"><span class="nav-number">1.2.2.2.4.1.</span> <span class="nav-text">Content</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="[Counting] Catalan NumberDefinitionCatalan数是定义如下的数列 其中将 n 替换为 n - 1可得到 该式 C_{n-1} 的含义是: 具有 n + 1 条边的凸多边形被其内部不相交的对角线所划分出的三角形区域的方法数 h_n 其中 TheoremTheorem 1 (The Number of Acceptable Sequence)Content考虑由n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics -  Catalan Number">
+<meta property="og:url" content="https://sakurawald.github.io/2022/03/26/temp/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="[Counting] Catalan NumberDefinitionCatalan数是定义如下的数列 其中将 n 替换为 n - 1可得到 该式 C_{n-1} 的含义是: 具有 n + 1 条边的凸多边形被其内部不相交的对角线所划分出的三角形区域的方法数 h_n 其中 TheoremTheorem 1 (The Number of Acceptable Sequence)Content考虑由n">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/03/26/tWw1VcEi4aBkUmx.png">
+<meta property="article:published_time" content="2022-03-26T11:49:06.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.219Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/26/tWw1VcEi4aBkUmx.png">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/03/26/temp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics -  Catalan Number | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/03/26/temp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics -  Catalan Number
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-26 11:49:06" itemprop="dateCreated datePublished" datetime="2022-03-26T11:49:06+00:00">2022-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Counting-Catalan-Number"><a href="#Counting-Catalan-Number" class="headerlink" title="[Counting] Catalan Number"></a>[Counting] Catalan Number</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>Catalan数是定义如下的数列</p>
+<p>其中将 n 替换为 <code>n - 1</code>可得到</p>
+<p>该式 C_{n-1} 的含义是: <code>具有 n + 1 条边的凸多边形</code>被其<code>内部不相交的对角线</code>所<code>划分出的三角形区域的方法数</code> h_n</p>
+<p>其中</p>
+<h2 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h2><h3 id="Theorem-1-The-Number-of-Acceptable-Sequence"><a href="#Theorem-1-The-Number-of-Acceptable-Sequence" class="headerlink" title="Theorem 1 (The Number of Acceptable Sequence)"></a>Theorem 1 (The Number of Acceptable Sequence)</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><p>考虑由<code>n个+1</code>和<code>n个-1</code>构成的<code>2n项序列</code>a_n</p>
+<p>则<code>该序列的部分和满足下列条件</code></p>
+<p><code>的序列的个数</code>等于<code>第n个Catalan数</code></p>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>定义满足下列条件的序列为<code>可接受序列 (Acceptable Sequence)</code></p>
+<p>否则，将序列称为<code>不可接受序列 (Unacceptable Sequence)</code></p>
+<hr>
+<p>由<code>n个+1</code>和<code>n个-1</code> <code>所构成的2n项序列</code>a_n 的个数 T_n 满足</p>
+<p>设：由<code>n个+1</code>和<code>n个-1</code> <code>所构成的2n项序列</code>a_n 中的<code>可接受序列</code>的个数为A_n</p>
+<p>同样地，设<code>其中的不可接受序列</code>的个数为U_n</p>
+<p>故</p>
+<p>因此，只需求出 U_n 即可求出 A_n</p>
+<hr>
+<p>假设 a_k 是<code>序列中第一个导致形成不可接受序列的元素</code>，即</p>
+<p>则我们可以知道<code>前k-1个元素</code>中，<code>-1元素</code>和<code>+1元素</code>的个数相等。即</p>
+<p>因此，我们可以得到<code>不可接受序列的结构</code>：<code>前k-1个元素中有相等数量的-1元素和+1元素</code>，而<code>第k个元素是-1元素</code>。</p>
+<hr>
+<p>现在，我们将<code>前k项中的每一项的符号进行反转</code>：即对 i &#x3D; 1, 2, 3, … , k 我们使用 -a_i 来代替 a_i</p>
+<p>得到变化后的序列</p>
+<p>我们得到的<code>新序列</code>包含<code>n+1个+1</code>和<code>n-1个-1</code>共<code>2n项</code>，</p>
+<p>该<code>数列</code>是通过对<code>原数列</code>的<code>前k个元素进行符号反转</code>而得到的，而由于<code>该序列</code>的<code>+1元素</code>比<code>-1元素</code>多<code>1个</code>（在<code>反转符号</code>之前，<code>原序列</code>的<code>+1元素</code>和<code>-1元素</code>的个数相等均为n），所以该序列必定是<code>不可接受序列</code>。</p>
+<p>为了得到<code>不可接受序列</code>的个数，我们需要做的仅仅是<code>考虑如何排列</code>这<code>n+1个+1元素</code>和<code>n-1个-1元素</code></p>
+<p>因此我们得到，<code>不可接受序列</code>的个数等同于：由<code>n+1个+1元素</code>和<code>n-1个-1元素</code>所组成的<code>2n项的数列</code>的个数。即</p>
+<blockquote>
+<p>注：我们并不关心k究竟取什么值，而仅仅是关心这样一个结构：前k-1个元素中+1元素和-1元素的个数相等，且第k个元素的值为-1</p>
+</blockquote>
+<blockquote>
+<p>注：我们对于k的定义为：a_k 是使得 数列的部分和S_k ＜0的第一个元素。</p>
+<p>在U_n 的计算公式中，我们也并不关心k究竟在哪里。而仅仅关心如何排列 n+1个+1元素和n-1个-1元素，这是因为，我们可以通过所形成的排列，再根据k的定义，倒推出k所应处的位置。</p>
+</blockquote>
+<hr>
+<p>综上，</p>
+<p>Q.E.D</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><h5 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h5><h6 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h6><p>一位律师在他所<code>居住</code>的所有<code>以北n个街区</code>和<code>以东n个街区</code>的地方<code>工作</code>。每天他要走<code>2n个街区</code>去<code>工作</code>。</p>
+<p>如果他从来<code>不穿越（但可以接触）</code> <code>从家到工作场所的对角线</code>，则<code>有多少条可能的路线</code>？</p>
+<p><img src="https://s2.loli.net/2022/03/26/tWw1VcEi4aBkUmx.png" alt="image-20220326163649380"></p>
+<blockquote>
+<p>注：上图中n&#x3D;4，律师从src到dst总共走2n个街区</p>
+</blockquote>
+<h6 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h6><p><code>律师</code>从<code>起点</code>出发到达<code>终点</code>总共需要走<code>n个水平步</code>和<code>n个垂直步</code>。</p>
+<p>所以，<code>从src到dst的总路线数量</code> T_n 应为</p>
+<p>但是，这并不是该问题的最终解。因为该问题还需要满足约束：不能<code>越过对角线</code>。</p>
+<hr>
+<p>我们设<code>向北走为+1元素</code>，<code>向东走为-1元素</code>。于是<code>每一条路线</code>都可以构成<code>一个序列</code> a_n</p>
+<p><code>一条合法的路线</code>应满足</p>
+<p>该模型符合<code>Catanlan数</code>，即<code>合法路线的数量</code>=<code>可接受序列的数量</code></p>
+<p>因此，<code>位于对角线上方的路线的数量</code> &#x3D; <code>位于对角线下方的路线的数量</code> &#x3D; Catalan(n)</p>
+<p>综上，<code>所有合法的路线的数量</code> &#x3D; 2 * Catalan(n)</p>
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><h3 id="Pseudo-Catalan-Number"><a href="#Pseudo-Catalan-Number" class="headerlink" title="Pseudo-Catalan Number"></a>Pseudo-Catalan Number</h3><h4 id="Definiton"><a href="#Definiton" class="headerlink" title="Definiton"></a>Definiton</h4><p>在Catalan数的基础上，我们定义Pseudo-Catalan如下：</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><h5 id="Example-1-1"><a href="#Example-1-1" class="headerlink" title="Example 1"></a>Example 1</h5><h6 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h6><p>设a_1, a_2, \dots, a_n为n个数。<code>运算方案</code>是指按照a_1, a_2, \dots, a_n的顺序进行<code>抽象运算</code>的方案。</p>
+<p>设 h_n 表示<code>n个数的抽象运算方案的数目</code>。</p>
+<blockquote>
+<p>注：该抽象运算为二元运算，且不支持交换律。</p>
+</blockquote>
+<p>例：h_2 &#x3D; 2即或(a_1 * a_2) 或 (a_2 * a_1)</p>
+<h6 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h6><p>尝试对h_n采用归纳法得出递推关系。</p>
+<p>首先考虑简单情况，h_1&#x3D;1，h_2 &#x3D; 2。</p>
+<p>接下来，考虑h_3</p>
+<p>h_3的情况可以<code>视为</code>在h_2的基础上，<code>再将一个元素插入到合适的位置进行抽象运算</code></p>
+<p>可知：的所有抽象运算方案和h_2的所有抽象运算方案: (a_1 * a_2) 和 (a_2 * a_1)</p>
+<p>不妨考虑在<code>h_2的其中1个抽象运算方案</code> (a_1 * a_2)的基础上，<code>插入元素</code>a_3</p>
+<p>a_3可以<code>与a1括起来</code>或者<code>与a2括起来</code>，所以a_3可以<code>选择与2个元素中的其中1个先进行运算</code>。</p>
+<p>而在<code>选定好先进行运算的元素后</code>，a_3还可以<code>选择是与该元素左运算或右运算</code>。</p>
+<p>因此，我们可以列出总共的2 * 2 &#x3D; 4 种抽象运算方案：</p>
+<p>((a_3 * a_1) * a_2)</p>
+<p>((a_1 * a_3) * a_2)</p>
+<p>(a_1 * (a_3 * a_2))</p>
+<p>(a_1 * (a_2 * a_3))</p>
+<p>但以上的方案并没有考虑完全，a_3也可以<code>选择独自参与运算</code>，即还有2种方案应当被考虑：</p>
+<p>a_3 * (a_1 * a_2)</p>
+<p>(a_1 * a_2) * a_3</p>
+<p>综上，h_3 &#x3D; 2*2 * (3-2) + 2 &#x3D; 6</p>
+<blockquote>
+<p>注：因为我们计算的是a_3，而a_3是基于a_2的基础的。对于a_2来说，总共2个元素，共有2-1&#x3D;1次抽象运算（同理2-1&#x3D;1个括号）</p>
+</blockquote>
+<blockquote>
+<p>对于h_n，可以理解为先选择n个数的排列方式，然后再插入(n-1)对括号。</p>
+</blockquote>
+<p>综上</p>
+<p>由于h_{n-1}的<code>每一种乘法方案</code>均可以给出4n-6个<code>新的方案</code></p>
+<p>故，我们将h_n拓展为</p>
+<p>Q.E.D</p>
+<h5 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h5><h6 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h6><p>如果在Example 2的例子中，我们只计数按照a_1, a_2, a_3, …, a_n的顺序排列的<code>抽象运算方案数</code> g_n</p>
+<h6 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h6><p>也就是说，对于比Example 1中<code>计数所有的排列顺序的抽象运算方案数</code>，在这里我们<code>仅计算这1种排列顺序的抽象运算方案数</code>。</p>
+<p>即可知</p>
+<p>也就是说：<code>n个元素按固定顺序排列的抽象运算的方案数</code>g_n &#x3D; C_{n-1}</p>
+<p>Q.E.D</p>
+<hr>
+<p>此外，我们也可以根据g_n的<code>定义</code>来导出它的<code>递推关系</code>。</p>
+<p>在a_1,a_2,a_3,\dots,a_n的<code>每一个抽象运算方案中</code>，总是存在<code>最后一次的抽象运算运算</code>，它<code>对应着最外面的括号</code>。</p>
+<p>即：</p>
+<p>的抽象运算方案的抽象运算方案</p>
+<p>故，我们有g_k种方案来选择a_1,a_2,\dots,a_k的抽象运算方案，有g_{n-k}种方案来选择a_{k+1}, a_{k+2},\dots,a_n的抽象运算方案。并且，我们有1 \le k \le n-1</p>
+<p>综上：</p>
+<p>又有</p>
+<p>即</p>
+<p>我们使用n+1来代替n</p>
+<p>结论：</p>
+<p>g_n的含义：</p>
+<ol>
+<li>将<code>有n+1条边的凸多边形</code>利用<code>插入在不相交的对角线</code>来<code>划分为三角形区域</code>的<code>方案数</code></li>
+<li>给定<code>某个顺序的抽象运算的方案数</code></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/25/divide-and-conquer-majority-problem/" rel="prev" title="Divide and Conquer - Majority Problem">
+      <i class="fa fa-chevron-left"></i> Divide and Conquer - Majority Problem
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/27/stirling-number-set-partition-problem/" rel="next" title="Stirling-Number-  Set Partition Problem">
+      Stirling-Number-  Set Partition Problem <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Counting-Catalan-Number"><span class="nav-number">1.</span> <span class="nav-text">[Counting] Catalan Number</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition"><span class="nav-number">1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theorem"><span class="nav-number">1.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1-The-Number-of-Acceptable-Sequence"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem 1 (The Number of Acceptable Sequence)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Example-1"><span class="nav-number">1.2.1.3.1.</span> <span class="nav-text">Example 1</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Description"><span class="nav-number">1.2.1.3.1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.1.3.1.2.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extension"><span class="nav-number">1.3.</span> <span class="nav-text">Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudo-Catalan-Number"><span class="nav-number">1.3.1.</span> <span class="nav-text">Pseudo-Catalan Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definiton"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Definiton</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Example-1-1"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">Example 1</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Description-1"><span class="nav-number">1.3.1.2.1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Analysis-1"><span class="nav-number">1.3.1.2.1.2.</span> <span class="nav-text">Analysis</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Example-2"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">Example 2</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Description-2"><span class="nav-number">1.3.1.2.2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Analysis-2"><span class="nav-number">1.3.1.2.2.2.</span> <span class="nav-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

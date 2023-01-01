@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="System of Distinct RepresentativeDefinition设Y是有限集合。而\mathcal{A} &#x3D; (A_1, A_2, \cdots, A_n)是Y的n个子集族。  族 (Family)是序列，子集族即子集的序列，只不过这个序列的每个项不是数字而是集合，因而序列中可以有相同的项。   可以将集合Y当成资源集合，而子集族\mathcal{A}即为对象族，它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics - System of Distinct Representative">
+<meta property="og:url" content="https://sakurawald.github.io/2022/04/01/counting-system-of-distinct-representative/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="System of Distinct RepresentativeDefinition设Y是有限集合。而\mathcal{A} &#x3D; (A_1, A_2, \cdots, A_n)是Y的n个子集族。  族 (Family)是序列，子集族即子集的序列，只不过这个序列的每个项不是数字而是集合，因而序列中可以有相同的项。   可以将集合Y当成资源集合，而子集族\mathcal{A}即为对象族，它">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-01T10:42:36.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/04/01/counting-system-of-distinct-representative/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics - System of Distinct Representative | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/04/01/counting-system-of-distinct-representative/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics - System of Distinct Representative
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-01 10:42:36" itemprop="dateCreated datePublished" datetime="2022-04-01T10:42:36+00:00">2022-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="System-of-Distinct-Representative"><a href="#System-of-Distinct-Representative" class="headerlink" title="System of Distinct Representative"></a>System of Distinct Representative</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>设<code>Y是有限集合</code>。而\mathcal{A} &#x3D; (A_1, A_2, \cdots, A_n)是Y的n个<code>子集族</code>。</p>
+<blockquote>
+<p><code>族 (Family)</code>是<code>序列</code>，<code>子集族</code>即<code>子集的序列</code>，只不过这个序列的每个项不是<code>数字</code>而是<code>集合</code>，因而<code>序列</code>中可以有<code>相同的项</code>。</p>
+</blockquote>
+<blockquote>
+<p>可以将<code>集合Y</code>当成<code>资源集合</code>，而<code>子集族</code>\mathcal{A}即为<code>对象族</code>，它的每个项是一个<code>对象（或者说：是该对象所需要的资源的集合）</code></p>
+</blockquote>
+<p>如果<code>Y的元素的一个族</code>(e_1,e_2,\cdots,e_n)满足e_1 \in A_1, e_2 \in A_2, \cdots, e_i \in A_i，则称它为\mathcal{A}的一个<code>代表系 (System of Representative)</code></p>
+<p>在一个代表系中，若e_i \in A_i，则该元素e_i称为A_i的<code>代表</code></p>
+<blockquote>
+<p><code>代表</code>的英文是从<code>Representative</code>翻译而来的，但是后面我们会使用<code>代表元</code>而不是<code>代表</code>，因为<code>代表元</code>这个词可以使表达更准确。</p>
+</blockquote>
+<blockquote>
+<p>也就是说，<code>只要能从某个集合中选出1个元素，那么这个元素就可以称为 该集合的代表元</code>。</p>
+<p>进而，我们知道，<code>非空集合的族 必定存在 代表系， 但不一定存在SDR</code></p>
+</blockquote>
+<p>如果在一个<code>代表系</code>中，元素e_i都是不同的，则称(e_1, e_2, \cdots, e_n)为<code>相异代表系 (System of Distinct Representative)</code></p>
+<blockquote>
+<p>注意：即使A_1和A_2是<code>相同的集合</code>，他们在<code>SDR</code>中也必须要有<code>不同的代表元</code>，因为他们是<code>这个族的不同项</code>。</p>
+</blockquote>
+<blockquote>
+<p>换句话说：在<code>代表系</code>中，<code>1个代表元 可以代表 多个集合</code>，而在<code>相异代表系</code>中，<code>1个代表元 只能代表 1个集合</code></p>
+</blockquote>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>设\mathcal{A}&#x3D;(A_1,A_2,\cdots,A_n)<code>有限集合Y的子集族</code>，则需要解决的问题是：</p>
+<ol>
+<li>确定\mathcal{A}什么时候存在<code>SDR</code> ?</li>
+<li>如果\mathcal{A}不存在<code>SDR</code>，<code>存在SDR的子族</code>\mathcal{A}(i_1, i_2, \cdots, i_t) &#x3D; (A_{i_1}, A_{i_2}, \cdots, A_{i_t})<code>中的t最大为多少?</code></li>
+</ol>
+<h3 id="Application-Non-Attack-Rooks-Problem"><a href="#Application-Non-Attack-Rooks-Problem" class="headerlink" title="Application: Non-Attack Rooks Problem"></a>Application: Non-Attack Rooks Problem</h3><p>能够将<code>k个非攻击型车</code>放置到<code>棋盘</code>上，当且仅当，<code>存在 有SDR的k个集合的子族</code>\mathcal{A}(i_1,i_2,\cdots,i_k) &#x3D; (A_{i_1}, A_{i_2}, \cdots, A_{i_k}) \qquad(1 \le i_1 \le i_2 \cdots \le i_k \le \text{Rows of the Board})</p>
+<h3 id="Application-Checkerboard-Covering-Problem"><a href="#Application-Checkerboard-Covering-Problem" class="headerlink" title="Application: Checkerboard Covering Problem"></a>Application: Checkerboard Covering Problem</h3><p>能够将<code>k个不重叠的多米诺骨牌</code>放置到<code>棋盘</code>上，当且仅当，<code>存在 有SDR的k个集合的子族</code>\mathcal{A}(i_1, i_2, \cdots, i_k) &#x3D; (A_{i_1}, A_{i_2}, \cdots, A_{i_k}) \qquad (1 \le i_1 \le i_2 \cdots \le i_k \le \text{Black Squares})</p>
+<blockquote>
+<p>上述中的<code>Black Square</code>表示<code>棋盘上黑格的数量</code>，这是因为我们这里是将<code>黑格</code>视为<code>对象</code>来考虑的，所以<code>子集族的大小 = 黑格的数量</code>。</p>
+<p>同理，也可以将<code>白格</code>视为<code>对象</code>。</p>
+</blockquote>
+<h3 id="Application-Complete-Marriage-Problem"><a href="#Application-Complete-Marriage-Problem" class="headerlink" title="Application: Complete Marriage Problem"></a>Application: Complete Marriage Problem</h3><p>有<code>n位女士</code>和<code>n位男士</code>，我们希望<code>配对每一位男士和女士</code>，并<code>使得配对给男士的女士 是 该男士的所偏爱的</code>。</p>
+<p>则<code>所有的男士能够结婚</code>对应于(A_1, A_2, \cdots, A_n)<code>存在一个SDR</code>(w_1, w_2, \cdots, w_n)</p>
+<h3 id="Application-Stable-Complete-Marriage-Problem"><a href="#Application-Stable-Complete-Marriage-Problem" class="headerlink" title="Application: Stable Complete Marriage Problem"></a>Application: Stable Complete Marriage Problem</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><p>在一个社区中有<code>n位男士</code>和<code>n位女士</code>。<code>每位女士</code> 按照 <code>其对每位男士作为配偶的偏爱程度</code>来<code>给每位男士进行排名</code>（不允许有并列排名），这样<code>每位女士</code>将<code>这些男士</code>排成<code>顺序1,2, ..., n</code>。类似地，<code>每位男士</code>也将<code>每位女士</code>排成<code>顺序1,2, ... n</code>。</p>
+<blockquote>
+<p>也就是说：<code>每名男士和每名女士</code>对<code>所有的异性进行排名排名 且 不存在并列排名</code></p>
+</blockquote>
+<blockquote>
+<p>我们使用<code>优先排名矩阵 (Preferential Ranking Matrix)</code>来描述<code>男士</code>和<code>女士</code>对<code>每一个异性的偏爱程度</code>，</p>
+<p>这是一张<code>二维表格</code>，每个<code>单元格</code>表示的是<code>第i个男士和第j个女士</code>之间：<code>第i个男士 对 第j个女士 的排名</code>和<code>第j个女士 对 第i个男士的排名</code> 所组成的<code>二元组</code></p>
+</blockquote>
+<hr>
+<p>如果存在<code>两位女士 A 和 B</code>以及<code>两位男士 a 和 b</code>，使得：</p>
+<ol>
+<li>A和a结婚</li>
+<li>B和b结婚</li>
+<li>A更偏爱b（而非a）</li>
+<li>b更偏爱A（而非B）</li>
+</ol>
+<blockquote>
+<p>也就是说：如果存在一男一女，他们都不喜欢自己现在的配偶，而且这两个人之间相互喜欢。那么该婚姻的配对就是<code>不稳定婚姻</code></p>
+</blockquote>
+<p>则我们称该婚姻为<code>不稳定婚姻 (Unstable Marriage)</code>，而我们定义<code>稳定婚姻 (Stable Marriage)</code>：是那些非<code>不稳定婚姻</code>的婚姻</p>
+<h4 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h5><h6 id="Content-1"><a href="#Content-1" class="headerlink" title="Content"></a>Content</h6><p>对于<code>任何一个优先排名矩阵</code>，总是存在<code>稳定的完美婚姻</code>。</p>
+<h6 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h6><h6 id="延迟认可算法-Deferred-Acceptance-Algorithm-x2F-Gale-Shapley-Algorithm"><a href="#延迟认可算法-Deferred-Acceptance-Algorithm-x2F-Gale-Shapley-Algorithm" class="headerlink" title="延迟认可算法 (Deferred Acceptance Algorithm &#x2F; Gale-Shapley Algorithm)"></a>延迟认可算法 (Deferred Acceptance Algorithm &#x2F; Gale-Shapley Algorithm)</h6><ol>
+<li><p>初始化：将<code>每一位女士</code>标记为<code>被拒绝</code></p>
+</li>
+<li><p>持续：当<code>存在 被拒绝的女士 时</code>，执行：</p>
+<ol>
+<li><code>每一位被标记为被拒绝的女士</code>在<code>所有尚未拒绝它的男士</code>之中<code>选择一位被她排名最高的男士</code></li>
+<li><code>每一位男士</code>在<code>所有选择他 并且 尚未被他拒绝的女士</code>之中<code>选择一位被他排名最高的女士</code>，<code>对她做延迟决定（即：移除该女士的拒绝状态）</code>并且<code>拒绝其他所有的女士</code></li>
+</ol>
+</li>
+<li><p>终止：我们得到一个<code>稳定的完美婚姻</code></p>
+</li>
+</ol>
+<hr>
+<p>在算法的执行期间，<code>女士</code>向<code>男士</code>进行<code>求婚</code>，而男士可以接受女士的<code>订婚</code>（即做<code>延迟决定</code>）和<code>拒绝</code>女士。</p>
+<ul>
+<li>一旦男士订婚，则<code>该男士</code> <code>始终保持 订婚状态</code></li>
+<li>如果男士收到<code>更好的女士的求婚</code>，则该男士可以<code>改变未婚妻</code> <code>拒绝</code> <code>他之前的未婚妻（如果有的话）</code>。</li>
+<li>女士可以对不同的男士进行多次<code>求婚</code>，但<code>每次求婚的对象</code>只会<code>比上一次求婚的对象</code> <code>更差</code></li>
+</ul>
+<hr>
+<p><code>证明：该算法所得的完美婚姻是稳定的完美婚姻</code></p>
+<p><code>假设</code>： <code>女士A和B</code>以及<code>男士a和b</code>，使<code>A和a配对，B和b配对</code>，但<code>A更偏爱b</code>。</p>
+<p>我们<code>证明</code>：不存在<code>b更偏爱A</code></p>
+<p>在算法过程中，<code>A和B</code> <code>都向所有的男士进行了</code> <code>求婚</code>。如果<code>A更偏爱b</code>而<code>最终却是 A和a配对</code>，则说明<code>A在第一轮向b求婚时 被b拒绝了</code>，这是因为<code>b也收到B的求婚，显然b更偏爱B</code></p>
+<blockquote>
+<p>可以直接使用<code>反证法</code>：如果<code>A更偏爱b</code>而且<code>b更偏爱A</code>，那么<code>没有任何其他的男士或女士</code>可以<code>阻止A和b的配对</code>。因为<code>A会在第一轮中立即向b求婚</code>，而<code>b也会立即接受A的求婚，并且，后续任何其他女士的求婚都不会动摇b的订婚</code>。</p>
+<p>因此，我们可以说：<code>如果存在一个男士和一个女士，他们互相为最喜欢对方，则他们最终必定成为一对</code></p>
+</blockquote>
+<p>Q.E.D</p>
+<hr>
+<h5 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h5><h6 id="Content-2"><a href="#Content-2" class="headerlink" title="Content"></a>Content</h6><blockquote>
+<p><code>对该女士最优的稳定的完美婚姻</code>：<code>该女士得到的配偶的排名</code> <code>至少不差于</code> 从<code>其他的完美婚姻中得到的配偶的排名</code></p>
+<p><code>女士最优的稳定的完美婚姻</code>：如果<code>一个稳定的完美婚姻</code>对于<code>每一位女士而言，都是最优的</code>。</p>
+</blockquote>
+<p>通过<code>延迟认可算法</code>，用<code>女士主动求婚的方式</code>来得到的<code>稳定的完美婚姻</code>是<code>女士最优的</code>。</p>
+<h6 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h6><p>通过<code>女士主动求婚的方式</code>，<code>女士</code>可以<code>在每一轮中不断地尝试 从尚未拒绝她的男士中选择她最偏爱的男士 来进行求婚</code>。</p>
+<p>而<code>最终与该女士配对的男士</code>将是<code>该女士所能配对的男士中她最偏爱的男士</code>。</p>
+<blockquote>
+<p>这种方式中，<code>每一位女士</code>都会获得<code>一位对她来说合适的男士</code>（尽管<code>这个男士可能不是该女士的排名中最高的）</code>。</p>
+<p>我们无法<code>满足让每一位女士都获得 她的排名中的最高的男士</code> （如果无法通过该方法达成的话），否则<code>将导致得到的完美婚姻 是 不稳定的</code>。</p>
+<p>回到之前的结论：<code>如果男士A和女士B之间互相是最偏爱的，则他们最终肯定能配对在一起</code>，<code>否则，说明 男士A 不是偏爱 女士B（如果女士B向男士A求婚，说明男士A是该女士 未拒绝该女士的男士中排名最高的男士）</code>，我们不妨<code>假设 男士A 和 女士C 配对在一起，则说明 男士A更偏爱女士C， 而男士A也是未拒绝女士C的所有男士中女士C所最偏爱的。</code>因此，<code>如果我们强行让 男士A 和 女士 B进行配对，则导致 男士A和女士C之间 不满足稳定的完美婚姻的定义</code></p>
+<blockquote>
+<p>注：<code>男士A 更偏爱 女士C</code>，则说明<code>女士C 是 向男士A求婚的所有女士中被男士排名最高的女士</code>。（如果<code>女士C</code>并不是<code>男士A对所有女士的排名中最高的女士</code>，则说明，<code>在男士A对所有女士的排名中 比 该女士C所处的排名更高的 哪些女士</code> <code>早已向其他的这些女士更偏爱的男士 进行求婚，而且，已经被接受了！（否则这些女士会来找男士A，然后男士A肯定会比偏爱女士C来说更偏爱这些女士）</code> ）</p>
+</blockquote>
+</blockquote>
+<h5 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h5><h6 id="Content-3"><a href="#Content-3" class="headerlink" title="Content"></a>Content</h6><p>在<code>女士最优的稳定的完美婚姻</code>中，<code>每一位男士</code>与<code>一位他在稳定的完美婚姻中所有对他合适的伴侣</code>中<code>排名最低的女士</code>进行<code>结合</code></p>
+<h6 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h6><p>如果在<code>该女士最优的稳定的完美婚姻</code>中，<code>男士A 和 女士B 配对</code>，<code>男士C 和 女士D 配对</code></p>
+<p>则说明<code>男士A 是对女士B来说最合适的（也就是：男士A是 所有的没有拒绝女士B的男士中的被女性B排名最高的男士）</code></p>
+<p>则说明<code>男士C 是对女士D来说最合适的</code></p>
+<p>如果我们让<code>男士A 和 女士D 进行配对</code>，则<code>该稳定的完美婚姻 不是对 女士D 最优的，因而这个稳定的完美婚姻 根本就不是 女士最优的</code></p>
+<h2 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory"></a>Theory</h2><h4 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h4><p><code>族</code>\mathcal{A} &#x3D; {A_1, A_2,\cdots,A_n}<code>存在SDR的必要条件是</code> <code>婚姻条件 (Marrige Condition)</code>：对于<code>每一个 k = 1, 2, ..., n</code>和<code>取自于&#123;1,2, ..., n&#125;的下标</code>i_1, i_2, \cdots, i_k的<code>每一种选择</code>，应满足</p>
+<blockquote>
+<p>换句话说：这个<code>族</code>的<code>每k个子集的并集</code>都<code>至少包含k个元素x</code></p>
+<p>也就是说：任意<code>k位男士的合意列表</code>中<code>至少含有k位女士</code>。</p>
+<p>证明：<code>族的每k个子集的并集的数量</code>含义为<code>这个族内的所选取的这k个对象的所需求的不同的资源的数量</code>，即<code>我们目前拥有的不同的资源的数量</code>，而<code>数字k</code>表示<code>总共有k个人</code>。根据<code>鸽巢原理</code>可以证明上述结论。</p>
+<p>当然，如果直接令<code>k = n</code>即表示为<code>整个族的所有对象</code>的情形。但是，很显然如果当<code>k &lt; n</code>时的<code>子问题</code>中不存在<code>SDR</code>，则将<code>问题规模</code>扩大到<code>整个族的所有对象</code>后，仍然不存在SDR。</p>
+</blockquote>
+<h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h4><h5 id="Content-4"><a href="#Content-4" class="headerlink" title="Content"></a>Content</h5><p><code>集合Y的子集族</code>\mathcal{A} &#x3D; (A_1, A_2, \cdots, A_n) <code>存在SDR</code> \iff满足<code>婚姻条件 (Marriage Condition)</code>。</p>
+<h5 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h5><ul>
+<li>族\mathcal{A}存在SDR的必要条件是满足婚姻条件：已证</li>
+<li>族\mathcal{A}存在SDR的充分条件是满足婚姻条件：</li>
+</ul>
+<p>我们<code>假设：满足婚姻条件</code>，然后<code>对族</code>\mathcal{A}<code>的集合个数n</code>进行<code>归纳法</code></p>
+<ol>
+<li><p>如果n &#x3D; 1：则\mathcal{A}中仅包含<code>唯一的非空集合</code>，从该集合中<code>任选一个元素</code>即可。</p>
+</li>
+<li><p>如果n &#x3D; 2：现在\mathcal{A}中包含<code>两个非空集合</code>A_1, A_2。则接下来，我们考虑<code>2个集合之间的关系</code>：</p>
+<ul>
+<li>如果A_1和A_2没有<code>交集</code>：则存在e_1 \in A_1, e_2 \in A_2且e_1 \ne e_2。则为A_1选取e_1，为A_2选取e_2</li>
+<li>如果A_1和A_2存在<code>部分相交</code>：则存在e_1 \in A_1 -A_2, e_2 \in A_2 - A_1且e_1 \ne e_2。则为A_1选取e_1，为A_2选取e_2</li>
+<li>如果A_1和A_2存在<code>包含</code>：根本不存在这种情况，否则A_1 \cup A_2 \lt 2，不满足我们的假设<code>婚姻条件</code></li>
+</ul>
+</li>
+<li><p>如果n &#x3D; 3：…</p>
+</li>
+</ol>
+<p>Q.E.D</p>
+<h4 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h4><h5 id="Content-5"><a href="#Content-5" class="headerlink" title="Content"></a>Content</h5><p>设\mathcal{A}&#x3D;(A_1, A_2,\cdots,A_n)<code>是有限集合Y的子集族</code>。设t \in Z,0 \le t \le n</p>
+<p>则<code>存在</code>\mathcal{A}<code>的有SDR的t集合的子族</code> <code>当且仅当</code>：\textcolor{blue}{A_{i_1} \cupA_{i_2} \cup \dots \cup A_{i_t} \ge k - (n - t)}对于<code>所有的k ≥ n - t 的k</code>和<code>取自&#123;1,2, ..., n&#125;的k个不同的下标</code>i_1, i_2, \cdots, i_k的<code>所有选择</code>都成立。</p>
+<h4 id="Inference-1"><a href="#Inference-1" class="headerlink" title="Inference"></a>Inference</h4><h5 id="Content-6"><a href="#Content-6" class="headerlink" title="Content"></a>Content</h5><p>设\mathcal{A}&#x3D;(A_1,A_2,\cdots,A_n)是<code>有限集合Y的子集族</code>。则<code>拥有SDR的子族 中集合的最大数目</code>为：A_{i_1} \cup A_{i_2} \cup \cdots \cup A_{i_k} + n - k 对<code>所有的k=1,2, ..., n</code>和<code>满足</code>1 \le i_1 \le i_2\ \lt \cdots \le n<code>的k个下标</code>i_1, i_2, \cdots, i_k的<code>所有选择</code>的<code>最小值</code></p>
+<h5 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h5><p>Q.E.D</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/31/counting-in-exclusion-principle-mobius-inversion/" rel="prev" title="Combinatorics - In-Exclusion Principle & Mobius Inversion">
+      <i class="fa fa-chevron-left"></i> Combinatorics - In-Exclusion Principle & Mobius Inversion
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/02/computer-composition-representation-and-computation-floating-point/" rel="next" title="Computer Composition - Representation and Computation - Floating Point">
+      Computer Composition - Representation and Computation - Floating Point <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#System-of-Distinct-Representative"><span class="nav-number">1.</span> <span class="nav-text">System of Distinct Representative</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition"><span class="nav-number">1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">1.2.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Non-Attack-Rooks-Problem"><span class="nav-number">1.2.1.</span> <span class="nav-text">Application: Non-Attack Rooks Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Checkerboard-Covering-Problem"><span class="nav-number">1.2.2.</span> <span class="nav-text">Application: Checkerboard Covering Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Complete-Marriage-Problem"><span class="nav-number">1.2.3.</span> <span class="nav-text">Application: Complete Marriage Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-Stable-Complete-Marriage-Problem"><span class="nav-number">1.2.4.</span> <span class="nav-text">Application: Stable Complete Marriage Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theory"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theorem"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-1"><span class="nav-number">1.2.4.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Proof"><span class="nav-number">1.2.4.2.1.2.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BB%B6%E8%BF%9F%E8%AE%A4%E5%8F%AF%E7%AE%97%E6%B3%95-Deferred-Acceptance-Algorithm-x2F-Gale-Shapley-Algorithm"><span class="nav-number">1.2.4.2.1.3.</span> <span class="nav-text">延迟认可算法 (Deferred Acceptance Algorithm &#x2F; Gale-Shapley Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-2"><span class="nav-number">1.2.4.2.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Proof-1"><span class="nav-number">1.2.4.2.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Inference"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Content-3"><span class="nav-number">1.2.4.2.3.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Proof-2"><span class="nav-number">1.2.4.2.3.2.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory-1"><span class="nav-number">1.3.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-4"><span class="nav-number">1.3.0.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-3"><span class="nav-number">1.3.0.2.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-5"><span class="nav-number">1.3.0.3.1.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inference-1"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-6"><span class="nav-number">1.3.0.4.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-4"><span class="nav-number">1.3.0.4.2.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

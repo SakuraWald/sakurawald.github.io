@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Arrangement and CombinationBasic Counting PrinciplesThe Principle of Addiction若集合 S被划分成两两不相交的部分S_1, S_2, \cdots ,S_m，则S的对象数目 可以通过确定它的每一个部分的对象数目并如此相加而得到： S &#x3D; S_1 + S_2 + \cdots +S_m  基本的加法原理仅仅适用于两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics -  Arrangement and Combination">
+<meta property="og:url" content="https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Arrangement and CombinationBasic Counting PrinciplesThe Principle of Addiction若集合 S被划分成两两不相交的部分S_1, S_2, \cdots ,S_m，则S的对象数目 可以通过确定它的每一个部分的对象数目并如此相加而得到： S &#x3D; S_1 + S_2 + \cdots +S_m  基本的加法原理仅仅适用于两">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-08T20:33:57.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics -  Arrangement and Combination | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics -  Arrangement and Combination
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-08 20:33:57" itemprop="dateCreated datePublished" datetime="2022-04-08T20:33:57+00:00">2022-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Arrangement-and-Combination"><a href="#Arrangement-and-Combination" class="headerlink" title="Arrangement and Combination"></a>Arrangement and Combination</h1><h2 id="Basic-Counting-Principles"><a href="#Basic-Counting-Principles" class="headerlink" title="Basic Counting Principles"></a>Basic Counting Principles</h2><h3 id="The-Principle-of-Addiction"><a href="#The-Principle-of-Addiction" class="headerlink" title="The Principle of Addiction"></a>The Principle of Addiction</h3><p>若<code>集合 S</code>被<code>划分</code>成<code>两两不相交的部分</code>S_1, S_2, \cdots ,S_m，则<code>S的对象数目</code> 可以通过确定<code>它的每一个部分的对象数目</code>并如此相加而得到：</p>
+<p>S &#x3D; S_1 + S_2 + \cdots +S_m</p>
+<blockquote>
+<p><code>基本的加法原理</code>仅仅适用于<code>两两不相交的部分</code>！</p>
+</blockquote>
+<blockquote>
+<p><code>加法原理</code>适合运用的场景是：<code>所划分出的部分足够少</code>且<code>所划分出的部分我们能够进行计数</code></p>
+</blockquote>
+<h3 id="The-Principle-of-Multiplication"><a href="#The-Principle-of-Multiplication" class="headerlink" title="The Principle of Multiplication"></a>The Principle of Multiplication</h3><p>令<code>集合S</code>是<code>对象的有序对(a, b)</code>的集合，其中<code>第一个对象a</code>来自<code>大小为p的一个集合</code>，而对于<code>对象a的每一种选择</code>，<code>对象b</code>有<code>q种选择</code>。</p>
+<p>于是：S &#x3D; p \times q</p>
+<blockquote>
+<p><code>乘法原理</code>是<code>加法原理</code>的一个推论：S &#x3D; S_1 + S_2 + \cdots +S_p &#x3D; q + q + \cdots + q &#x3D; p \times q</p>
+</blockquote>
+<h3 id="The-Principle-of-Subtration"><a href="#The-Principle-of-Subtration" class="headerlink" title="The Principle of Subtration"></a>The Principle of Subtration</h3><p>若存在<code>集合A</code>，<code>集合U</code>是<code>包含集合A的更大集合</code>。</p>
+<p>设\overline{A} &#x3D; U \backslash A &#x3D; \{x \in U: x \notin A\}是<code>集合A在集合U中的补 (Complement)</code>。</p>
+<p>那么有：A &#x3D; U - \overline{A}</p>
+<h3 id="The-Principle-of-Division"><a href="#The-Principle-of-Division" class="headerlink" title="The Principle of Division"></a>The Principle of Division</h3><p>令<code>集合S</code>是一个<code>有限集合</code>，把它<code>划分</code>成<code>k个部分</code>使得<code>使得每一部分包含的对象数目</code> <code>相同</code></p>
+<p>则，<code>此划分中的部分的数目</code>：在一个部分中的对象数目k &#x3D; \frac{S}{在一个部分中的对象数目}</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="Arrangement"><a href="#Arrangement" class="headerlink" title="Arrangement"></a>Arrangement</h3><h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h4><p>若<code>正整数 r</code>，则一个<code>n元素集合的r排列</code>，我们理解为<code>n个元素中的r个元素</code>的<code>有序放置</code>。</p>
+<h4 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory 1"></a>Theory 1</h5><h5 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory 2"></a>Theory 2</h5><h3 id="Combination"><a href="#Combination" class="headerlink" title="Combination"></a>Combination</h3><h4 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h4><p>若<code>集合S</code>是<code>n元素集合</code>，则<code>集合S的一个组合</code>通常表示<code>集合S的元素的</code>一个<code>无序选择</code>。</p>
+<p>这样的一个<code>选择</code>的结果是<code>S的元素构成的一个子集</code>A \subseteq S</p>
+<blockquote>
+<p><code>集合的子集</code>和<code>集合的组合</code>本质上是可以互换的。</p>
+</blockquote>
+<h4 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-1"><a href="#Theory-1-1" class="headerlink" title="Theory 1"></a>Theory 1</h5><h5 id="Theory-2-1"><a href="#Theory-2-1" class="headerlink" title="Theory 2"></a>Theory 2</h5><h5 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory 3"></a>Theory 3</h5><hr>
+<p>一种基于<code>组合学</code>的证明：</p>
+<p>设<code>集合S</code>是<code>n元素集合</code>，从集合S中任意地选取一个<code>元素x</code>。</p>
+<p>设<code>集合X</code>为<code>集合S的所有子集的集合</code>，然后将<code>集合X</code>划分为<code>A</code>和<code>B</code>两部分（即X &#x3D; A + B）：</p>
+<ul>
+<li>A部分：<code>不包含元素x的k子集</code></li>
+<li>B部分：<code>包含元素x的k子集</code></li>
+</ul>
+<p>则，A &#x3D; \binom{n-1}{k}</p>
+<blockquote>
+<p>也就是我们将<code>元素x</code>从<code>集合S</code>中移除了</p>
+</blockquote>
+<p>且可得B &#x3D; \binom{n-1}{k-1}</p>
+<blockquote>
+<p><code>集合B</code>相当于在<code>集合A</code>的基础上，加入了<code>x元素</code>。</p>
+<blockquote>
+<p>或者理解为：先将<code>元素x</code>从<code>集合S</code>中拿出，然后在<code>S\x</code> 中选取 <code>k-1子集</code>，然后再把<code>集合x</code>加入到<code>k-1子集</code>中，这样即可得到<code>集合S的包含元素x的k子集</code></p>
+<blockquote>
+<p>S \backslash x &#x3D; S - \{x\}</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>综上，\binom{n}{k} &#x3D; X &#x3D; A + B</p>
+<p>Q.E.D</p>
+<h5 id="Theory-4"><a href="#Theory-4" class="headerlink" title="Theory 4"></a>Theory 4</h5><hr>
+<p>使用<code>双计数技术</code>可证明该结论：</p>
+<ol>
+<li><code>集合S的r子集个数的求和</code></li>
+<li><code>乘法原理</code>对<code>集合S的r子集</code>的<code>生成过程</code></li>
+</ol>
+<h2 id="Multi-Set"><a href="#Multi-Set" class="headerlink" title="Multi-Set"></a>Multi-Set</h2><h3 id="Arrangement-1"><a href="#Arrangement-1" class="headerlink" title="Arrangement"></a>Arrangement</h3><h4 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h4><p><code>多重集合S</code>的一个<code>r排列</code>是<code>S中的r个对象</code>的一个<code>有序放置</code>。</p>
+<blockquote>
+<p><code>r个对象</code>也包含计数了<code>重复对象</code></p>
+</blockquote>
+<h4 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-2"><a href="#Theory-1-2" class="headerlink" title="Theory 1"></a>Theory 1</h5><blockquote>
+<p>该定理不仅仅适用于<code>所有元素的重复数均为无限</code>的情况，只要<code>没有任何一种元素能被用尽</code>即可使用该定理。</p>
+</blockquote>
+<h5 id="Theory-2-2"><a href="#Theory-2-2" class="headerlink" title="Theory 2"></a>Theory 2</h5><hr>
+<ul>
+<li>Proof 1</li>
+</ul>
+<p>我们知道<code>拥有n种类型的对象，且每种类型的对象都只有1个的集合S</code>的<code>r排列</code>数量为n!</p>
+<p>现在，假如<code>对象</code>a_1有<code>3个</code>，则<code>对象</code>a_1会在<code>任何一个特定的排列</code>中<code>出现3次</code>，我们<code>隐含地给对象</code>a_1<code>加上编号</code>：a_1^1, a_1^2, a_1^3。</p>
+<p>则可以知道，<code>对象</code>a_1<code>在该特定排列中出现的方式有</code>3!<code>种</code>。</p>
+<p>但是，实际上，我们知道<code>对象</code>a_1<code>是不可区分的</code>！故我们实际上要<code>将</code>a_1<code>所有可能的出现方式</code>都<code>视为1种</code>，即<code>除以</code>a_1。</p>
+<p>同理，对<code>其余的元素</code>也这样处理。</p>
+<p>Q.E.D</p>
+<ul>
+<li>Proof 2</li>
+</ul>
+<p>确定<code>多重集合的n排列</code>等价于<code>在n个位置中的每一个位置放入S中的一个对象</code>。</p>
+<p>我们可以首先考虑<code>所有的对象</code>a_1，则它有<code>放置方案</code>：\binom{n}{n_1}</p>
+<p>然后，考虑<code>所有的对象</code>a_2，则它有<code>放置方案</code>：\binom{n-n_1}{n_2}</p>
+<p>如此对<code>剩下的所有类型对象</code>进行考虑。得出</p>
+<h5 id="Theory-3-1"><a href="#Theory-3-1" class="headerlink" title="Theory 3"></a>Theory 3</h5><p>若有<code>正整数n</code>使得n &#x3D; n_1 + n_2 + \cdots +n_k。</p>
+<p>把<code>n对象集合</code> <code>划分</code>成<code>k个标有标签的盒子</code>，满足约束：<code>第1个盒子</code>含有n_1<code>个对象</code>，<code>第2个盒子</code>含有n_2<code>个对象</code>，…，<code>第k个盒子</code>含有n_k<code>个对象</code>。</p>
+<p>则这样的<code>划分数</code>为：\frac{n!}{n_1!n_2!\cdots n_k!}</p>
+<p>如果<code>这k个盒子不带有标签</code>且n_1 &#x3D; n_2 &#x3D; \cdots + n_k，则<code>划分数</code>= \frac{n!}{\r{k!}n_1!n_2!\cdots n_k!}</p>
+<blockquote>
+<p>我们并没有说<code>第1个盒子</code>里一定<code>全部都是对象</code>a_1，这里我们的<code>n</code>指代的是<code>n个对象</code>，而不是<code>n个位置</code></p>
+</blockquote>
+<hr>
+<p>根据\binom{n}{n-1}\binom{n-n_1}{n_2}\cdots \binom{n-n_1-n_2-\cdots-n_{k-1}}{n_k}的<code>组合含义</code>即可得证。</p>
+<p>如果<code>k个盒子不带有标签</code>，则意味着<code>这k个盒子是不区分的</code> ，所以<code>划分数</code>需要再除以<code>k!</code></p>
+<blockquote>
+<p>注意：我们说的是<code>盒子本身 (the box itself)</code>是<code>不可区分的 (Indistinguishable)</code> ，</p>
+<p>但是，<code>盒子的内容 (the content of the box)</code>是<code>可区分的 (Distinguishable)</code></p>
+</blockquote>
+<h5 id="Theory-4-1"><a href="#Theory-4-1" class="headerlink" title="Theory 4"></a>Theory 4</h5><p>有<code>k种颜色共n个车</code>：<code>第1种颜色的车</code>有n_1个，<code>第2种颜色的车</code>有n_2个，…，<code>第k种颜色的车</code>有n_k个</p>
+<p>把这些<code>车</code> <code>放置</code>到一个<code>n × n的棋盘</code>上，使得任何车之间不能<code>互相攻击</code>的<code>方案数</code>：\r{n!} \frac{n!}{n_1!n_2!\cdots n_k!} &#x3D; \frac{\r{(n!)^2}}{n_1!n_2!\cdots n_k!}</p>
+<hr>
+<p>我们可以<code>从上到下逐行地进行放置车</code>，这样，我们可以<code>保证没有任何车会被同一行的其他车攻击</code>（因为我们只会在每一行放置1只车）。</p>
+<p>问题则转化为，如何使得<code>任何车不被同列的其他车攻击到</code>。</p>
+<p>我们分两步：</p>
+<ol>
+<li><p><code>在棋盘上逐行地放置n个没有颜色的车</code>：n!</p>
+<blockquote>
+<p>这里的<code>没有颜色的车</code>说明<code>车</code>是<code>不可区分的</code>。我们仅仅需要考虑<code>逐行放置车时不能存在攻击型车</code>即可，而<code>不需要考虑颜色</code>。</p>
+<p>同理，如果<code>两个车的颜色相同，则它们也是不可区分的</code></p>
+</blockquote>
+</li>
+<li><p><code>给棋盘上的n个车进行涂色</code> &#x3D; <code>给含有n个对象，且每个对象有特定重复数的多重集合 求 排列数</code>：\frac{n!}{n_1!n_2!\cdots n_k!}</p>
+<blockquote>
+<p>此时，\frac{n!}{n_1!n_2!\cdots n_k!}中的<code>n</code>的含义为<code>n排列中的总共n个位置</code>，同时也对应着<code>n个即将要被上色的车</code></p>
+</blockquote>
+</li>
+</ol>
+<p>综上，Q.E.D</p>
+<blockquote>
+<p>Q: 为什么<code>不直接求含n元素的多重集合的r排列数</code>？</p>
+<p>A: 因为<code>求含n元素的多重集合的n排列数</code>是简单的，但是<code>求含n元素的多重集合的r排列数</code>通常比较困难。</p>
+<p>所以我们需要分为<code>两步</code>，先<code>排列无色车的位置</code>然后再<code>给所有的无色车进行上色</code>，这样就只需要求<code>含n元素的多重集合的n排列数</code>了。</p>
+</blockquote>
+<h3 id="Combination-1"><a href="#Combination-1" class="headerlink" title="Combination"></a>Combination</h3><h4 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition"></a>Definition</h4><p><code>多重集合S</code>的<code>r组合</code>是<code>S中的r个对象</code>的<code>无序选择</code>。</p>
+<blockquote>
+<p><code>多重集合S的r组合</code>本质上也是一个<code>多重集合</code>，我们一般称为<code>多重子集 (Sub Multi-Set)</code></p>
+</blockquote>
+<h4 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-3"><a href="#Theory-1-3" class="headerlink" title="Theory 1"></a>Theory 1</h5><hr>
+<h2 id="Finite-Probability"><a href="#Finite-Probability" class="headerlink" title="Finite Probability"></a>Finite Probability</h2><h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition"></a>Definition</h3><p>若一个<code>实验</code>\epsilon所产生的<code>结果</code>属于<code>有限结果</code>，则我们称该实验为<code>有限实验</code>。</p>
+<p>若每一个<code>结果</code>都是<code>等可能的 (Equally Likely)</code>：则该实验是<code>随机的 (Randomly)</code>。</p>
+<p>我们称<code>样本空间 (Sample Space)</code>S &#x3D; \{s_1, s_2, \cdots, s_n\} 且Prob(s_i) &#x3D; \frac{1}{n} \quad(i &#x3D; 1,2,\cdots,n)</p>
+<p>我们称<code>事件 (Event)</code>就是E \subseteq S</p>
+<p>我们称<code>概率 (Probability)</code>为Prob(E) &#x3D; \frac{E}{S}, \quad 0 \le Prob(E) \le 1</p>
+<blockquote>
+<p><code>空事件</code>： Prob(E) &#x3D; 0 \implies E &#x3D; \varnothing</p>
+<p><code>样本空间</code>： Prob(E) &#x3D; 1 \implies E &#x3D; S</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/07/combinatorics-recursion-and-generating-functions/" rel="prev" title="Combinatorics - Recursion and Generating Functions">
+      <i class="fa fa-chevron-left"></i> Combinatorics - Recursion and Generating Functions
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/10/combinatorics-graph-basics/" rel="next" title="Combinatorics - Graph Basics">
+      Combinatorics - Graph Basics <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Arrangement-and-Combination"><span class="nav-number">1.</span> <span class="nav-text">Arrangement and Combination</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Counting-Principles"><span class="nav-number">1.1.</span> <span class="nav-text">Basic Counting Principles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Principle-of-Addiction"><span class="nav-number">1.1.1.</span> <span class="nav-text">The Principle of Addiction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Principle-of-Multiplication"><span class="nav-number">1.1.2.</span> <span class="nav-text">The Principle of Multiplication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Principle-of-Subtration"><span class="nav-number">1.1.3.</span> <span class="nav-text">The Principle of Subtration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Principle-of-Division"><span class="nav-number">1.1.4.</span> <span class="nav-text">The Principle of Division</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">1.2.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrangement"><span class="nav-number">1.2.1.</span> <span class="nav-text">Arrangement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theory"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">Theory 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-2"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">Theory 2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combination"><span class="nav-number">1.2.2.</span> <span class="nav-text">Combination</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theory-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-1-1"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">Theory 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-2-1"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">Theory 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-3"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">Theory 3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-4"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">Theory 4</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Set"><span class="nav-number">1.3.</span> <span class="nav-text">Multi-Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrangement-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Arrangement</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition-2"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theory-2"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-1-2"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">Theory 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-2-2"><span class="nav-number">1.3.1.2.2.</span> <span class="nav-text">Theory 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-3-1"><span class="nav-number">1.3.1.2.3.</span> <span class="nav-text">Theory 3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-4-1"><span class="nav-number">1.3.1.2.4.</span> <span class="nav-text">Theory 4</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Combination-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Combination</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Definition-3"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theory-3"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Theory</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Theory-1-3"><span class="nav-number">1.3.2.2.1.</span> <span class="nav-text">Theory 1</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finite-Probability"><span class="nav-number">1.4.</span> <span class="nav-text">Finite Probability</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-4"><span class="nav-number">1.4.1.</span> <span class="nav-text">Definition</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

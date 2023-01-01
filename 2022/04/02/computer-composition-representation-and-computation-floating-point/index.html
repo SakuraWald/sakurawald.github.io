@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Representation and Computation - Floating PointRepresentation浮点表示对形如V &#x3D; x \times 2^y的有理数进行编码。 MethodsDecimal Representationd &#x3D; d_md_{m-1}\cdots d_0.d_{-1}d_{-2}\cdots d_{-n} &#x3D; \sum_{i &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Composition - Representation and Computation - Floating Point">
+<meta property="og:url" content="https://sakurawald.github.io/2022/04/02/computer-composition-representation-and-computation-floating-point/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Representation and Computation - Floating PointRepresentation浮点表示对形如V &#x3D; x \times 2^y的有理数进行编码。 MethodsDecimal Representationd &#x3D; d_md_{m-1}\cdots d_0.d_{-1}d_{-2}\cdots d_{-n} &#x3D; \sum_{i &amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/04/02/DAQOaC8PEtZXiuT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/02/UqL3ZGsMOSyFQK6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/02/rYVS5tHciEzM943.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/02/2VWkT5acCMGZDnL.png">
+<meta property="article:published_time" content="2022-04-02T18:02:30.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/02/DAQOaC8PEtZXiuT.png">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/04/02/computer-composition-representation-and-computation-floating-point/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Computer Composition - Representation and Computation - Floating Point | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/04/02/computer-composition-representation-and-computation-floating-point/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Computer Composition - Representation and Computation - Floating Point
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-02 18:02:30" itemprop="dateCreated datePublished" datetime="2022-04-02T18:02:30+00:00">2022-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Representation-and-Computation-Floating-Point"><a href="#Representation-and-Computation-Floating-Point" class="headerlink" title="Representation and Computation - Floating Point"></a>Representation and Computation - Floating Point</h1><h2 id="Representation"><a href="#Representation" class="headerlink" title="Representation"></a>Representation</h2><p><code>浮点表示</code>对形如V &#x3D; x \times 2^y的有理数进行编码。</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="Decimal-Representation"><a href="#Decimal-Representation" class="headerlink" title="Decimal Representation"></a>Decimal Representation</h4><p>d &#x3D; d_md_{m-1}\cdots d_0.d_{-1}d_{-2}\cdots d_{-n} &#x3D; \sum_{i &#x3D; -n}^{m}{10^i \times d_i}</p>
+<h4 id="Binary-Representation"><a href="#Binary-Representation" class="headerlink" title="Binary Representation"></a>Binary Representation</h4><p>b &#x3D; b_mb_{m-1}\cdots b_0.b_{-1}b_{-2}\cdots b_{-n} &#x3D; \sum_{i&#x3D;-n}^{m}{2^i \times b_i}</p>
+<h4 id="IEEE-754-Floating-Point-Representation"><a href="#IEEE-754-Floating-Point-Representation" class="headerlink" title="IEEE 754 Floating Point Representation"></a>IEEE 754 Floating Point Representation</h4><h5 id="Formula"><a href="#Formula" class="headerlink" title="Formula"></a>Formula</h5><p>\textcolor{red}{V &#x3D; (-1)^s \times M \times 2^E}</p>
+<ul>
+<li>符号（Sign）：正数为0，负数为1。对于<code>数值0</code>，符号位另外做解释。</li>
+<li>尾数（Significand）：<code>尾数M</code>是<code>二进制小数</code>。范围为<code>1~2-ε</code>或<code>0~1-ε</code></li>
+<li>阶码（Exponent）：<code>阶码E</code>的作用是<code>对浮点数进行加权</code></li>
+</ul>
+<h5 id="Formats"><a href="#Formats" class="headerlink" title="Formats"></a>Formats</h5><p><img src="https://s2.loli.net/2022/04/02/DAQOaC8PEtZXiuT.png" alt="image-20220402161750736"></p>
+<p>该表示方法将<code>位模式</code>分为<code>3个字段</code>：</p>
+<ol>
+<li><p>符号字段 (s)：1表示正数，0表示负数</p>
+</li>
+<li><p>阶码字段 (exp)：exp用于<code>编码</code> <code>阶码E</code></p>
+<blockquote>
+<p>注意：这并不是说<code>阶码E 的数值</code>直接等于<code>exp的数值</code>，而是需要通过一定的编码规则。</p>
+</blockquote>
+</li>
+<li><p>小数字段 (frac)：frac用于<code>编码</code> <code>尾数M</code></p>
+</li>
+</ol>
+<h5 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h5><p><img src="https://s2.loli.net/2022/04/02/UqL3ZGsMOSyFQK6.png" alt="image-20220402162120226"></p>
+<hr>
+<ul>
+<li>情况1：规格化的值</li>
+</ul>
+<p><code>阶码字段</code>：E &#x3D; e - Bias &#x3D; e - (2^{k-1} -1)</p>
+<p><code>小数字段</code>：0 \le f \lt 1, f &#x3D; [0.f_{n-1}f_{n-2}\cdots f_0]</p>
+<blockquote>
+<p>尾数尾数 M \dot{&#x3D;} 1 + f &#x3D; \textcolor{red}{1}.f_{n-1}f_{n-2}\cdots f_0</p>
+<blockquote>
+<p>它必然是以1开头的，所以我们也称这种方式为<code>隐含的以1开头的表示 (Implied Leading 1)</code>。</p>
+<p>因为我们总是可以通过<code>调整阶码E</code>使得1 \le M \lt 2（假设没溢出），则我们可以知道，<code>第一位必定是1</code>，</p>
+<p>因此我们不需要存储该位，从而获得<code>多一位的精度</code>。</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>情况2：非规格化的值</li>
+</ul>
+<p><code>阶码字段</code>：E &#x3D; 1 - Bias &#x3D; 1 - (2^{k-1} - 1)</p>
+<blockquote>
+<p>通过定义<code>非规格化的值的E = 1 - Bias</code>而不是<code>E = -Bias</code>，则我们可以非常方便地进行<code>非规格化 → 规格化</code>的过程。</p>
+<blockquote>
+<p>这样可以<code>补偿非规格化的数的尾数M 所没有的隐含的开头的1</code></p>
+</blockquote>
+</blockquote>
+<p><code>小数字段</code>：此时M &#x3D; f，此时<code>小数的值</code>等于<code>尾数的值</code>，尾数不包含开头隐含的1.</p>
+<ul>
+<li><p>情况3：特殊值</p>
+<ul>
+<li>正负无穷大：当s&#x3D;1时为<code>正无穷大</code>， 当s&#x3D;0时为<code>负无穷大</code>。无穷大用于表示<code>溢出</code></li>
+<li>非数字</li>
+</ul>
+</li>
+</ul>
+<h5 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h5><p><img src="https://s2.loli.net/2022/04/02/rYVS5tHciEzM943.png" alt="image-20220402173123914"></p>
+<h2 id="Rounding"><a href="#Rounding" class="headerlink" title="Rounding"></a>Rounding</h2><p>由于<code>浮点数</code>只能<code>近似地</code>表示<code>实数</code>，因此，我们希望对于某个实数，可以找到<code>最接近的匹配值</code>来近似它，</p>
+<p>并用浮点格式表示出来，这就是<code>舍入 (Rounding)</code> 。</p>
+<h3 id="Strategies"><a href="#Strategies" class="headerlink" title="Strategies"></a>Strategies</h3><h4 id="Rount-Down"><a href="#Rount-Down" class="headerlink" title="Rount Down"></a>Rount Down</h4><p>\lfloor x \rfloor</p>
+<h4 id="Rount-Up"><a href="#Rount-Up" class="headerlink" title="Rount Up"></a>Rount Up</h4><p>\lceil x \rceil</p>
+<h4 id="Rount-towards-Zero"><a href="#Rount-towards-Zero" class="headerlink" title="Rount towards Zero"></a>Rount towards Zero</h4><blockquote>
+<p><code>向零舍入</code>和<code>向下舍入</code>在处理<code>负数</code>时会有不同。</p>
+</blockquote>
+<h4 id="Rount-to-Even-Round-to-Nearest"><a href="#Rount-to-Even-Round-to-Nearest" class="headerlink" title="Rount to Even (Round to Nearest)"></a>Rount to Even (Round to Nearest)</h4><p><code>向偶数舍入 （向最接近的值舍入）</code>是<code>默认的舍入策略</code>：它将<code>数字</code>进行<code>向上舍入</code>或<code>向下舍入</code>，使得<code>结果的最低有效位的数字</code>是<code>偶数</code></p>
+<blockquote>
+<p>该方法期望于<code>最低有效位的二进制位</code>在<code>50%的情况为0，而另外50%的情况为1</code>，进而使得计算结果对<code>统计数据</code>更为友好。</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/04/02/2VWkT5acCMGZDnL.png" alt="image-20220402174325557"></p>
+<h2 id="Computation"><a href="#Computation" class="headerlink" title="Computation"></a>Computation</h2><p><code>IEEE标准</code>将<code>浮点数</code>视为<code>实数</code>，而<code>某个运算</code>\odot定义在实数上，计算产生Round(x \odot y)是对<code>实际运算的精确结果</code>的<code>舍入</code></p>
+<blockquote>
+<p>因为<code>舍入</code>和<code>溢出</code>的存在，<code>浮点运算</code>的精度会比<code>整数运算</code>更容易受影响，而且不遵守普通的算术属性（如结合性）。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/01/counting-system-of-distinct-representative/" rel="prev" title="Combinatorics - System of Distinct Representative">
+      <i class="fa fa-chevron-left"></i> Combinatorics - System of Distinct Representative
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/02/computer-composition-representation-and-computation-integer/" rel="next" title="Computer Composition - Representation and Computation – Integer">
+      Computer Composition - Representation and Computation – Integer <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Representation-and-Computation-Floating-Point"><span class="nav-number">1.</span> <span class="nav-text">Representation and Computation - Floating Point</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Representation"><span class="nav-number">1.1.</span> <span class="nav-text">Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">1.1.1.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Decimal-Representation"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Decimal Representation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-Representation"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Binary Representation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IEEE-754-Floating-Point-Representation"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">IEEE 754 Floating Point Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Formula"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">Formula</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Formats"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">Formats</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Explanation"><span class="nav-number">1.1.1.3.3.</span> <span class="nav-text">Explanation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Example"><span class="nav-number">1.1.1.3.4.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rounding"><span class="nav-number">1.2.</span> <span class="nav-text">Rounding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Strategies"><span class="nav-number">1.2.1.</span> <span class="nav-text">Strategies</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rount-Down"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Rount Down</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rount-Up"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Rount Up</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rount-towards-Zero"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">Rount towards Zero</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rount-to-Even-Round-to-Nearest"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Rount to Even (Round to Nearest)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computation"><span class="nav-number">1.3.</span> <span class="nav-text">Computation</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

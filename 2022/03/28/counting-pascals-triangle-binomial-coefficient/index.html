@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sakurawald.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Binomial CoefficientBinomial CoefficentDefinitionDiagram: Pascal’s TrianglePropertyPropertyProperty: Pascal’s FormulaExplanation 三角形中某个数的值 &#x3D; 该数正上方的数 + 该数的直接左邻项  从三角形左上角到达项（n，k）的所有路径数  根据该解释，可得\bi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combinatorics - Pascal&#39;s Triangle &amp; Binomial Coefficient">
+<meta property="og:url" content="https://sakurawald.github.io/2022/03/28/counting-pascals-triangle-binomial-coefficient/index.html">
+<meta property="og:site_name" content="SakuraWald">
+<meta property="og:description" content="Binomial CoefficientBinomial CoefficentDefinitionDiagram: Pascal’s TrianglePropertyPropertyProperty: Pascal’s FormulaExplanation 三角形中某个数的值 &#x3D; 该数正上方的数 + 该数的直接左邻项  从三角形左上角到达项（n，k）的所有路径数  根据该解释，可得\bi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-28T17:15:12.000Z">
+<meta property="article:modified_time" content="2023-01-01T23:38:44.215Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sakurawald.github.io/2022/03/28/counting-pascals-triangle-binomial-coefficient/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Combinatorics - Pascal's Triangle & Binomial Coefficient | SakuraWald</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SakuraWald</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://sakurawald.github.io/2022/03/28/counting-pascals-triangle-binomial-coefficient/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuraWald">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Combinatorics - Pascal's Triangle & Binomial Coefficient
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-28 17:15:12" itemprop="dateCreated datePublished" datetime="2022-03-28T17:15:12+00:00">2022-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-01-01 23:38:44" itemprop="dateModified" datetime="2023-01-01T23:38:44+00:00">2023-01-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Binomial-Coefficient"><a href="#Binomial-Coefficient" class="headerlink" title="Binomial Coefficient"></a>Binomial Coefficient</h1><h2 id="Binomial-Coefficent"><a href="#Binomial-Coefficent" class="headerlink" title="Binomial Coefficent"></a>Binomial Coefficent</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><h3 id="Diagram-Pascal’s-Triangle"><a href="#Diagram-Pascal’s-Triangle" class="headerlink" title="Diagram: Pascal’s Triangle"></a>Diagram: Pascal’s Triangle</h3><h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><h5 id="Property-1"><a href="#Property-1" class="headerlink" title="Property"></a>Property</h5><h5 id="Property-Pascal’s-Formula"><a href="#Property-Pascal’s-Formula" class="headerlink" title="Property: Pascal’s Formula"></a>Property: Pascal’s Formula</h5><h6 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h6><ol>
+<li><p>三角形中某个数的值 &#x3D; 该数正上方的数 + 该数的直接左邻项</p>
+</li>
+<li><p>从三角形左上角到达项（n，k）的所有路径数</p>
+<blockquote>
+<p>根据该解释，可得\binom{n}{0} &#x3D; 1和\binom{n}{1}</p>
+</blockquote>
+</li>
+<li><p><code>从三角形左上角到项（n，k）</code>的路径数 &#x3D; <code>从(n,k-1)到(n,k)</code>的路径数+<code>从(n-1, k-1)到(n,k)</code>的路径数</p>
+</li>
+</ol>
+<h5 id="Property-2"><a href="#Property-2" class="headerlink" title="Property"></a>Property</h5><h6 id="Explanation-1"><a href="#Explanation-1" class="headerlink" title="Explanation"></a>Explanation</h6><ol>
+<li><code>n元素集合的k子集的个数</code></li>
+</ol>
+<h5 id="Property-3"><a href="#Property-3" class="headerlink" title="Property"></a>Property</h5><h5 id="Property-Triangular-Number"><a href="#Property-Triangular-Number" class="headerlink" title="Property: Triangular Number"></a>Property: Triangular Number</h5><h6 id="Explanation-2"><a href="#Explanation-2" class="headerlink" title="Explanation"></a>Explanation</h6><ol>
+<li><code>以数n规模堆垒起来的三角形中的点个数</code></li>
+</ol>
+<h5 id="Property-Tetraederzahl"><a href="#Property-Tetraederzahl" class="headerlink" title="Property: Tetraederzahl"></a>Property: Tetraederzahl</h5><h6 id="Explanation-3"><a href="#Explanation-3" class="headerlink" title="Explanation"></a>Explanation</h6><ol>
+<li><code>以数n规模堆垒起来的四面体中的点个数</code></li>
+</ol>
+<h2 id="Binomial-Theorem"><a href="#Binomial-Theorem" class="headerlink" title="Binomial Theorem"></a>Binomial Theorem</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><p>设n是正整数。对所有的x和y，有</p>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><h5 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof 1"></a>Proof 1</h5><p>基本思路是<code>展开</code>原式后通过<code>组合计数</code>得出2^n项的各项表示。</p>
+<p>对<code>(x+y)^n</code>进行<code>展开</code>得</p>
+<p>考虑对于<code>n项中的每一项</code>，可以做出<code>2种选择</code></p>
+<ol>
+<li>选择<code>项x</code></li>
+<li>选择<code>项y</code></li>
+</ol>
+<p>从<code>n项中选取k个项y</code>，则<code>剩下的n-k项选取项x</code>。又0 \le k \le n，得出</p>
+<p>其中\binom{n}{k}表示项x^{n-k}y^k出现的次数。</p>
+<p>Q.E.D</p>
+<h5 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof 2"></a>Proof 2</h5><p>通过采用<code>数学归纳法</code>得出。</p>
+<hr>
+<p>考虑n&#x3D;1的情况。</p>
+<p>左式(x+y)^1 等同于 右式\binom{1}{0}x^{1-0}y^0 + \binom{1}{1}x^{1-1}y^1</p>
+<p>显然成立</p>
+<hr>
+<p>我们<code>假设</code> <code>该公式对于正整数n成立</code>，<code>证明</code> <code>用正整数n+1代替n时，该公式仍然成立</code></p>
+<p>即，我们需<code>证明</code>：</p>
+<p>将(x+y)^n用<code>另一种方式表示</code></p>
+<p>于是，把<code>n+1</code>替换为<code>n</code>可得</p>
+<p>Q.E.D</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content-1"><a href="#Content-1" class="headerlink" title="Content"></a>Content</h5><p>设n是正整数，对于所有的x，有</p>
+<h4 id="Theorem-2-Sperner-Theorem"><a href="#Theorem-2-Sperner-Theorem" class="headerlink" title="Theorem 2: Sperner Theorem"></a>Theorem 2: Sperner Theorem</h4><h5 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h5><p>设S是<code>n元素集合</code>，S的一个<code>反链 (AntiChain)</code>是<code>集合S的一个子集的集合</code>\mathcal{A}，其中\mathcal{A}中的子集<code>不相互包含</code> （或者说对于\mathcal{A}中<code>每一对子集</code>，<code>两者中没有一个包含于另一个</code>）</p>
+<p>如，<code>集合S = &#123;a, b, c, d&#125;</code>的<code>1个反链</code>为\mathcal{A} &#x3D; \{\{a,b\}, \{b,c,d\}, \{a,d\}, \{a,c\}\}</p>
+<hr>
+<p>设S是<code>n元素集合</code>，S的一个<code>链 (Chain)</code>是<code>集合S的一个子集的集合</code>\mathcal{C}，其中\mathcal{C}中的<code>每一对子集</code>，<code>总有一个包含在另一个</code>之中</p>
+<p>如，<code>集合S = &#123;1, 2, 3, 4, 5&#125;</code>的<code>1个链</code>为\mathcal{C} &#x3D; \{\{2\}, \{2, 3, 5\}, \{1, 2, 3, 5\}\}</p>
+<p><code>最大链</code>指的是<code>无法再加入更多的S中的子集的链</code></p>
+<p>可以通过为集合S &#x3D; \{1,2,\cdots,n\}确立<code>1个排列</code>来得出<code>1个最大链</code>。从而<code>最大链</code>的数目&#x3D;n!，且大小均为n。</p>
+<blockquote>
+<p>比如说，如果S&#x3D;\{1,2,3,4,5\}，则<code>1个排列(3,2,1,5,4)</code>表示的是：<code>第一轮</code>并入<code>元素3</code>，<code>第二轮</code>并入<code>元素2</code> …这样的<code>1个最大链</code></p>
+</blockquote>
+<p>对于<code>给定某个特定的</code> A &#x3D; k且A \subset S，则<code>包含A的最大链</code>总共有k!\times(n-k)!个：<code>k!个包含于A的集合</code>和<code>(n-k)!个包含A的集合</code></p>
+<h5 id="Content-2"><a href="#Content-2" class="headerlink" title="Content"></a>Content</h5><p>一种<code>构造</code> <code>反链</code>的方法是：首先选择一个整数k \le n，然后取\mathcal{A}_k为<code>S的所有k子集</code>，那么\mathcal{A}_k就是一个<code>反链</code>。</p>
+<p>通过<code>这种方式</code>构造的<code>反链</code>最多含有\binom{n}{\lfloor n&#x2F;2\rfloor}个集合。</p>
+<p>而我们<code>无法通过让k选择多个值</code>来<code>构造一个更大的反链</code></p>
+<h5 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h5><p>若\mathcal{A}是一个<code>反链</code>，<code>有序对（A，C）</code>指：<code>集合A</code>包含于<code>反链</code>\mathcal{A}，<code>最大链C</code>是包含<code>集合A</code>的<code>最大链</code>。令<code>有序对(A,C)的数量 = β</code></p>
+<p>因为<code>链和反链的交集最多只有1个元素（元素是集合）</code>，而<code>最大链的个数</code>为n!，故\beta \le n!</p>
+<p>对于<code>反链</code>\mathcal{A}中的<code>子集A</code>，设\alpha_k是<code>反链</code>A中<code>大小为k的子集</code>的个数。则\textcolor{blue}{\mathcal{A} &#x3D; \sum_{k&#x3D;0}^n{\alpha_k}}</p>
+<p>于是</p>
+<blockquote>
+<p>对于<code>有序对(A, C)</code>的数量计算，可以视为是由<code>集合A</code>和<code>集合C</code>的<code>笛卡尔乘积</code>而得到。β的值即为两个集合大小的乘积。</p>
+</blockquote>
+<p>根据\beta \le n!，得出不等式</p>
+<p>当k &#x3D; \lfloor n&#x2F;2\rfloor 时，\binom{n}{k}取得最大值。故</p>
+<blockquote>
+<p>\alpha_k的不等式告诉我们，在k &#x3D; \lfloor n&#x2F;2\rfloor时，可以构造出<code>含n个元素的集合S</code>的<code>最大的反链</code></p>
+</blockquote>
+<h3 id="Property-4"><a href="#Property-4" class="headerlink" title="Property"></a>Property</h3><h4 id="Property-5"><a href="#Property-5" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-3"><a href="#Content-3" class="headerlink" title="Content"></a>Content</h5><h4 id="Property-6"><a href="#Property-6" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-4"><a href="#Content-4" class="headerlink" title="Content"></a>Content</h5><h5 id="Explanation-4"><a href="#Explanation-4" class="headerlink" title="Explanation"></a>Explanation</h5><blockquote>
+<p><code>含奇数个元素的集合</code> 和<code>含偶数个元素的集合</code>的数量一样多。</p>
+</blockquote>
+<p>根据</p>
+<p>故</p>
+<blockquote>
+<p>假设要<code>从n个元素中</code>取出一个<code>大小为奇数的集合</code>，对于<code>前面的n-1个元素</code>都有<code>2种选择</code>，而对于<code>第n个元素</code>却<code>只有1种选择</code>：当面对<code>是否选取第n个元素</code>时，如果<code>当前已取的元素个数</code>为奇数，则<code>第n个元素</code>不能取。否则就必须要<code>取走第n个元素</code></p>
+</blockquote>
+<h4 id="Property-7"><a href="#Property-7" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-5"><a href="#Content-5" class="headerlink" title="Content"></a>Content</h5><p>从等式(1+x)^n&#x3D;\sum_{k&#x3D;0}^{n}{\binom{n}{k}x^k}开始，通过<code>交替地</code> <code>关于x求导</code>和<code>乘以x</code>，我们可以得到\sum_{k&#x3D;1}^n{k^p\binom{n}{k}}相对于任何正整数p的恒等式。</p>
+<h5 id="Explanation-5"><a href="#Explanation-5" class="headerlink" title="Explanation"></a>Explanation</h5><p>当p&#x3D;1时</p>
+<h4 id="Property-8"><a href="#Property-8" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-6"><a href="#Content-6" class="headerlink" title="Content"></a>Content</h5><p><code>帕斯卡三角形</code>上的<code>各行上的数字的平方和</code>满足</p>
+<h5 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h5><p>假设<code>集合S</code>是<code>一个有2n个元素的集合</code>，我们将<code>集合S</code>划分为<code>含n个元素的集合A</code>和<code>含n个元素的集合B</code>。</p>
+<p>则，对于<code>集合S的n子集</code>，可以看作是由<code>k个来自集合A的元素</code>和<code>n-k个来自集合B的元素</code>所组成。</p>
+<p>由于0 \le k \le n，故可以将 <code>S的n子集的集合</code>划分为<code>n+1个部分</code>：C_0, C_1, C_2, \cdots, C_n</p>
+<blockquote>
+<p>C_k是集合的集合：C_k的每个元素 代表 <code>一个由k个来自A的元素和n-k个来自集合B的元素所构成</code>的<code>集合S的n子集</code>。</p>
+</blockquote>
+<p>其中，C_k \quad (0 \le k \le n)表示：该<code>部分</code>中的<code>每个集合</code>的元素由<code>k个来自集合A的元素</code>和<code>n-k个来自集合B的元素</code></p>
+<p>故</p>
+<hr>
+<p>现在考虑C_k的数量。</p>
+<hr>
+<p>综上，</p>
+<p>Q.E.D</p>
+<h4 id="Property-9"><a href="#Property-9" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-7"><a href="#Content-7" class="headerlink" title="Content"></a>Content</h5><p>设n是正整数，则<code>二项式系数序列</code>\binom{n}{0},\binom{n}{1}, \binom{n}{2}, \cdots, \binom{n}{n}是<code>单峰(Unimodal)序列</code></p>
+<h5 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h5><p><code>证明序列的单调性</code>即<code>证明该序列的通项函数的单调性</code>。可采用<code>作商法</code></p>
+<p>因此，<code>二项式系数序列</code>的<code>单调性</code>取决于：<code>n-k+1</code>和<code>k</code>的之间的关系。</p>
+<h4 id="Property-10"><a href="#Property-10" class="headerlink" title="Property"></a>Property</h4><h5 id="Content-8"><a href="#Content-8" class="headerlink" title="Content"></a>Content</h5><p>对于正整数n，<code>二项式系数</code>\binom{n}{0}, \binom{n}{1}, \binom{n}{2}, \cdots\,\binom{n}{n}中的最大者为\binom{n}{\lfloor n&#x2F;2\rfloor} &#x3D; \binom{n}{\lceil n&#x2F;2\rceil}</p>
+<h5 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h5><p>根据<code>二项式系数序列的单调性</code>可证。</p>
+<h2 id="Polynomial-Coefficient"><a href="#Polynomial-Coefficient" class="headerlink" title="Polynomial Coefficient"></a>Polynomial Coefficient</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><p>对于<code>二项式系数</code>的<code>多项式系数</code>表示方法如下</p>
+<blockquote>
+<p>注意，<code>二项式系数的符号</code>的定义和<code>多项式系数的符号</code>的定义不同。</p>
+<p><code>二项式系数</code>中是选择是<code>逻辑型的</code>，<code>只有2种选择</code>，所以如果选中<code>k个A集合元素</code>，则<code>必定选择n-k个B集合元素</code></p>
+</blockquote>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1-1"><a href="#Theorem-1-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content-9"><a href="#Content-9" class="headerlink" title="Content"></a>Content</h5><p>设n是正整数。对于所有的x_1,x_2,\cdots,x_t 。有</p>
+<h5 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h5><p>证明思路同<code>二项式系数</code>，将<code>多项式</code>进行<code>展开</code>。得到<code>n个因子</code>，<code>每个因子含有t项</code>。</p>
+<p>最终所得的结果含有t_n项。</p>
+<blockquote>
+<p>同理，<code>二项式系数</code>和<code>多项式系数</code>的含义都表明<code>与之相对应的项</code>所<code>出现的次数</code>。<code>每1次出现</code>都使得<code>系数+1</code></p>
+</blockquote>
+<p>这里给出从<code>二项式系数</code>推导出<code>多项式系数</code>的方式</p>
+<h2 id="Newton’s-Binomial-Coefficient"><a href="#Newton’s-Binomial-Coefficient" class="headerlink" title="Newton’s Binomial Coefficient"></a>Newton’s Binomial Coefficient</h2><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition"></a>Definition</h3><p>设\alpha是<code>实数</code>。则对于所有满足0 \le x \lt y的x和y，有</p>
+<p>其中</p>
+<p>对于<code>牛顿二项式定理</code>，当\alpha是正整数时，即为<code>二项式定理</code>。</p>
+<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><ol>
+<li>导出无穷级数\frac{1}{(1-z)^n}</li>
+<li>求任意精度的平方根: 见<code>高等数学</code>中关于<code>无穷级数</code>的章节。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/27/counting-schroder-number/" rel="prev" title="Combinatorics -  Schroder Number">
+      <i class="fa fa-chevron-left"></i> Combinatorics -  Schroder Number
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/28/divide-and-conquer-checkerboard-covering-problem/" rel="next" title="Divide and Conquer - Checkerboard Covering Problem">
+      Divide and Conquer - Checkerboard Covering Problem <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binomial-Coefficient"><span class="nav-number">1.</span> <span class="nav-text">Binomial Coefficient</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binomial-Coefficent"><span class="nav-number">1.1.</span> <span class="nav-text">Binomial Coefficent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">1.1.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diagram-Pascal%E2%80%99s-Triangle"><span class="nav-number">1.1.2.</span> <span class="nav-text">Diagram: Pascal’s Triangle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-1"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-Pascal%E2%80%99s-Formula"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">Property: Pascal’s Formula</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Explanation"><span class="nav-number">1.1.2.1.2.1.</span> <span class="nav-text">Explanation</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-2"><span class="nav-number">1.1.2.1.3.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Explanation-1"><span class="nav-number">1.1.2.1.3.1.</span> <span class="nav-text">Explanation</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-3"><span class="nav-number">1.1.2.1.4.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-Triangular-Number"><span class="nav-number">1.1.2.1.5.</span> <span class="nav-text">Property: Triangular Number</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Explanation-2"><span class="nav-number">1.1.2.1.5.1.</span> <span class="nav-text">Explanation</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Property-Tetraederzahl"><span class="nav-number">1.1.2.1.6.</span> <span class="nav-text">Property: Tetraederzahl</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Explanation-3"><span class="nav-number">1.1.2.1.6.1.</span> <span class="nav-text">Explanation</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binomial-Theorem"><span class="nav-number">1.2.</span> <span class="nav-text">Binomial Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Definition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Proof</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-1"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">Proof 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-2"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">Proof 2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.2.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-1"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-2-Sperner-Theorem"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Theorem 2: Sperner Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Background"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-2"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-1"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-4"><span class="nav-number">1.2.3.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-5"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-3"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-6"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-4"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Explanation-4"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text">Explanation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-7"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-5"><span class="nav-number">1.2.3.3.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Explanation-5"><span class="nav-number">1.2.3.3.2.</span> <span class="nav-text">Explanation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-8"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-6"><span class="nav-number">1.2.3.4.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-2"><span class="nav-number">1.2.3.4.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-9"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-7"><span class="nav-number">1.2.3.5.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-3"><span class="nav-number">1.2.3.5.2.</span> <span class="nav-text">Proof</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-10"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-8"><span class="nav-number">1.2.3.6.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-4"><span class="nav-number">1.2.3.6.2.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Coefficient"><span class="nav-number">1.3.</span> <span class="nav-text">Polynomial Coefficient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem-1-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Theorem 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content-9"><span class="nav-number">1.3.2.1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Proof-5"><span class="nav-number">1.3.2.1.2.</span> <span class="nav-text">Proof</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Newton%E2%80%99s-Binomial-Coefficient"><span class="nav-number">1.4.</span> <span class="nav-text">Newton’s Binomial Coefficient</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">1.4.2.</span> <span class="nav-text">Application</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
