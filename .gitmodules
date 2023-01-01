@@ -3,4 +3,4 @@
 	url = https://github.com/aeilot/hexo-theme-paperwhite
 [submodule "themes/next"]
 	path = themes/next
-	url = git@github.com:theme-next/hexo-theme-next.git
+	url = https://github.com/theme-next/hexo-theme-next
