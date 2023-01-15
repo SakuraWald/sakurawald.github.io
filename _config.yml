@@ -9,7 +9,7 @@ description: ''
 keywords:
 author: SakuraWald
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -105,3 +105,4 @@ deploy:
   type: git
   repo: git@github.com:SakuraWald/sakurawald.github.io.git
   branch: main
+
