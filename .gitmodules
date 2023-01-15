@@ -1,0 +1,3 @@
+[submodule "themes/toxic"]
+	path = themes/toxic
+	url = git@github.com:SakuraWald/hexo-theme-toxic.git
