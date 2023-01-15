@@ -1,6 +1,7 @@
 ---
 title: Compiler Test
-tags: []
+tags:
+  - test
 id: '1233'
 categories:
   - - uncategorized

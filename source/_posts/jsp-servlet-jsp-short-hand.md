@@ -1,6 +1,8 @@
 ---
 title: JSP - Servlet & JSP Short-Hand
-tags: []
+tags:
+  - web
+  - jsp
 id: '58129'
 categories:
   - - uncategorized

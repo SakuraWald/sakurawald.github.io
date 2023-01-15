@@ -1,6 +1,8 @@
 ---
 title: CodeSnippet - A Simple Judger for Java
-tags: []
+tags: 
+  - oj
+  - code
 id: '35506'
 categories:
   - - uncategorized
