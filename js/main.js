@@ -2,36 +2,36 @@ document.addEventListener('DOMContentLoaded', function () {
   let headerContentWidth, $nav
   let mobileSidebarOpen = false
 
-  const adjustMenu = init => {
-    const getAllWidth = ele => {
-      let width = 0
-      ele.length && Array.from(ele).forEach(i => { width += i.offsetWidth })
-      return width
-    }
+  // const adjustMenu = init => {
+  //   const getAllWidth = ele => {
+  //     let width = 0
+  //     ele.length && Array.from(ele).forEach(i => { width += i.offsetWidth })
+  //     return width
+  //   }
 
-    if (init) {
-      const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
-      const menusWidth = getAllWidth(document.getElementById('menus').children)
-      headerContentWidth = blogInfoWidth + menusWidth
-      $nav = document.getElementById('nav')
-    }
+  //   if (init) {
+  //     const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
+  //     const menusWidth = getAllWidth(document.getElementById('menus').children)
+  //     headerContentWidth = blogInfoWidth + menusWidth
+  //     $nav = document.getElementById('nav')
+  //   }
 
-    let hideMenuIndex = ''
-    if (window.innerWidth <= 768) hideMenuIndex = true
-    else hideMenuIndex = headerContentWidth > $nav.offsetWidth - 120
+  //   let hideMenuIndex = ''
+  //   if (window.innerWidth <= 768) hideMenuIndex = true
+  //   else hideMenuIndex = headerContentWidth > $nav.offsetWidth - 120
 
-    if (hideMenuIndex) {
-      $nav.classList.add('hide-menu')
-    } else {
-      $nav.classList.remove('hide-menu')
-    }
-  }
+  //   if (hideMenuIndex) {
+  //     $nav.classList.add('hide-menu')
+  //   } else {
+  //     $nav.classList.remove('hide-menu')
+  //   }
+  // }
 
-  // 初始化header
-  const initAdjust = () => {
-    adjustMenu(true)
-    $nav.classList.add('show')
-  }
+  // // 初始化header
+  // const initAdjust = () => {
+  //   adjustMenu(true)
+  //   $nav.classList.add('show')
+  // }
 
   // sidebar menus
   const sidebarFn = {
@@ -296,69 +296,69 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * 滾動處理
    */
-  const scrollFn = function () {
-    const $rightside = document.getElementById('rightside')
-    const innerHeight = window.innerHeight + 56
+  // const scrollFn = function () {
+  //   const $rightside = document.getElementById('rightside')
+  //   const innerHeight = window.innerHeight + 56
 
-    // 當滾動條小于 56 的時候
-    if (document.body.scrollHeight <= innerHeight) {
-      $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
-      return
-    }
+  //   // 當滾動條小于 56 的時候
+  //   if (document.body.scrollHeight <= innerHeight) {
+  //     $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
+  //     return
+  //   }
 
-    // find the scroll direction
-    function scrollDirection (currentTop) {
-      const result = currentTop > initTop // true is down & false is up
-      initTop = currentTop
-      return result
-    }
+  //   // find the scroll direction
+  //   function scrollDirection (currentTop) {
+  //     const result = currentTop > initTop // true is down & false is up
+  //     initTop = currentTop
+  //     return result
+  //   }
 
-    let initTop = 0
-    let isChatShow = true
-    const $header = document.getElementById('page-header')
-    const isChatBtnHide = typeof chatBtnHide === 'function'
-    const isChatBtnShow = typeof chatBtnShow === 'function'
-    const isShowPercent = GLOBAL_CONFIG.percent.rightside
+  //   let initTop = 0
+  //   let isChatShow = true
+  //   const $header = document.getElementById('page-header')
+  //   const isChatBtnHide = typeof chatBtnHide === 'function'
+  //   const isChatBtnShow = typeof chatBtnShow === 'function'
+  //   const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
-    const scrollTask = btf.throttle(() => {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      const isDown = scrollDirection(currentTop)
-      if (currentTop > 56) {
-        if (isDown) {
-          if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
-          if (isChatBtnShow && isChatShow === true) {
-            chatBtnHide()
-            isChatShow = false
-          }
-        } else {
-          if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
-          if (isChatBtnHide && isChatShow === false) {
-            chatBtnShow()
-            isChatShow = true
-          }
-        }
-        $header.classList.add('nav-fixed')
-        if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
-          $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
-        }
-      } else {
-        if (currentTop === 0) {
-          $header.classList.remove('nav-fixed', 'nav-visible')
-        }
-        $rightside.style.cssText = "opacity: ''; transform: ''"
-      }
+  //   const scrollTask = btf.throttle(() => {
+  //     const currentTop = window.scrollY || document.documentElement.scrollTop
+  //     const isDown = scrollDirection(currentTop)
+  //     if (currentTop > 56) {
+  //       if (isDown) {
+  //         if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+  //         if (isChatBtnShow && isChatShow === true) {
+  //           chatBtnHide()
+  //           isChatShow = false
+  //         }
+  //       } else {
+  //         if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
+  //         if (isChatBtnHide && isChatShow === false) {
+  //           chatBtnShow()
+  //           isChatShow = true
+  //         }
+  //       }
+  //       $header.classList.add('nav-fixed')
+  //       if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
+  //         $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+  //       }
+  //     } else {
+  //       if (currentTop === 0) {
+  //         $header.classList.remove('nav-fixed', 'nav-visible')
+  //       }
+  //       $rightside.style.cssText = "opacity: ''; transform: ''"
+  //     }
 
-      isShowPercent && rightsideScrollPercent(currentTop)
+  //     isShowPercent && rightsideScrollPercent(currentTop)
 
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
-      }
-    }, 200)
+  //     if (document.body.scrollHeight <= innerHeight) {
+  //       $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+  //     }
+  //   }, 200)
 
-    window.scrollCollect = scrollTask
+  //   window.scrollCollect = scrollTask
 
-    window.addEventListener('scroll', scrollCollect)
-  }
+  //   window.addEventListener('scroll', scrollCollect)
+  // }
 
   /**
   * toc,anchor
@@ -765,10 +765,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const unRefreshFn = function () {
-    window.addEventListener('resize', () => {
-      adjustMenu(false)
-      btf.isHidden(document.getElementById('toggle-menu')) && mobileSidebarOpen && sidebarFn.close()
-    })
+    // window.addEventListener('resize', () => {
+    //    adjustMenu(false)
+    //    btf.isHidden(document.getElementById('toggle-menu')) && mobileSidebarOpen && sidebarFn.close()
+    // })
 
     document.getElementById('menu-mask').addEventListener('click', e => { sidebarFn.close() })
 
@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.refreshFn = function () {
-    initAdjust()
+    // initAdjust()
 
     if (GLOBAL_CONFIG_SITE.isPost) {
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
@@ -794,7 +794,7 @@ document.addEventListener('DOMContentLoaded', function () {
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     addHighlightTool()
     GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
-    scrollFn()
+    // scrollFn()
 
     const $jgEle = document.querySelectorAll('#article-container .fj-gallery')
     $jgEle.length && runJustifiedGallery($jgEle)
@@ -805,7 +805,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tabsFn.clickFnOfTabs()
     tabsFn.backToTop()
     switchComments()
-    document.getElementById('toggle-menu').addEventListener('click', () => { sidebarFn.open() })
+    // document.getElementById('toggle-menu').addEventListener('click', () => { sidebarFn.open() })
   }
 
   refreshFn()
