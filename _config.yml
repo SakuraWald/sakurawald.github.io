@@ -35,7 +35,7 @@ new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
-  enable: true # Open external links in new tab
+  enable: false # Open external links in new tab
   field: site # Apply to the whole site
   exclude: ''
 filename_case: 0
@@ -49,10 +49,10 @@ highlight:
   auto_detect: false
   tab_replace: ''
   wrap: true
-  hljs: false
+  hljs: true
 prismjs:
   enable: false
-  preprocess: true
+  preprocess: false
   line_number: true
   tab_replace: ''
 
@@ -105,4 +105,3 @@ deploy:
   type: git
   repo: git@github.com:SakuraWald/sakurawald.github.io.git
   branch: main
-

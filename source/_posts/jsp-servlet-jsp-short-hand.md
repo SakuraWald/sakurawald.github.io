@@ -1,5 +1,6 @@
 ---
 title: JSP - Servlet & JSP Short-Hand
+type: 'tags'
 tags:
   - web
   - jsp
@@ -1346,3 +1347,8 @@ this.fc=config;
 > OUT-OF-DATE
 
 实际上，这篇文章几乎都是错误。
+
+
+
+
+
