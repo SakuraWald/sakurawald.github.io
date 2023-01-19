@@ -58,19 +58,6 @@ const btf = {
     }
   },
 
-  snackbarShow: (text, showAction = false, duration = 2000) => {
-    const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
-    const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
-    Snackbar.show({
-      text,
-      backgroundColor: bg,
-      showAction,
-      duration,
-      pos: position,
-      customClass: 'snackbar-css'
-    })
-  },
-
   diffDate: (d, more = false) => {
     const dateNow = new Date()
     const datePost = new Date(d)
@@ -227,26 +214,6 @@ const btf = {
           background: photoBg
         })
       })
-    }
-
-    if (service === 'fancybox') {
-      ele.forEach(i => {
-        if (i.parentNode.tagName !== 'A') {
-          const dataSrc = i.dataset.lazySrc || i.src
-          const dataCaption = i.title || i.alt || ''
-          btf.wrap(i, 'a', { href: dataSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': dataSrc })
-        }
-      })
-
-      if (!window.fancyboxRun) {
-        Fancybox.bind('[data-fancybox]', {
-          Hash: false,
-          Thumbs: {
-            autoStart: false
-          }
-        })
-        window.fancyboxRun = true
-      }
     }
   },
 
