@@ -1,66 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let headerContentWidth, $nav
-  let mobileSidebarOpen = false
-
-  // const adjustMenu = init => {
-  //   const getAllWidth = ele => {
-  //     let width = 0
-  //     ele.length && Array.from(ele).forEach(i => { width += i.offsetWidth })
-  //     return width
-  //   }
-
-  //   if (init) {
-  //     const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
-  //     const menusWidth = getAllWidth(document.getElementById('menus').children)
-  //     headerContentWidth = blogInfoWidth + menusWidth
-  //     $nav = document.getElementById('nav')
-  //   }
-
-  //   let hideMenuIndex = ''
-  //   if (window.innerWidth <= 768) hideMenuIndex = true
-  //   else hideMenuIndex = headerContentWidth > $nav.offsetWidth - 120
-
-  //   if (hideMenuIndex) {
-  //     $nav.classList.add('hide-menu')
-  //   } else {
-  //     $nav.classList.remove('hide-menu')
-  //   }
-  // }
-
-  // // 初始化header
-  // const initAdjust = () => {
-  //   adjustMenu(true)
-  //   $nav.classList.add('show')
-  // }
-
-  // sidebar menus
-  const sidebarFn = {
-    open: () => {
-      btf.sidebarPaddingR()
-      document.body.style.overflow = 'hidden'
-      btf.animateIn(document.getElementById('menu-mask'), 'to_show 0.5s')
-      document.getElementById('sidebar-menus').classList.add('open')
-      mobileSidebarOpen = true
-    },
-    close: () => {
-      const $body = document.body
-      $body.style.overflow = ''
-      $body.style.paddingRight = ''
-      btf.animateOut(document.getElementById('menu-mask'), 'to_hide 0.5s')
-      document.getElementById('sidebar-menus').classList.remove('open')
-      mobileSidebarOpen = false
-    }
-  }
-
-  /**
-   * 首頁top_img底下的箭頭
-   */
-  const scrollDownInIndex = () => {
-    const $scrollDownEle = document.getElementById('scroll-down')
-    $scrollDownEle && $scrollDownEle.addEventListener('click', function () {
-      btf.scrollToDest(document.getElementById('content-inner').offsetTop, 300)
-    })
-  }
 
   /**
    * Lightbox
@@ -187,19 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', tocScrollFn)
   }
 
-
-  /**
-   * menu
-   * 側邊欄sub-menu 展開/收縮
-   */
-  const clickFnOfSubMenu = () => {
-    document.querySelectorAll('#sidebar-menus .site-page.group').forEach(function (item) {
-      item.addEventListener('click', function () {
-        this.classList.toggle('hide')
-      })
-    })
-  }
-
   /**
    * 複製時加上版權信息
    */
@@ -255,52 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if ($table.length) {
       $table.forEach(item => {
         btf.wrap(item, 'div', { class: 'table-wrap' })
-      })
-    }
-  }
-
-  /**
-   * tag-hide
-   */
-  const clickFnOfTagHide = function () {
-    const $hideInline = document.querySelectorAll('#article-container .hide-button')
-    if ($hideInline.length) {
-      $hideInline.forEach(function (item) {
-        item.addEventListener('click', function (e) {
-          const $this = this
-          $this.classList.add('open')
-        })
-      })
-    }
-  }
-
-  const tabsFn = {
-    clickFnOfTabs: function () {
-      document.querySelectorAll('#article-container .tab > button').forEach(function (item) {
-        item.addEventListener('click', function (e) {
-          const $this = this
-          const $tabItem = $this.parentNode
-
-          if (!$tabItem.classList.contains('active')) {
-            const $tabContent = $tabItem.parentNode.nextElementSibling
-            const $siblings = btf.siblings($tabItem, '.active')[0]
-            $siblings && $siblings.classList.remove('active')
-            $tabItem.classList.add('active')
-            const tabId = $this.getAttribute('data-href').replace('#', '')
-            const childList = [...$tabContent.children]
-            childList.forEach(item => {
-              if (item.id === tabId) item.classList.add('active')
-              else item.classList.remove('active')
-            })
-          }
-        })
-      })
-    },
-    backToTop: () => {
-      document.querySelectorAll('#article-container .tabs .tab-to-top').forEach(function (item) {
-        item.addEventListener('click', function () {
-          btf.scrollToDest(btf.getEleTop(btf.getParents(this, '.tabs')), 300)
-        })
       })
     }
   }
@@ -378,21 +257,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const unRefreshFn = function () {
-    // window.addEventListener('resize', () => {
-    //    adjustMenu(false)
-    //    btf.isHidden(document.getElementById('toggle-menu')) && mobileSidebarOpen && sidebarFn.close()
-    // })
-
-    document.getElementById('menu-mask').addEventListener('click', e => { sidebarFn.close() })
-
-    clickFnOfSubMenu()
     GLOBAL_CONFIG.islazyload && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
   }
 
   window.refreshFn = function () {
-    // initAdjust()
-
     if (GLOBAL_CONFIG_SITE.isPost) {
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
       GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll('#post-meta time'))
@@ -405,14 +274,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     scrollFnToDo()
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
-    // scrollFn()
     runLightbox()
     addTableWrap()
-    clickFnOfTagHide()
-    tabsFn.clickFnOfTabs()
-    tabsFn.backToTop()
     switchComments()
-    // document.getElementById('toggle-menu').addEventListener('click', () => { sidebarFn.open() })
   }
 
   refreshFn()
