@@ -26,6 +26,7 @@
     "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
+    "highlight.js": "^11.7.0",
     "pjax": "^0.2.8",
     "remove": "^0.1.5"
   }
