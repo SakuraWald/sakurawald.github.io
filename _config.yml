@@ -106,3 +106,9 @@ deploy:
   type: git
   repo: git@github.com:SakuraWald/sakurawald.github.io.git
   branch: main
+
+search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
