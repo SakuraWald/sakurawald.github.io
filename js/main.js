@@ -63,77 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
-   * PhotoFigcaption
-   */
-  function addPhotoFigcaption () {
-    document.querySelectorAll('#article-container img').forEach(function (item) {
-      const parentEle = item.parentNode
-      const altValue = item.title || item.alt
-      if (altValue && !parentEle.parentNode.classList.contains('justified-gallery')) {
-        const ele = document.createElement('div')
-        ele.className = 'img-alt is-center'
-        ele.textContent = altValue
-        parentEle.insertBefore(ele, item.nextSibling)
-      }
-    })
-  }
-
-  /**
    * Lightbox
    */
   const runLightbox = () => {
     btf.loadLightbox(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
-  }
-
-  /**
-   * justified-gallery 圖庫排版
-   */
-  const runJustifiedGallery = function (ele) {
-    const htmlStr = arr => {
-      let str = ''
-      const replaceDq = str => str.replace(/"/g, '&quot;') // replace double quotes to &quot;
-      arr.forEach(i => {
-        const alt = i.alt ? `alt="${replaceDq(i.alt)}"` : ''
-        const title = i.title ? `title="${replaceDq(i.title)}"` : ''
-        str += `<div class="fj-gallery-item"><img src="${i.url}" ${alt + title}"></div>`
-      })
-      return str
-    }
-
-    const lazyloadFn = (i, arr) => {
-      const loadItem = i.getAttribute('data-limit')
-      const arrLength = arr.length
-      if (arrLength > loadItem) i.insertAdjacentHTML('beforeend', htmlStr(arr.splice(0, loadItem)))
-      else {
-        i.insertAdjacentHTML('beforeend', htmlStr(arr))
-        i.classList.remove('lazyload')
-      }
-      return arrLength > loadItem ? loadItem : arrLength
-    }
-
-    ele.forEach(item => {
-      const arr = JSON.parse(item.querySelector('.gallery-data').textContent)
-      if (!item.classList.contains('lazyload')) item.innerHTML = htmlStr(arr)
-      else {
-        lazyloadFn(item, arr)
-        const limit = item.getAttribute('data-limit')
-        const clickBtnFn = () => {
-          const lastItemLength = lazyloadFn(item, arr)
-          fjGallery(item, 'appendImages', item.querySelectorAll(`.fj-gallery-item:nth-last-child(-n+${lastItemLength})`))
-          btf.loadLightbox(item.querySelectorAll('img'))
-          lastItemLength < limit && item.nextElementSibling.removeEventListener('click', clickBtnFn)
-        }
-        item.nextElementSibling.addEventListener('click', clickBtnFn)
-      }
-    })
-
-    if (window.fjGallery) {
-      setTimeout(() => { btf.initJustifiedGallery(ele) }, 100)
-      return
-    }
-
-    getCSS(`${GLOBAL_CONFIG.source.justifiedGallery.css}`)
-    getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(() => { btf.initJustifiedGallery(ele) })
   }
 
   /**
@@ -336,8 +269,6 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', function (e) {
           const $this = this
           $this.classList.add('open')
-          const $fjGallery = $this.nextElementSibling.querySelectorAll('.fj-gallery')
-          $fjGallery.length && btf.initJustifiedGallery($fjGallery)
         })
       })
     }
@@ -361,10 +292,6 @@ document.addEventListener('DOMContentLoaded', function () {
               if (item.id === tabId) item.classList.add('active')
               else item.classList.remove('active')
             })
-            const $isTabJustifiedGallery = $tabContent.querySelectorAll(`#${tabId} .fj-gallery`)
-            if ($isTabJustifiedGallery.length > 0) {
-              btf.initJustifiedGallery($isTabJustifiedGallery)
-            }
           }
         })
       })
@@ -478,12 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     scrollFnToDo()
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
-    GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
     // scrollFn()
-
-    const $jgEle = document.querySelectorAll('#article-container .fj-gallery')
-    $jgEle.length && runJustifiedGallery($jgEle)
-
     runLightbox()
     addTableWrap()
     clickFnOfTagHide()

@@ -217,21 +217,6 @@ const btf = {
     }
   },
 
-  initJustifiedGallery: function (selector) {
-    selector.forEach(function (i) {
-      if (!btf.isHidden(i)) {
-        fjGallery(i, {
-          itemSelector: '.fj-gallery-item',
-          rowHeight: i.getAttribute('data-rowHeight'),
-          gutter: 4,
-          onJustify: function () {
-            this.$container.style.opacity = '1'
-          }
-        })
-      }
-    })
-  },
-
   updateAnchor: (anchor) => {
     if (anchor !== window.location.hash) {
       if (!anchor) anchor = location.pathname
