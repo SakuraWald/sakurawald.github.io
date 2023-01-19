@@ -1,11 +1,10 @@
 ---
 title: CodeSnippet - A Simple Judger for Java
+
 tags: 
   - oj
   - code
 id: '35506'
-categories:
-  - - uncategorized
 date: 2022-04-05 22:22:32
 ---
 
