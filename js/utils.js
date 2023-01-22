@@ -1,19 +1,4 @@
 const btf = {
-  debounce: function (func, wait, immediate) {
-    let timeout
-    return function () {
-      const context = this
-      const args = arguments
-      const later = function () {
-        timeout = null
-        if (!immediate) func.apply(context, args)
-      }
-      const callNow = immediate && !timeout
-      clearTimeout(timeout)
-      timeout = setTimeout(later, wait)
-      if (callNow) func.apply(context, args)
-    }
-  },
 
   throttle: function (func, wait, options) {
     let timeout, context, args
@@ -47,15 +32,6 @@ const btf = {
     }
 
     return throttled
-  },
-
-  sidebarPaddingR: () => {
-    const innerWidth = window.innerWidth
-    const clientWidth = document.body.clientWidth
-    const paddingRight = innerWidth - clientWidth
-    if (innerWidth !== clientWidth) {
-      document.body.style.paddingRight = paddingRight + 'px'
-    }
   },
 
   diffDate: (d, more = false) => {
@@ -209,7 +185,7 @@ const btf = {
     if (service === 'mediumZoom') {
       const zoom = mediumZoom(ele)
       zoom.on('open', e => {
-        const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
+        const photoBg = '#fff'
         zoom.update({
           background: photoBg
         })

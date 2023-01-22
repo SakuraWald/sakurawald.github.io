@@ -151,17 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
-   * 網頁運行時間
-   */
-  const addRuntime = () => {
-    const $runtimeCount = document.getElementById('runtimeshow')
-    if ($runtimeCount) {
-      const publishDate = $runtimeCount.getAttribute('data-publishDate')
-      $runtimeCount.innerText = btf.diffDate(publishDate) + ' ' + GLOBAL_CONFIG.runtime
-    }
-  }
-
-  /**
    * 最後一次更新時間
    */
   const addLastPushDate = () => {
@@ -267,13 +256,11 @@ document.addEventListener('DOMContentLoaded', function () {
       GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll('#post-meta time'))
     } else {
       GLOBAL_CONFIG.relativeDate.homepage && relativeDate(document.querySelectorAll('#recent-posts time'))
-      GLOBAL_CONFIG.runtime && addRuntime()
       addLastPushDate()
       toggleCardCategory()
     }
 
     scrollFnToDo()
-    GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     runLightbox()
     addTableWrap()
     switchComments()
