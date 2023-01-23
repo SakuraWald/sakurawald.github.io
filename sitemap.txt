@@ -1,4 +1,5 @@
 https://sakurawald.github.io/2023/01/22/tool-box/
+https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/
 https://sakurawald.github.io/categories/index.html
 https://sakurawald.github.io/friends/index.html
 https://sakurawald.github.io/tags/index.html
@@ -8,7 +9,6 @@ https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/
 https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/
 https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/
 https://sakurawald.github.io/2022/04/30/database-relational-query-language/
-https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/
 https://sakurawald.github.io/2022/04/29/database-advanced-sql/
 https://sakurawald.github.io/2023/01/22/database-design/
 https://sakurawald.github.io/2022/04/28/database-elementary-sql/
@@ -59,4 +59,3 @@ https://sakurawald.github.io/tags/website/
 https://sakurawald.github.io/tags/favorite/
 https://sakurawald.github.io/tags/stl/
 https://sakurawald.github.io/tags/cpp/
-https://sakurawald.github.io/categories/uncategorized/

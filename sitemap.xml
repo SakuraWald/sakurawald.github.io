@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</loc>
+    
+    <lastmod>2023-01-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sakurawald.github.io/categories/index.html</loc>
     
     <lastmod>2023-01-23</lastmod>
@@ -84,15 +93,6 @@
   
   <url>
     <loc>https://sakurawald.github.io/2022/04/30/database-relational-query-language/</loc>
-    
-    <lastmod>2023-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</loc>
     
     <lastmod>2023-01-23</lastmod>
     
@@ -513,12 +513,5 @@
   </url>
   
 
-  
-  <url>
-    <loc>https://sakurawald.github.io/categories/uncategorized/</loc>
-    <lastmod>2023-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
 </urlset>
