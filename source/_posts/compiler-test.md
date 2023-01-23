@@ -240,7 +240,7 @@ linebreak
 
 $$
 \a{
-& \boxed{\t{This is a abox}} \\
+& \boxed{\t{This is a box}} \\
 & \r{\t{This is red}} \\
 & \b{\t{This is blue}}
 }

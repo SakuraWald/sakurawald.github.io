@@ -1,6 +1,5 @@
 ---
-title: CodeSnippet - A Simple Judger for Java
-
+title: "[CodeSnippet] - A Simple Judger for Java"
 tags: 
   - oj
   - code
