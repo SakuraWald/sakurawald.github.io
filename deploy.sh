@@ -1,7 +1,7 @@
-echo -e "\e[32mSaving current theme..."
+echo "Saving current theme..."
 cd ./themes/toxic 
 git add . && git commit -m "save" && git push origin HEAD:dev
 
-echo -e "\e[32mSaving current blog..."
+echo "Saving current blog..."
 cd ../..
 git add . && git commit -m "save" && git push
