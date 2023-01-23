@@ -33,7 +33,7 @@ gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</scr
   isPost: true,
   isHome: false,
   isToc: true,
-  postUpdate: '2023-01-23 09:53:44'
+  postUpdate: '2023-01-23 10:09:55'
 }</script><noscript><style type="text/css">
   #recent-posts time,
   #post-meta time {
@@ -638,7 +638,7 @@ function renderMermaid() {
 }</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
 hljs.highlightAll();
 renderMermaid();</script><script>function loadGiscus () {
-  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+  let nowTheme = 'light' 
 
   const config = Object.assign({
     src: 'https://giscus.app/client.js',
@@ -659,21 +659,6 @@ renderMermaid();</script><script>function loadGiscus () {
   document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
 }
 
-function changeGiscusTheme () {
-  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-
-  function sendMessage(message) {
-    const iframe = document.querySelector('iframe.giscus-frame');
-    if (!iframe) return;
-    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-  }
-
-  sendMessage({
-    setConfig: {
-      theme: theme
-    }
-  });
-}
 
 if ('Giscus' === 'Giscus' || !true) {
   if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
