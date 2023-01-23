@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</loc>
-    
-    <lastmod>2023-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/categories/index.html</loc>
     
     <lastmod>2023-01-23</lastmod>
@@ -101,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/2022/04/02/computer-organization-representaion-and-computation-floating-point/</loc>
+    <loc>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</loc>
     
     <lastmod>2023-01-23</lastmod>
     
@@ -146,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/</loc>
+    <loc>https://sakurawald.github.io/2022/04/02/computer-organization-representaion-and-computation-integer/</loc>
     
     <lastmod>2023-01-23</lastmod>
     
@@ -155,7 +146,16 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/2022/04/02/computer-organization-representaion-and-computation-integer/</loc>
+    <loc>https://sakurawald.github.io/2022/04/02/computer-organization-representaion-and-computation-floating-point/</loc>
+    
+    <lastmod>2023-01-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/</loc>
     
     <lastmod>2023-01-23</lastmod>
     

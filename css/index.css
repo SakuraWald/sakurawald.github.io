@@ -2465,38 +2465,6 @@ h1.page-title + .tag-cloud-list {
   -ms-flex: 1;
   flex: 1;
 }
-#aside-content .card-categories .card-category-list.child {
-  padding: 0 0 0 16px;
-}
-#aside-content .card-categories .card-category-list > .parent > a .card-category-list-name {
-  width: 70% !important;
-}
-#aside-content .card-categories .card-category-list > .parent > a .card-category-list-count {
-  width: calc(100% - 70% - 20px);
-  text-align: right;
-}
-#aside-content .card-categories .card-category-list > .parent i {
-  float: right;
-  margin-right: -0.5em;
-  padding: 0.5em;
-  -webkit-transition: -webkit-transform 0.3s;
-  -moz-transition: -moz-transform 0.3s;
-  -o-transition: -o-transform 0.3s;
-  -ms-transition: -ms-transform 0.3s;
-  transition: transform 0.3s;
-  -webkit-transform: rotate(0);
-  -moz-transform: rotate(0);
-  -o-transform: rotate(0);
-  -ms-transform: rotate(0);
-  transform: rotate(0);
-}
-#aside-content .card-categories .card-category-list > .parent i.expand {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
 #aside-content .card-webinfo .webinfo .webinfo-item {
   display: -webkit-box;
   display: -moz-box;
@@ -2631,8 +2599,8 @@ h1.page-title + .tag-cloud-list {
   -ms-animation: more-btn-move 1s infinite;
   animation: more-btn-move 1s infinite;
 }
-#aside-content .card-announcement .item-headline i {
-  color: #f00;
+#aside-content .ads-wrap {
+  margin-top: 20px !important;
 }
 .avatar-img {
   overflow: hidden;
