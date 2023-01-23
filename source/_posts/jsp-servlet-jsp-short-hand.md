@@ -5,8 +5,6 @@ tags:
   - web
   - jsp
 id: '58129'
-categories:
-  - - uncategorized
 date: 2022-06-13 11:00:00
 ---
 
