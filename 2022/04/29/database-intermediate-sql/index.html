@@ -1,0 +1,883 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Database] Intermediate SQL | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/04/29/database-intermediate-sql/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Database] Intermediate SQL',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Intermediate-SQL"><a href="#Intermediate-SQL" class="headerlink" title="Intermediate SQL"></a>Intermediate SQL</h1>
+$$
+\boxed{@}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor{miku}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\tb[1]{\text{\textcolor{blue}{#1}}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\lrb[1]{\lb{\rb{#1}}}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+\newcommand\step[1]{\textbf{ (#1) }}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\do{\textbf{ do }}
+\newcommand\dowhile{\textbf{ do while }}
+\newcommand\dountil{\textbf{ do until }}
+\newcommand\find{\textbf{ find }}
+\newcommand\until{\textbf{ until }}
+\newcommand\thereisa{\textbf{ There is a }}
+\newcommand\thereisan{\textbf{ There is an }}
+\newcommand\hasno{\textbf{ has no }}
+\newcommand\has{\textbf{ has }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ in }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\textbf{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+
+
+
+<h2 id="Join-Expression"><a href="#Join-Expression" class="headerlink" title="Join Expression"></a>Join Expression</h2><script type="math/tex; mode=display">
+\bt{Join Expression} \lb{
+& \t{Join Type} \lb{
+& \t{inner join} \\
+& \t{left outer join} \\
+& \t{right outer join} \\
+& \t{full outer join}
+} \\
+& \t{Join Condition} \lb{
+& \t{natural} \\
+& \t{using attribute\_list} \\
+& \t{on <predicate>}
+}
+}</script><h3 id="Join-Condition"><a href="#Join-Condition" class="headerlink" title="Join Condition"></a>Join Condition</h3><h4 id="natural"><a href="#natural" class="headerlink" title="natural"></a>natural</h4><p>使用 <code>natural</code> 作为 <code>连接条件</code> 的 <code>连接 (Join)</code> 称为 <code>自然连接 (Natural Join)</code>。</p>
+<blockquote>
+<p>我们前面讨论过，可以将 <code>natura</code>展开为 <code>using attribute_list</code> 展开为 <code>on &lt;predicate&gt;</code> </p>
+</blockquote>
+<h4 id="using-attribute-list"><a href="#using-attribute-list" class="headerlink" title="using attribute_list"></a>using attribute_list</h4><p>指定对 <code>参与连接的关系</code> 进行 <code>连接</code> 时所使用的 <code>属性列表 (Attribute List)</code></p>
+<h4 id="on"><a href="#on" class="headerlink" title="on \"></a>on \<Predicate\></h4><p><code>on条件</code> 用于设置 <code>参与连接的关系</code> 的 <code>元组匹配</code> 的 <code>通用谓词</code></p>
+<blockquote>
+<p>从 <code>功能范围</code> 来讲：<code>on &lt;Predicate&gt;</code> &gt; <code>using attribute_list</code> &gt; <code>natural</code></p>
+</blockquote>
+<hr>
+<p>我们考虑下面两个连接。</p>
+<pre><code class="lang-sql">-- SQL 1
+SELECT *
+FROM student JOIN takes ON student.ID = takes.ID
+</code></pre>
+<pre><code class="lang-sql">-- SQL 2
+SELECT *
+FROM student NATURAL JOIN takes
+</code></pre>
+<p><code>SQL1</code> $\ne$ <code>SQL 2</code> ，但它们的 <code>结果关系</code> 高度 <code>相似</code>，<code>唯一的区别</code> 是：<code>SQL 1</code> 的 <code>结果关系</code> 中， <code>ID属性</code> 出现 <code>2次</code>，分别为 <code>student.ID</code> 和 <code>takes.ID</code> </p>
+<blockquote>
+<p>注意 <code>on &lt;predicate&gt;</code> 的 <code>语义</code>：<code>&lt;predicate&gt;</code>  <code>过滤出</code> <code>能参与连接的元组</code>。</p>
+<p>注意 <code>join</code> 的语义：最基本的 <code>连接 (Join)</code> 操作就是 <code>简单地</code> <code>将两个元组</code> 进行 <code>拼接</code>。</p>
+<blockquote>
+<p><code>自动去除相同的属性名</code> 是 <code>natural join</code> 的 <code>特性</code>，<code>join</code> 并不会这么做！</p>
+</blockquote>
+</blockquote>
+<p>然而，对于 <code>SQL 2</code>来说，由于 <code>student关系</code> 和 <code>takes关系</code> 的 <code>共有属性</code> 仅有 <code>ID</code>，所以 <code>连接条件</code> 也是 <code>student.ID = takes.ID</code>。</p>
+<p>但 <code>Natural Join</code> 会 <code>自动地去除属性名相同的列</code>，所以 <code>ID属性</code> 仅在 <code>SQL 2的结果关系</code> 中 <code>出现1次</code></p>
+<p>更确切地</p>
+<pre><code class="lang-sql">-- SQL 3 equals SQL 1
+SELECT *
+FROM student, takes
+WHERE student.ID = takes.ID
+</code></pre>
+<pre><code class="lang-sql">-- SQL 4 equals SQL 2
+SELECT student.ID as ID, name, dept_name, tot_cred, course_id, sec_id, semester, year, grade
+FROM student JOIN takes ON student.ID = takes.ID
+</code></pre>
+<h3 id="Join-Type"><a href="#Join-Type" class="headerlink" title="Join Type"></a>Join Type</h3><h4 id="Inner-Join"><a href="#Inner-Join" class="headerlink" title="Inner Join"></a>Inner Join</h4><p><code>内连接 (Inner Join)</code> 是 <code>默认的连接类型</code>。</p>
+<blockquote>
+<p>当我们写 <code>JOIN</code> 时，实际上是省略了 <code>INNER</code> 的 <code>INNER JOIN</code>。</p>
+<p>同理，<code>NATURAL JOIN</code> = <code>NATURAL INNER JOIN</code></p>
+</blockquote>
+<h4 id="Outer-Join"><a href="#Outer-Join" class="headerlink" title="Outer Join"></a>Outer Join</h4><p>考虑该语句</p>
+<pre><code class="lang-sql">SELECT *
+FROM student NATURAL JOIN takes;
+</code></pre>
+<p>该 <code>语句</code> 的 <code>期望</code> 是： <code>查询出所有学生的选课信息</code></p>
+<p>但是，如果 <code>某些学生没有选任何课</code>，那么在 <code>结果关系</code> 中，我们将无法看到 <code>这些学生</code>。</p>
+<p>如果我们 <code>希望</code> 在 <code>结果关系</code> 中，<code>仍然显示出</code> <code>没有选任何课的学生</code> 的信息，并且 <code>将它们的选课信息</code> 显示为 <code>null</code>。</p>
+<p>则可以使用 <code>外连接</code></p>
+<pre><code class="lang-sql">SELECT *
+FROM student NATURAL LEFT OUTER JOIN takes;
+</code></pre>
+<hr>
+<p><code>外连接 (Outer Join)</code>：在 <code>内连接</code> 的基础上，通过在 <code>结果关系</code> 中 <code>创建包含空值的元组</code> 来 <code>保留</code> <code>哪些本来在内连接中丢失的元组</code></p>
+<blockquote>
+<p>换句话说：<code>外连接</code> 会将 <code>那些有参与连接</code> 但  <code>不满足连接条件的元组</code> 的 <code>那些本该被内连接丢弃的元组</code> 重新 <code>捡回来</code>，然后 <code>填充空值</code>。</p>
+<p>注意一个细节，我们说 <code>参与连接的元组</code> 指的是按照所属的 <code>连接表达式</code> 作为 <code>边界</code> 来划分的。<code>另一个连接表达式</code> 和 <code>WHERE子句</code> 显然都属于 <code>边界之外</code>。</p>
+<p><code>外连接</code> 只会 <code>捡回那些参与了连接但不满足连接条件的元组，并为它们填充空值</code>。如果 <code>某些元组根本没有参与这个外连接</code>，那么 <code>显然这些元组不应该被这个外连接所捡回并填充空值</code>。</p>
+</blockquote>
+<p><code>外连接</code> 的 3种 <code>类型</code>：</p>
+<ul>
+<li><code>左外连接 (Left Outer Join)</code>：只 <code>保留</code> 出现在 <code>左外连接运算符</code> <code>左边的关系中的元组</code></li>
+<li><code>右外连接 (Right Outer Join)</code>：只 <code>保留</code> 出现在 <code>右外连接运算符</code> <code>右边的关系中的元组</code></li>
+<li><code>全外连接 (Full Outer Join)</code>：<code>保留</code> <code>两个关系中的元组</code></li>
+</ul>
+<blockquote>
+<p>相比来说，<code>内连接</code> 不 <code>保留</code> <code>两侧的关系中的任何关系中的元组</code></p>
+<p><code>外连接的计算方法</code>：可以先计算 <code>相应的内连接</code>，然后向 <code>内连接的结果关系</code> 中 <code>加入</code> <code>应当被保留的元组</code></p>
+</blockquote>
+<hr>
+<p>考虑该查询</p>
+<pre><code class="lang-sql">-- SQL 1
+SELECT *
+FROM student LEFT OUTER JOIN takes ON student.ID = takes.ID;
+</code></pre>
+<p><code>SQL 1</code> $\ne$ <code>SQL 2</code> </p>
+<pre><code class="lang-sql">-- SQL 2
+SELECT *
+FROM student LEFT OUTER JOIN takes ON true
+WHERE student.ID = takes.ID;
+</code></pre>
+<ul>
+<li><p><code>SQL 1</code>：<code>结果关系</code> 类似于 <code>student LEFT NATURAL OUTER JOIN takes</code>  ，只不过 <code>ID属性将出现2次</code>。</p>
+</li>
+<li><p><code>SQL 2</code>：由于指定 <code>ON true</code> 使得 <code>参与连接的关系中的所有元组</code> 都 <code>满足连接条件</code>，所以 <code>外连接</code> 不会 <code>加入被内连接丢弃的元组并为它们填充空值</code></p>
+<blockquote>
+<p>也就是说 <code>由于没有元组因不满足连接条件而被内连接所丢弃</code>，所以后续 <code>外连接</code> 也不会 <code>加入这些本来被内连接丢弃的元组并为它们填充空值</code></p>
+</blockquote>
+<p>实际上，<code>a LEFT OUTER JOIN b ON true</code> 相当于 <code>产生两个关系的笛卡尔积</code>。</p>
+<blockquote>
+<p>不要将 <code>a LEFT OUTER JOIN b ON true</code> 和 <code>NATURAL LEFT OUTER JOIN</code> 弄 <code>混淆</code>，<code>NATURAL</code> 只不过是 <code>连接条件</code> 中的一种而已。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p><code>视图 (View)</code>：是一种 <code>通过查询来定义的</code> <code>虚关系 (Virtual Relation)</code>。它在 <code>概念层</code> 包含 <code>查询的结果</code>，但 <code>序关系</code>并不 <code>预先计算并存储</code>，而是在 <code>查询时临时进行计算</code> 而得到。</p>
+<blockquote>
+<p>该 <code>定义</code> 暂时不考虑 <code>物化视图 (Materialized View)</code></p>
+</blockquote>
+<h3 id="Create-a-view"><a href="#Create-a-view" class="headerlink" title="Create a view"></a>Create a view</h3><p>所定义的 <code>视图</code> 的 <code>模式</code> 可以从 <code>查询语句</code> 中自动地被 <code>推导</code> 出来 </p>
+<pre><code class="lang-sql">CREATE VIEW faculty AS
+SELECT ID, name, dept_name
+FROM instructor;
+</code></pre>
+<p>当然，也可以指定 <code>视图的属性名</code></p>
+<pre><code class="lang-sql">CREATE VIEW departments_total_salary(dept_name, total_salary) AS
+SELECT dept_name, sum(salary)
+FROM instructor
+GROUP BY dept_name;
+</code></pre>
+<h3 id="Materialized-View"><a href="#Materialized-View" class="headerlink" title="Materialized View"></a>Materialized View</h3><p><code>物化视图 (Materialized View)</code>：和 <code>非物化视图</code> 的区别在于，<code>物化视图</code> 会 <code>存储查询的结果关系</code>，并 <code>保证</code> 当 <code>实际关系</code> 更新时，<code>物化视图</code> 也应当有 <code>相应的维护策略</code>。这个过程称为 <code>物化视图的维护 (Materialized View Maintenance)</code></p>
+<p><code>物化视图</code> 的 <code>维护策略 (Maintenance Strategy)</code>：</p>
+<ul>
+<li>立即更新</li>
+<li>延迟更新</li>
+</ul>
+<hr>
+<p>我们称 <code>物化视图</code>是 <code>可更新的 (Updatable)</code> ：可以对 <code>该物化视图</code> 进行 <code>修改性操作</code>，且 <code>这些操作可以正确地反映到实关系</code>。</p>
+<blockquote>
+<p>大部分的 <code>物化视图</code> 都是 <code>不可更新的</code>，仅能用于 <code>查询</code>。</p>
+<p>这是因为 <code>单纯从视图定义的查询语句</code> 很难 <code>翻译出等价的且合法的更新语句</code>。</p>
+</blockquote>
+<p>考虑该 <code>视图定义</code></p>
+<pre><code class="lang-sql">CREATE VIEW history_instructors AS
+SELECT *
+FROM instructor
+WHERE dept_name = &#39;History&#39;;
+</code></pre>
+<p>如果我们 <code>视图</code> 执行 <code>该语句</code></p>
+<pre><code class="lang-sql">INSERT INTO history_instructors
+VALUES (&#39;25566&#39;, &#39;Brown&#39;, &#39;Biology&#39;, 100000)
+</code></pre>
+<p>则也 <code>可能</code> 存在 <code>错误</code>，原因在于：<code>欲插入视图中的元组</code> 无法在 <code>视图中被查询出来</code>。即 <code>新值</code> 不满足 <code>视图的WHERE子句</code></p>
+<blockquote>
+<p><code>SQL</code> 默认允许这种操作。如果希望禁止这种操作，可以在 <code>CREATE VIEW</code> 时添加 <code>WITH CHECK OPTION</code></p>
+</blockquote>
+<h2 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h2><p><code>事务 (Transaction)</code>：由 <code>SQL语句的序列</code> 组成，<code>事务</code> 拥有 <code>ACID性</code></p>
+<blockquote>
+<p>按照 <code>SQL标准</code>，<code>任何一条单独的SQL语句</code> 都 <code>隐含地</code> <code>开始于一个新事务</code>。</p>
+<p>从编程角度说，如果为了保证 <code>多条SQL语句的原子性</code>，则需要对 <code>SQL连接驱动</code> 做出相应的设置。</p>
+<p>如使用 <code>JDBC</code> 时，首先关闭 <code>单条SQL语句的自动提交</code>。</p>
+</blockquote>
+<h2 id="Integrity-Constraint"><a href="#Integrity-Constraint" class="headerlink" title="Integrity Constraint"></a>Integrity Constraint</h2><p><code>完整性约束 (Integrity Constraint)</code>：保证 <code>授权用户</code> 对 <code>数据库的修改性操作</code> 不会 <code>破坏</code> <code>数据库</code> 的 <code>数据一致性</code> </p>
+<p>常见的 <code>完整性约束</code>：</p>
+<h3 id="Integrity-Constraint-for-Single-Relation"><a href="#Integrity-Constraint-for-Single-Relation" class="headerlink" title="Integrity Constraint for Single-Relation"></a>Integrity Constraint for Single-Relation</h3><ul>
+<li><code>not null约束</code></li>
+</ul>
+<pre><code class="lang-sql">name varchar(30) NOT NULL
+bugder numeric(12,2) NOT NULL
+</code></pre>
+<p>由于 <code>空值</code> 是 <code>所有的域的成员</code>，所以对于 <code>SQL</code>来说，<code>空值</code> 可以是 <code>任何属性</code> 的 <code>合法值</code>。</p>
+<p>如果希望 <code>禁止某个属性的值为空值</code>，则可以设置 <code>not null</code></p>
+<ul>
+<li><code>unique约束</code></li>
+</ul>
+<pre><code class="lang-sql">UNIQUE(attribute_list)
+</code></pre>
+<p><code>unique约束</code> 用于指定 <code>某个属性列表</code> 为 <code>候选码</code>：即在 <code>关系</code> 中，没有 <code>任何两个元组</code> 可以在 <code>作为候选码的属性</code> 上的 <code>取值</code> <code>都相同</code>。</p>
+<blockquote>
+<p>n.b. <code>候选码属性</code> 可以被设置为 <code>null</code> （除非已经被声明 <code>not null</code>），由于 <code>unique约束</code> 是基于 <code>元组的相等性测试</code> 的，它和 <code>unique结构</code> 对待 <code>null</code> 的方式相同。</p>
+</blockquote>
+<ul>
+<li><code>check子句</code></li>
+</ul>
+<p>可以为 <code>关系</code> 定义 <code>check(Predicate)</code> ，使得 <code>关系中的所有元组</code> 都必须 <code>满足该谓词</code>。</p>
+<blockquote>
+<p>可以使用 <code>check</code> 来 <code>代替</code> <code>unique</code>，<code>not null</code></p>
+</blockquote>
+<pre><code class="lang-sql">CREATE TABLE section
+(course_id varchar(8),
+ sec_id varchar(8),
+ semester varchar(6),
+ year numeric(4,0),
+ building varchar(15),
+ room_number varchar(7),
+ time_slot_id varchar(4),
+ PRIMARY KEY (course_id, sec_id, semester, year),
+ CHECK(semester IN (&#39;Fall&#39;, &#39;Winter&#39;, &#39;Spring&#39;, &#39;Summer&#39;))
+);
+</code></pre>
+<h3 id="Referential-Integrity"><a href="#Referential-Integrity" class="headerlink" title="Referential Integrity"></a>Referential Integrity</h3><h4 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h4><p><code>参照完整性 (Referential Integrity)</code>：在 <code>某个关系的给定属性集上的取值</code> 也 <code>必须出现在</code> <code>另一个关系的特定属性集的取值</code> 。</p>
+<blockquote>
+<p>若 <code>关系</code> $r_1$ 和 <code>关系</code> $r_2$ 的 <code>属性集</code> 分别为 $R_1$ 和 $R_2$，<code>主码</code> 分别为 $K_1$ 和 $K_2$。</p>
+<p>若对于 $R_2$ 中的 <code>任何元组</code> $t_2$ ，都存在 $t_1.K_1 = t_2.\b\alpha$</p>
+<p>则我们称：$R_2$的子集 $\alpha$ 为 <code>参照关系</code> $r_1$ 中 $K_1$ 的 <code>外码 (Foreign Key)</code></p>
+<blockquote>
+<p>即：我们要求 $r_2$ 中 $\alpha$ 上的 <code>取值集合</code> 必须是 $r_1$ 中 $K_1$ 上的 <code>取值集合</code> 的 <code>子集</code>。</p>
+<p>从这个意义上，<code>参照完整性</code> 又被称为 <code>子集依赖 (Subset Dependency)</code></p>
+<p>不同于 <code>外码约束</code>，<code>参照完整性</code> 并不要求  $K_1$ 是 $r_1$ 的 <code>主码</code></p>
+</blockquote>
+</blockquote>
+<hr>
+<h4 id="A-simple-demo"><a href="#A-simple-demo" class="headerlink" title="A simple demo"></a>A simple demo</h4><pre><code class="lang-sql">CREATE TABLE section
+(...
+ FOREIGN KEY(dept_name) REFERENCES department
+ ON DELETE CASCADE
+ ON UPDATE CASCADE
+ ...
+);
+</code></pre>
+<blockquote>
+<p>使用 <code>REFERENCE子句</code> 时，要求 <code>属性列表</code> 必须是 <code>被参照关系的候选码</code>。</p>
+<blockquote>
+<p>可以通过 <code>PRIMARY KEY</code> 和 <code>UNIQUE</code> 来使得 <code>属性</code> 成为 <code>候选码 (Candidate Key)</code></p>
+</blockquote>
+</blockquote>
+<p>可以为 <code>参照完整性约束</code> 中的 <code>外码</code> 设置 <code>删除策略</code> 和 <code>更新策略</code></p>
+<p>常见的几种策略有：</p>
+<ul>
+<li><code>CASCADE</code></li>
+<li><code>SET NULL</code></li>
+<li><code>SET DEFAULT</code></li>
+</ul>
+<hr>
+<p>n.b. 对于 <code>元组的外码属性的相等性测试</code> 有 <code>特殊规则</code> ：如果 <code>某个元组的某个外码属性</code> 为 <code>null</code>，则会 <code>被视为满足约束</code>。</p>
+<h3 id="Defer-Integrity-Constraint"><a href="#Defer-Integrity-Constraint" class="headerlink" title="Defer Integrity Constraint"></a>Defer Integrity Constraint</h3><p>对于 <code>多步骤的事务</code> 来说，可能在 <code>事务的中间过程</code> <code>暂时性地违反完整性约束</code> ，但在 <code>事务之后的步骤</code> 又  <code>重新符合完整性约束</code>。</p>
+<p>此时，可以使用 <code>initially deferred子句</code> 来将 <code>完整性约束检测</code> 从 <code>事务中间步骤</code> <code>推迟到</code> <code>事务结束时</code> 再进行 <code>检测</code></p>
+<h3 id="Complex-Check-Constraint"><a href="#Complex-Check-Constraint" class="headerlink" title="Complex Check Constraint"></a>Complex Check Constraint</h3><p>根据 <code>SQL标准</code> 来说，<code>check</code> 中允许定义 <code>任何谓词</code>。</p>
+<p>如果 <code>check的谓词</code> 中包含 <code>子查询</code>，则该 <code>check</code> 是 <code>复杂的</code>。</p>
+<p>考虑该例子</p>
+<pre><code class="lang-sql">CHECK(time_slot_id IN (SELECT time_slot_id FROM time_slot))
+</code></pre>
+<p>为了维护 <code>check约束</code>，并非仅仅是 <code>简单地在插入或更新元组时</code> 进行 <code>检查</code>，在 <code>子查询所涉及的关系</code> 发生 <code>变化</code> 时，也需要进行 <code>检查</code>。</p>
+<h2 id="Assertion"><a href="#Assertion" class="headerlink" title="Assertion"></a>Assertion</h2><pre><code class="lang-sql">CREATE ASSERTION credits_earned_constraint CHECK(
+NOT EXISTS(SELECT ID
+           FROM student
+           WHERE tot_cred &lt;&gt; (SELECT sum(credits)
+                             FROM takes NATURAL JOIN course
+                              WHERE student.ID = takes.ID
+                              AND grade IS NOT NULL
+                              AND grade &lt;&gt; &#39;F&#39;
+                              )
+)
+)
+</code></pre>
+<p><code>断言 (Assertion)</code>：<code>断言</code> 是 <code>谓词</code> 的一种形式，用于描述我们希望 <code>数据库</code>  <code>总能</code> <code>满足的条件</code>。</p>
+<blockquote>
+<p><code>域约束</code>，<code>参照完整性约束</code> 均属于 <code>断言</code> </p>
+<p>目前大部分的 <code>数据库</code> 对 <code>断言 (Assertion)</code> 的支持不完善。</p>
+<p><code>维护</code> 一个 <code>断言</code> 的代价是非常大的。如果可能，可以使用 <code>触发器 (Trigger)</code> 来代替 <code>断言</code> 。</p>
+</blockquote>
+<h2 id="Data-Type-and-Pattern"><a href="#Data-Type-and-Pattern" class="headerlink" title="Data Type and Pattern"></a>Data Type and Pattern</h2><h3 id="Date-and-Time"><a href="#Date-and-Time" class="headerlink" title="Date and Time"></a>Date and Time</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td><code>日历日期</code>，如 <code>1990-06-21</code></td>
+</tr>
+<tr>
+<td>time</td>
+<td><code>一天中的时间</code>，如 <code>8:42:26</code></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><code>date和time的组合</code>，如 <code>1990-06-21 8:42:26</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Default-Value"><a href="#Default-Value" class="headerlink" title="Default Value"></a>Default Value</h3><pre><code class="lang-sql">CREATE TABLE student
+(ID varchar(5),
+ name varchar(20) NOT NULL,
+ dept_name varchar(20),
+ tot_cred numeric(3, 0) DEFAULT 0
+ PRIMARY KEY(ID)
+);
+</code></pre>
+<h3 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h3><pre><code class="lang-sql">CREATE INDEX studentID_index ON student(ID)
+</code></pre>
+<h3 id="Big-Object-Type"><a href="#Big-Object-Type" class="headerlink" title="Big Object Type"></a>Big Object Type</h3><script type="math/tex; mode=display">
+\t{Large OBject} \lb{
+& \t{Character LOB} \\
+& \t{Binary LOB}
+}</script><pre><code class="lang-sql">CREATE TABLE demo
+(
+    book_review clob(10KB)
+    image blob(10MB)
+    movie blob(2GB)
+);
+</code></pre>
+<blockquote>
+<p>当 <code>查询</code> <code>大对象</code> 时，<code>数据库</code> 并非直接 <code>返回整个大对象</code>。而是 <code>返回用于检索该大对象的定位器</code>。</p>
+<p>这类似于 <code>迭代器</code> 或 <code>文件指针</code>，可以 <code>按小片段</code> <code>逐步地访问</code> <code>整个大对象</code></p>
+</blockquote>
+<h3 id="User-Defined-Type"><a href="#User-Defined-Type" class="headerlink" title="User Defined Type"></a>User Defined Type</h3><script type="math/tex; mode=display">
+\t{User Defined Type} \lb{
+& \t{Distinct Type} \\
+& \t{Structured Data Type}
+}</script><ul>
+<li><code>独特类型 (Distinct Type)</code></li>
+</ul>
+<pre><code class="lang-sql">CREATE TYPE Dollars AS numeric(12, 2) FINAL;
+CREATE TYPE Pounds AS numeric(12, 2) FINAL;
+</code></pre>
+<pre><code class="lang-sql">CREATE TABLE department
+(dept_name varchar(20),
+ building varchar(15),
+ budget Dollars
+);
+</code></pre>
+<blockquote>
+<p><code>final关键字</code> 是没有任何意义的。属于 <code>SQL标准</code> 的 <code>历史遗留问题</code></p>
+</blockquote>
+<p>这里的关键点是，<code>Dollars</code> 是 <code>独特类型</code>，不能将 <code>Pounds</code> 类型赋值给 <code>Dollars</code> 类型</p>
+<blockquote>
+<p>尽管 <code>Dollars</code> 和 <code>Pounds</code> 基于 <code>相同的基本数据类型</code> 而定义的。</p>
+</blockquote>
+<p>甚至，我们也无法将 <code>Integer</code> 赋值给 <code>Dollars</code></p>
+<pre><code class="lang-sql">-- This is wrong
+department.budget + 20
+</code></pre>
+<pre><code class="lang-sql">-- This is right
+cast(department.budget to numeric(12,2)) + 20
+</code></pre>
+<blockquote>
+<p>之前我们讨论过 <code>域 (Domain)</code>，它和  <code>独特类型</code> 的区别在于：</p>
+<ul>
+<li><code>域</code> 上可以声明 <code>约束</code> 和 定义 <code>默认值</code></li>
+<li><code>域</code> 并不是 <code>强类型的</code>，<code>基本类型相容的域</code> 可以 <code>相互赋值</code>。</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>结构化数据类型 (Structured Data Type)</code></li>
+</ul>
+<p>可以创建 <code>具有嵌套记录结构</code>，<code>数组</code>，<code>多重集</code> 的 <code>复杂数据类型</code></p>
+<h2 id="Create-Table-Extension"><a href="#Create-Table-Extension" class="headerlink" title="Create Table Extension"></a>Create Table Extension</h2><pre><code class="lang-sql">CREATE TABLE temp_instructor LIKE instructor
+</code></pre>
+<h2 id="Schema-Catalog-and-Environment"><a href="#Schema-Catalog-and-Environment" class="headerlink" title="Schema, Catalog and Environment"></a>Schema, Catalog and Environment</h2><p><code>目录 (Catalog)</code> 和<code>模式 (Schema)</code>用于为 <code>关系</code> 提供 <code>命名空间</code>，它们都是用于 <code>限定</code> <code>关系</code> 的 <code>限定名</code>。 </p>
+<blockquote>
+<p>部分 <code>数据库实现</code> 使用 <code>数据库</code> 术语 来代替 <code>目录</code>。</p>
+</blockquote>
+<p>如下例子</p>
+<pre><code class="lang-sql">catelog5.univ_schema.course
+</code></pre>
+<blockquote>
+<p>每个 <code>用户 (User)</code> 都有自己的 <code>默认目录 (Default Catalog)</code> 和 <code>默认模式 (Default Schema)</code>。</p>
+<p>当 <code>用户</code> 连接到 <code>数据库</code> 时，会为 <code>该连接自动地配置为</code> <code>默认目录</code> 和 <code>默认模式</code>。</p>
+<blockquote>
+<p>这类似于 <code>OS</code> 中为 <code>登陆OS的用户</code> 自动地切换 <code>当前目录</code> 为 <code>用户的主目录 (Home Directory)</code> </p>
+</blockquote>
+<p>当 <code>创建</code> <code>新用户</code> 时，会 <code>自动地</code> 创建 <code>与该用户名同名的模式</code></p>
+<p>在前面的例子中，我们都没有指定 <code>catelog</code> 和 <code>schema</code>。</p>
+<p>这是因为我们一直在使用 <code>用户的默认目录</code> 和 <code>用户的默认模式</code>。即直接用</p>
+<pre><code class="lang-sql">course
+</code></pre>
+<p>来 <code>定位</code> <code>course关系</code></p>
+</blockquote>
+<h2 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h2><p><code>授权 (Authorization)</code>：将某种 <code>权限 (Privilege/Permission)</code> 授予 <code>某个用户 (User)</code> 或 <code>某个角色 (Role)</code></p>
+<h3 id="Grant-and-Revoke"><a href="#Grant-and-Revoke" class="headerlink" title="Grant and Revoke"></a>Grant and Revoke</h3><p><code>授予权限</code> 和 <code>撤销权限</code></p>
+<pre><code class="lang-sql">GRANT SELECT ON department TO Amit, Satoshi;
+</code></pre>
+<pre><code class="lang-sql">REVOKE SELECT ON department FROM AMit, Satoshi;
+</code></pre>
+<hr>
+<p>授权的 <code>最细粒度</code> 为 <code>关系的属性</code> ：<code>SQL标准</code> 允许对 <code>关系的某个属性</code> 授权，但不允许对 <code>关系的某个特定元组</code> 进行授权。</p>
+<pre><code class="lang-sql">GRANT UPDATE(budget) ON department TO Amit, Satoshi;
+</code></pre>
+<h3 id="Role"><a href="#Role" class="headerlink" title="Role"></a>Role</h3><p><code>角色 (Role)</code>：即 <code>权限(Permission)的集合</code>。可以将 <code>角色</code> 授予 <code>用户</code>，使得 <code>用户</code> 获得 <code>这些权限</code></p>
+<p>使用 <code>角色</code> 的两点好处：</p>
+<ul>
+<li>可以一次性地授予 <code>权限集</code> 给 <code>角色</code>，然后再把 <code>角色</code> 授予给 <code>用户</code>，避免对 <code>每个用户</code> 都繁琐的授予 <code>权限集</code></li>
+<li>即可以 <code>标识</code> <code>用户的身份</code>，同时可以避免 <code>所有相同身份的人使用同个用户</code> 导致 <code>安全隐患</code></li>
+</ul>
+<pre><code class="lang-sql">CREATE ROLE instructor;
+</code></pre>
+<pre><code class="lang-sql">GRANT SELECT ON takes TO instructor
+</code></pre>
+<pre><code class="lang-sql">GRANT instructor TO Amit
+</code></pre>
+<h3 id="View-Authorization"><a href="#View-Authorization" class="headerlink" title="View Authorization"></a>View Authorization</h3><p>对于 <code>仅有查看Geology系权限的工作人员</code>，尽管 <code>它没有权限查看其他系的元组</code>，下列 <code>语句</code> 仍然是 <code>合法的</code></p>
+<pre><code class="lang-sql">CREATE VIEW geo_instructor AS
+(SELECT *
+ FROM instructor
+ WHERE dept_name = &#39;Geology&#39;
+);
+</code></pre>
+<pre><code class="lang-sql">SELECT *
+FROM geo_instructor
+</code></pre>
+<p>这表明，<code>创建某个视图的用户</code> 并不需要 <code>获得该视图上的所有权限</code>。</p>
+<p>该 <code>用户</code> 在 <code>该视图上所获得的权限</code> 并不会 <code>多余它已有的权限</code></p>
+<blockquote>
+<p> 即 <code>危险的用户</code> 无法通过 <code>视图</code>，<code>函数</code> 或 <code>过程</code> 来 <code>获得</code>  <code>超越它本有的权限</code> 的 <code>权限</code></p>
+</blockquote>
+<h3 id="Reference-Authorization"><a href="#Reference-Authorization" class="headerlink" title="Reference Authorization"></a>Reference Authorization</h3><p><code>用户</code> 在 <code>创建外码</code>时，必须要拥有 <code>被参照关系</code> 的 <code>REFERENCE权限</code>。</p>
+<pre><code class="lang-sql">GRANT REFERENCES (dept_name) ON department TO Mariano;
+</code></pre>
+<p>一个很关键在原因在于：<code>所创建的外码</code> 会对 <code>被参照关系</code> 的 <code>删除和更新</code> 产生 <code>阻碍</code>。</p>
+<p>如果 <code>某个用户</code> <code>创建了许多外码约束</code>，那么那个 <code>被参照关系</code> 在 <code>删除和更新</code> 时会 <code>背负许多毫无意义的外码约束</code>，使得因为 <code>违反外码约束</code> 而 <code>无法进行</code> <code>删除和更新</code>。</p>
+<p>因此，<code>只有拥有被参照关系的REFERENCES权限的用户</code> 才可以 <code>创建引用该关系的外码</code>。</p>
+<blockquote>
+<p>类似地，<code>CHECK约束</code> 和 <code>REFERENCES约束</code> 一样，都要求 <code>用户拥有所引用关系的REFERENCE权限</code></p>
+</blockquote>
+<h3 id="Transfer-Permission-and-Revoke-Permission"><a href="#Transfer-Permission-and-Revoke-Permission" class="headerlink" title="Transfer Permission and Revoke Permission"></a>Transfer Permission and Revoke Permission</h3><p><code>SQL</code> <code>默认</code> 禁止 <code>转授</code> <code>授予某个用户的权限</code>。</p>
+<p>如果希望 <code>授予Amit的SELECT权限</code>，<code>Amit仍然可以转授该权限给其他用户</code>，则使用 <code>WIGH GRANT OPTION</code></p>
+<pre><code class="lang-sql">GRANT SELECT ON department TO Amit WITH GRANT OPTION;
+</code></pre>
+<hr>
+<p><code>用户</code> 和 <code>角色</code> 之间的 <code>权限授予</code> 用 <code>授权图 (Authorization Graph)</code> 来描述。</p>
+<p>考虑如下情况，如果 <code>危险用户A</code> 从 <code>DBA</code> 获得 <code>某权限</code>，然后 <code>危险用户A</code> 将 <code>该权限转授</code> <code>危险用户B</code>。</p>
+<p>同时，<code>危险用户B</code> 再将 <code>该权限</code> <code>转授</code> <code>危险用户A</code>。</p>
+<p>也就是说，形成了一个 <code>转授环</code>。</p>
+<pre><code class="lang-mermaid">graph TD;
+dba((DBA)) --&gt; a((A))
+a --&gt; b((B))
+b --&gt; a
+</code></pre>
+<p>使用 <code>授权图</code> 可以 <code>处理</code>  <code>这种情况</code> </p>
+<p>我们规定，<code>用户具有权限的充分必要条件</code> 是 从<code>授权图的根节点(DBA)</code> 到 <code>该用户的顶点</code> 之间要存在 <code>路径</code>。</p>
+<p>对于上述的情况，当我们 <code>撤销授予用户A的权限</code>时，由于 <code>用户B的权限</code> 是 <code>用户A转授给它的</code>，所以，实际上 <code>撤销的路径为</code> $dba \to a \to b$</p>
+<p>于是 <code>授权图</code> 变成</p>
+<pre><code class="lang-mermaid">graph TD;
+dba((DBA))
+a((A))
+b((B))
+</code></pre>
+<hr>
+<p>可以使用 <code>restrict</code> 来 <code>阻止</code> <code>级联收回</code>，如果 <code>存在级联收回</code>，则 <code>不执行任何收权动作</code></p>
+<pre><code class="lang-sql">REVOKE SELECT ON department FROM amit, Satoshi RESTRICT
+</code></pre>
+<hr>
+<p>如果确实希望 <code>只收回用户A的权限</code>，但 <code>不收回用户A授予用户B的权限</code>。</p>
+<p>则不应当使用 <code>上述的权限拓扑</code>，<code>DBA</code> 应当将 <code>权限</code> 授予 <code>角色</code>，然后将 <code>角色</code> 授予 <code>用户</code>。即</p>
+<pre><code class="lang-mermaid">graph TD;
+dba((DBA)) --&gt; role(instructor)
+role --&gt; a((A))
+role --&gt; b((B))
+</code></pre>
+<p>当需要 <code>仅撤销用户A的权限时</code>，只需要 <code>简单地撤销用户A的角色instructor即可</code></p>
+<pre><code class="lang-mermaid">graph TD;
+dba((DBA)) --&gt; role(instructor)
+a((A))
+role --&gt; b((B))
+</code></pre>
+<blockquote>
+<p>n.b. 作为一种规范，如果可能的话，<code>权限</code> 应该由 <code>角色</code> 来 <code>授予</code>，而不是由 <code>特定的用户</code> 授予 ！</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/04/29/database-intermediate-sql/">https://sakurawald.github.io/2022/04/29/database-intermediate-sql/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/database/">database</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intermediate-SQL"><span class="toc-number">1.</span> <span class="toc-text">Intermediate SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Join-Expression"><span class="toc-number">1.1.</span> <span class="toc-text">Join Expression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Join-Condition"><span class="toc-number">1.1.1.</span> <span class="toc-text">Join Condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#natural"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">natural</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#using-attribute-list"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">using attribute_list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#on"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">on \</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Join-Type"><span class="toc-number">1.1.2.</span> <span class="toc-text">Join Type</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Inner-Join"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Inner Join</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Outer-Join"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Outer Join</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View"><span class="toc-number">1.2.</span> <span class="toc-text">View</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-view"><span class="toc-number">1.2.2.</span> <span class="toc-text">Create a view</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Materialized-View"><span class="toc-number">1.2.3.</span> <span class="toc-text">Materialized View</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transaction"><span class="toc-number">1.3.</span> <span class="toc-text">Transaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integrity-Constraint"><span class="toc-number">1.4.</span> <span class="toc-text">Integrity Constraint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Integrity-Constraint-for-Single-Relation"><span class="toc-number">1.4.1.</span> <span class="toc-text">Integrity Constraint for Single-Relation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Referential-Integrity"><span class="toc-number">1.4.2.</span> <span class="toc-text">Referential Integrity</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-1"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-simple-demo"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">A simple demo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Defer-Integrity-Constraint"><span class="toc-number">1.4.3.</span> <span class="toc-text">Defer Integrity Constraint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Complex-Check-Constraint"><span class="toc-number">1.4.4.</span> <span class="toc-text">Complex Check Constraint</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Assertion"><span class="toc-number">1.5.</span> <span class="toc-text">Assertion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Type-and-Pattern"><span class="toc-number">1.6.</span> <span class="toc-text">Data Type and Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Date-and-Time"><span class="toc-number">1.6.1.</span> <span class="toc-text">Date and Time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-Value"><span class="toc-number">1.6.2.</span> <span class="toc-text">Default Value</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Index"><span class="toc-number">1.6.3.</span> <span class="toc-text">Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Big-Object-Type"><span class="toc-number">1.6.4.</span> <span class="toc-text">Big Object Type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Type"><span class="toc-number">1.6.5.</span> <span class="toc-text">User Defined Type</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Table-Extension"><span class="toc-number">1.7.</span> <span class="toc-text">Create Table Extension</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schema-Catalog-and-Environment"><span class="toc-number">1.8.</span> <span class="toc-text">Schema, Catalog and Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authorization"><span class="toc-number">1.9.</span> <span class="toc-text">Authorization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Grant-and-Revoke"><span class="toc-number">1.9.1.</span> <span class="toc-text">Grant and Revoke</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Role"><span class="toc-number">1.9.2.</span> <span class="toc-text">Role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#View-Authorization"><span class="toc-number">1.9.3.</span> <span class="toc-text">View Authorization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference-Authorization"><span class="toc-number">1.9.4.</span> <span class="toc-text">Reference Authorization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transfer-Permission-and-Revoke-Permission"><span class="toc-number">1.9.5.</span> <span class="toc-text">Transfer Permission and Revoke Permission</span></a></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

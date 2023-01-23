@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Combinatorics] Catalan Number | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/03/26/combinatorics-catalan-number/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Combinatorics] Catalan Number',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Counting-Catalan-Number"><a href="#Counting-Catalan-Number" class="headerlink" title="[Counting] Catalan Number"></a>[Counting] Catalan Number</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>Catalan数是定义如下的数列</p>
+<script type="math/tex; mode=display">
+C_n = \frac{1}{n+1}\binom{2n}{n} \qquad (n = 0,1,2,\dots)</script><p>其中将 $n$ 替换为 <code>n - 1</code>可得到</p>
+<script type="math/tex; mode=display">
+C_{n-1} = \frac{1}{n}\binom{2n-2}{n-1}</script><p>该式 $C_{n-1}$ 的含义是: <code>具有 n + 1 条边的凸多边形</code>被其<code>内部不相交的对角线</code>所<code>划分出的三角形区域的方法数</code> $h_n$ </p>
+<p> 其中</p>
+<script type="math/tex; mode=display">
+define\quad h_1 = 1\\
+\begin{aligned}
+h_n &= h_1h_{n-1}+h_2h_{n-2}+h_3h_{n-3}+\dots+h_{n-1}h_1\\
+&= \sum_{k=1}^{n-1}{h_kh_{n-k}} \qquad (n \ge 2)
+\end{aligned}</script><h2 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h2><h3 id="Theorem-1-The-Number-of-Acceptable-Sequence"><a href="#Theorem-1-The-Number-of-Acceptable-Sequence" class="headerlink" title="Theorem 1 (The Number of Acceptable Sequence)"></a>Theorem 1 (The Number of Acceptable Sequence)</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><p>考虑由<code>n个+1</code>和<code>n个-1</code>构成的<code>2n项序列</code><script type="math/tex">a_n</script></p>
+<script type="math/tex; mode=display">
+a_1, a_2, a_3, \dots , a_2n</script><p>则<code>该序列的部分和满足下列条件</code></p>
+<script type="math/tex; mode=display">
+a_1 + a_2 + a_3 + \dots + a_k \ge 0</script><p><code>的序列的个数</code>等于<code>第n个Catalan数</code></p>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>定义满足下列条件的序列为<code>可接受序列 (Acceptable Sequence)</code></p>
+<script type="math/tex; mode=display">
+a_1 + a_2 + a_3 + \dots + a_k \ge 0</script><p>否则，将序列称为<code>不可接受序列 (Unacceptable Sequence)</code></p>
+<hr>
+<p>由<code>n个+1</code>和<code>n个-1</code> <code>所构成的2n项序列</code><script type="math/tex">a_n</script>  的个数 <script type="math/tex">T_n</script> 满足</p>
+<script type="math/tex; mode=display">
+T_n = C_{2n}^n = \binom{2n}{n} = \frac{(2n)!}{(n)!(n)!}</script><p>设：由<code>n个+1</code>和<code>n个-1</code> <code>所构成的2n项序列</code><script type="math/tex">a_n</script> 中的<code>可接受序列</code>的个数为<script type="math/tex">A_n</script></p>
+<p>同样地，设<code>其中的不可接受序列</code>的个数为<script type="math/tex">U_n</script></p>
+<script type="math/tex; mode=display">
+T_n = A_n + U_n</script><p>故</p>
+<script type="math/tex; mode=display">
+A_n = T_n - U_n</script><p>因此，只需求出 <script type="math/tex">U_n</script> 即可求出 <script type="math/tex">A_n</script></p>
+<hr>
+<p>假设 <script type="math/tex">a_k</script> 是<code>序列中第一个导致形成不可接受序列的元素</code>，即</p>
+<script type="math/tex; mode=display">
+a_1, a_2, a_3, \dots ,a_k \lt 0 \qquad (1 \le k \le n)</script><p>则我们可以知道<code>前k-1个元素</code>中，<code>-1元素</code>和<code>+1元素</code>的个数相等。即</p>
+<script type="math/tex; mode=display">
+a_1,a_2,a_3,\dots,a_{k-2},a_{k-1} = 0 \qquad (1 \le k \le n) \\
+a_k = -1</script><p>因此，我们可以得到<code>不可接受序列的结构</code>：<code>前k-1个元素中有相等数量的-1元素和+1元素</code>，而<code>第k个元素是-1元素</code>。</p>
+<hr>
+<p>现在，我们将<code>前k项中的每一项的符号进行反转</code>：即对 i = 1, 2, 3, … , k 我们使用 $-a_i$ 来代替 $a_i$</p>
+<p>得到变化后的序列</p>
+<script type="math/tex; mode=display">
+a_1^\prime, a_2^\prime, a_3^\prime,\dots,a_k^\prime</script><p>我们得到的<code>新序列</code>包含<code>n+1个+1</code>和<code>n-1个-1</code>共<code>2n项</code>，</p>
+<p>该<code>数列</code>是通过对<code>原数列</code>的<code>前k个元素进行符号反转</code>而得到的，而由于<code>该序列</code>的<code>+1元素</code>比<code>-1元素</code>多<code>1个</code>（在<code>反转符号</code>之前，<code>原序列</code>的<code>+1元素</code>和<code>-1元素</code>的个数相等均为n），所以该序列必定是<code>不可接受序列</code>。</p>
+<p>为了得到<code>不可接受序列</code>的个数，我们需要做的仅仅是<code>考虑如何排列</code>这<code>n+1个+1元素</code>和<code>n-1个-1元素</code></p>
+<p>因此我们得到，<code>不可接受序列</code>的个数等同于：由<code>n+1个+1元素</code>和<code>n-1个-1元素</code>所组成的<code>2n项的数列</code>的个数。即</p>
+<script type="math/tex; mode=display">
+U_n = C_{2n}^{n+1} = \binom{2n}{n+1}</script><blockquote>
+<p>注：我们并不关心k究竟取什么值，而仅仅是关心这样一个结构：前k-1个元素中+1元素和-1元素的个数相等，且第k个元素的值为-1</p>
+<p>注：我们对于k的定义为：<script type="math/tex">a_k</script> 是使得 数列的部分和<script type="math/tex">S_k</script> ＜0的第一个元素。</p>
+<p>在<script type="math/tex">U_n</script> 的计算公式中，我们也并不关心k究竟在哪里。而仅仅关心如何排列 n+1个+1元素和n-1个-1元素，这是因为，我们可以通过所形成的排列，再根据k的定义，倒推出k所应处的位置。</p>
+</blockquote>
+<hr>
+<p>综上，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+A_n &= T_n - U_n \\
+&= \binom{2n}{n} - \binom{2n}{n+1} \\
+&= \frac{(2n)!}{(n)!(n)!} - \frac{(2n)!}{(n+1)!(n-1)!} \\
+&= \frac{(2n)!}{(n)!(n-1)!}(\frac{1}{n}-\frac{1}{n+1}) \\
+&= \frac{(2n)!}{(n)!(n-1)!}(\frac{1}{n(n+1)}) \\
+&= \frac{(2n)!}{(n)!(n+1)!} \\
+&= \frac{1}{n+1}\binom{2n}{n} \\
+&= Catanlan(n)
+\end{aligned}</script><p>Q.E.D</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><h5 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h5><h6 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h6><p>一位律师在他所<code>居住</code>的所有<code>以北n个街区</code>和<code>以东n个街区</code>的地方<code>工作</code>。每天他要走<code>2n个街区</code>去<code>工作</code>。</p>
+<p>如果他从来<code>不穿越（但可以接触）</code> <code>从家到工作场所的对角线</code>，则<code>有多少条可能的路线</code>？</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/01/22/nFqsPzNBkSRlXID.png" alt="image-20220326163649380"></p>
+<blockquote>
+<p>注：上图中n=4，律师从src到dst总共走2n个街区</p>
+</blockquote>
+<h6 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h6><p><code>律师</code>从<code>起点</code>出发到达<code>终点</code>总共需要走<code>n个水平步</code>和<code>n个垂直步</code>。</p>
+<p>所以，<code>从src到dst的总路线数量</code> <script type="math/tex">T_n</script> 应为</p>
+<script type="math/tex; mode=display">
+T_n = \binom{2n}{n}</script><p>但是，这并不是该问题的最终解。因为该问题还需要满足约束：不能<code>越过对角线</code>。</p>
+<hr>
+<p>我们设<code>向北走为+1元素</code>，<code>向东走为-1元素</code>。于是<code>每一条路线</code>都可以构成<code>一个序列</code> <script type="math/tex">a_n</script></p>
+<p><code>一条合法的路线</code>应满足</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{k} {a_i \ge 0} \quad (k = 1, 2, 3, \dots, 2n)</script><p>该模型符合<code>Catanlan数</code>，即<code>合法路线的数量</code>=<code>可接受序列的数量</code></p>
+<p>因此，<code>位于对角线上方的路线的数量</code> = <code>位于对角线下方的路线的数量</code> = Catalan(n)</p>
+<p>综上，<code>所有合法的路线的数量</code> = 2 * Catalan(n)</p>
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><h3 id="Pseudo-Catalan-Number"><a href="#Pseudo-Catalan-Number" class="headerlink" title="Pseudo-Catalan Number"></a>Pseudo-Catalan Number</h3><h4 id="Definiton"><a href="#Definiton" class="headerlink" title="Definiton"></a>Definiton</h4><p>在Catalan数的基础上，我们定义Pseudo-Catalan如下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+C_n^* &= n!\ C_{n-1} \\
+&= (n-1)!\binom{2n-2}{n-1} \\
+&= (4n-6)C_{n-1}^*
+\end{aligned}</script><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><h5 id="Example-1-1"><a href="#Example-1-1" class="headerlink" title="Example 1"></a>Example 1</h5><h6 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h6><p>设<script type="math/tex">a_1, a_2, \dots, a_n</script>为n个数。<code>运算方案</code>是指按照<script type="math/tex">a_1, a_2, \dots, a_n</script>的顺序进行<code>抽象运算</code>的方案。</p>
+<p>设 <script type="math/tex">h_n</script> 表示<code>n个数的抽象运算方案的数目</code>。</p>
+<blockquote>
+<p>注：该抽象运算为二元运算，且不支持交换律。</p>
+</blockquote>
+<p>例：<script type="math/tex">h_2 = 2</script>即$(a_1 <em> a_2) 或 (a_2 </em> a_1)$</p>
+<h6 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h6><p>尝试对<script type="math/tex">h_n</script>采用归纳法得出递推关系。</p>
+<p>首先考虑简单情况，<script type="math/tex">h_1=1</script>，<script type="math/tex">h_2 = 2</script>。</p>
+<p>接下来，考虑<script type="math/tex">h_3</script></p>
+<script type="math/tex; mode=display">h_3$$的情况可以`视为`在$$h_2$$的基础上，`再将一个元素插入到合适的位置进行抽象运算`
+
+可知：$$h_2的所有抽象运算方案: (a_1 * a_2) 和 (a_2 * a_1)</script><p>不妨考虑在<code>h_2的其中1个抽象运算方案</code> <script type="math/tex">(a_1 * a_2)</script>的基础上，<code>插入元素</code><script type="math/tex">a_3</script></p>
+<script type="math/tex; mode=display">a_3$$可以`与a1括起来`或者`与a2括起来`，所以$$a_3$$可以`选择与2个元素中的其中1个先进行运算`。
+
+而在`选定好先进行运算的元素后`，$$a_3$$还可以`选择是与该元素左运算或右运算`。
+
+因此，我们可以列出总共的2 * 2 = 4 种抽象运算方案：
+
+$$((a_3 * a_1) * a_2)</script><script type="math/tex; mode=display">((a_1 * a_3) * a_2)</script><script type="math/tex; mode=display">(a_1 * (a_3 * a_2))</script><script type="math/tex; mode=display">(a_1 * (a_2 * a_3))</script><p>但以上的方案并没有考虑完全，<script type="math/tex">a_3</script>也可以<code>选择独自参与运算</code>，即还有2种方案应当被考虑：</p>
+<script type="math/tex; mode=display">a_3 * (a_1 * a_2)</script><script type="math/tex; mode=display">(a_1 * a_2) * a_3</script><p>综上，<script type="math/tex">h_3 = 2*2 * (3-2) + 2 = 6</script> </p>
+<blockquote>
+<p>注：因为我们计算的是<script type="math/tex">a_3</script>，而<script type="math/tex">a_3</script>是基于<script type="math/tex">a_2</script>的基础的。对于<script type="math/tex">a_2</script>来说，总共2个元素，共有2-1=1次抽象运算（同理2-1=1个括号）</p>
+<p>对于<script type="math/tex">h_n</script>，可以理解为先选择n个数的排列方式，然后再插入(n-1)对括号。</p>
+</blockquote>
+<p>综上</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+2*2*(n-1-1)+2 \\
+= 4*(n-2)+2
+= 4n - 6
+\end{aligned}</script><p>由于<script type="math/tex">h_{n-1}</script>的<code>每一种乘法方案</code>均可以给出<script type="math/tex">4n-6</script>个<code>新的方案</code></p>
+<p>故，我们将<script type="math/tex">h_n</script>拓展为</p>
+<script type="math/tex; mode=display">
+h_n = (4n-6) h_{n-1} = C_n^*</script><p>Q.E.D</p>
+<h5 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h5><h6 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h6><p>如果在Example 2的例子中，我们只计数按照<script type="math/tex">a_1, a_2, a_3, ..., a_n</script>的顺序排列的<code>抽象运算方案数</code> <script type="math/tex">g_n</script> </p>
+<h6 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h6><p>也就是说，对于比Example 1中<code>计数所有的排列顺序的抽象运算方案数</code>，在这里我们<code>仅计算这1种排列顺序的抽象运算方案数</code>。</p>
+<p>xxxxxxxxxx ——————————————————————————-Current Case: BELL0.in &amp; BELL0.outExpected  Input: [5]Expected Output: [52]Your     Output: [52]Time Cost: 1.638300 ms (1638300 ns)Accepted.——————————————————————————-Current Case: BELL1.in &amp; BELL1.outExpected  Input: [15]Expected Output: [1382958545]Your     Output: [1382958545]Time Cost: 5871.995300 ms (5871995300 ns)Accepted.——————————————————————————-Current Case: BELL2.in &amp; BELL2.outExpected  Input: [16]Expected Output: [1890207555]Your     Output: []Skipped.——————————————————————————-Current Case: BELL3.in &amp; BELL3.outExpected  Input: [17]Expected Output: [1260491180]Your     Output: []Skipped.——————————————————————————-Current Case: BELL4.in &amp; BELL4.outExpected  Input: [14]Expected Output: [190899322]Your     Output: [190899322]Time Cost: 5377.599300 ms (5377599300 ns)Accepted.——————————————————————————-Current Case: BELL5.in &amp; BELL5.outExpected  Input: [13]Expected Output: [27644437]Your     Output: [27644437]Time Cost: 45.983500 ms (45983500 ns)Accepted.——————————————————————————-Current Case: BELL6.in &amp; BELL6.outExpected  Input: [6]Expected Output: [203]Your     Output: [203]Time Cost: 0.636100 ms (636100 ns)Accepted.——————————————————————————-Current Case: BELL7.in &amp; BELL7.outExpected  Input: [7]Expected Output: [877]Your     Output: [877]Time Cost: 0.658200 ms (658200 ns)Accepted.——————————————————————————-Result Statistics: √ √ → → √ √ √ √ yaml</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g_n &= \frac{h_n}{n!} \\
+&= \frac{C_n^*}{n!} \\
+&= \frac{n!\ C_{n-1}}{n!} \\
+&= C_{n-1}
+\end{aligned}</script><p>也就是说：<code>n个元素按固定顺序排列的抽象运算的方案数</code><script type="math/tex">g_n = C_{n-1}</script></p>
+<p>Q.E.D</p>
+<hr>
+<p>此外，我们也可以根据<script type="math/tex">g_n</script>的<code>定义</code>来导出它的<code>递推关系</code>。</p>
+<p>在$a_1,a_2,a_3,\dots,a_n$的<code>每一个抽象运算方案中</code>，总是存在<code>最后一次的抽象运算运算</code>，它<code>对应着最外面的括号</code>。</p>
+<p>即：</p>
+<script type="math/tex; mode=display">
+g_n=(a_1,a_2,\dots, a_k的抽象运算方案)\times(a_{k+1}, a_{k+2},\dots,a_n的抽象运算方案) \quad(1 \le k \le n-1)</script><p>故，我们有<script type="math/tex">g_k</script>种方案来选择<script type="math/tex">a_1,a_2,\dots,a_k</script>的抽象运算方案，有<script type="math/tex">g_{n-k}</script>种方案来选择<script type="math/tex">a_{k+1}, a_{k+2},\dots,a_n</script>的抽象运算方案。并且，我们有<script type="math/tex">1 \le k \le n-1</script></p>
+<p>综上：</p>
+<script type="math/tex; mode=display">
+g_n = g_1g_{n-1} + g_2g_{n-2} + \dots + g_{n-1}g_1 \quad (n \ge 2)</script><p>又有</p>
+<script type="math/tex; mode=display">
+g_n = C_{n-1}</script><p>即</p>
+<script type="math/tex; mode=display">
+C_{n-1} = C_0C_{n-2} + C_1C{n-3} + \dots + C_{n-2}C_0 \quad (n \ge 2)</script><p>我们使用<script type="math/tex">n+1</script>来代替<script type="math/tex">n</script></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Cn &= C_0C_{n-1} + C_1C_{n-2} + \dots + C_{n-1}C_0 \quad (n \ge 1) \\
+&= \sum_{k=0}^{n-1}{C_kC_{n-1-k}} \quad (n \ge 1)
+\end{aligned}</script><p>结论：</p>
+<p><script type="math/tex">g_n</script>的含义：</p>
+<ol>
+<li>将<code>有n+1条边的凸多边形</code>利用<code>插入在不相交的对角线</code>来<code>划分为三角形区域</code>的<code>方案数</code></li>
+<li>给定<code>某个顺序的抽象运算的方案数</code></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/03/26/combinatorics-catalan-number/">https://sakurawald.github.io/2022/03/26/combinatorics-catalan-number/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/combinatorics/">combinatorics</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Counting-Catalan-Number"><span class="toc-number">1.</span> <span class="toc-text">[Counting] Catalan Number</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Theorem"><span class="toc-number">1.2.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem-1-The-Number-of-Acceptable-Sequence"><span class="toc-number">1.2.1.</span> <span class="toc-text">Theorem 1 (The Number of Acceptable Sequence)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Content"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Proof"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">Example</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Example-1"><span class="toc-number">1.2.1.3.1.</span> <span class="toc-text">Example 1</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Description"><span class="toc-number">1.2.1.3.1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Analysis"><span class="toc-number">1.2.1.3.1.2.</span> <span class="toc-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extension"><span class="toc-number">1.3.</span> <span class="toc-text">Extension</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pseudo-Catalan-Number"><span class="toc-number">1.3.1.</span> <span class="toc-text">Pseudo-Catalan Number</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definiton"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">Definiton</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">Example</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Example-1-1"><span class="toc-number">1.3.1.2.1.</span> <span class="toc-text">Example 1</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Description-1"><span class="toc-number">1.3.1.2.1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Analysis-1"><span class="toc-number">1.3.1.2.1.2.</span> <span class="toc-text">Analysis</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Example-2"><span class="toc-number">1.3.1.2.2.</span> <span class="toc-text">Example 2</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Description-2"><span class="toc-number">1.3.1.2.2.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Analysis-2"><span class="toc-number">1.3.1.2.2.2.</span> <span class="toc-text">Analysis</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

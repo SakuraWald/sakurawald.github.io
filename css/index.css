@@ -3269,10 +3269,6 @@ h1.page-title + .tag-cloud-list {
 .medium-zoom-overlay {
   z-index: 99999 !important;
 }
-#gitalk-container .gt-meta {
-  margin: 0 0 0.8em;
-  padding: 6px 0 16px;
-}
 .katex-wrap {
   overflow: auto;
 }

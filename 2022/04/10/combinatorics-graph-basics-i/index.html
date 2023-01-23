@@ -1,0 +1,960 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Combinatorics] Graph Basics | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Combinatorics] Graph Basics',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Graph-Basics"><a href="#Graph-Basics" class="headerlink" title="Graph Basics"></a>Graph Basics</h1>
+$$
+\boxed{Macro}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\square}
+\newcommand\define{\dot{=}}
+$$
+
+
+<h2 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><script type="math/tex; mode=display">
+\lb{\a{
+V = \{a,b,c,\cdots\} \\
+E = \{\alpha, \beta, \cdots\} \\
+}} \implies G = (V, E)</script><h3 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h3><p><code>图的阶</code> =$|V|$</p>
+<hr>
+<p>若存在<code>边</code>$\alpha = {x, y} = {y,x}$ ，则：</p>
+<ul>
+<li>$\alpha$<code>连接 (join)</code> <code>顶点</code>$x$和<code>顶点</code>$y$</li>
+<li><code>顶点</code>$x$和<code>顶点</code>$y$是<code>邻接 (adjacent)</code>的。</li>
+<li><code>顶点</code>$x$和<code>边</code>$\alpha$是<code>关联的</code>。</li>
+</ul>
+<hr>
+<p><code>顶点点</code>$x$：我们给<code>每一个顶点x</code>取一个<code>不同的点</code>（用该<code>顶点</code>来标记<code>顶点点</code>）</p>
+<p><code>边曲线</code>$\alpha$：两个<code>顶点点</code>之间能通过<code>一条简单曲线</code>连接起来，当且仅当，<code>所对应的顶点对</code>确定<code>G的一条边</code>$\alpha$</p>
+<blockquote>
+<p>一条<code>边曲线</code>$\alpha$通过一个<code>顶点点</code>$x$，当且仅当，<code>顶点</code>$x$是<code>边</code>$\alpha$的一个<code>顶点</code></p>
+</blockquote>
+<hr>
+<p><code>多重图</code>：允许<code>顶点</code>之间形成<code>多条边</code></p>
+<blockquote>
+<p>换句话说，图的<code>边集</code>$E$是<code>多重集合</code></p>
+</blockquote>
+<p><code>一般图</code>：允许<code>图</code>中存在<code>环</code></p>
+<blockquote>
+<p>我们说的<code>图</code>通常就是指<code>一般图</code></p>
+<p>可以将<code>环</code>视为<code>一个顶点重复两次而构成的多重集合</code></p>
+</blockquote>
+<p><code>简单图</code>：所有<code>边</code>的<code>重数</code>均为<code>1</code>的图</p>
+<p><code>完全图</code>$K_n$：<code>每一对不同的顶点之间</code>都有<code>边</code></p>
+<blockquote>
+<p>一个<code>n阶完全图</code>存在$\frac{n(n-1)}{2}$条<code>边</code></p>
+</blockquote>
+<p><code>平面图</code>：如果<code>一般图</code>可以在<code>平面</code>上画出它的图形，使得<code>任意两条边</code>仅在<code>顶点点</code>处<code>相交</code>，则称为<code>平面图</code></p>
+<p><code>同构图</code>：给定<code>图</code>$G = (V, E)$和<code>图</code>$G’ = (V’, E’)$，如果$\theta: V \rightarrow V’$和$\delta: E \rightarrow E’$是<code>双射</code>，则称这两个图是<code>同构的</code></p>
+<p><code>连通图</code>：如果<code>一般图</code>中的<code>任何一对顶点$$x$$和</code>$y$，都存在<code>连接x和y的路径</code>，则称该图是<code>连通的 (Connected)</code>，否则该图即为<code>非连通的 (Disconnected)</code></p>
+<p><code>二分图</code>：可以将<code>图$$G$的</code>顶点集<code>$V$$划分</code>为<code>X和Y两个部分</code>，且<code>图</code>$G$的<code>边集</code>$E$中的任何一条边满足：<code>一个端点在X部分</code>，<code>另一个端点在Y部分</code></p>
+<hr>
+<p><code>顶点的度数 (次数)</code>$deg(x)$：与<code>顶点</code>相<code>关联</code>的<code>边</code>的数目。</p>
+<blockquote>
+<p>一个<code>环</code>对度数的贡献为<code>2</code></p>
+</blockquote>
+<p><code>图的度序列</code>：以<code>递减顺序给出的图G的所有顶点的度数的数列</code> $(d_1,d_2,\cdots,d_n), \quad d_1 \ge d_2 \ge \cdots d_n \ge 0$</p>
+<hr>
+<script type="math/tex; mode=display">
+\a{
+
+\t{walk} \lb {
+&\t{trail} \\
+&\t{path} \rightarrow{\t{cycle}}
+}
+
+}</script><p><code>途径 (Walk)</code>：形如$\s{x<em>0, x_1},\s{x_1,x_2}, \cdots, \s{x</em>{m-1}, x_{m}}$的m条<code>边的序列</code></p>
+<blockquote>
+<p>上述是一种<code>以边表示法</code>，也可以用<code>以顶点表示法</code>：$x_0 - x_1 - x_2 - \cdots - x_m$</p>
+<p><code>途径</code>中可以有<code>重复边</code>：</p>
+<blockquote>
+<p><code>重复边</code>：如果<code>一条边</code>在<code>一条途径</code>中<code>出现的次数</code>不超过<code>边的重数</code>，则<code>该边</code>不能算作<code>重复边</code></p>
+<blockquote>
+<p>一种观点：可以考虑<code>图的图形</code>，如果我们<code>没有用尽顶点对之间的所有边曲线</code>，则不能称为<code>重复边</code></p>
+<p>推而广之：如果<code>图中所有的边都只出现1次</code>，那么我们认为<code>当图中任何一条边达到2次</code>就可以算作<code>重复边</code>，否则不算重复边。</p>
+<p>注意：在某些情况下，我们说<code>图有重边</code>指的含义是<code>只要图中任何两个顶点对之间</code>存在<code>1条以上的边</code>。</p>
+<p>这和我们此处所说的概念不同。这里的<code>重复边</code>是对<code>途径</code>而言的，而不是对<code>图</code>而言的。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><code>迹 (Trail)</code>：不含<code>重复边</code>的<code>途径</code></p>
+<blockquote>
+<p>另一种说法：边的<code>出现次数</code>不超过<code>重数</code>的<code>途径</code></p>
+</blockquote>
+<p><code>路径 (Path)</code>：除了<code>起点</code>和<code>终点</code>外的<code>所有的顶点</code>都不相同的<code>途径</code></p>
+<p><code>圈 (Cycle)</code>：<code>封闭的路径</code></p>
+<hr>
+<p><code>距离 (Distance)</code>$d(x,y)$：在<code>连通图</code>中，表示<code>连接</code> <code>顶点</code>$x$和<code>顶点</code>$y$的<code>途径</code>的<code>最短长度</code></p>
+<blockquote>
+<p>容易知道$d(x,x) = 0 $，而且显然<code>距离为$$d(x,y)$$的途径</code>必定是<code>一条路径</code></p>
+<blockquote>
+<p>不要考虑<code>零权重</code>边！</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>若有<code>图</code>$G = (V, E)$</p>
+<p><code>子图</code>：若$V’ \subseteq V, E’ \subseteq E$，则<code>图</code>$G’ = (V’, E’)$称为<code>图G的子图</code></p>
+<p><code>导出子图 (Induced Subgraph)</code>：若$\b{V’ \subseteq V}, E’ = \s{(x,y)| x, y \in V’ ,  (x, y) \in E}$，则<code>图</code>$G’ = (V’, E’)$称为<code>图G的导出子图</code></p>
+<p><code>生成子图 (Spanning Subgraph)</code>：若$\b{V’ = V}, E’ = \s{(x,y)|x,y\in V’, (x,y) \in E}$，则<code>图</code>$G’ = (V’, E’)$称为<code>图G的生成子图</code></p>
+<hr>
+<p><code>连通分量 (Connected Component)</code>：<code>最大的连通的导出子图</code></p>
+<script type="math/tex; mode=display">
+\lb {
+& \t{the partition of } V \t{ is } \mathcal{V} = \s{V_1, V_2, \cdots V_k} \\
+&\t{the induced subgraphs from }\mathcal{V} \t { are } G_1, G_2,\cdots G_k \\
+} & \implies G_1, G_2, \cdots, G_k \t{ are the connected components of }G \\
+&\implies \forall i \ne j, x \in V_i, y \in V_j \implies \text{there is no \b{walk} between } x \t{ and } y</script><hr>
+<p><code>悬挂顶点 (Pendent Vertex)</code>：图G中<code>度数为1</code>的<code>顶点</code></p>
+<p><code>悬挂边 (Pendent Edge)</code>：与<code>悬挂顶点</code>相<code>邻接</code>的<code>边</code></p>
+<h3 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-Handshake-Theorem"><a href="#Theory-1-Handshake-Theorem" class="headerlink" title="Theory 1: Handshake Theorem"></a>Theory 1: Handshake Theorem</h4><script type="math/tex; mode=display">
+\a{
+d_1 + d_2 + \cdots + d_n \mod 2 = 0 \quad (d_i\text{ is the degree of the vertex})
+}</script><blockquote>
+<p>这个结论隐含着推论：所有的<code>奇度数顶点</code>的个数必定是<code>偶数</code></p>
+</blockquote>
+<hr>
+<p>1条<code>边</code>必定<code>连接</code> <code>2个顶点</code>，而1个<code>环</code>对<code>度数</code>的贡献为<code>2</code>。</p>
+<p>Q.E.D</p>
+<h4 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory 2"></a>Theory 2</h4><p>两个<code>同构的一般图</code>具有相同的<code>度序列</code>，但具有<code>相同的度序列</code>的<code>图</code>不一定是<code>同构</code>的。</p>
+<h4 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory 3"></a>Theory 3</h4><p>若<code>图</code>$G = (V,E)$是<code>一般图</code>，则<code>顶点集</code>$V$可以被<code>唯一地划分</code>为<code>非空子集</code>$V_1, V_2, \cdots V_k$满足：</p>
+<ol>
+<li><p>分别<code>由$$V_1, V_2, \cdots, V_k$$所给的导出子图</code>$G_1=(V_1, E_1), G_2 = (V_2, E_2), \cdots, G_k=(V_k, E_k)$都是<code>连通的</code></p>
+</li>
+<li><script type="math/tex; mode=display">
+\a{
+\forall i \ne j, x \in V_i, y \in V_j \implies \t{there is no a walk between } x \t{ and } y
+}</script></li>
+</ol>
+<hr>
+<h4 id="Theory-4"><a href="#Theory-4" class="headerlink" title="Theory 4"></a>Theory 4</h4><p><code>同构图</code>本质上是<code>相同的图</code></p>
+<h2 id="Euler-Trails-Bridges-of-Koenigsberg"><a href="#Euler-Trails-Bridges-of-Koenigsberg" class="headerlink" title="Euler Trails: Bridges of Koenigsberg"></a>Euler Trails: Bridges of Koenigsberg</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>如果<code>图</code>$G$中的一条<code>闭迹 (Closed Trail)</code>  包含了<code>G中所有的边</code> <code>有且仅有1次</code>，则称之为<code>欧拉迹 (Euler Trail)</code></p>
+<blockquote>
+<p>注意我们之前对<code>重复边</code>的定义。</p>
+</blockquote>
+<h3 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory 1"></a>Theory 1</h4><p>设<code>图</code>$G = (V,E)$是<code>一般图</code>，如果它的<code>每个顶点的度数</code>都是<code>偶数</code>，则<code>G的每条边</code>都属于<code>一条欧拉闭迹</code>，因而也属于一个<code>圈</code></p>
+<script type="math/tex; mode=display">
+\lb {
+& G = (V, E) \\
+& \forall x \in V, deg(x) \mod 2 = 0
+} \implies \t{Each edge of graph G belongs to an \b{euler closed trail}}</script><hr>
+<ul>
+<li>必要条件：每个顶点的度数均为偶数</li>
+</ul>
+<p>我们考虑<code>欧拉迹</code>中的<code>某个顶点</code>，我们需要<code>进入这个顶点</code>，然后<code>离开这个顶点</code>。</p>
+<blockquote>
+<p>如果是<code>欧拉圈</code>，则<code>刚开始离开起点</code>，<code>最终进入起点</code>。</p>
+<p>如果是<code>欧拉迹</code>，则<code>刚开始离开起点</code>，<code>最终进入终点但不再离开终点</code></p>
+</blockquote>
+<p>则意味着，我们需要<code>一条进入该顶点的边</code>和<code>一条离开该顶点的边</code>。</p>
+<p>换句话说，<code>每个顶点的度数</code>均为<code>偶数</code>。</p>
+<ul>
+<li>寻找包含初始边的一条<code>欧拉闭迹</code>的方法</li>
+</ul>
+<ol>
+<li>令 $i = 1$</li>
+<li>令 $W = \s{x_0, x_1}$</li>
+<li>令 $F = \s{\alpha_1 =  \s{x_0, x_1}}$</li>
+<li>当$x_i \ne x_0$时，执行：<ol>
+<li>找出一条<code>不在F中的边</code>$\alpha<em>{i+1} = \s{x_i, x</em>{i+1}}$</li>
+<li>将$x<em>{i+1}$放入$W$中（有可能$x</em>{i+1}$已经在W中）</li>
+<li>将$\alpha_{i+1}$放入$F$中</li>
+<li>令$i = i + 1$</li>
+</ol>
+</li>
+</ol>
+<hr>
+<ul>
+<li><p>初始化：算法将<code>初始边</code>$\alpha_1$加入到$F$中，同时将<code>与该边关联的2个顶点</code>加入到$W$中</p>
+</li>
+<li><p>持续：如果$x<em>i \ne x_0$，则我们<code>必定</code>可以找到一条边$\alpha</em>{i+1} = \s{x<em>i, x</em>{i+1}}$</p>
+<blockquote>
+<p>如果<code>i的最终值为k</code>，则<code>所产生的顶点集$$W = \s&#123;x_0, x_1, \cdots, x_k&#125;$，</code>所产生的边集<code>$F = \s&#123;\alpha_1, \cdots, \alpha_k&#125;$，则$\alpha_1,\cdots,\alpha_k$就是</code>包含初始边<code>$\alpha_1$$的一条闭迹</code>。</p>
+<blockquote>
+<p>$\alpha<em>1 = \alpha</em> k$</p>
+</blockquote>
+<hr>
+<p>只需证明：若$x_i \ne x_0$，则必有<code>一条不在F中的边</code>与$x_i$<code>关联</code>。</p>
+<blockquote>
+<p>利用<code>握手定理</code>：在整个算法过程中，只有<code>顶点</code>$x_0$和<code>最新加入的顶点</code>$x_i$是<code>奇度数</code>。</p>
+<p>如果$x_0$和$x_i$ 是<code>偶度数</code>，则必定是$x_0 = x_i$</p>
+<p>如果$x_0 \ne x_i$，则$x_i$是<code>奇度数</code>，那么<code>必定</code> <code>还有另一个顶点与$$x_i$$相邻接</code></p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>终止：所得到的$F = \s{\alpha_1, \cdots, \alpha_k}$即为一条<code>包含初始边</code>的<code>闭迹</code></p>
+</li>
+</ul>
+<h4 id="Theory-2-Euler’s-One-Stroke-Theorem"><a href="#Theory-2-Euler’s-One-Stroke-Theorem" class="headerlink" title="Theory 2: Euler’s One-Stroke Theorem"></a>Theory 2: Euler’s One-Stroke Theorem</h4><script type="math/tex; mode=display">
+\boxed{\t{Euler's One-Stroke Theorem}} \\
+\lb{
+& G = \s{V, E} \t{ is connected} \\
+&\t{There is an \b{euler closed trail} in the graph}
+} \iff \forall x \in V,deg(x) \mod 2  =0</script><hr>
+<ul>
+<li>必要性：根据前面的分析。如果<code>图G</code>中存在<code>欧拉闭迹</code>，则<code>图G</code>的<code>每个顶点</code>的度数都是偶数。Q.E.D</li>
+<li><p>充分性：</p>
+<ol>
+<li>设$G_1 = (V, E_1) = G$，选定$G_1$中的<code>任意一条边$$\alpha_1$作为</code>求包含初始边的欧拉闭迹的算法<code>的</code>初始边<code>，得到</code>包含边<code>$\alpha_1$$的闭迹</code>$\gamma_1$。</li>
+<li><p>设$G_2 = (V, E_1 - \gamma_1)$，则$G_2$<code>中的所有顶点</code>的度数<code>仍然是偶数！</code>，<code>由于$$G$$是连通的</code>，所以$G_2$如果存在边，则<code>至少有一条边$$\alpha_2$与</code>闭迹<code>$\gamma_1$$中的某个顶点$$z_1$$相邻接</code>，则我们可以对$G_2$<code>中的边$$\alpha_2$运行</code>求包含初始边的欧拉闭迹的算法<code>，得到</code>包含边<code>$\alpha_2$$的闭迹</code>$\gamma_2$。然后，我们可以将$\gamma_1$和$\gamma_2$在<code>顶点</code>$z_1$处进行<code>拼接</code>：得到<code>包含</code>$\gamma_1$和$\gamma_2$的<code>欧拉闭迹</code>$\gamma_1 \overset{z_1}{*} \gamma_2$</p>
+<blockquote>
+<ul>
+<li>如果图G的所有顶点的度数都是偶数的话，去掉1个欧拉闭迹，则所有顶点的度数仍为偶数。</li>
+<li>如果图G不是连通的，则根本不存在<code>欧拉闭迹</code>；如果图G是连通的，则我们可以找到<code>欧拉闭迹中的某个顶点</code>作为<code>拼接点</code>（如果找不到该顶点说明剩余的图的边集为空）</li>
+</ul>
+</blockquote>
+</li>
+<li>…</li>
+<li>最终，我们可以得到<code>包含图G中所有边的欧拉闭迹</code>：$\gamma_1 \overset{z_1}{<em>} \gamma_2 \overset{z_2}{</em>} \cdots \overset{k-1}{*} \gamma_k$</li>
+</ol>
+</li>
+</ul>
+<p>Q.E.D</p>
+<h4 id="Theory-3-1"><a href="#Theory-3-1" class="headerlink" title="Theory 3"></a>Theory 3</h4><script type="math/tex; mode=display">
+\boxed{\t{Construct Euler Open Trail}} \\
+\lb {
+& G = (V, E) \t{ is connected} \\ 
+& \t{There is an \b{euler open trail}}
+} \iff \t{There are \b{exactly} two \b{odd-degree vertexes} } u \t{ and } v</script><hr>
+<blockquote>
+<p><code>欧拉闭迹</code>要求<code>起始顶点</code>和<code>终止顶点</code>相同，而<code>欧拉开迹</code>则没有这个限制。</p>
+<p>如果<code>起始顶点</code>和<code>终止顶点</code>不相同，则<code>除了这两个顶点是奇度数</code>之外，<code>其他所有的顶点</code>都应该是<code>偶度数</code>。</p>
+<p>因此，可以在<code>欧拉闭迹</code>的基础上，修改<code>起点</code>和<code>终点</code>得到<code>欧拉开迹</code></p>
+</blockquote>
+<p>已知定理：如果<code>图G中所有的顶点的度数都是偶数</code>，则我们可以得到<code>一条包含图G中所有边的欧拉闭迹</code></p>
+<p>现在，如果<code>图G中除了顶点u和顶点v这两个顶点是奇度数外，其余顶点都是偶度数顶点</code>，则我们可以添加<code>辅助边</code>$\s{u,v}$来<code>连接</code>这两个<code>奇度数顶点</code>，使得他们成为<code>偶度数顶点</code>，我们称该图为$G’$，则我们可以得到$G’$中<code>包含所有边的欧拉闭迹</code>，但由于<code>欧拉开迹不要求起点和终点相同</code>，则我们在这条<code>欧拉闭迹</code>的基础上<code>去除</code>这条<code>辅助边</code>，即可得到<code>欧拉开迹</code></p>
+<p>Q.E.D</p>
+<h4 id="Theory-4-Euler’s-N-Stroke-Theorem"><a href="#Theory-4-Euler’s-N-Stroke-Theorem" class="headerlink" title="Theory 4: Euler’s N-Stroke Theorem"></a>Theory 4: Euler’s N-Stroke Theorem</h4><p>设<code>图G</code>是一般连通图，设<code>G中奇度数顶点的个数 &gt; 0</code>，则<code>G的边</code>可以被划分为<code>m/2个开迹</code>，但不能被划分为<code>少于m/2个开迹</code></p>
+<hr>
+<p>归纳法：</p>
+<ul>
+<li><p>如果<code>奇度数顶点 = 1</code>：则根本不满足<code>握手定理</code>，不存在这样的图。满足$\lfloor \frac{1}{2} \rfloor = 0$</p>
+</li>
+<li><p>如果<code>奇度数顶点 = 2</code>：则$\frac{2}{2} = 1$，可以通过<code>加入</code>一条<code>连接这两个奇度数顶点的边</code>来得到<code>欧拉闭迹</code>，然后<code>去除该边</code>即为<code>欧拉开迹</code></p>
+</li>
+<li>如果<code>奇度数顶点 = 3</code>：同<code>奇度数顶点 = 1</code></li>
+<li>如果<code>奇度数顶点 = 4</code>：重复<code>奇度数顶点 = 2</code>的步骤，得到<code>2条欧拉开迹</code>。</li>
+</ul>
+<p>…</p>
+<blockquote>
+<p>能完成<code>n笔画</code>的<code>充要条件</code>是：存在<code>n条</code>的<code>欧拉闭迹</code>或<code>欧拉开迹</code></p>
+<blockquote>
+<p> 注：某些表述方法把<code>欧拉开迹</code>称为<code>欧拉路径</code>，将<code>欧拉闭迹</code>称为<code>欧拉回路</code>。他们是一样的概念</p>
+</blockquote>
+</blockquote>
+<h4 id="Theory-5"><a href="#Theory-5" class="headerlink" title="Theory 5"></a>Theory 5</h4><p>设<code>图G</code>是有<code>K条边</code>的一般<code>连通图</code>，则G中存在<code>一条长度为2K的闭途径</code>：该途径中，<code>每条边的使用次数</code>是<code>它的重数</code>的<code>2倍</code></p>
+<hr>
+<ul>
+<li>Proof 1</li>
+</ul>
+<p>对<code>任何一个顶点</code>使用<code>dfs遍历方法</code>，则<code>连通图G</code>中的<code>每一条边</code>均会被<code>dfs访问1次</code>，以及<code>回溯1次</code>。</p>
+<p>这等价于<code>先走过这条边</code>，然后再<code>走回这条边</code></p>
+<ul>
+<li>Proof 2</li>
+</ul>
+<p>构造$G’$为将$G$中的<code>每条边</code>的<code>重数</code>增加<code>1倍</code>所得的图。则$G’$是有2K条边的连通图，且$G’$中存在<code>欧拉闭迹</code>，该<code>欧拉闭迹</code>就是$G$中的<code>一条闭路径</code></p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><h4 id="Example-1-Bridges-of-Koenigsberg"><a href="#Example-1-Bridges-of-Koenigsberg" class="headerlink" title="Example 1: Bridges of Koenigsberg"></a>Example 1: Bridges of Koenigsberg</h4><h4 id="Example-2-Chinese-Postman-Problem"><a href="#Example-2-Chinese-Postman-Problem" class="headerlink" title="Example 2: Chinese Postman Problem"></a>Example 2: Chinese Postman Problem</h4><p>若<code>图G</code>是一般连通图，求使用图G的<code>每一条边</code> <code>至少1次</code>的<code>一条最短路径</code>。</p>
+<h2 id="Hamiltonian-Path-and-Hamiltonian-Circuit"><a href="#Hamiltonian-Path-and-Hamiltonian-Circuit" class="headerlink" title="Hamiltonian Path and Hamiltonian Circuit"></a>Hamiltonian Path and Hamiltonian Circuit</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><p>若<code>图G</code>是简单图，能否<code>沿着G的边</code>确定一条路线：使得它从<code>G的某一顶点</code>出发，在访问<code>其他每一个顶点</code> <code>正好1次</code>之后，又<code>返回起点</code>？</p>
+<blockquote>
+<p><code>边的重复</code>并不会影响<code>哈密顿路径</code>或<code>哈密顿圈</code>的存在性，因为他们是针对<code>顶点</code>而定义的。</p>
+<p><code>欧拉闭迹</code>：包含图G的每一条边恰好1次的<code>闭迹</code></p>
+<p><code>哈密顿圈</code>：包含图G的每一条边恰好1次的<code>闭路径</code></p>
+</blockquote>
+<h3 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-1"><a href="#Theory-1-1" class="headerlink" title="Theory 1"></a>Theory 1</h4><p>$K_n$中存在$n!$条<code>哈密顿路径</code>，也存在$n!$个<code>哈密顿圈</code></p>
+<hr>
+<p> 因为n个顶点中，可以从任何一个顶点到达任何一个其他顶点：<code>n个顶点的排列</code>一一对应于$n!$个<code>哈密顿路径</code>和<code>哈密顿圈</code></p>
+<h4 id="Theory-2-1"><a href="#Theory-2-1" class="headerlink" title="Theory 2"></a>Theory 2</h4><p>带有<code>桥</code>的<code>阶</code>$n \ge 3$的<code>连通图</code>不存在<code>哈密顿圈</code></p>
+<hr>
+<p>归纳法：</p>
+<p>设该<code>桥</code>$\alpha = \s{x, y}$，则如果将<code>桥</code>删除，可以得到<code>2个连通分量</code>:$G_1, G_2$</p>
+<p>不妨假设，我们的<code>哈密顿回路</code>的<code>起始顶点</code>在$G_1$，则我们需要通过<code>桥</code>$\alpha$到达$G_2$。</p>
+<p>然后，我们<code>还必须重新返回位于$$G_1$$的起始顶点</code>，而这意味着，我们<code>必须再次经过桥</code>（因为<code>桥</code>$\alpha$是$G_1$和$G_2$之间穿越的唯一方法）</p>
+<p>而这将不满足<code>哈密顿圈</code>的定义。</p>
+<blockquote>
+<p>实际上，它甚至也没有<code>欧拉闭迹</code></p>
+</blockquote>
+<p>Q.E.D</p>
+<h4 id="Theory-3-Ore-Property"><a href="#Theory-3-Ore-Property" class="headerlink" title="Theory 3: Ore Property"></a>Theory 3: Ore Property</h4><p><code>Ore Propetry</code>：<code>图</code>$G$对所有<code>不邻接的不同顶点x，y的对</code>，有：$deg(x) + deg(y) \ge n$</p>
+<p>若<code>图</code>$G$是满足<code>Ore Property</code>且<code>阶数</code>$n \ge 3$的简单图，则<code>图</code>$G$中存在<code>哈密顿圈</code></p>
+<hr>
+<ul>
+<li>满足<code>Ore Property</code>的<code>图</code>$G$是<code>连通的</code></li>
+</ul>
+<p>假设<code>图G</code>是不连通的，则图$G$不可能满足<code>Ore Property</code>。</p>
+<p>若将图$G$的<code>所有顶点</code>划分为两个子集$U$和$W$，使得图G中不存在<code>任何一条连接U中一个顶点和W中一个顶点的边</code>，</p>
+<p>设$|U| = r, |W| =s \implies r + s = n$</p>
+<p>则$deg(U) = r - 1, deg(W) = s - 1 \implies deg(G) = r + s - 2 = n - 2$</p>
+<p>与假设前提矛盾，故图G是连通的。</p>
+<p>Q.E.D</p>
+<hr>
+<ul>
+<li><p>寻找<code>哈密顿圈</code>的算法</p>
+<ul>
+<li><p>Step 1: 从<code>任意一个顶点</code>出发，在它的任意一端<code>邻接一个顶点</code>，构造一条越来越长的路径，直到该路径无法再加长为止：$\gamma: y_1-y_2-\cdots-y_m$</p>
+</li>
+<li><p>Step 2: 检查$y_1$和$y_m$是否<code>邻接</code></p>
+<ul>
+<li>Step 2-1 如果不邻接，跳转到Step3；否则，跳转到Step 2-2</li>
+<li>Step 2-2 如果$m=n$，则停止构造并输出<code>哈密顿圈</code>$\b{y_1-y_2-\cdots-y_m-y_1}$，否则，$y_1$和$y_m$是邻接的且$m \lt n$，转到Step 2-3</li>
+<li>Step 2-3 找出一个<code>不在$$\gamma$$上的顶点$$z$和</code>在<code>$\gamma$$上的顶点</code>$y<em>k$，使得$z$和$y_k$邻接。将$\gamma$用下面的<code>长度为m+1的路径</code>来代替：$\r{z}-\b{y_k}-\cdots-y_m-y_1-\cdots-\b{y</em>{k-1}}$ 并转回到Step 2-2</li>
+</ul>
+</li>
+<li><p>Step 3: 找出一个<code>顶点</code>$y<em>k (1 \lt k \lt m)$，使得$y_1$和$y_k$邻接，且$y</em>{k-1}$和$y<em>m$邻接，将$\gamma$用下面的<code>路径</code>代替：$\b{y_1} - \cdots - \b{y</em>{k-1} - b{y_m}} - \cdots -\b{y_k}$</p>
+<p>这条路径的两个端点$y_1$和$y_k$是邻接的，转回到Step 2-2</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>证明：Step 2-3 必定能找到一个特定的顶点$z$</p>
+<p>因为有$m \lt n$且图是连通的，所以必定存在一个<code>不在路径$$\gamma$$上的顶点</code>$z$，它与$y_1,\cdots,y_m$中的某个顶点邻接。</p>
+</li>
+</ul>
+<ul>
+<li>证明：Step3 必定能找到特定的顶点$y_k$</li>
+</ul>
+<p>已知$y_1$和$y_m$不邻接，设$deg(y_1) = r,deg(y_m) = s \implies r + s \ge n$</p>
+<p>因为$\gamma$是<code>一条最长的路径</code>，所以$y<em>1$只能与$\gamma$<code>上的顶点</code>相邻接，即与$\b{y_2,\cdots,y</em>{m-1}}$中的r个顶点相邻接。</p>
+<p>同理，$y<em>m$与$\b{y_2,\cdots,y</em>{m-1}}$中的s个顶点相邻接。</p>
+<p><code>与$$y_1$$邻接的r个顶点中的每个顶点</code>都位于<code>路径$$\gamma$$上某个顶点的前面</code>，且在<code>这些顶点</code>中，<code>必定有一个</code>与$y_m$邻接。否则，$y_m$最多与$(m-1)-r$个顶点邻接，则$s \le m - 1- r \implies \b{r + s \le m - 1 \le n - 1}$ 与Ore性质矛盾。</p>
+<p>因此，<code>存在一个顶点</code>$y<em>k$：使得$y_1$与$y_k$邻接，且$y_m$与$y</em>{m-1}$邻接。</p>
+<p>因此，算法在G中构造出一条哈密顿圈会后会停止。</p>
+<h4 id="Theory-4-1"><a href="#Theory-4-1" class="headerlink" title="Theory 4"></a>Theory 4</h4><p>在<code>阶数</code>$n \ge 3$的简单图中，如果<code>每个顶点的度数</code>至少为$n/2$，则图中必定存在<code>哈密顿圈</code></p>
+<h4 id="Theory-5-1"><a href="#Theory-5-1" class="headerlink" title="Theory 5"></a>Theory 5</h4><p>在一个n阶简单图中，如果<code>每对不邻接的顶点</code>的<code>度数之和</code>至少为<code>n-1</code>，则图中存在<code>哈密顿路径</code></p>
+<h2 id="Bipartite-Graph"><a href="#Bipartite-Graph" class="headerlink" title="Bipartite Graph"></a>Bipartite Graph</h2><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition"></a>Definition</h3><p>若$G=(V,E)$是一个<code>多重图</code>，如果<code>顶点集V</code>可以被<code>划分</code>为两个子集<code>X</code>和<code>Y</code>，使得<code>G中的每一条边</code>都有<code>一个顶点在X</code>，<code>另一个顶点在Y</code>，</p>
+<p>则我们称<code>图G</code>是<code>二分图</code>。</p>
+<p><code>完全二分图</code>$K_{m,n}$：<code>二分图</code>的<code>X中的每个顶点</code>都与<code>Y中的每个顶点</code>相连。</p>
+<h3 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-2"><a href="#Theory-1-2" class="headerlink" title="Theory 1"></a>Theory 1</h4><p>一个<code>多重图</code>是<code>二分的</code>，当且仅当，<code>多重图的每一个圈的长度</code>均为<code>偶数</code></p>
+<hr>
+<p>若图G是有2划分X，Y的二分图，则<code>G中的一条途径上的顶点</code> 必<code>交替地</code>取自<code>X</code>和<code>Y</code>。</p>
+<p>我们<code>假设</code>：<code>G中的每一个圈的长度均为偶数</code>，<code>G是连通的</code>，<code>x是G的任意一个顶点，X是由那些到x的距离为偶数的顶点构成的集合，Y是由那些到x的距离为奇数的顶点构成的集合</code></p>
+<ul>
+<li>假设：<code>图G是连通的</code>。则我们有<code>X + Y = V</code></li>
+</ul>
+<p>现在<code>证明：X，Y是一个2划分（即X中的任意两个顶点不邻接，Y中的任意两个顶点不邻接）</code></p>
+<p>我们<code>反证假设：存在一条边&#123;a, b&#125;使得</code>$a \in X, b \in X$</p>
+<p>我们设<code>从x到a的最短路径</code>$\alpha: x-\cdots-a$和<code>从x到b的最短路径</code>$\beta:x-\cdots-b$</p>
+<p>由于$\alpha$和$\beta$拥有相同的起始顶点$x$，则我们不妨设<code>这两条途径中最后一个相同的顶点</code>$z$</p>
+<p>从而，我们得到：$\alpha: \b{x-\cdots-z}-\cdots-a$和$\beta:\b{x-\cdots-z}-\cdots-b$</p>
+<p><code>分解途径</code>得到：$\alpha_1 = \beta_1:x-\cdots-z$</p>
+<p>$\alpha_2: z - \cdots-a$和$\beta_2: z- \cdots-b$</p>
+<p>所以，我们得到：$\alpha_2$和$\beta_2$的长度<code>要么都是奇数</code>，<code>要么都是偶数</code>。</p>
+<p>而<code>边&#123;a, b&#125;的存在</code>意味着：图G中有<code>一个长度为奇数的圈</code>$z-\cdots-\b{a-b}-\cdots-z$</p>
+<p>与假设矛盾。故：图G中不可能存在<code>连接X中顶点a和b的边&#123;a, b&#125;</code>。</p>
+<p>同理，可证图G中不可能存在<code>连接Y中顶点a和b的边&#123;a, b&#125;</code></p>
+<ul>
+<li>假设：图G是不连通的。则只需用上述方式证明图G的每一个<code>连通分量</code>都是<code>二分的</code>，即可证明<code>图G</code>是<code>二分的</code></li>
+</ul>
+<h4 id="Theory-2-2"><a href="#Theory-2-2" class="headerlink" title="Theory 2"></a>Theory 2</h4><p>设G是有二划分的X，Y的二分图：</p>
+<ul>
+<li>若$|X| \ne |Y|$，则G中不存在<code>哈密顿圈</code>。</li>
+<li>若$|X|=|Y|$，则G中不存在<code>起始于X中的顶点 又 终止于X中的顶点的哈密顿路径</code></li>
+<li>若$\Big||X| - |Y|\Big| \ge 2$，则G中不存在<code>哈密顿路径</code></li>
+<li>若$|X| = |Y| + 1$，则G中不存在<code>起始于X又终止于Y的哈密顿路径</code></li>
+</ul>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><h4 id="Example-1-Reflective-Gray-Code"><a href="#Example-1-Reflective-Gray-Code" class="headerlink" title="Example 1: Reflective Gray Code"></a>Example 1: Reflective Gray Code</h4><p><code>格雷码</code> $\implies$ <code>哈密顿路径</code></p>
+<p><code>反射格雷码</code> $\implies$ <code>哈密顿圈</code></p>
+<h4 id="Example-2-Board-Coloring-Problem"><a href="#Example-2-Board-Coloring-Problem" class="headerlink" title="Example 2: Board Coloring Problem"></a>Example 2: Board Coloring Problem</h4><h4 id="Example-3-The-vaulting-horse-problem"><a href="#Example-3-The-vaulting-horse-problem" class="headerlink" title="Example 3: The vaulting horse problem"></a>Example 3: The vaulting horse problem</h4><p><code>跳马路线</code>：能够让<code>马</code>落在<code>棋盘上的所有格子</code>恰好1次的路线。$\implies$ <code>哈密顿路径</code></p>
+<p><code>重复路线 (Reentrant)</code>：可以<code>循环的</code> <code>跳马路线</code> $\implies$ <code>哈密顿圈</code></p>
+<h2 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h2><h3 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h3><h4 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition 1"></a>Definition 1</h4><p>n阶连通图<code>至少有n-1条边</code>。此外，对于每一个正整数n，存在<code>恰好n-1条边的连通图</code>。</p>
+<p>从<code>恰好有n-1条边的n阶连通图</code>中去掉<code>任意一条边</code>，都会得到一个<code>非连通图</code>。</p>
+<p>连通图G是树$\iff$所有边都是<code>桥</code></p>
+<h4 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition 2"></a>Definition 2</h4><p>连通图G是树$\iff$恰好有$n-1 \quad(n \ge 1)$条<code>边</code></p>
+<hr>
+<p>首先，我们先<code>去除连通图中的所有边，得到n个孤立的顶点，每个顶点对应着1个连同分量</code>。</p>
+<p>于是，我们得到<code>n个连通分量</code>，接下来，我们<code>每加入1条边，就可以连接2个连同分量，使得图的连同分量数-1</code></p>
+<p>因此，我们只需要加入<code>n-1条边</code>即可使得<code>图的连同分量数量减少至1</code>。Q.E.D</p>
+<h4 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition 3"></a>Definition 3</h4><blockquote>
+<ul>
+<li>Background</li>
+</ul>
+<p>设G是连通图，$\alpha = \s{x, y}$是G的<code>桥</code>，当且仅当，<code>图G的任何圈</code>都不包含$\alpha$</p>
+<hr>
+<ul>
+<li>充分性：若$\alpha$是桥，则图G被划分为两个连通分量，故图G的任何圈都不包含$alpha$</li>
+<li>必要性：若$\alpha$不是桥，则图G中存在<code>包含$$\alpha$$的圈</code></li>
+</ul>
+</blockquote>
+<p>连通图G是树$\iff$G中不包含<code>圈</code>。</p>
+<h4 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition 4"></a>Definition 4</h4><p>连通图G是树$\iff$<code>每一对不同的顶点</code>$x$和$y$之间都有<code>唯一的一条路径</code></p>
+<h2 id="Spanning-Tree"><a href="#Spanning-Tree" class="headerlink" title="Spanning Tree"></a>Spanning Tree</h2><h3 id="Theory-4"><a href="#Theory-4" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-3"><a href="#Theory-1-3" class="headerlink" title="Theory 1"></a>Theory 1</h4><p>设G是阶$n \ge 2$的树，则G中<code>至少有2个悬挂顶点</code></p>
+<hr>
+<p>设图G中的<code>度序列</code>为：$d_1, d_2, \cdots, d_n$</p>
+<p>则：$d_1 + d_2 + \cdots + d_n = 2(n-1)$</p>
+<p>如果其中<code>最多有一个$$d_i$$等于1</code>，则：$d_1 + d_2 + \cdots + d_n = 1 + 2(n-1)$</p>
+<p>矛盾，故<code>树中至少有2个悬挂顶点</code></p>
+<h4 id="Theory-2-3"><a href="#Theory-2-3" class="headerlink" title="Theory 2"></a>Theory 2</h4><p>每个<code>连通图</code>都有<code>生成树</code></p>
+<hr>
+<ul>
+<li>求连通图的生成树的算法</li>
+</ul>
+<p>去除<code>连通图</code>中的所有<code>非桥边</code></p>
+<h4 id="Theory-3-2"><a href="#Theory-3-2" class="headerlink" title="Theory 3"></a>Theory 3</h4><p>设<code>图T</code>是<code>连通图G</code>的一颗生成树。设$\alpha = \s{a,b}$是G的一条边，但不是T的边，则T中存在一条边$\beta$，满足：</p>
+<p>通过向T中加入<code>边</code>$\alpha$，并去掉<code>边</code>$\beta$，得到的<code>图T</code>仍然是<code>图G的生成树</code>。</p>
+<hr>
+<p>如果<code>边</code>$\alpha = \s{a,b}$是<code>悬挂边</code>，则<code>图G的生成树</code>中必须要<code>加入</code>这条边，因为这是<code>唯一</code>连接<code>顶点a</code>和<code>顶点b</code>的边。</p>
+<p>如果<code>图G的生成树</code>中没有<code>加入边</code>$\alpha$，说明<code>边</code>$\alpha$并不是<code>悬边</code>，我们有<code>其他的边</code>$\beta$来<code>连接</code> <code>顶点a</code>和<code>顶点b</code>，则我们可以用<code>其他的边</code>来<code>替代</code> <code>边</code>$\alpha$，反之亦然。</p>
+<blockquote>
+<p>实际上，<code>边</code>$\alpha$和<code>边</code>$\beta$应当属于 <code>同一个圈之中</code>，这意味着我们选择<code>边</code>$\alpha$或者<code>边</code>$\beta$都可以满足生成树的连通性。$\square$</p>
+</blockquote>
+<h4 id="Theory-4-2"><a href="#Theory-4-2" class="headerlink" title="Theory 4"></a>Theory 4</h4><p>设$T_1$和$T_2$是连通图G的两颗<code>生成树</code>，设$\beta$是$T_1$的一条边，则$T_2$中必有一条边$\alpha$，使得在$T_1$中加入$\alpha$而去掉$\beta$后，<code>得到的图</code>仍然是<code>图G的生成树</code>。</p>
+<hr>
+<ul>
+<li><p>假设<code>极端情况</code>，如果<code>图G</code>本身就是<code>树</code>，那么<code>图G的所有生成树都相同 （实际上也就1种）</code>，即$T_1 = T_2$，同时$\alpha = \beta$</p>
+</li>
+<li><p>如果对于$\beta = \s{a,b}$，$T_1$中存在$\beta$但$T_2$中不存在$\beta$，则说明$\beta$并不是<code>悬挂边</code>。</p>
+</li>
+</ul>
+<p>对于$T_2$来说，它如果不选择加入$\beta$，则必须要选择<code>其他的边</code>$\alpha$来保证<code>顶点a</code>和<code>顶点b</code>之间的<code>连通性</code>。</p>
+<p>而根据我们上面的推论，我们知道，<code>边</code>$\alpha$和<code>边</code>$\beta$实际上属于<code>同一个圈之中</code></p>
+<blockquote>
+<p>更直白的说法是：$T_1$和$T_2$同样都作为<code>生成树</code>，在$T_1$中加入$\alpha$而去除$\beta$的含义是：让<code>生成树</code>$T_1$ <code>照着模仿做 (do as others do)</code> <code>生成树</code>$T_2$是<code>如何满足顶点a和顶点b之间的连通性的</code>。</p>
+</blockquote>
+<h4 id="Theory-5-2"><a href="#Theory-5-2" class="headerlink" title="Theory 5"></a>Theory 5</h4><p><code>n阶图</code>的<code>生成树</code>数量为<code>该图的n-1阶拉普拉斯矩阵的任意子矩阵的行列式的绝对值</code></p>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><h4 id="Model-1-Construct-Spanning-Tree"><a href="#Model-1-Construct-Spanning-Tree" class="headerlink" title="Model 1: Construct Spanning-Tree"></a>Model 1: Construct Spanning-Tree</h4><p>若$G = (V, E)$ 是<code>n阶图</code>，$u \in V$</p>
+<ul>
+<li>Step 1：$U \dot{=} \s{u}, F \dot{=} \varnothing$</li>
+<li>Step 2：当$\b{\exists x \in U \and  y \notin U}, \alpha=\s{x,y} \in E$时<ul>
+<li>$\b{y \cup U}$</li>
+<li>$\alpha \cup F$</li>
+<li>Goto Step 2</li>
+</ul>
+</li>
+<li>Step 3：$T \dot{=} (\b{U = V}, F)$</li>
+</ul>
+<hr>
+<ul>
+<li>证明：<code>正在构建的生成树$$T$$永远不会存在环</code> （环的定义）</li>
+</ul>
+<p>该算法维护的<code>顶点集</code>$U$表示的是<code>正在构建的生成树的顶点集</code>。</p>
+<p>我们是通过一个简单的<code>事实</code>来<code>避免正在构建的生成树</code>中<code>存在环</code>：在由顶点表示的途径中存在环，当且仅当，存在某个顶点出现重复。</p>
+<p>所以，我们<code>的确可以始终保持正在构建的生成树</code>$T$中<code>不存在环</code>。</p>
+<ul>
+<li>证明：不断增加<code>顶点</code>，最终该算法会停止 （树的定义）</li>
+</ul>
+<p>我们注意到，我们每一次仅仅是<code>检查是否存在环的条件</code>，然后简单地<code>新增顶点，以及和该顶点相关联的边</code>。</p>
+<p>由于<code>每次新增顶点时，必定新增1条边</code>，而当$|F| = |E| - 1$时，$T$将是一颗<code>最终的生成树</code>。</p>
+<blockquote>
+<p>这取决于<code>树</code>的定义：<code>n个顶点的树</code>含有<code>n-1条边</code></p>
+</blockquote>
+<h4 id="Model-2-Construct-BFS-Spanning-Tree"><a href="#Model-2-Construct-BFS-Spanning-Tree" class="headerlink" title="Model 2: Construct BFS Spanning-Tree"></a>Model 2: Construct BFS Spanning-Tree</h4><blockquote>
+<p><code>广度优先生成树 (BFS Spanning-Tree)</code>：该树以<code>初始顶点</code>$u$作为<code>根</code>，对于<code>每一个顶点</code>$x$来说：<code>x与u在G中的距离</code> = <code>x与u在T中的距离</code></p>
+<blockquote>
+<p><code>bf(x)</code>：表示<code>顶点</code>$x$加入到<code>BFS树</code>中的<code>次序</code></p>
+<p><code>D(x)</code>：表示<code>顶点x</code>和<code>顶点y</code>在<code>T</code>中的<code>距离</code></p>
+</blockquote>
+</blockquote>
+<p>$G \dot{=} (V,E), |V| = n, u \in V$</p>
+<ul>
+<li>Step 1：$\b{i \dot{=}1, U \dot{=} \s{u}, F \dot{=} \varnothing, T \dot{=} (U, F) }, \r{D(u) \dot{=} 0, bf(u) \dot{=} 1 }$</li>
+<li>Step 2：当$\b{\exists x \in U \and y \notin U, \alpha=\s{x,y} \in E}$ 时<ul>
+<li>寻找$\b{\alpha = \s{x, y}}, \r{x \t{ has the min-imum } bf(x)}$</li>
+<li>$\r{bf(y) = i + 1}$</li>
+<li>$\r{D(y) = D(x) + 1}$</li>
+<li>$y \cup U$</li>
+<li>$\alpha = \s{x,y} \cup F$</li>
+<li>$\r{i = i + 1}$</li>
+<li>Goto Step 2</li>
+</ul>
+</li>
+<li>Step 3：$T \dot{=} (\b{U = V}, F)$</li>
+</ul>
+<blockquote>
+<p>首先，我们这里所讨论的<code>BFS树的顶点之间的距离</code>指的是<code>两个顶点之间的边的条数</code>，而并没有额外地定义<code>边的权重</code></p>
+<p>可以将<code>Construct BFS Spanning-Tree</code>看作是<code>一种不重复地搜索G的所有顶点的BFS方法</code></p>
+</blockquote>
+<h4 id="Model-3-Construct-DFS-Spanning-Tree"><a href="#Model-3-Construct-DFS-Spanning-Tree" class="headerlink" title="Model 3: Construct DFS Spanning-Tree"></a>Model 3: Construct DFS Spanning-Tree</h4><p>$G \define \s{V, E}, |V| = n, u \in V$</p>
+<ul>
+<li>Step 1：$\b{i \dot{=}1, U \dot{=} \s{u}, F \dot{=} \varnothing, T \dot{=} (U, F) }, \r{df(u) \dot{=} 1 }$</li>
+<li>Step 2：当$\b{\exists x \in U \and y \notin U, \alpha=\s{x,y} \in E}$ 时<ul>
+<li>寻找$\b{\alpha = \s{x, y}}, \r{x \t{ has the max-imum } df(x)}$</li>
+<li>$\r{df(y) = i + 1}$</li>
+<li>$y \cup U$</li>
+<li>$\alpha = \s{x,y} \cup F$</li>
+<li>$\r{i = i + 1}$</li>
+<li>Goto Step 2</li>
+</ul>
+</li>
+<li>Step 3：$T \dot{=} (\b{U = V}, F)$</li>
+</ul>
+<h4 id="Model-4-Construct-Distance-Spanning-Tree-Dijkstra"><a href="#Model-4-Construct-Distance-Spanning-Tree-Dijkstra" class="headerlink" title="Model 4: Construct Distance Spanning-Tree (Dijkstra)"></a>Model 4: Construct Distance Spanning-Tree (Dijkstra)</h4><blockquote>
+<p><code>权重函数 (Weighted Function)</code>$c$：是定义在$\alpha \rightarrow \real$的函数。</p>
+<blockquote>
+<p>若<code>边</code>$\alpha = \s{x, y}$，则<code>该边的权重</code>$c(\alpha) = c\s{x,y}$</p>
+<blockquote>
+<p>平时我们将<code>两个顶点之间的距离</code>定义为<code>两个顶点之间的边的条数</code>，可以视为是<code>每条边的权重均为1的权重函数</code></p>
+</blockquote>
+<p>若<code>途径</code>$\gamma: \s{x<em>0,x_1},\s{x_1,x_2},\cdots \s{x</em>{k-1},x<em>k}$，则<code>该途径的权重</code>$c(\gamma) = c\s{x_0,x_1} + c\s{x_1,x_2} + \cdots + c\s{x</em>{k-1},x_k}$</p>
+</blockquote>
+<p><code>距离 (Distance)</code>$d_c\s{x,y}$：指的是在<code>权重函数</code>$c$之上，<code>顶点x</code>和<code>顶点y</code>的<code>所有途径中的权重最小的途径的权重</code></p>
+</blockquote>
+<p>$G \define (V, E), |V| = n, u \in V$</p>
+<ul>
+<li>Step 1：$\b{U \define \s{u}, F \define \varnothing, T \define (U,F) },\r{D(u) \define 0}$</li>
+<li>Step 2：当$\b{\exists x \in U \and y \notin U, \alpha = \s{x, y} \in E}$时<ul>
+<li>寻找$\b{\alpha = \s{x,y},} \r{x,y \t{ has the min-imum } D(x) + c\s{x,y}}$</li>
+<li>$y \cup U$</li>
+<li>$\alpha = \s{x,y}\ cup F$</li>
+<li>$\r{D(y) = D(x) + c\s{x,y}}$</li>
+<li>Goto Step 2</li>
+</ul>
+</li>
+<li>Step 3：$T \dot{=} (\b{U = V}, F)$</li>
+</ul>
+<hr>
+<p><code>反证假设: 结论不成立</code>$\implies$$\b{\exists y \in V, D(y) \gt d\s{u,y}}$</p>
+<p>则<code>假设: y是第一个被放入U中的具有这样的性质的顶点</code>，则$G$中存在$\gamma: \r{u = x_0}-x_1-\cdots-\r{x_k = y}$ 且$D(y) \gt d\s{u,y}$</p>
+<p>设$x_j$是在$y$之前放入$U$中的<code>路径$$\gamma$$的最后一个顶点</code>，则$D(x_j) = d\s{u, x_j}$</p>
+<p>故$\gamma’ \subset \gamma,\gamma’: \r{u = x<em>0} - x_1 - \cdots - \r{x</em>{j}} - \c{hotpink}{x_{j+1}}$</p>
+<blockquote>
+<script type="math/tex; mode=display">
+\gamma:\r{u=x_0}-x_1-\cdots - \underbrace{\c{hotpink}{x_j} \leadsto \r{x_k = y}}_{x_{j+1} \t { may be } y}</script></blockquote>
+<p>故<code>得出</code></p>
+<script type="math/tex; mode=display">
+\underbrace{D(x_j) + \c{hotpink}{c\s{x_j, x_{j+1}}} \le d\s{u,y}}_{
+
+\t{inequation}\ \begin{cases}
+=,& \t{if } x_{j+1} = y \\
+<,& \t{if } x_{j+1} \ne y
+\end{cases}
+
+} \lt D(y)</script><p>但是，根据算法，$x_{j+1}$是在$y$<code>之前</code>被放入U中的，这与我们对$x_j$的选择矛盾。</p>
+<p>而这意味着：$\b{\forall y \in V, D(y) = d\s{u, y}}$ 与<code>假设</code>发生<code>矛盾</code></p>
+<h4 id="Model-5-Construct-Minimum-Spanning-Tree-Kruskal"><a href="#Model-5-Construct-Minimum-Spanning-Tree-Kruskal" class="headerlink" title="Model 5: Construct Minimum Spanning-Tree (Kruskal)"></a>Model 5: Construct Minimum Spanning-Tree (Kruskal)</h4><blockquote>
+<p>$\boxed{\t{图的权重函数}} \lb{<br>\a{<br>&amp;G \define (V, E) \<br>&amp;c(G) = \sum_{\alpha \in E}{c(\alpha)}<br>}<br>}$</p>
+</blockquote>
+<p>$G \define (V, E), |V| = n, u \in V$</p>
+<ul>
+<li>Step 1：$\b{G \define (V, E), F \define \varnothing}$</li>
+<li>Step 2：当$\b{\exists \alpha \in E \and \alpha \notin F, F \cup \s{\alpha} \t{ don’t have \r{cycles}}}$时<ul>
+<li>寻找$\b{\alpha \t{ has the min-imum } c(\alpha)}$</li>
+<li>$\alpha \cup F$</li>
+<li>Goto Step 2</li>
+</ul>
+</li>
+<li>Step 3：$T \dot{=} (\b{V}, F)$</li>
+</ul>
+<hr>
+<p>使用 <code>归纳法</code> 证明 <code>Kruskal</code>的正确性。</p>
+<ul>
+<li>证明：$Kruskal$将产生一颗 <code>生成树</code></li>
+</ul>
+<p>我们从 $F = \varnothing$开始，每次选择一条 <code>不产生圈的边</code>来连接 <code>两个连通分量</code>。</p>
+<p>每次将 <code>一条边</code> 加入到 $F$ 中会使得 <code>初始的n个连通分量</code>减少 <code>1个</code></p>
+<p>所以总共需要加入 $n-1$条边，即可得到一个 <code>生成树</code> $T$</p>
+<ul>
+<li>证明：$Kruskal$产生的 $生成树$ 是 <code>最小生成树</code></li>
+</ul>
+<p>我们假设 <code>Kruskal</code>产生的 <code>生成树</code> $T$ 由 <code>边集</code> $E = \s{\alpha<em>1, \alpha_2, \cdots, \alpha</em>{n-1}}$ 组成。</p>
+<p>如果我们通过 <code>加入边</code> $\beta$而 <code>去除边</code> $\alpha_k$ 来得到 <code>另一颗生成树</code> $T^*$</p>
+<p>则 $c(T^* )= c(T) + c(\beta) - c(\alpha_k) $</p>
+<p>由于 $\alpha_k$ 是 <code>整个图中的全局最小边</code>，则有 $\alpha_k \le \beta$</p>
+<p>于是我们有</p>
+<script type="math/tex; mode=display">
+\a{
+c(T*) &= c(T) + c(\beta) - c(\alpha_k) \\
+&\ge c(T)
+}</script><p>于是，$T$ 是 <code>图</code> $G$ 的 <code>最小生成树</code></p>
+<h4 id="Model-6-Construct-Minimum-Spanning-Tree-Prim"><a href="#Model-6-Construct-Minimum-Spanning-Tree-Prim" class="headerlink" title="Model 6: Construct Minimum Spanning-Tree (Prim)"></a>Model 6: Construct Minimum Spanning-Tree (Prim)</h4><p>$G \define (V, E), u \in V$</p>
+<ul>
+<li>Step 1：$\b{i \dot{=}1, U<em>\r{1} \dot{=} \s{u}, F</em>\r{1} \dot{=} \varnothing, T<em>\r{1} \dot{=} (U</em>\r{1}, F_\r{1}) }$</li>
+<li>Step 2：当$\r{i = 1,2,\cdots, n-1}$<ul>
+<li>Step 2-1：寻找$\r{\alpha_i = \s{x,y} \t{ has the min-imum } c(\alpha_i)}, \r{x \in U_i \and y \notin U_i}$</li>
+<li>Step 2-2：$\r{U<em>{i+1} \define U_i \cup \s{y}}, F</em>{i+1} \define F<em>i \cup \s{\alpha</em>{i}}, T<em>{i+1} \define (U</em>{i+1}, F_{i+1})$</li>
+<li>Step 2-3：$i = i + 1$</li>
+</ul>
+</li>
+<li>Step 3：$T<em>{n - 1} = (\b{U</em>{n-1} = V}, F_{n-1})$</li>
+</ul>
+<hr>
+<ul>
+<li>证明：$Prim$将产生一颗 <code>生成树</code></li>
+</ul>
+<p>初始时，我们有 <code>顶点集</code> $F = \varnothing$ </p>
+<p>由于每次从 <code>`顶点集</code> $F$ 中的 <code>顶点</code>  <code>拓展</code>到  <code>与之相邻接的顶点</code>，并且保证 <code>不包含重复顶点</code></p>
+<p>所以，实际上我们可以得到 <code>图G的一条路径</code>。</p>
+<p>根据树的定义，当 $|F| = n$时，我们将得到 <code>图G的一颗生成树</code></p>
+<ul>
+<li>证明：$Prim$产生的 <code>生成树</code> 是 <code>最小生成树</code></li>
+</ul>
+<p>不妨假设 $Prim$ 产生的生成树 $T$的 <code>边集</code> $F = \s{\alpha<em>1, \alpha_2, \cdots, \alpha</em>{n-1}}$</p>
+<p>则 $\forall i = 1,2,\cdots, n-1, \t{such that } \alpha_i = \s{x, y}, x \in U_i \and y \notin U_i$</p>
+<p>我们假设选取 <code>另一条边</code>来 <code>连通</code> $顶点y$</p>
+<p>则有 $ \beta_i = \s{z, y}$ </p>
+<p>如果 <code>删除边</code> $\alpha_i$ 而 <code>加入边</code> $\beta_i$ 得到 $T^*$</p>
+<p>则由于 $\alpha_i \le \beta_i$</p>
+<p>我们有 </p>
+<script type="math/tex; mode=display">
+\a{
+c(T*) &= c(T) - \alpha_i + \beta_i \\
+& \ge c(T) 
+}</script><p>故 $T$是 <code>最小生成树</code></p>
+<h3 id="Shannon-Switching-Games"><a href="#Shannon-Switching-Games" class="headerlink" title="Shannon Switching Games"></a>Shannon Switching Games</h3><h4 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition"></a>Definition</h4><p>设<code>图</code>$G = (V,E)$是一个多重图，<code>起始顶点u</code>和<code>终止顶点v</code>是两个指定的顶点。</p>
+<p><code>Shannon Games</code>需要2名<code>选手 (Player)</code>参与，轮流进行<code>建造 (Build)</code>和<code>破环 (Destroy)</code>：</p>
+<p><code>正方选手 (Positive Player -&gt; Build)</code></p>
+<blockquote>
+<p>获胜条件是，<code>建立</code>起<code>顶点u和顶点v之间的一条路径。</code></p>
+<p><code>建造</code>：在两个顶点之间<code>连接</code>一条边，任何被<code>建造</code>的边将<code>无法被破坏</code></p>
+</blockquote>
+<p><code>反方选手 (Negative Player -&gt; Destroy)</code></p>
+<blockquote>
+<p>获胜条件是，<code>破坏</code>掉<code>顶点u和顶点v之间的所有路径</code>，一旦<code>所有的路径</code>都被破坏，则<code>反方选手</code>可以<code>立即取得胜利</code></p>
+<blockquote>
+<p><code>Shannon Switching Games</code>不存在<code>平局</code>的情况，如果游戏一开始时，<code>顶点u</code>和<code>顶点v</code>就不连通，则<code>反方选择</code> <code>立即取得胜利</code>！</p>
+</blockquote>
+<p><code>破坏</code>：破坏两个顶点之间的一条边。</p>
+</blockquote>
+<p>我们考虑是否存在下面几种策略：</p>
+<ul>
+<li>是否存在<code>先方游戏</code>：即<code>先手必胜</code></li>
+<li>是否存在<code>后方游戏</code>：即<code>后手必胜</code></li>
+<li>是否存在<code>正方游戏</code>：即无论<code>正方选手</code>是<code>先手</code>还是<code>后手</code>，都必定<code>获胜</code></li>
+<li>是否存在<code>反方游戏</code>：即无论<code>反方选手</code>是<code>先手</code>还是<code>后手</code>，都必定<code>获胜</code></li>
+</ul>
+<blockquote>
+<p>对于<code>Shannon Switching Games</code>：</p>
+<p>如果<code>正方选手/反方选手</code>可以<code>后手必胜</code>，则它也可以<code>先手必胜</code>。</p>
+<blockquote>
+<p>因为它只需要在<code>第一手</code>做<code>自由运动</code>即可。</p>
+</blockquote>
+</blockquote>
+<h4 id="Theory-5"><a href="#Theory-5" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-4"><a href="#Theory-1-4" class="headerlink" title="Theory 1"></a>Theory 1</h5><p>对于<code>Shannon Switching Games</code>，如果在<code>先方游戏</code>的<code>多重图</code>$G$中，加入<code>连接顶点u和顶点v的边</code>形成$G’$，则该游戏将变成<code>正方游戏</code></p>
+<hr>
+<ul>
+<li>如果<code>正方选手</code>是<code>先手</code>，则它可以：<ul>
+<li>不使用<code>边&#123;u, v&#125;</code>，而按照<code>图</code>$G$所定义的<code>先方游戏</code>的策略来<code>获胜</code></li>
+<li>使用<code>边 &#123;u, v&#125;</code>，直接<code>获胜</code></li>
+</ul>
+</li>
+<li>如果<code>正方选手</code>是<code>反手</code>，则我们为<code>反方选手</code>做考虑：<ul>
+<li><code>反方选手</code>必须<code>首先破坏</code> <code>边 &#123;u, v&#125;</code>，否则<code>正方选手</code>可以利用该边立即<code>获胜</code>。但如果<code>反方选手</code> <code>第一步用来破坏 边&#123;u, v&#125;</code>，则它将边为$图G$中的<code>后方</code>，使得<code>正方选手</code>可以遵循<code>先方游戏</code>的策略来<code>获胜</code>。</li>
+</ul>
+</li>
+</ul>
+<h5 id="Theory-2-4"><a href="#Theory-2-4" class="headerlink" title="Theory 2"></a>Theory 2</h5><p><code>Shannon Switching Games</code>是一个<code>正方游戏</code>，当且仅当，存在<code>包含u和v的顶点集</code>$V$的<code>子集</code>$U$，使得<code>导出子图</code>$G_U$中存在2个<code>没有共同边的生成树</code></p>
+<hr>
+<p>不妨假设这两颗生成树为$T_1$和$T_2$</p>
+<p>而<code>生成树$$T_1 = (V_1, E_1)$和$T_2 = (V_2, E_2)$拥有</code>相同的顶点集<code>，却</code>不存在共同边<code>，则说明如果我们对于</code>图<code>$G = (V = V_1 = V_2, G = \b&#123;E_1 + E_2&#125;)$来说，</code>所有的顶点<code>都属于</code>某个圈<code>之中。则根据我们前面讨论的</code>生成树<code>相关的结论，可以知道对于$V_1 + V_2$$之中的任何两个邻接的顶点 都属于 同一个圈中</code>，也就是说，<code>连接任何两个邻接顶点的边 都不是 悬挂边</code>，所以，<code>反方选手如果破坏 任何两个邻接顶点所属的圈中的1条边，并不会影响这两个邻接顶点之间的连通性</code>！</p>
+<blockquote>
+<p>必须要求<code>图G的生成树</code>中<code>任何两个邻接的顶点</code>都要<code>属于同一个圈</code>。</p>
+<p>如果有<code>任何两个邻接的顶点 被 悬挂边 所连接</code>，则一旦<code>反方选手</code>破坏该条<code>悬挂边</code>，则<code>图G</code>将被<code>分割</code>为2个<code>连通分量</code></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/">https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/combinatorics/">combinatorics</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-Basics"><span class="toc-number">1.</span> <span class="toc-text">Graph Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Graph"><span class="toc-number">1.1.</span> <span class="toc-text">Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Concepts"><span class="toc-number">1.1.2.</span> <span class="toc-text">Concepts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory"><span class="toc-number">1.1.3.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-Handshake-Theorem"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">Theory 1: Handshake Theorem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">Theory 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">Theory 4</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Euler-Trails-Bridges-of-Koenigsberg"><span class="toc-number">1.2.</span> <span class="toc-text">Euler Trails: Bridges of Koenigsberg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-Euler%E2%80%99s-One-Stroke-Theorem"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Theory 2: Euler’s One-Stroke Theorem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Theory 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4-Euler%E2%80%99s-N-Stroke-Theorem"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">Theory 4: Euler’s N-Stroke Theorem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">Theory 5</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">1.2.3.</span> <span class="toc-text">Example</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1-Bridges-of-Koenigsberg"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">Example 1: Bridges of Koenigsberg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-2-Chinese-Postman-Problem"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">Example 2: Chinese Postman Problem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hamiltonian-Path-and-Hamiltonian-Circuit"><span class="toc-number">1.3.</span> <span class="toc-text">Hamiltonian Path and Hamiltonian Circuit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-1"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-1"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3-Ore-Property"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">Theory 3: Ore Property</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4-1"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">Theory 4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5-1"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">Theory 5</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bipartite-Graph"><span class="toc-number">1.4.</span> <span class="toc-text">Bipartite Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-2"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-2"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Theory 2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example-1"><span class="toc-number">1.4.3.</span> <span class="toc-text">Example</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1-Reflective-Gray-Code"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">Example 1: Reflective Gray Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-2-Board-Coloring-Problem"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">Example 2: Board Coloring Problem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-3-The-vaulting-horse-problem"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">Example 3: The vaulting horse problem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tree"><span class="toc-number">1.5.</span> <span class="toc-text">Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definitions"><span class="toc-number">1.5.1.</span> <span class="toc-text">Definitions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-1"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Definition 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-2"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Definition 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-3"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">Definition 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-4"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">Definition 4</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spanning-Tree"><span class="toc-number">1.6.</span> <span class="toc-text">Spanning Tree</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-4"><span class="toc-number">1.6.1.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-3"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-3"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3-2"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">Theory 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4-2"><span class="toc-number">1.6.1.4.</span> <span class="toc-text">Theory 4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5-2"><span class="toc-number">1.6.1.5.</span> <span class="toc-text">Theory 5</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Models"><span class="toc-number">1.6.2.</span> <span class="toc-text">Models</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-1-Construct-Spanning-Tree"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">Model 1: Construct Spanning-Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-2-Construct-BFS-Spanning-Tree"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">Model 2: Construct BFS Spanning-Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-3-Construct-DFS-Spanning-Tree"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">Model 3: Construct DFS Spanning-Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-4-Construct-Distance-Spanning-Tree-Dijkstra"><span class="toc-number">1.6.2.4.</span> <span class="toc-text">Model 4: Construct Distance Spanning-Tree (Dijkstra)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-5-Construct-Minimum-Spanning-Tree-Kruskal"><span class="toc-number">1.6.2.5.</span> <span class="toc-text">Model 5: Construct Minimum Spanning-Tree (Kruskal)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-6-Construct-Minimum-Spanning-Tree-Prim"><span class="toc-number">1.6.2.6.</span> <span class="toc-text">Model 6: Construct Minimum Spanning-Tree (Prim)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shannon-Switching-Games"><span class="toc-number">1.6.3.</span> <span class="toc-text">Shannon Switching Games</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-4"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-1-4"><span class="toc-number">1.6.3.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-2-4"><span class="toc-number">1.6.3.2.2.</span> <span class="toc-text">Theory 2</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Combinatorics] Graph Basics II | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Combinatorics] Graph Basics II',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Advanced-Graph"><a href="#Advanced-Graph" class="headerlink" title="Advanced Graph"></a>Advanced Graph</h1>
+$$
+\boxed{MACRO}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor[miku]{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ IN }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\text{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+
+<h2 id="Chromatic-Number"><a href="#Chromatic-Number" class="headerlink" title="Chromatic Number"></a>Chromatic Number</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>若<code>图</code>$G = (V,E )$。</p>
+<p><code>图</code>$G$的<code>k顶点着色 (k着色)</code>：从<code>含有k种颜色的集合</code>中选择<code>颜色</code>，对<code>图G</code>的每一个<code>顶点</code>指定一种<code>颜色</code>，使得<code>相邻顶点</code>有<code>不同颜色</code>。</p>
+<blockquote>
+<p>注意：<code>k顶点着色</code>并不要求<code>k种颜色</code>都必须要使用到。</p>
+</blockquote>
+<p><code>图</code>$G$是<code>k可着色的</code>：如果图$G$存在一个<code>k顶点着色</code></p>
+<p><code>图</code>$G$的<code>色数 (Chromatic Number)</code>$\mathcal{X}(G)$：</p>
+<ul>
+<li>使得<code>图</code>$G$是<code>k可着色的</code>中的<code>最小的k</code>称为图$G$​的<code>色数</code></li>
+<li>使得 <code>所有的顶点</code>可 <code>划分</code> 为 <code>k个子集</code>且 <code>每个子集的导出子图均为零图</code>的 <code>最小整数k</code></li>
+</ul>
+<hr>
+<p><code>图</code>$G$的 <code>色划分 (Color Partition)</code>$\mathcal{V}$ ：若$V_i \quad (i = 1,2,\cdots,k)$表示 <code>被指定为颜色i的所有顶点的子集</code>，则 $\mathcal{V} = \s{V_1, V_2, \cdots, V_k}$是$V$的 <code>划分</code>。</p>
+<blockquote>
+<p><code>色划分的元素的导出子图</code>：$G<em>{V_1}, G</em>{V<em>2}, \cdots, G</em>{V_k}$ 均为 <code>零图</code></p>
+</blockquote>
+<h3 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory 1"></a>Theory 1</h4><blockquote>
+<p><code>零图 (Null Graph)</code>$N_n$：没有 <code>任何边</code>的图。(含有n个顶点)</p>
+<p><code>空图 (Empty Graph)</code>$N_0$：没有 <code>任何顶点</code>的图。（含有0个顶点）</p>
+<blockquote>
+<p><code>零图</code> 不一定是 <code>空图</code>：因为 <code>零图</code>可以仅仅包含一堆 <code>孤立的点</code></p>
+<p><code>空图</code>是 <code>0阶零图</code></p>
+</blockquote>
+</blockquote>
+<p>若$G = (V, E) \quad n \ge 1$，则$1 \le \mathcal{X}(G) \le n$</p>
+<p>并且有：</p>
+<ul>
+<li>$\mathcal{X}(G) = n \iff G = K_n$</li>
+<li>$\mathcal{X}(G) = 1 \iff G = N_n$</li>
+</ul>
+<hr>
+<ul>
+<li><p>若$G = K_n \implies$ 所有的 <code>顶点</code>都互相 <code>邻接</code>，故所有顶点的颜色都不同，需要 <code>n种颜色</code></p>
+</li>
+<li><p>若$G = N_n \implies$所有的顶点都是 <code>孤立的</code>，没有 <code>任何两个顶点之间存在邻接</code>，所以仅需要 <code>1种颜色</code> 。</p>
+<blockquote>
+<p>如果$G \ne N_n \implies$ <code>至少有2个顶点是邻接的</code>$\implies$ $\mathcal{X}(G) \ge 2 \ne 1$</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>推论：若$G \ne K_n \implies$ 至少存在 <code>两个顶点之间不邻接</code> $\implies$ 这 <code>两个顶点</code>可以着色 <code>相同颜色</code> $\implies$ $ 1 \le \mathcal{X}(G \ne K_n) \le n - 1$</p>
+</blockquote>
+<h4 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory 2"></a>Theory 2</h4><p>$G = (V, E), H \subseteq G \implies \mathcal{X}(G) \ge \mathcal{X}(H)$</p>
+<blockquote>
+<p>$\if \exists H = K_p,\then \mathcal{X}(G) \ge p$</p>
+<p>可以利用该推论快速地确定 <code>图G的色数的一个不严格下界</code></p>
+</blockquote>
+<h4 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory 3"></a>Theory 3</h4><script type="math/tex; mode=display">
+\lb{
+&G = (V, E), \quad|V|= n \\ 
+&\b{q} \t{ is the \b{max-imum integer} that meets: } N_q \t { is \b{exported} from } G 
+}
+\implies \mathcal{X}(G) \ge \lceil \frac{n}{q} \rceil</script><hr>
+<blockquote>
+<p>因为$q$是 <code>G中导出子图中的所有零图里，阶数最大的零图</code>$\implies$ 我们使用<code>任何1种颜色</code>可以<code>至多着色图G中的q个顶点</code></p>
+<p>$\implies$ 我们 <code>至少</code> 使用$\lceil \frac{n}{q} \rceil$ 种颜色即可 <code>着色图G中的所有顶点</code> $\implies$ $\mathcal{X}(G) \ge \lceil \frac{n}{q} \rceil$ </p>
+</blockquote>
+<script type="math/tex; mode=display">
+\a{
+& \mathcal{X}(G) \define k, \mathcal{V} \define \s{V_1, V_2, \cdots, V_k} \\
+& \implies \forall i, |V_i| \le q \\
+& \implies n = |V| = \sum_{i = 1}^{k}{|V_i|} \b{\le \sum_{i=1}^{k}{q} = k \times q} \\
+&&\qed
+}</script><blockquote>
+<p>$\mathcal{X}(G) \ge \roundup{\frac{n}{q}}$对于$\G$ 隐含2个信息：</p>
+<ul>
+<li>使用 <code>任何一种颜色</code>可以 <code>至多着色图G中的q个顶点</code></li>
+<li><code>图G中每q+1个顶点之中，至少有q个顶点相互邻接</code></li>
+</ul>
+</blockquote>
+<h4 id="Theory-4"><a href="#Theory-4" class="headerlink" title="Theory 4"></a>Theory 4</h4><script type="math/tex; mode=display">
+\a {
+& \G \\
+& |E| \ge 1
+} \implies {
+\mathcal{X}(G) = \b{2} \iff G \t{ is \b{bipatite graph }} 
+}</script><hr>
+<ul>
+<li>$E = 0 \implies G = N_0 \implies \mathcal{X}(G) = 1$</li>
+<li>$E \ge 1 \implies \mathcal{X}(G) = 2 \implies \mathcal{V} = \s{V_1, V_2} \t{ is a partition of } V$ </li>
+</ul>
+<p>反之同理 $\qed$</p>
+<blockquote>
+<script type="math/tex; mode=display">
+\lb {
+& G \t { is non-null graph} \\
+& \mathcal{X}(G) = 2
+} \iff \forall \t{cycles in } G \t{ has \b{even length}}</script></blockquote>
+<h4 id="Theory-5-A-Greedy-Method-to-Solve-the-Vertex-Coloring"><a href="#Theory-5-A-Greedy-Method-to-Solve-the-Vertex-Coloring" class="headerlink" title="Theory 5: A Greedy Method to Solve the Vertex Coloring"></a>Theory 5: A Greedy Method to Solve the Vertex Coloring</h4><p>$G = (V, E), V = \s{x_1, x_2, \cdots ,x_n}$</p>
+<ul>
+<li>对$x_1$指定 <code>颜色1</code></li>
+<li>对每个$i = 2, 3, \cdots, n$：令$p$是与$x<em>i$邻接的顶点$x_1, x_2,\cdots,x</em>{i-1}$ 中 <code>任何顶点</code>都不被着色为 <code>p</code>的 <code>最小颜色</code>，并对$x_i$ 指定 <code>颜色p</code></li>
+</ul>
+<p>若$\G$，其 <code>顶点的最大度</code>$\Delta$，则该方法产生一个 <code>图G的</code>$(\Delta + 1)$ <code>着色</code>：$\mathcal{X}(G) \le \Delta +1$</p>
+<blockquote>
+<p>$\mathcal{X}(G) = \Delta + 1$时，即 <code>图G</code>是 <code>星 (Star)</code></p>
+<p>该 <code>贪心算法</code> 并不保证产生的 <code>图的着色</code>是 <code>最优着色</code>：这取决于 <code>如何编号图G的顶点</code></p>
+<blockquote>
+<p>更具体地，如果我们按照 $\mathcal{V} = \s{V<em>1, V_2, \cdots V</em>{\mathcal{X}(G)}}$的 <code>顺序</code>来 <code>编号</code>顶点，则该方法会 <code>只用颜色1来涂色</code> $V<em>1$ <code>中的顶点</code>，然后 <code>只用颜色1和颜色2来涂色</code> $V_2$ <code>中的顶点</code>，…，<code>只用颜色1，颜色2，..., 颜色</code>$\mathcal{X}(G)$ <code>来涂色</code> $V</em>{\mathcal{X}(G)}$ 。最终可以得到 <code>最优的图G的着色</code></p>
+</blockquote>
+</blockquote>
+<h4 id="Theory-6-Brooks-Theorem"><a href="#Theory-6-Brooks-Theorem" class="headerlink" title="Theory 6: Brooks Theorem"></a>Theory 6: Brooks Theorem</h4><p>若 <code>图G</code>是 <code>连通图</code>，其 <code>顶点的最大度</code> $\Delta$。如果 <code>图G</code> 既不是 <code>完全图</code> $K_n$， 也不是 <code>奇数阶循环图</code> $C_n$ $\implies \mathcal{X}(G) \le \Delta$</p>
+<h4 id="Theory-7-Chromatic-Polynomial"><a href="#Theory-7-Chromatic-Polynomial" class="headerlink" title="Theory 7: Chromatic Polynomial"></a>Theory 7: Chromatic Polynomial</h4><blockquote>
+<p><code>图G的色多项式</code>$p_G(k)$：即<code>图G的k顶点着色</code>的<code>方案数</code></p>
+<p>如果$\mathcal{X}(G) \gt k \iff p_G(k) = 0$</p>
+<blockquote>
+<p>即<code>图G的色数</code>即为<code>使得图G的多项式非零的最小的非负整数</code></p>
+</blockquote>
+<ul>
+<li><p>$p_{K_n}(k) = (k)(k-1)(k-2)\cdots(k - n + 1) = [k]_n$</p>
+</li>
+<li><p>$p_{Nn}(k) = k^n$</p>
+</li>
+<li><p>$p_{T_n}(k) = (k)(k-1)^{n-1}$</p>
+<blockquote>
+<p>任何树都可以通过 <code>不断加入边</code>来进行构造：</p>
+<p>首先，加入<code>树根</code>，对于树根的着色有 <code>k种选择</code>。</p>
+<p>之后，加入的<code>任何顶点</code>都<code>只需要和与之邻接的那个顶点</code>的颜色不同即可，所以对于<code>任何非树根节点</code>有<code>k-1种选择</code></p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>$G = (V, E) \quad n \ge 1 \implies p_G(k) \t{ is a \b{polynomial}}$</p>
+<hr>
+<p>$\r{\alpha \define \s{x,y} \in G}$</p>
+<ul>
+<li>设$G_1$：删除边$\r{\alpha}$的图$G$</li>
+</ul>
+<p>则$U \define V - x - y, G_1 \define G_U$</p>
+<p>则$p_{G_1}(k) = |C(k)| + |D(k)| $</p>
+<p>其中：$|C(k)|$表示<code>x和y颜色相同的着色</code>，$|D(k)|$表示<code>x和y颜色不同的着色</code></p>
+<p>则$\r{p_G(k) = |D(k)|}$</p>
+<ul>
+<li>设$G_2$：将$x$和$y$视为同一顶点的图$G$</li>
+</ul>
+<p>则$\r{p_{G_2}(k) = |C(k)|}$</p>
+<blockquote>
+<p>因为x和y是<code>邻接的</code>，而且假设为有<code>相同颜色</code>，则我们不妨：将<code>连接x和y的边</code>$\alpha$ 缩短为<code>无穷小</code>，直到<code>顶点x</code>和<code>顶点y</code>等效于<code>重叠</code>。</p>
+</blockquote>
+<hr>
+<p>综上，</p>
+<script type="math/tex; mode=display">
+\boxed{\t{Chromatic Polynomial}} \\
+\a{
+\b{p_G(k)} &\b{=p_{G_1}(k) - p_{G_2}(k)} \\
+&= p_{G\ominus\alpha}(k) - p_{G\otimes\alpha}(k)
+}</script><blockquote>
+<p>直观地说：<code>G的k着色数</code> = <code>G中删除边&#123;x, y&#125;使得x和y可能被着色为相同颜色的着色数</code> - <code>G中将x和y着色为相同数量的着色数</code></p>
+<p>我们可以通过<code>对图G进行</code> <code>删除边</code>和<code>合并顶点</code>这2个操作，直到得到<code>零图</code>，从而可以计算<code>图G的色多项式</code></p>
+<blockquote>
+<p>更具体地，<code>图G的色多项式</code>是关于$k^p$的多项式</p>
+</blockquote>
+</blockquote>
+<hr>
+<h5 id="Construct-Chromatic-Polynomial"><a href="#Construct-Chromatic-Polynomial" class="headerlink" title="Construct Chromatic Polynomial"></a>Construct Chromatic Polynomial</h5><blockquote>
+<p><code>带符号图 (Signed Graph)</code>：$(\pm, G)$</p>
+</blockquote>
+<p>$\G$</p>
+<ul>
+<li>$\mathcal{G} \define \s{(+, G)}$</li>
+<li>$\exists H \subseteq \mathcal{G}, H \ne N_{|H|}$<ul>
+<li>$\t{SELECT } \t{signed graph } (\epsilon, H) \t{ AND an edge } \alpha \t{ from } H$</li>
+<li>$\mathcal{G} - (\epsilon, \b{H}), \mathcal{G} \cup (\epsilon, \b{H<em>{\ominus\alpha}})\cup(\epsilon, \b{H</em>{\otimes\alpha}})$</li>
+</ul>
+</li>
+<li>$p<em>G(k) \define \sum</em>{\forall (\epsilon, H) \in \mathcal{G}}{\epsilon k^p}$</li>
+</ul>
+<h4 id="Theory-8"><a href="#Theory-8" class="headerlink" title="Theory 8"></a>Theory 8</h4><script type="math/tex; mode=display">
+\lb {
+& \G \\
+& H = \b{K_r} \subseteq G
+} \implies p_{K_r}(k) \b{|} p_{G}(k)</script><hr>
+<p>若 $K_r$ 是 <code>完全图</code> $\implies$ $H$ 的所有顶点的颜色都不同。</p>
+<p>且对于 <code>H中顶点的每一种颜色选择</code>，都可以拓展到对<code>G的剩余顶点的</code>$q(k)$ <code>种着色</code>：</p>
+<p>$p_G(k) = [k]_r \r{\times} q(k)$</p>
+<blockquote>
+<p>可以看作：先对 <code>G中的</code> $K_r$ 进行着色，然后再对 <code>G中的剩余顶点</code>进行着色。</p>
+</blockquote>
+<h4 id="Theory-9"><a href="#Theory-9" class="headerlink" title="Theory 9"></a>Theory 9</h4><blockquote>
+<p><code>关节集 (Articulation Set)</code></p>
+<script type="math/tex; mode=display">
+\lb {
+& G = (V, E) \t{ is connected} \\
+& U \subseteq V
+} \implies \t{the \b{exported graph }} \b{G_{V-U}} \t{ is non-connective} \iff \b{U} \t { is an \b{articulation set}}</script><blockquote>
+<p><code>完全图</code>没有<code>关节集</code></p>
+</blockquote>
+</blockquote>
+<script type="math/tex; mode=display">
+\lb {
+& \G \\
+& U \t{ is an \b{articulation set} of graph } G \\
+& \r{G_U = K_r} \\
+& \t{the \b{connective components} of } \g{G_{V-U} \t{ is } G_{U_1}, \cdots G_{U_t}} \\
+& \g{H_i = G_{U \cup U_i} \quad(i = 1, \cdots, t)} 
+} \implies 
+\lb {
+& \r{p_{G}(k) = \frac{p_{H_1}(k)\times\cdots\times p_{H_t}(k)}{([k]_r)^{t-1}}} \\
+& \mathcal{X}(G) \t{ is the \b{max-imum} } \mathcal{X}(H_i)
+}</script><hr>
+<p>首先，$G_{V-U}$ 依照 <code>关节集</code>$U$ 将 <code>图G</code> <code>分解</code>为一些 <code>连通分量</code>。</p>
+<p>然后，$H_i$ 表示的将 <code>每个连通分量的顶点集</code>与<code>关节集</code>$U$ 的<code>并集</code> 来 <code>导出图G的子图</code></p>
+<script type="math/tex; mode=display">
+\a {
+p_G{k} = \underbrace{\r{p_{H_1}(k)}}_{\t{I \r{can} assign the color to } G_U} \times \underbrace{\g{\frac{p_{H_2}(k)}{[k]_r} \times \frac{p_{H_3}(k)}{[k]_r} \cdots \times \frac{p_{H_t}(k)}{[k]_r}}}_{\t{we \g{have to follow} the color assignment to } G_U} 
+
+}</script><blockquote>
+<p>应注意到，$H_i$均包含$U$中的顶点，但除了这些顶点外，<code>其他剩余顶点</code>都<code>两两不相交</code>。</p>
+<p><code>关节集</code> $U$ 实际上已经将 <code>图</code> $G$ 分解为 <code>一些连通分量</code>$G<em>{U_1}, \cdots, G</em>{U_t}$，这些<code>连通分量</code>之间的<code>顶点</code>都<code>两两互不相邻</code>。</p>
+<p>而对于$H_i$来说， <code>关节集</code>$U$则是<code>这些连通分量</code>唯一的<code>中介 (在图G中这些连通分量互相连通的唯一途径)</code>（也是$H_i$之间唯一所共同含有的 <code>顶点集</code>）</p>
+</blockquote>
+<h2 id="Plane-and-Planar-Graph"><a href="#Plane-and-Planar-Graph" class="headerlink" title="Plane and Planar Graph"></a>Plane and Planar Graph</h2><h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h3><p>若$G = (V, E)$是 <code>平面图</code>：</p>
+<p>该图的 <code>平面表示</code> $G’$</p>
+<ul>
+<li>$G’$也是 <code>平面图</code></li>
+<li>$G’$的顶点称为 <code>顶点点 (Vertex-Point)</code>：对应于 $G$ 中的顶点</li>
+<li>$G’$的边称为 <code>边曲线 (Edge-Curve)</code>：对应于$G$中的边</li>
+</ul>
+<blockquote>
+<p><code>平面表示</code>将 <code>平面 (Plane)</code> <code>划分</code>为由一条或若干条 <code>边曲线</code>所围成的 <code>区域</code></p>
+<p><code>边曲线</code>的计数方法：类似于 <code>欧拉迹</code>，首先在 <code>要被计数的区域</code>中 <code>任选一个顶点</code>，然后将 <code>笔</code>放在该顶点上，<code>不让笔离开纸面地移动笔</code>直到<code>该区域所有边都被访问过</code></p>
+<blockquote>
+<p>与 <code>欧拉迹</code>不同的是：我们实际上，允许 <code>重复访问相同的边</code>，只需 <code>走回头路</code>即可，但请记住 <code>重复走的边</code>也一样要被 <code>计数</code></p>
+</blockquote>
+<p>对于 <code>无穷区域</code>：由于 <code>无穷区域</code> 可以向 <code>任意方向进行无穷拓展</code> ，故我们可以将 <code>二维平面的无穷区域</code>放置到 <code>三维空间的巨型球体</code>上，此时定义 <code>无穷远</code>为 <code>球的北极点/南极点</code></p>
+</blockquote>
+<h3 id="Theory-1"><a href="#Theory-1" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-Euler’s-Formula"><a href="#Theory-1-Euler’s-Formula" class="headerlink" title="Theory 1: Euler’s Formula"></a>Theory 1: Euler’s Formula</h4><script type="math/tex; mode=display">
+\boxed{\t{Euler's Formula}} \\
+G \lb{
+& \t{ is a \b{planar graph}} \\
+& \t{ is \b{connective}} \\
+& \t{ has \b{n vertex-point}} \\
+& \t{ has \b{e edge-curve}} 
+} \implies \t{the plane is \b{divided} into } \b{r = e - n + 2 \t{ areas}}</script><hr>
+<ul>
+<li>若 <code>图G</code>为 <code>树</code></li>
+</ul>
+<p>$\because n \t{ vertex-point}, n-1 \t{ edge-curve}, 1 \t{ area}$</p>
+<ul>
+<li>若 <code>图G</code>不是 <code>树</code></li>
+</ul>
+<p>因为 <code>图G</code> 是 <code>连通图</code> $\implies$ <code>图G</code>有 <code>生成树</code> $T$ $\implies$ 每为$T$添加 <code>一条边</code>，则会 <code>形成一个圈</code>：因为 <code>这个圈</code>把 <code>原先的无穷区域</code> 划分为 <code>两个部分</code>（<code>无穷区域</code>+<code>新增的内部区域</code>）$\implies (r + \r{1}) = (e+\r{1}) - n +2$</p>
+<p>$\qed$</p>
+<h4 id="Theory-2-Extended-Euler’s-Formula"><a href="#Theory-2-Extended-Euler’s-Formula" class="headerlink" title="Theory 2: Extended Euler’s Formula"></a>Theory 2: Extended Euler’s Formula</h4><script type="math/tex; mode=display">
+\boxed{\t{Extended Euler's Formula}} \\
+\a {
+G = (V, E) \lb{
+& \t{ is a \b{planar graph}} \\
+& \t{ is \b{connective}} \\
+& \t{ has \b{no cycles}} \\
+& \t{ has \b{no multiple-edge}}
+}
+} \implies \r{\exists} x \in V, deg(x) \le 5</script><hr>
+<p>设 $G’$ 是 $G$的 <code>平面表示</code></p>
+<p>$\because$ $G$没有环</p>
+<p>$\therefore$ $G’$中的 <code>任何区域</code>都无法用 <code>一条边曲线</code> 来表示边界</p>
+<p>$\because$ $G$没有多重边</p>
+<p>$\therefore$ $G’$中的 <code>任何区域</code>都无法用 <code>两条边边曲线</code>来表示边界 （除非 $G$ 只有唯一的一条边）</p>
+<blockquote>
+<p>若 $G’$是有$n$个 <code>顶点点</code>， $e$条 <code>边曲线</code>，$r$个 <code>区域</code>的 <code>平面图</code>。</p>
+<p>设$f_1, f_2, \cdots, f_r$ 表示 <code>各个区域的边曲线数</code>，则有：</p>
+<p>$\r{f_1 +f_2 + \cdots + f_r = 2e}$</p>
+</blockquote>
+<p>$\therefore f_i \ge 3 \implies 2e \ge 3r \implies \frac{2e}{3} \ge r = \b{e - n +2}$</p>
+<p> $\therefore e \le 3n - 6$</p>
+<p>设 $d_1, \cdots, d_n$为 <code>图G中顶点的度数</code>，则</p>
+<p>$d_1 + \cdots + d_n = 2e$</p>
+<p>则 <code>图G的顶点的平均度数</code>为</p>
+<p>$\r{\frac{d_1+\cdots+d_n}{n}} = \frac{2e}{n} \le \frac{6n-12}{n} \r{\lt 6}$</p>
+<ul>
+<li>Example<ul>
+<li>$G = \b{K_n} \implies G \t{ is a \b{planar graph}} \iff \b{e \le 3n -6}$</li>
+<li>$G = \b{K_{p,q}} \implies G \t{ is a \b{planar graph}} \iff \b{e \le 2n - 4}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Theory-3-1"><a href="#Theory-3-1" class="headerlink" title="Theory 3"></a>Theory 3</h4><blockquote>
+<ul>
+<li>边的细分 (Subdivision)</li>
+</ul>
+<p>对 <code>边</code>$\alpha = \s{x, y}$ 的 <code>细分</code>指的是，用 $\s{x,z}$ 和 $\s{z, y}$ 代替 $\alpha$</p>
+<blockquote>
+<p>也可以看作，在$\alpha$中 <code>插入新的顶点</code></p>
+</blockquote>
+<p>我们称 <code>图H</code>是 <code>图G的细分</code>：可以通过对 <code>图G</code>进行 <code>细分</code>来得到 <code>图H</code></p>
+<ul>
+<li>边的收缩 (Contraction)</li>
+</ul>
+<p>对 <code>边</code>$\alpha = \s{x, y}$ 将 <code>顶点x</code> 和 <code>顶点y</code> 进行<code>合并</code>。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+G \t{ is a \b{planar graph}} \iff G \t{ don't \b{contains} \r{the subdivision of } } \r{K_5, K_{3,3}} \\
+G \t{ is a \b{planar graph}} \iff G \t{ don't \b{contains} \r{the contraction of } } \r{K_5, K_{3,3}}</script><h2 id="Five-Color-Theorem"><a href="#Five-Color-Theorem" class="headerlink" title="Five-Color Theorem"></a>Five-Color Theorem</h2><h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h3><script type="math/tex; mode=display">
+\boxed{\text{Five-Color Theorem}} \\
+G \t{ is a \b{planar graph}} \implies \mathcal{X}(G) \le 5</script><blockquote>
+<p>事实上，<code>Four-Color Theorem</code>已被证明。</p>
+<p>$K_5$不是 <code>平面图</code> $\implies$ <code>平面图</code>不能包含 <code>每对顶点都邻接的5个顶点</code></p>
+</blockquote>
+<h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><p>$G \define \lb{&amp; (V, E), |V| = n \ &amp; \text{ is a \b{planar graph}}  }$</p>
+<ul>
+<li>$n \le 5 \implies \mathcal{X}(G) \le 5$</li>
+<li>$n \gt 5$</li>
+</ul>
+<script type="math/tex; mode=display">
+\a{
+& \t{draw graph G as \b{a planar graph} \r{in a plane}} \\
+& \because \exists x \in V, deg(x) \le 5 \\
+& z \ne x, z \in V, \r{H \define G_{V - z} \implies H \text{ has a 5-coloring}}\\
+& \t{if } deg(x) \lb{
+&  \le 4,\t{ we can \b{assign a color to } x} \implies \t{we get \b{a 5-coloring of} }G \\
+
+&  = 5 , \lb{&\t{we assign \b{different colors } to } \s{x,y_1}, \s{x, y_2}, \s{x, y_3}, \s{x, y_4}, \s{x,y_5 } \implies \t{the \b{color} of } y_j \t{ is } j(j = 1,2,3,4,5) \\
+&\t{take the vertexes } \b{1} \t{ and } \b{3} \t{ into consideration} \lb {
+& 1 \t{ and }3 \t{ are different \b{connective components} in } H_{1,3} \implies \t{we can get a 5-coloring of } G\\
+& 1 \t{ and }3 \t{ are in the \r{same} \b{connective component} in } H_{1,3}  \implies \lb{
+&\t{there is \r{a path from 1 to 3}: } \gamma \\
+& \implies \t{the path \b{seperate the 3 vertexes }} y_1, y_2, y_5 \t{ into \r{2 parts }} \lb{
+&\t{Case 1: 1 vertex inside }\gamma \t{, 2 vertexes outside } \gamma \\
+&\t{Case 2: 2 vertexes inside }\gamma \t{, 1 vertex outside } \gamma}} 
+} \\
+
+&\implies \t{For Case1: take \b{the inside vertex 2} and \b{the outside vertex 4} for example} \\
+&\implies \t{\b{the inside vertex 2} and \b{the outside vertex 4} \r{must in different connective components } of } H_{\t{2,4}} \\
+& \implies \t{exchange the color 2 and 4 in \b{the connective compoent which contains }} \b{y_2} \\
+& \implies \t{we can get a 5-coloring of } G}}}</script><h3 id="Theory-2"><a href="#Theory-2" class="headerlink" title="Theory"></a>Theory</h3><h4 id="Theory-1-1"><a href="#Theory-1-1" class="headerlink" title="Theory 1"></a>Theory 1</h4><script type="math/tex; mode=display">
+\lb{
+& H = (U, F) \\
+& H \text{ has a \b{k-coloring} } \mathcal{V} = \s{V_1, \cdots, V_k} \\
+& V_{red} \in \mathcal{V}, V_{blue} \in \mathcal{V} \\
+& W \define V_{red} \cup V_{blue} \\
+& H_W \t{ is \b{exported} from graph } H \\
+& C_W \t{ is a \r{connective component} of graph } H_W \\
+} \implies \t{By \b{exchanging} red and blue in } C_W \t{, we can get \b{another k-coloring}}</script><h4 id="Theory-2-1"><a href="#Theory-2-1" class="headerlink" title="Theory 2"></a>Theory 2</h4><script type="math/tex; mode=display">
+\boxed{\t{Hadwiger's Guess}} \\
+G \lb{
+& \t{is \b{connective}} \\
+& \mathcal{X}(G) \ge p
+} \implies G \t{ can be \b{shrinked} into } K_p
+\\
+\boxed{\t{Theorem}} \\
+\t{Hadwiger's Guess is \b{right} for } \b{p = 5} \iff \forall\t{\b{planar graph} has \b{4-coloring}}</script><h4 id="Theory-3-2"><a href="#Theory-3-2" class="headerlink" title="Theory 3"></a>Theory 3</h4><script type="math/tex; mode=display">
+\lb {
+& p \le 3 \\
+& G \lb {
+& \t{ is \b{connective}} \\
+& \mathcal{X}(G)  \ge p
+}
+} \implies G \t{ can be shrinked into } K_p</script><hr>
+<ul>
+<li><p>$p = 1$，可以通过对 <code>图G的每一条边</code>都进行 <code>收缩</code>，最终得到 $K_1$</p>
+</li>
+<li><p>$p = 2$，可以通过对 <code>图G的除了一条边外的所有边</code>都进行 <code>收缩</code>，最终得到 $K_2$</p>
+</li>
+<li><p>$p = 3$，$\because \mathcal{X}(G) = 3 \implies $ <code>图G</code> 有 <code>一条长度为奇数的圈</code> 。</p>
+<p>设 $\gamma$ 是 <code>图G中的长度最小的奇数圈</code> $\implies$ 只有 <code>连接</code> $\gamma$  <code>中的顶点的边</code>才是 <code>真正属于</code> $\gamma$ <code>的边</code> $\implies$ 我们不断 <code>收缩图G中除</code> $\gamma$ <code>的边之外的所有边</code></p>
+<p>$\implies$ 最终得到 $K_3$</p>
+<blockquote>
+<p>注意，<code>连接</code>是 <code>图论</code>里的一个术语：只有 <code>边的2个顶点</code>都 <code>属于路径</code> $\gamma$ 才能算作 <code>连接</code>。</p>
+<p>换句话说，<code>该边的两个顶点</code>必须 <code>都来自路径</code> $\gamma$</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Independent-Number-amp-Clique-Number"><a href="#Independent-Number-amp-Clique-Number" class="headerlink" title="Independent Number &amp; Clique Number"></a>Independent Number &amp; Clique Number</h2><h3 id="Independent-Number"><a href="#Independent-Number" class="headerlink" title="Independent Number"></a>Independent Number</h3><h4 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition"></a>Definition</h4><p>若 $\G$，我们称 $U \subseteq V$ 为 <code>独立集</code>：$U$中的 <code>任何两个顶点</code> 都不 <code>邻接</code></p>
+<blockquote>
+<ul>
+<li><p>由 <code>独立集</code>所给出的 <code>图G</code>的 <code>导出子图</code> $G_U$ 是 <code>零图</code></p>
+</li>
+<li><p><code>色数</code> $\mathcal{X}(G)$是使得 <code>图G的顶点</code>能够被分成 <code>k个独立集</code>的 <code>最小整数k</code></p>
+</li>
+</ul>
+</blockquote>
+<p><code>图G的独立数</code> $\alpha(G)$：<code>图G</code>的 <code>所有独立集</code>中 <code>顶点的最大个数</code></p>
+<blockquote>
+<ul>
+<li><code>独立数</code>是 <code>图G的顶点着色</code>中，<code>具有相同颜色的顶点</code>的 <code>最大个数</code> ：$\mathcal{X}(G) \ge \roundup{\frac{n}{\alpha(G)}}$</li>
+<li>$\alpha(N<em>n) = n,\alpha(K_n) = 1，\alpha(K</em>{m,n}) = max\s{m, n}$</li>
+</ul>
+</blockquote>
+<h3 id="Domination-Set"><a href="#Domination-Set" class="headerlink" title="Domination Set"></a>Domination Set</h3><h4 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition"></a>Definition</h4><blockquote>
+<p>若 $G = (V,E)$，$U$是 <code>该图的顶点的独立集</code> 且 <code>不是任何更大的独立集的子集</code>。</p>
+<p>则：$U$ 中的 <code>任何两个顶点</code>都不 <code>邻接</code>，<code>不在U中的顶点</code>都 <code>至少与U中的一个顶点</code> <code>邻接</code>，</p>
+<p>我们将具有 <code>这种性质</code>的 <code>顶点集合</code>称为 <code>图G</code> 的 <code>控制集</code> $W$</p>
+</blockquote>
+<p><code>图G的控制集 (Domination Set)</code> $W$ 是 <code>图G</code>的 <code>一个顶点集合</code>，满足：<code>图G中不在W中的顶点</code> 至少与 <code>W中的一个顶点</code>相 <code>邻接</code>。</p>
+<blockquote>
+<p>任何包含 <code>控制集</code>的 <code>顶点集</code>也是 <code>控制集</code></p>
+</blockquote>
+<p><code>图G的控制数 (Dominating Number)</code> $dom(G)$： <code>图G</code>的 <code>控制集的最少顶点数</code></p>
+<ul>
+<li>$dom(N<em>n) = n, dom(K_n) = 1,dom(K</em>{m,n})\quad m,n \ge 2 = 2$</li>
+</ul>
+<h4 id="Theory-3"><a href="#Theory-3" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-2"><a href="#Theory-1-2" class="headerlink" title="Theory 1"></a>Theory 1</h5><script type="math/tex; mode=display">
+\lb{
+& G = (V, E),\quad |V| \ge 2 \\
+& G \t{ is \b{connective}}
+} \implies dom(G) \le \rounddown{\frac{n}{2}}</script><hr>
+<ul>
+<li>Proof 1</li>
+</ul>
+<p>由于 <code>图G</code>是 <code>连通图</code> $\implies$ 图G中的 <code>任何顶点</code> 都 <code>存在一个顶点与之</code>相 <code>邻接</code>，</p>
+<p>不妨设 <code>连接这两个顶点的边</code>中，<code>其中边的一个顶点</code> 属于 <code>控制集</code>， <code>边的另一个顶点</code> 不属于<code>控制集</code>。</p>
+<ul>
+<li>Proof 2</li>
+</ul>
+<p>设 $T$是 $G$的一颗 <code>生成树</code> $\r{\implies dom(G) \le dom(T)}$</p>
+<p>使用 <code>归纳法</code>：</p>
+<ol>
+<li><p>$n = 2 \implies$ $T$的<code>两个顶点</code>都是 <code>控制集</code></p>
+</li>
+<li><p>$n = 3$</p>
+<p>设 $y$ 是 <code>与悬挂顶点</code>  $x$ <code>相邻接的顶点</code>，$T^*$ 是 <code>从T中删除顶点y和所有与y关联的边而得到的图</code></p>
+<p> $\implies$ $T^*$的 <code>连通分量</code> 是 <code>树</code>，且 <code>这些树</code>之中<code>至少有一颗</code> <code>阶数为1的树</code>（如：<code>顶点x</code>）</p>
+<p>$\implies$设 $\r{T_1,\cdots, T_k}$是 <code>阶数至少为2的树</code>，则他们的 <code>阶数</code>为 $\r{n_1 \ge 2, \cdots ,n_k \ge 2}$</p>
+<p>$\implies$ 由 <code>归纳假设</code>，每个 $T_i$ 有一个 <code>大小至多为</code> $\rounddown{\frac{n_i}{2}}$ <code>的控制集</code></p>
+<p>$\implies$ <code>这些控制集的并</code>给出 <code>一个T的大小至多为</code> $\rounddown{\frac{n}{2}}$ <code>的控制集</code></p>
+<blockquote>
+<p>$1 + \rounddown{\frac{n_1}{2}} + \cdots + \rounddown{\frac{n_k}{2}} \le 1 +\rounddown{\frac{n_1+\cdots+n_k}{2}} \le 1 + \rounddown{\frac{\r{n-2}}{2}} = \rounddown{\frac{\r{n}}{2}}$</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="Clique-Number"><a href="#Clique-Number" class="headerlink" title="Clique Number"></a>Clique Number</h3><h4 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition"></a>Definition</h4><p><code>图G的团 (Clique)</code>： <code>图G的顶点的子集</code> $U$，使得在$U$中的 <code>每一对顶点</code> 相互 <code>邻接</code></p>
+<ul>
+<li>$|U| = n, G_U  = K_n$</li>
+</ul>
+<p><code>图G的团数 (Clique Number)</code> $\omega(G)$：<code>图G</code>的 <code>团的顶点的最大数目</code></p>
+<ul>
+<li><p>$\omega(N<em>n) = 1, \omega(K_n) = n, \omega(K</em>{m,n}) = 2$</p>
+</li>
+<li><p>$\r{\alpha(G) = \omega(\overline{G}), \omega({G}) = \alpha(G)}$</p>
+</li>
+</ul>
+<p><code>图G的团划分 (Clique Partition)</code>：将 <code>图G的顶点</code> 划分为 <code>团</code>的 <code>一个划分</code></p>
+<p><code>图G的团划分数 (Clique Partition Number)</code> $\theta(G)$：<code>图G的团划分</code>中 <code>最小的团数</code></p>
+<ul>
+<li>$\r{\theta(G) = \mathcal{X}(\overline{G}), \mathcal{X}(G) = \theta(\overline{G}) }$</li>
+</ul>
+<p><code>图G是</code> $\mathcal{X}$ <code>完美的 (Perfect)</code>：若对于 <code>图</code> $G$ <code>的所有导出子图</code> $H$ ，有 $\c{hotpink}{\mathcal{X}(H) = \omega(H)}$</p>
+<p><code>图G是</code> $\theta$ <code>完美的 (Perfect)</code>：若对于 <code>图</code> $G$ <code>的所有导出子图</code> $H$ ，有 $\c{hotpink}{\theta(H) = \alpha(H)}$</p>
+<h4 id="Theory-4"><a href="#Theory-4" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-3"><a href="#Theory-1-3" class="headerlink" title="Theory 1"></a>Theory 1</h5><script type="math/tex; mode=display">
+\boxed{\t{Berge's Guess}} \\
+\a{
+G \t{ is } \b{\mathcal{X} \t{ perfect}} &\iff G \t{ is } \b{\theta \t{ perfect}} \\
+G \t{ is } \b{\mathcal{X} \t{ perfect}} &\iff \overline{G} \t{ is not } \b{\mathcal{X} \t{ perfect}}
+}</script><h3 id="Chord-amp-Chordal-Graph"><a href="#Chord-amp-Chordal-Graph" class="headerlink" title="Chord &amp; Chordal Graph"></a>Chord &amp; Chordal Graph</h3><h4 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition"></a>Definition</h4><p><code>图G的圈的弦 (Chord)</code>：连接 <code>该圈</code> 的 <code>两个非连续顶点</code> 的 <code>一条边</code></p>
+<blockquote>
+<p>注意：<code>弦</code>是连接 <code>圈上两个顶点的边</code>，但 <code>弦</code>本身不是 <code>这个圈的边</code></p>
+</blockquote>
+<p><code>弦图</code>：任何 <code>长度大于3的圈</code>都有 <code>弦</code>的图</p>
+<blockquote>
+<p><code>长度等于3的圈</code>必定 <code>没有弦</code></p>
+</blockquote>
+<h4 id="Theory-5"><a href="#Theory-5" class="headerlink" title="Theory"></a>Theory</h4><h5 id="Theory-1-4"><a href="#Theory-1-4" class="headerlink" title="Theory 1"></a>Theory 1</h5><blockquote>
+<p><code>实直线</code>上的 <code>闭区间</code> 记为：$[a, b] = \s{x: a \le x \le b}$ </p>
+<p>若设 <code>闭区间族</code>：$I_1 = [a_1, b_1], I_2 = [a_2, b_2], \cdots, I_n = [a_n, b_n]$</p>
+<p><code>区间图 (Interval Graph)</code> ：<code>顶点集合</code> 为 $\s{I_1, \cdots, I_n}$， <code>顶点</code> $I_i$和 $I_j$ <code>邻接</code> 当且仅当 $I_i \cap I_j \ne \varnothing$</p>
+</blockquote>
+<p>每个 <code>区间图</code>都是 <code>弦图</code>。</p>
+<script type="math/tex; mode=display">
+\a{
+& V \define \s{I_1, I_2, \cdots I_n} \\
+& G \define (V, E) \\
+& \t{we assume that: } \lb{
+& k \gt 3 \\
+& I_{j_1} - I_{j_2} - \cdots - I_{j_k} - I_{j_1} \t{ is \b{a cycle of length k}} \\
+} \\
+& \t{proof：At least \b{one interval in the cycle} has \b{a non-empty intersection } with \b{an interval two distances aprat  in the cycle} } \\
+& \t{define \b{4 continuous intervals in the cycle}: } \lb{
+& I_m, I_p, I_q, I_r \\
+& I_m \cap I_q = \varnothing \\
+& I_p \cap I_r = \varnothing
+} \implies \lb{
+& I_m \cap I_p \ne \varnothing \\
+& I_p \cap I_q \ne \varnothing \\
+& I_q \cap I_r \ne \varnothing \\
+& I_m \cap I_q = \varnothing \\
+& I_p \cap I_r = \varnothing
+} \\
+&\t{if } a_q \lt a_p , b_p \lt b_q \implies I_p \subset I_q \implies \varnothing \ne I_m \cap I_p \subset I_m \cap I_q \implies contradictory \\
+& \therefore a_p \le a_q \t{ or } b_q \le b_p \implies \lb{
+& a_p \le a_q \implies a_q \le a_r \\
+& b_q \le b_p \implies b_r \le b_q
+} \\
+& \therefore \t{as for \b{3 continueos intervals}}: I_p, I_q, I_r \implies a_p \le a_q \le a_r \t{ or } b_r \le b_q \le b_p \\
+& \r{p \define j_1, a_{j_1} \le a_{j_2} \implies a_{j_1} \le a_{j_2} \le \cdots \le a_{j_k} \le a_{j_1}} \\
+& \r{\t{the same way: } b_{j_1} \le b_{j_2} \le \cdots \le b_{j_k} \le b_{j_1}} \\
+& \implies contracditory
+}</script><h5 id="Theory-2-2"><a href="#Theory-2-2" class="headerlink" title="Theory 2"></a>Theory 2</h5><script type="math/tex; mode=display">
+\lb{
+& G = (V, E) \t{ is \b{connective}} \\
+& U \t{ is \b{an articulation set} of } G \\
+& G_U \t{ is \b{complete}} \\
+& G_{V-U} \t{ has the following \b{connective components}: } G_1 = (U_1, E_1), \cdots, G_t = (U_t, E_t) \\
+& \r{\mathcal{X}(G_{U_i \cup U}) = \omega(G_{U_i \cup U}) \quad(i = 1,2, \cdots ,t)} \\
+} \implies \mathcal{X}(G) = \omega(G)</script><hr>
+<script type="math/tex; mode=display">
+\a{
+& \b{k \define \omega(G) \implies \omega(G_{U_i \cup U}) \le k \quad(i = 1, 2,\cdots, t)}\\
+& \implies \r{\exists j} , \omega(G_{U_j \cup U}) = k \\
+& \because \mathcal{X}(G) = \r{max}\s{\omega(G_{U_1 \cup U}), \cdots, \omega(G_{U_t \cup U})} \\
+& \implies \mathcal{X}(G) = \omega(G)
+}</script><h5 id="Theory-3-3"><a href="#Theory-3-3" class="headerlink" title="Theory 3"></a>Theory 3</h5><blockquote>
+<p><code>极小关节集</code>：<code>真子集</code>不是 <code>关节集</code>的 <code>关节集</code></p>
+</blockquote>
+<script type="math/tex; mode=display">
+\lb {
+& G = (V, E) \t { is a \g{complete} \b{chordal graph}} \\
+& U \t{ is a \b{local min-imum articulation set}} 
+} \implies G_U \t{ is \b{complete}}</script><hr>
+<ul>
+<li>若 $G_U$不是 <code>完全图</code>，则得到矛盾：</li>
+</ul>
+<p>若 <code>a</code> 和 <code>b</code> 是 <code>U中两个不邻接的顶点</code>。</p>
+<p>则因为 <code>U是关节集</code>，所以  $G_{V-U}$中至少有两个 <code>连通分量</code>： $G_1 = (U_1, E_1)$ 和 $G_2 = (U_2, E_2)$</p>
+<p>如果 <code>a</code>不与 $G_1$ <code>中任何顶点邻接</code> $\implies$  $U - \s{a}$  也是一个 <code>关节集</code></p>
+<p>$\because U$ 是一个 <code>极小关节集</code>，则 <code>a</code> 必定至少与 $U_1$ <code>中的一个顶点</code> 邻接。</p>
+<p>类似的，可证明：$a$ 至少与 $U_2$ 中的一个顶点邻接。</p>
+<p>同理，对b也有结论：</p>
+<p>$b$ 至少与 $U_1$中的一个顶点邻接</p>
+<p>$b$至少与 $U_2$ 中的一个顶点邻接</p>
+<p>$\because$  $G_1$和 $G_2$ 是连通的</p>
+<p>$\therefore$ 存在一条 <code>连接a到b的路径</code> $\gamma_1$，该路径中 不同于a和b的所有顶点都属于 $U_1$</p>
+<p>$\therefore $存在一条 <code>连接b到a的路径</code> $\gamma_2$，该路径中 不同于a和b的所有顶点都属于 $U_2$</p>
+<p>$\therefore$ 我们可以选择 $\gamma_1$ 和 $\gamma_2$，使其长度最短：$\gamma = \gamma_1, \gamma_2$</p>
+<p>故 $\gamma$ 是 G中的一个圈且长度至少等于4,</p>
+<p>由于 $\gamma_1$和 $\gamma_2$ 具有最短的长度，所以 $\gamma$ 的弦只可能 <code>连接a和b的边</code></p>
+<p>$\because$ 选择的a和b是非邻接的</p>
+<p>$\therefore \gamma = \gamma_1, \gamma_2$ 没有弦的结论 </p>
+<p>而这与 <code>图G是弦图</code>矛盾。</p>
+<h5 id="Theory-4-1"><a href="#Theory-4-1" class="headerlink" title="Theory 4"></a>Theory 4</h5><p>每个 <code>弦图</code> 都是 <code>完美的 (Perfect)</code></p>
+<hr>
+<script type="math/tex; mode=display">
+\a{
+& \because \t{the exporting graph of chordal graph is \b{also a chordal graph}} \\
+& \therefore \mathcal{X}(G) = \omega(G) \\
+& \t{define } \G \t{ is a \b{chordal graph} and use \b{induction on }} n \\
+& G \lb{ 
+& = K_n \implies \qed \quad\t{(all the \b{complete} graph is \b{perfect})} \\
+& \ne K_n \implies 
+\lb{
+& G \t{ has a \b{local min-imum articulation set} U} \\
+& \implies G_U \t{ is a \r{complete} graph} \\
+& \then \t{the \b{connective components} of } G_{V-U} \t{ is } G_1 = (U_1, E_2), \cdots, G_t=(U_t, E_t) \\
+& \then \r{\forall G_{U_i \cup U}, \mathcal{X}(G_{U_i \cup U}) = \omega(G_{U_i \cup U}) \implies \mathcal{X}(G) = \omega(G)
+}}
+}
+}</script><h5 id="Theory-5"><a href="#Theory-5" class="headerlink" title="Theory 5"></a>Theory 5</h5><blockquote>
+<script type="math/tex; mode=display">
+\bt{Berge's Guess} \\
+\t{the graph } G \t{ is \b{perfect}} \iff G \t{ and } \overline{G} \t{\b{ don't the following exporint graph}} \lb{
+& \t{has a \b{odd-cycle} whose length is \b{grater than 3}} \\
+& \t{don't have any \b{chords}}
+}</script></blockquote>
+<p>每个 <code>区间图</code> 都是 <code>完美的</code>。</p>
+<p>$$<br>\boxed{Macro}<br>% Color %<br>\newcommand\c[2]{\textcolor</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/">https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/combinatorics/">combinatorics</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Advanced-Graph"><span class="toc-number">1.</span> <span class="toc-text">Advanced Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chromatic-Number"><span class="toc-number">1.1.</span> <span class="toc-text">Chromatic Number</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory"><span class="toc-number">1.1.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Theory 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">Theory 4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5-A-Greedy-Method-to-Solve-the-Vertex-Coloring"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">Theory 5: A Greedy Method to Solve the Vertex Coloring</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-6-Brooks-Theorem"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">Theory 6: Brooks Theorem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-7-Chromatic-Polynomial"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">Theory 7: Chromatic Polynomial</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Construct-Chromatic-Polynomial"><span class="toc-number">1.1.2.7.1.</span> <span class="toc-text">Construct Chromatic Polynomial</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-8"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">Theory 8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-9"><span class="toc-number">1.1.2.9.</span> <span class="toc-text">Theory 9</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Plane-and-Planar-Graph"><span class="toc-number">1.2.</span> <span class="toc-text">Plane and Planar Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-Euler%E2%80%99s-Formula"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Theory 1: Euler’s Formula</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-Extended-Euler%E2%80%99s-Formula"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Theory 2: Extended Euler’s Formula</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3-1"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Theory 3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Five-Color-Theorem"><span class="toc-number">1.3.</span> <span class="toc-text">Five-Color Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proof"><span class="toc-number">1.3.2.</span> <span class="toc-text">Proof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theory-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-1-1"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-2-1"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3-2"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">Theory 3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Independent-Number-amp-Clique-Number"><span class="toc-number">1.4.</span> <span class="toc-text">Independent Number &amp; Clique Number</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Independent-Number"><span class="toc-number">1.4.1.</span> <span class="toc-text">Independent Number</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-3"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Definition</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Domination-Set"><span class="toc-number">1.4.2.</span> <span class="toc-text">Domination Set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-4"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-3"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-1-2"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">Theory 1</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Clique-Number"><span class="toc-number">1.4.3.</span> <span class="toc-text">Clique Number</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-5"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-4"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-1-3"><span class="toc-number">1.4.3.2.1.</span> <span class="toc-text">Theory 1</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chord-amp-Chordal-Graph"><span class="toc-number">1.4.4.</span> <span class="toc-text">Chord &amp; Chordal Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-6"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theory-5"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-1-4"><span class="toc-number">1.4.4.2.1.</span> <span class="toc-text">Theory 1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-2-2"><span class="toc-number">1.4.4.2.2.</span> <span class="toc-text">Theory 2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-3-3"><span class="toc-number">1.4.4.2.3.</span> <span class="toc-text">Theory 3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-4-1"><span class="toc-number">1.4.4.2.4.</span> <span class="toc-text">Theory 4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theory-5"><span class="toc-number">1.4.4.2.5.</span> <span class="toc-text">Theory 5</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

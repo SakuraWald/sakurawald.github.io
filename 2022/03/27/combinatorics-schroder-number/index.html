@@ -1,0 +1,495 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Combinatorics] Schroder Number | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/03/27/combinatorics-schroder-number/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Combinatorics] Schroder Number',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Lattice-amp-Schroder-Number"><a href="#Lattice-amp-Schroder-Number" class="headerlink" title="Lattice &amp; Schroder Number"></a>Lattice &amp; Schroder Number</h1><h2 id="Lattice"><a href="#Lattice" class="headerlink" title="Lattice"></a>Lattice</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>考虑坐标平面上<code>具有整数坐标的点的</code> <code>整格 (Integral Lattice)</code>。</p>
+<p>给定2个点</p>
+<script type="math/tex; mode=display">
+(p,q), (r,s) \quad p \ge r, q \ge s</script><p><code>从(p,q)到(r,s)的矩形格路径 (Rectangular Lattice Path)</code>指的是这样的一条路径：<code>从(r,s)到(p,q)</code>由 <code>水平步(Horizontal Step) H = (1,0)</code>和<code>垂直步 (Vertical Step) V = (0, 1)</code>所组成。</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><h5 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h5><p>从<code>(r,s)到(p,q)的矩形格路径的数目</code>等于<code>二项式系数</code>：</p>
+<script type="math/tex; mode=display">
+\binom{(p-r)+(q-s)}{p-r} = \binom{(p-r)+(q-s)}{q-s}</script><h5 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h5><p><code>从(r,s)到(p,q)的路径</code>总共包含<code>(p-r)+(q-s)个水平步和垂直步</code>，</p>
+<p>因此我们需要在<code>(p-r)+(q-s)个步</code>中<code>选择</code> <code>(p-r)个水平步</code>或者<code>确定(q-s)个垂直步</code>。</p>
+<p>即使用<code>组合数的概念</code></p>
+<h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><h5 id="Content-1"><a href="#Content-1" class="headerlink" title="Content"></a>Content</h5><p>设n是非负整数，则<code>从(0,0)到(n,n)的下对角线矩形格路径</code>的数目=<code>第n个Catalan数</code></p>
+<script type="math/tex; mode=display">
+C_n = \frac{1}{n+1}\binom{2n}{n}</script><h5 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h5><p>考虑<code>Catalan数的经典模型</code>，令<code>水平步为+1元素</code>，<code>垂直步为-1元素</code>。</p>
+<p>则实际上我们要求的是<code>由n个水平步和n个垂直步所构成的2n个元素的所有序列</code>中<code>可接受序列的数量</code></p>
+<blockquote>
+<p>可以<code>接触对角线</code>，这并不算<code>越过对角线</code></p>
+</blockquote>
+<p>Q.E.D</p>
+<h4 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem 3"></a>Theorem 3</h4><h5 id="Content-2"><a href="#Content-2" class="headerlink" title="Content"></a>Content</h5><p>设p和q是正整数，且$p \ge q$，则<code>从(0,0)到(p,q)的下对角线矩形格路径(Subdiagonal Rectangular Lattice Path)</code>的数目等于</p>
+<script type="math/tex; mode=display">
+\frac{p-q+1}{p+1}\binom{p+q}{q}</script><h5 id="Proof-2"><a href="#Proof-2" class="headerlink" title="Proof"></a>Proof</h5><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s2.loli.net/2023/01/22/VwLM8BoRYGAcO79.png" alt="image-20220327183907639"></p>
+<p>设<code>从(0,0)到(p,q)的穿过对角线的矩形格路径$$\gamma$$的数目</code>$l(p,q)$</p>
+<p>设<code>从(0,0)到(p,q)的矩形格路径的数目</code>=$\binom{p+q}{p}$</p>
+<p>$l(p,q)$的数目等于<code>从(0, -1)到(p, q-1)的接触到对角线y=x的矩形格路径</code>$\gamma^\prime$的数目相同</p>
+<blockquote>
+<p>矩形格路径$\gamma^\prime$相当于是将原路径$\gamma$<code>整体向下平移1个单位格</code>所得到的。如果<code>在路径</code>$\gamma^\prime$中<code>恰好接触到对角线y=x</code>，则意味着<code>在原路径</code>$\gamma$中，<code>恰好已经穿过了对角线1个单位格</code>！所以，我们实际上建立了路径$\gamma^\prime$和路径$\gamma$之间的<code>一一对应关系</code></p>
+</blockquote>
+<p>故，</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+从(0,0)到(p,q)的下对角线矩形格路径的数目 &= 从(0,0)到(p,q)的矩形格路径的数目 - 从(0,0)到(p,q)的穿过对角线的矩形格路径的数目\\
+&= \binom{p+q}{p} - l(p,q)
+\end{aligned}</script><hr>
+<p>我们将路径$\gamma^\prime$ <code>分解</code>为两部分：$\gamma^\prime = \gamma_1 + \gamma_2$ </p>
+<p>其中，</p>
+<p>$\gamma_1$指<code>从(0,-1)到该路径接触到的第一个对角线点(d,d)的路径</code></p>
+<p>$\gamma_2$指<code>从(d,d)到(p, q-1)的路径</code></p>
+<blockquote>
+<p>注意：路径$\gamma^\prime$是指<code>接触到对角线的路径</code>，有可能<code>不止接触对角线1次</code></p>
+</blockquote>
+<p>然后，我们将$\gamma_1$关于对角线$y=x$进行<code>反射</code>得到</p>
+<p>$\gamma_1^*$是<code>从(-1,0)到该路径接触到的第一个对角线点(d,d)的路径</code></p>
+<p>由于$\gamma_1^<em>$是$\gamma_1$关于对角线$y=x$的反射，若令 $\gamma^</em> = \gamma_1^* + \gamma_2$，则</p>
+<p>$\gamma<em>=\gamma_1^</em>+\gamma_2$ 与$\gamma^\prime=\gamma_1+\gamma_2$之间存在<code>一一对应关系</code></p>
+<p>故$l(p,q)$等于<code>从(-1,0)到(p,q-1)的矩形格路径的数目</code>，即</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+l(p,q) &= \binom{(p - (-1))+(q-1 - 0)}{q-1} \\
+&=\binom{p+1+q-1}{q-1} \\
+&=\binom{p+q}{q-1}
+\end{aligned}</script><blockquote>
+<p>注：由于$\gamma_1^<em>$是$\gamma_1$关于对角线$y=x$进行<code>反射</code>而得到的。路径$\gamma_1^</em>$的<code>起点(-1,0)</code>和<code>终点(p, q-1)</code> 分别<code>位于对角线y=x的两侧</code>。</p>
+<p>故：<code>所有的从(-1,0)到(p,q-1)的矩形格路径</code>均会<code>穿过对角线</code>！</p>
+</blockquote>
+<hr>
+<p>综上，<code>从(0,0)到(p,q)的下对角线矩形格路径</code>的数目等于</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\binom{p+q}{q} - l(p,q)=\binom{p+q}{q}-\binom{p+q}{q-1} = \frac{p-q+1}{p+1}\binom{p+q}{q}
+\end{aligned}</script><h4 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem 4"></a>Theorem 4</h4><h5 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h5><p><code>HVD格路径</code>指的是允许<code>水平步 (Horizontal Step)</code>，<code>垂直步 (Vertical Step)</code>和<code>对角步 (Diagonal Step)</code>的格路径。</p>
+<p>设$K(p,q)$是<code>从(0,0)到(p,q)的HVD格路径的数目</code></p>
+<p>设$K(p,q:rD)$是<code>从(0,0)到(p,q)的恰好使用r个对角步的HVD格路径的数目</code></p>
+<h5 id="Content-3"><a href="#Content-3" class="headerlink" title="Content"></a>Content</h5><p>设$r \le min{p, q}$，则</p>
+<script type="math/tex; mode=display">
+K(p,q:rD) = \binom{p+q-r}{p-r\qquad q-r \qquad r} = \frac{(p+q-r)!}{(p-r)!(q-r)!(r)!}</script><p>以及</p>
+<script type="math/tex; mode=display">
+K(p,q)=\sum_{r=0}^{min\{p,q\}}\frac{(p+q-r)!}{(p-r)!(q-r)!(r)!}</script><h5 id="Proof-3"><a href="#Proof-3" class="headerlink" title="Proof"></a>Proof</h5><p>如果<code>某条HVD格路径恰好使用了</code> <code>r个对角步</code>，则意味着<code>这条格路径必定恰好使用了</code> <code>p-r个水平步</code>和<code>q-r个垂直步</code></p>
+<p>于是，$K(p,q:rD)$的值 等同于 <code>求多重集合&#123;(p-r) · H, (q-r) · V, r · D&#125;的排列数</code> 即：</p>
+<script type="math/tex; mode=display">
+K(p,q:rD) = \binom{p+q-r}{p-r \qquad q-r \qquad r}= \frac{(p+q-r)!}{(p-r)!(q-r)!(r)!}</script><p>Q.E.D</p>
+<h4 id="Theorem-5"><a href="#Theorem-5" class="headerlink" title="Theorem 5"></a>Theorem 5</h4><h5 id="Background-1"><a href="#Background-1" class="headerlink" title="Background"></a>Background</h5><p>设$R(p,q) \quad p \ge q$为<code>从(0,0)到(p,q)的下对角线HVD格路径的数目</code></p>
+<p>另外，设$R(p,q:rD)$ 是<code>从(0,0)到(p,q)的恰好使用r个对角步的HVD格路径的数目</code> </p>
+<p>则，</p>
+<script type="math/tex; mode=display">
+R(p,q) = \sum_{r=0}^{min\{p,q\}}{R(p,q:rD)}</script><h5 id="Content-4"><a href="#Content-4" class="headerlink" title="Content"></a>Content</h5><p>设p和q是正整数，且$p \ge q$，并设r是满足$r \le q$的非负整数。则有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+R(p,q:rD) &= \frac{p-q+1}{p-r+1}\frac{(p+q-r)!}{(r)!(p-r)!(q-r)!} \\
+&= \frac{p-q+1}{p-r+1} \binom{p+q-r}{r \qquad (p-r) \qquad (q-r)}
+\end{aligned}</script><h5 id="Proof-4"><a href="#Proof-4" class="headerlink" title="Proof"></a>Proof</h5><p><code>从(0,0)到(p,q)的恰好使用r个对角步的下对角线HVD格路径</code>$\gamma$ 可以在<code>去除了r个对角步</code>之后，转化为</p>
+<p><code>从(0,0)到(p-r,q-r)的下对角线HVD格路径</code>$\pi$</p>
+<p>同理，相反的。我们可以对<code>从(0,0)到（p-r,q-r)的下对角线HVD格路径</code>$pi$的基础上，通过在<code>p-r个水平步</code>，<code>q-r个垂直平</code>的<code>共(p-r)+(q-r)+1=p+q-2r+1个位置中的任意地方</code>插入<code>r个对角步</code>后得到<code>从(0,0)到(p,q)的恰好使用r个对角步的下对角线HVD格路径</code>$\pi$的数量</p>
+<p>在$\pi$中插入<code>r个对角步的方案数</code> 等于 <code>下述方程的非负整数解的个数</code></p>
+<script type="math/tex; mode=display">
+x_1 + x_2 + \cdots + x_{p+q-2r+1} = r</script><p>而<code>解的个数</code>是</p>
+<script type="math/tex; mode=display">
+\binom{(p+q-2r+1)+r-1}{r}=\binom{p+q-r}{r}</script><p>综上，我们得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+R(p,q:rD) &= \binom{p+q-r}{r} \times R(p-r,q-r,0D) \\
+&=\binom{p+q-r}{r} \times \frac{p-q+1}{p-r+1}\binom{p+q-2r}{q-r}\\
+&=\frac{p-q+1}{p-r+1}\binom{p+q-r}{r \qquad (p-r) \qquad (q-r)}
+\end{aligned}</script><p>Q.E.D</p>
+<h2 id="Schroder-Number"><a href="#Schroder-Number" class="headerlink" title="Schroder Number"></a>Schroder Number</h2><h3 id="Large-Schroder-Numebr"><a href="#Large-Schroder-Numebr" class="headerlink" title="Large Schroder Numebr"></a>Large Schroder Numebr</h3><h4 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition"></a>Definition</h4><p>假设$p = q = n$，则<code>从(0,0)到(n,n)的下对角线HVD格路径</code>即为<code>Schroder路径</code></p>
+<p><code>大Schroder数</code>$R_n$表示<code>从(0,0)到(n,n)的Schroder路径的数目（即下对角线的HVD格路径的数目）</code></p>
+<script type="math/tex; mode=display">
+R_n = R(n,n) = \sum_{r=0}^n{\frac{1}{n-r-1}\frac{(2n-r)!}{(r)!((n-r)!)^2}}</script><h3 id="Small-Schroder-Number"><a href="#Small-Schroder-Number" class="headerlink" title="Small Schroder Number"></a>Small Schroder Number</h3><h4 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition"></a>Definition</h4><p>设$n \ge 1$ ，且$a_1,a_2,\cdots\,a_n$是<code>n个符号的序列</code>。<code>小Schroder数</code>$s_n$表示<code>对n个符号的序列加括号的方案数</code></p>
+<blockquote>
+<p>每个括号内的符号不一定只能是2个，可以任意多个。换句话说，不一定只是<code>二元加括号方式</code></p>
+</blockquote>
+<script type="math/tex; mode=display">
+(n+2)s_{n+2}-3(2n+1)s_{n+1}+(n-1)s_n = 0 \qquad (n \ge 1)</script><p>给序列$a_1,a_2,\cdots,a_n$加括号的递归定义为：</p>
+<ol>
+<li>对于每一个符号$a_i$，它本身就是一种加括号的方案。</li>
+<li>任意<code>两个或多个加括号序列</code>被<code>一对括号</code>括起来，则也是一种加括号的方案。 </li>
+</ol>
+<h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h4><h5 id="Theorem-1-1"><a href="#Theorem-1-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h5><h6 id="Content-5"><a href="#Content-5" class="headerlink" title="Content"></a>Content</h6><p><code>小Schroder数</code>的<code>生成函数</code>为</p>
+<script type="math/tex; mode=display">
+\sum_{n=1}^\infty{s_nx^n} = \frac{1}{4}(1+x-\sqrt{x^2-6x+1})</script><h6 id="Proof-5"><a href="#Proof-5" class="headerlink" title="Proof"></a>Proof</h6><p>设$g(x) = \sum_{n=1}^{\infty}{s_nx^n}$为<code>小Schroder数的生成函数</code>。</p>
+<p>则根据<code>小Schroder数的递归定义</code>得</p>
+<p>$g(x) = x + g(x)^2 + g(x)^3 + g(x)^4 + \cdots = x + g(x)^2(1+ g(x) + g(x)^2 + \cdots)= x + \frac{g(x)^2}{1-g(x)}$</p>
+<p>化简得</p>
+<p>$2g(x)^2-(1+x)g(x)+x = 0$</p>
+<p>使用<code>y</code>代替<code>g(x)</code>得</p>
+<p>$2y^2 - (1+x)y + x = 0$</p>
+<blockquote>
+<p>此处x被当做常数处理</p>
+</blockquote>
+<p>解方程得出</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+
+y_1(x)&=\frac{(1+x)+\sqrt{(1+x)^2-8x}}{4}\\\\
+
+y_2(x)&=\frac{(1+x)-\sqrt{(1+x)^2-8x}}{4}
+\end{aligned}</script><p>代入<code>递推关系的初始条件</code>$g(0)=0$进行<code>检验根</code>得知应舍去$y_1(x)$。故</p>
+<script type="math/tex; mode=display">
+g(x) = y_2(x) = \frac{(1+x)-\sqrt{(1+x)^2-8x}}{4}</script><p>Q.E.D</p>
+<blockquote>
+<p>根据<code>小Schroder数的递推关系的生成函数</code>，我们可以通过<code>求解微分方程</code>来得到<code>小Schroder数的递推关系</code>。</p>
+<p><code>求解生成函数的过程</code>不在这里详细展开。</p>
+</blockquote>
+<h5 id="Theorem-2-1"><a href="#Theorem-2-1" class="headerlink" title="Theorem 2"></a>Theorem 2</h5><h6 id="Content-6"><a href="#Content-6" class="headerlink" title="Content"></a>Content</h6><p><code>大Schroder数的生成函数</code>为</p>
+<script type="math/tex; mode=display">
+\sum_{n=0}^\infty{R_nx^n} = \frac{1}{2x}(-(x-1)-\sqrt{x^2-6x+1})</script><h6 id="Proof-6"><a href="#Proof-6" class="headerlink" title="Proof"></a>Proof</h6><p><code>从(0,0)到(n,n)的下对角线的格路径</code>可以被分为3类：</p>
+<ol>
+<li>空路径（当n=0时）</li>
+<li>该路径从一个 对角步 D 开始</li>
+<li>该路径从一个 水平步 H 开始</li>
+</ol>
+<blockquote>
+<p><code>Sychroder路径</code>不会从一个<code>垂直步</code>开始，否则将会<code>立即越过对角线</code>，从而<code>违反定义</code></p>
+</blockquote>
+<ul>
+<li><p>对于类型1：因为根本不存在方案，故不需要计数。（或者计数为<code>+0个方案</code>）</p>
+</li>
+<li><p>对于类型2：<code>原问题</code>相当于求<code>从(1,1)到(n,n)的下对角线的格路径</code>的数目</p>
+</li>
+</ul>
+<p>即$R_{n-1}$ （相当于把<code>原问题</code>的规模从<code>n</code>缩小到<code>n-1</code>）</p>
+<ul>
+<li>对于类型3：<code>原问题</code>相当于求<code>从（1,0)到(n,n)的下对角线的格路径</code> 数目。</li>
+</ul>
+<p>设$\gamma$表示该路径，且$\gamma$起始于$(1,0)$，终止于$(n,n)$。</p>
+<p>设$(k,k) \quad 1 \le k \le n$ 为路径$\gamma$<code>所接触的第一个对角线上的点</code></p>
+<p>考察<code>路径</code>$\gamma$（<code>从(1,0)到(n,n)的路径</code>）到达所接触的第一个对角线上的点$(k,k)$的方式：</p>
+<ol>
+<li><p>如果$\gamma$通过<code>1个垂直步</code>从$(k, k-1)$步进到$(k,k)$：则分解$\gamma=\gamma<em>1 +\gamma_2$，设$\gamma_1$是<code>从(1,0)到(k,k-1)的部分上是一条格路径</code>。$\gamma_1$不会<code>接触到对角线上的点</code>，所以$\gamma_1$存在$R</em>{k-1}$种选择。</p>
+<blockquote>
+<p>即基于<code>求从(1,0)到(k,k-1)的下对角线的格路径数目</code>中选取一个子问题规模：$(k)-(1) = (k-1) - (0) = k - 1$）。</p>
+</blockquote>
+<p>而$\gamma<em>2$是<code>从(k,k)到(n,n)的下对角线的格路径数目</code>，因而存在$R</em>{n-k}$个选择。</p>
+</li>
+<li><p>$\gamma$不可能通过<code>1个水平步</code>从$(k -1, k)$步进到$(k,k)$，否则这将意味着<code>这条路径早已越过了对角线</code></p>
+</li>
+</ol>
+<hr>
+<p>综上</p>
+<script type="math/tex; mode=display">
+R_n = R_{n-1} + \sum_{k=1}^n{R_{k-1}R_{n-k}} \quad (n \ge 1)</script><p>或等价地</p>
+<script type="math/tex; mode=display">
+Rn = R_{n-1} + \sum_{k=0}^{n-1}{R_kR_{n-1-k}} \quad (n \ge 1)</script><p> 故</p>
+<script type="math/tex; mode=display">
+x^nR_n = x(x^{n-1}R_{n-1}) + x(\sum_{k=0}^{n-1}{x^kR_kx^{n-1}R_{n-1-k}}) \quad (n \ge 1)</script><blockquote>
+<p>整合上面两个式子</p>
+</blockquote>
+<p>代入$R_0 = 1$得出</p>
+<script type="math/tex; mode=display">
+h(x) = 1 + xh(x) + xh(x)^2</script><p>同理解<code>一元二次方程</code>得出</p>
+<script type="math/tex; mode=display">
+h(x) = y_2(x) = \frac{1-x-\sqrt{x^2-6x+1}}{2x}</script><h5 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h5><h6 id="Content-7"><a href="#Content-7" class="headerlink" title="Content"></a>Content</h6><p><code>大Schroder数</code>和<code>小Schroder数</code>之间存在关系</p>
+<script type="math/tex; mode=display">
+R_n = 2s_{n+1} \quad (n \ge 1)</script><h5 id="Theorem-3-1"><a href="#Theorem-3-1" class="headerlink" title="Theorem 3"></a>Theorem 3</h5><h6 id="Content-8"><a href="#Content-8" class="headerlink" title="Content"></a>Content</h6><p>设n为正整数，<code>有n+1条边的凸多边形区域</code>的<code>剖分数</code>（即$\Pi_{n+1}$）等于 <code>小Schroder数</code>$s_n$</p>
+<blockquote>
+<p>相类似的：对于<code>有n+1条边的凸多边形区域</code>的<code>三角剖分数</code> 等于<code>第n-1个Catalan数</code></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/03/27/combinatorics-schroder-number/">https://sakurawald.github.io/2022/03/27/combinatorics-schroder-number/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/combinatorics/">combinatorics</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lattice-amp-Schroder-Number"><span class="toc-number">1.</span> <span class="toc-text">Lattice &amp; Schroder Number</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lattice"><span class="toc-number">1.1.</span> <span class="toc-text">Lattice</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definition"><span class="toc-number">1.1.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Theorem"><span class="toc-number">1.1.2.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Theorem 1</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Content"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Proof"><span class="toc-number">1.1.2.1.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-2"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Theorem 2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Content-1"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Proof-1"><span class="toc-number">1.1.2.2.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-3"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Theorem 3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Content-2"><span class="toc-number">1.1.2.3.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Proof-2"><span class="toc-number">1.1.2.3.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-4"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">Theorem 4</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Background"><span class="toc-number">1.1.2.4.1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Content-3"><span class="toc-number">1.1.2.4.2.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Proof-3"><span class="toc-number">1.1.2.4.3.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-5"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">Theorem 5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Background-1"><span class="toc-number">1.1.2.5.1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Content-4"><span class="toc-number">1.1.2.5.2.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Proof-4"><span class="toc-number">1.1.2.5.3.</span> <span class="toc-text">Proof</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Schroder-Number"><span class="toc-number">1.2.</span> <span class="toc-text">Schroder Number</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Large-Schroder-Numebr"><span class="toc-number">1.2.1.</span> <span class="toc-text">Large Schroder Numebr</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-1"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Definition</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Small-Schroder-Number"><span class="toc-number">1.2.2.</span> <span class="toc-text">Small Schroder Number</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-2"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">Definition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theorem-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Theorem-1-1"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text">Theorem 1</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Content-5"><span class="toc-number">1.2.2.2.1.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Proof-5"><span class="toc-number">1.2.2.2.1.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theorem-2-1"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text">Theorem 2</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Content-6"><span class="toc-number">1.2.2.2.2.1.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Proof-6"><span class="toc-number">1.2.2.2.2.2.</span> <span class="toc-text">Proof</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Inference"><span class="toc-number">1.2.2.2.3.</span> <span class="toc-text">Inference</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Content-7"><span class="toc-number">1.2.2.2.3.1.</span> <span class="toc-text">Content</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Theorem-3-1"><span class="toc-number">1.2.2.2.4.</span> <span class="toc-text">Theorem 3</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Content-8"><span class="toc-number">1.2.2.2.4.1.</span> <span class="toc-text">Content</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

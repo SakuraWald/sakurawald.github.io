@@ -1,0 +1,1643 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Algorithm] Multiple-Knapsack Problem &amp; Pebble Merge Problem | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Algorithm] Multiple-Knapsack Problem & Pebble Merge Problem',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Dynamic-Programming-Problems"><a href="#Dynamic-Programming-Problems" class="headerlink" title="Dynamic Programming Problems"></a>Dynamic Programming Problems</h1>
+$$
+\boxed{@}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor{miku}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ IN }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\text{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+
+<h2 id="Multiple-Knapsack-Problem"><a href="#Multiple-Knapsack-Problem" class="headerlink" title="Multiple-Knapsack Problem"></a>Multiple-Knapsack Problem</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>设有 n 种不同面值的硬币，各硬币的面值存于数组 T［1:n］中。现要用这些面值的硬<br>币来找钱。可以使用的各种面值的硬币个数存于数组 Coins［1:n］中。<br>对任意钱数 0≤m≤20001，设计一个用最少硬币找钱 m 的方法。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 提供输入数据，文件的第一行中只有 1 个整数给出n 的值,第 2 行起每<br>行 2 个数，分别是 T[j]和 Coins[j]。最后 1 行是要找的钱数 m。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>程序运行结束时，将计算出的最少硬币数输出到文件 output.txt 中。问题无解时输出-1。</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong></p>
+<p>input.txt</p>
+<p>3<br>1 3<br>2 3<br>5 3<br>18</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt</p>
+<p>5</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><h4 id="Analyse-the-Dimensions-amp-Establish-the-Recursive-Equation"><a href="#Analyse-the-Dimensions-amp-Establish-the-Recursive-Equation" class="headerlink" title="Analyse the Dimensions &amp; Establish the Recursive Equation"></a>Analyse the Dimensions &amp; Establish the Recursive Equation</h4><pre><code class="lang-mermaid">classDiagram
+class Knapsack &#123;
+ +capacity
+&#125;
+
+class Item &#123;
+ +value
+ +weight
+ +amount
+&#125;
+</code></pre>
+<p>首先，分析出题目中的 <code>对象 (Object)</code> 所涉及到的 <code>属性 (Attribute)</code>  有哪些。</p>
+<p>我们可以得到：</p>
+<ul>
+<li><p>与<code>物品 (硬币)</code>有关的属性有<code>面值 (value)</code>和<code>数量 (amount)</code>。</p>
+<blockquote>
+<p>实际上，<code>物品</code>还有一个属性为 <code>重量 (weight)</code>。</p>
+<p>由于 <code>优化目标</code>为 <code>所需的最少硬币的数量</code>，所以可以将 <code>所有物品的重量</code>均视为 <code>单位重量</code>，</p>
+<p>然后 <code>忽略</code> 掉这个属性。</p>
+</blockquote>
+</li>
+<li><p>与<code>背包 (需要凑的零钱)</code>有关的属性有<code>容量 (capacity)</code></p>
+</li>
+</ul>
+<p>所以，我们可以得到3个 <code>数据维度 (Dimension)</code>：<code>硬币的面值</code>，<code>硬币的数量</code>，<code>需要凑的零钱</code>，</p>
+<blockquote>
+<p><code>硬币的数量</code> 应该算 <code>2个维度</code>，加起来总共 <code>4个维度</code></p>
+</blockquote>
+<p>并且，我们可以定义<code>递推关系的值</code>为<code>所需的最少硬币数</code>。</p>
+<blockquote>
+<p>这是因为 <code>所需的最少硬币数</code>是 <code>题目所需求的解</code>。</p>
+<blockquote>
+<p>一般直接将 <code>递推关系的值</code> 定义为 <code>题目所需要求解的值</code>，然后进行 <code>划分子问题</code>，</p>
+<p>这样等到 <code>递推方程的值</code>计算完成，我们就可以 <code>直接</code>得到 <code>问题的解</code>。</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>现在，我们不妨考虑一下，在<code>最终凑齐零钱</code>之前发生了什么？</p>
+<p>在<code>最后一步 (The Final Step)</code>  ，我们会将<code>某种面值的硬币</code>放入<code>k枚</code>，然后满足<code>目标容量</code>。</p>
+<blockquote>
+<p>n.b. 这里如果认为：<code>最后一步</code> 会将 <code>某种面值的硬币</code> 放入<code>1枚</code> 也可以。</p>
+<p>但实际上，<code>某种面值的硬币</code> 可以 <code>一次性</code> 地放入 <code>多枚</code>，并且效果 <code>等价于</code></p>
+<p><code>分多次在不同步</code> 放入 <code>该种硬币1枚</code></p>
+</blockquote>
+<p>因此，我们可以立即得出下面的<code>递推方程</code>。</p>
+<script type="math/tex; mode=display">
+\boxed{\t{Just take the final step into consideration}} \\
+dp[capacity][type][amount] = 
+\lb{
+& dp[capacity \r{- (k * values[type])}][type-1][amount \r{+ k}] + \g{k},&(\t{use coins}) \\
+& dp[capacity][type-1][amount],&(\t{don't use coins})
+}</script><hr>
+<h4 id="Compress-the-Recursive-Equation"><a href="#Compress-the-Recursive-Equation" class="headerlink" title="Compress the Recursive Equation"></a>Compress the Recursive Equation</h4><p>到此，我们已经得到了<code>递推方程</code>，但该方程是<code>4维</code>的，<code>时间复杂度</code> 可能会较大。</p>
+<blockquote>
+<p>后面我们会对比 <code>4维解法</code> 和 <code>2维解法</code> 的 <code>性能差异</code>。</p>
+<p>当 <code>问题规模</code> 变得 <code>稍微大一些</code> 的时候， <code>4维解法</code> 的 <code>时间复杂度</code> 将无法在 <code>可接受的时间</code> 内完成求解。</p>
+</blockquote>
+<p>接下来我们可以考虑，能否<code>压缩 (Compress)</code> <code>某些维度</code>来达到<code>降维优化</code>的效果。</p>
+<blockquote>
+<p>实际上，该 <code>递推方程</code>的 <code>数量 (amount)</code>维度存有 <code>冗余的信息</code>。</p>
+</blockquote>
+<hr>
+<p>关于<code>每种硬币的数量限制</code>，不妨考虑：</p>
+<p>如果<code>每种硬币</code>都是<code>无限的</code>，那么我们很确信，<code>capacity较大的问题的最优解</code>由<code>capacity较小的问题的最优解</code>来<code>组成</code>。</p>
+<blockquote>
+<p> 因为<code>每种硬币</code>是 <code>无限的</code>，我们只需要简单地把<code>capacity较小的问题的找零方案</code>进行<code>组合</code>即可。</p>
+</blockquote>
+<p>但是，如果<code>每种硬币都是有限的</code>，如何知道<code>capacity较大的问题的最优解</code>是否可以 <code>直接</code> 由<code>capacity较小的问题的最优解</code>组合得到，而且 <code>不违反每种硬币的数量限制</code>？</p>
+<p>换句话说：如果我们需要<code>凑齐500元</code>，而<code>凑齐500元的最优解</code>由<code>凑齐200元的最优解</code>和<code>凑齐300元的最优解</code>来<code>组合</code>得到。假设，<code>凑齐200元的最优解</code>和<code>凑齐500元的最优解</code>都用到了<code>5元硬币</code>，则我们如何<code>确保所使用的5元硬币的总量符合数量限制</code>？</p>
+<p>这个问题其实依赖于我们的<code>计算顺序</code>，<code>凑齐200元的最优解</code>和<code>凑齐300元的最优解</code>并不是<code>独立地被计算出来的</code>。</p>
+<p>我们会在<code>凑齐200元的最优解</code>的 <code>基础上</code> 进行计算<code>凑齐300元的最优解</code>，也就是从<code>capacity较小的问题</code>开始计算。</p>
+<p>同时，<code>保证任何时候的凑零钱方式</code>都符合 <code>每种硬币的数量限制</code>。</p>
+<p>也就是说，我们是通过<code>在capacity较小的问题</code>的 <code>基础 (Base)</code>之上，<code>动态地</code> 计算 <code>capacity较大的问题的最优解</code>，</p>
+<blockquote>
+<p>换句话说，如果我们在 <code>capacity较小的问题</code> 的 <code>基础</code> 之上，求解 <code>capacity较大的问题</code>的 <code>最优解</code>。</p>
+<p>那么违反 <code>数量限制的解</code> 本质上就是 <code>非法解</code>，并不是 <code>合法解</code>，更谈不上 <code>最优解</code>！</p>
+<p>这使得处理 <code>数量限制</code>的约束非常容易，我们需要做的仅仅是 <code>在子问题的基础之上求解原问题</code>。</p>
+<blockquote>
+<p>即要求我们满足 <code>最优子结构 (Optimal Substructure)</code> 性质</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>关于<code>每种硬币的数量限制</code>，还有一个重要的性质，那就是<code>凑硬币的顺序是可交换的</code>。</p>
+<p>比如说：</p>
+<script type="math/tex; mode=display">
+\a{
+50 &= 30 + 10 + 10 \\
+&= 10 + 30 + 10 \\
+&= 10 + 10 + 30
+}</script><p>也就是<code>同样面值的固定数量的硬币</code>，按 <code>任意顺序</code> 放入，最终的 <code>效果</code> 是等价的。</p>
+<blockquote>
+<p>即 <code>整数的加法</code>是 <code>可交换的</code></p>
+</blockquote>
+<p>那么，也就是说：如果我们要求<code>凑齐50元硬币的最优解</code>，而我们 <code>拥有一些10元硬币</code>，</p>
+<p>则我们无需考虑<code>到底要按照什么顺序放入这些10元硬币</code>，而仅仅需要考虑，<code>到底一次性要放多少枚10元硬币</code>才可以得到<code>凑齐50元硬币的最优解</code>。</p>
+<p>因此，我们实际上利用 <code>可交换性</code>可以<code>压缩</code> 掉 <code>amount维度</code>：</p>
+<p>由于对于 <code>某种硬币</code>来说， <code>分多步放入共k枚</code>和 <code>在1步就一次性放入k枚</code>的 <code>效果</code>是 <code>等价的</code>，</p>
+<p>那么我们不妨就可以 <code>依次考虑每种类型的硬币</code>，并 <code>确定一次性要放多少枚该种硬币</code>。</p>
+<p>在已知<code>正在考虑的硬币类型</code>和 <code>当前需要凑齐的金额</code>时，我们可以很容易地得出 <code>当前类型的硬币的数量</code>的 <code>上下界</code>，</p>
+<p>然后依次考虑 <code>k的所有可能取值</code>，找出 <code>原问题的最优解</code>。</p>
+<blockquote>
+<p>如果没有这样压缩，则我们要为<code>amount维度</code>的每种可能的来源方式做考虑：</p>
+<p>如果没有 <code>可交换性</code>的话，我们就需要为 <code>硬币数量的所有可能来源</code>做考虑。</p>
+<p>如 5枚 = 0+5 = 1 + 4 = 2 + 3 = 3 + 2 = 4 + 1 = 5 + 0</p>
+</blockquote>
+<hr>
+<p>因而，我们可以得到 <code>压缩后的递推方程</code>。</p>
+<script type="math/tex; mode=display">
+\boxed{\t{Just take the final step into consideration}} \\
+dp[capacity][type] = \lb{
+&dp[capacity \r{- (k * values[type])}][type-1]\g{+ k},&(\t{use coins of the current type}) \\
+&dp[capacity][type-1],&(\t{don't use coins of the current type})
+}</script><blockquote>
+<p>n.b. 当我们<code>集中起来一次性考虑每种面额要放多少枚硬币</code>时，我们将<code>非常容易地</code>实现<code>对每种面值的硬币的数量的限制</code>（只需要通过简单地取定<code>当前面值的硬币</code>的<code>循环下限</code>和<code>循环上限</code>即可）</p>
+<blockquote>
+<p>同时这也意味着，<code>每种硬币的数量是特定的</code>和<code>每种硬币的数量是无限的</code>这两种问题本质上是相同的。</p>
+</blockquote>
+</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><h4 id="Iterative-Method"><a href="#Iterative-Method" class="headerlink" title="Iterative Method"></a>Iterative Method</h4><h5 id="Diagram"><a href="#Diagram" class="headerlink" title="Diagram"></a>Diagram</h5><pre><code class="lang-yaml">Expected  Input: [3, 2 3, 3 3, 6 1, 12]
+Expected Output: [3]
+</code></pre>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">item\capacity</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">1061109567</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">xxxxxxxxxx ——————————————————————————-Current Case: MODE1.in &amp; MODE1.outExpected  Input: [10, Omit the remaining 10 line(s)…]Expected Output: [1, 5]Your     Output: [1, 5]Time Cost: 0.045200 ms (45200 ns)Accepted——————————————————————————-Current Case: MODE10.in &amp; MODE10.outExpected  Input: [1234567, Omit the remaining 1234567 line(s)…]Expected Output: [47527, 38]Your     Output: [47527, 38]Time Cost: 104.330000 ms (104330000 ns)Accepted——————————————————————————-Current Case: MODE11.in &amp; MODE11.outExpected  Input: [10, Omit the remaining 10 line(s)…]Expected Output: [1, 6]Your     Output: [1, 6]Time Cost: 0.001100 ms (1100 ns)Accepted——————————————————————————-Current Case: MODE12.in &amp; MODE12.outExpected  Input: [10, Omit the remaining 10 line(s)…]Expected Output: [2, 5]Your     Output: [2, 5]Time Cost: 0.001000 ms (1000 ns)Accepted——————————————————————————-Current Case: MODE13.in &amp; MODE13.outExpected  Input: [10, Omit the remaining 10 line(s)…]Expected Output: [2, 4]Your     Output: [2, 4]Time Cost: 0.000901 ms (901 ns)Accepted——————————————————————————-Current Case: MODE14.in &amp; MODE14.outExpected  Input: [10, Omit the remaining 10 line(s)…]Expected Output: [2, 4]Your     Output: [2, 4]Time Cost: 0.001200 ms (1200 ns)Accepted——————————————————————————-Current Case: MODE15.in &amp; MODE15.outExpected  Input: [10, Omit the remaining 9 line(s)…]Expected Output: [3, 4]Your     Output: [3, 4]Time Cost: 0.001101 ms (1101 ns)Accepted——————————————————————————-Current Case: MODE2.in &amp; MODE2.outExpected  Input: [50, Omit the remaining 50 line(s)…]Expected Output: [3, 8]Your     Output: [3, 8]Time Cost: 0.002099 ms (2099 ns)Accepted——————————————————————————-Current Case: MODE3.in &amp; MODE3.outExpected  Input: [100, Omit the remaining 100 line(s)…]Expected Output: [28, 9]Your     Output: [28, 9]Time Cost: 0.004400 ms (4400 ns)Accepted——————————————————————————-Current Case: MODE4.in &amp; MODE4.outExpected  Input: [500, Omit the remaining 500 line(s)…]Expected Output: [17, 8]Your     Output: [29, 8]Time Cost: 0.029600 ms (29600 ns)Wrong Answer.——————————————————————————-Current Case: MODE5.in &amp; MODE5.outExpected  Input: [10000, Omit the remaining 10000 line(s)…]Expected Output: [152, 11]Your     Output: [152, 11]Time Cost: 0.564300 ms (564300 ns)Accepted——————————————————————————-Current Case: MODE6.in &amp; MODE6.outExpected  Input: [50000, Omit the remaining 50000 line(s)…]Expected Output: [1507, 11]Your     Output: [1507, 11]Time Cost: 3.741200 ms (3741200 ns)Accepted——————————————————————————-Current Case: MODE7.in &amp; MODE7.outExpected  Input: [500000, Omit the remaining 500000 line(s)…]Expected Output: [62872, 23]Your     Output: [62872, 23]Time Cost: 37.026301 ms (37026301 ns)Accepted——————————————————————————-Current Case: MODE8.in &amp; MODE8.outExpected  Input: [1000000, Omit the remaining 1000000 line(s)…]Expected Output: [15875, 34]Your     Output: [15875, 34]Time Cost: 71.459100 ms (71459100 ns)Accepted——————————————————————————-Current Case: MODE9.in &amp; MODE9.outExpected  Input: [1234567, Omit the remaining 1234567 line(s)…]Expected Output: [44678, 42]Your     Output: [44678, 42]Time Cost: 83.852201 ms (83852201 ns)Accepted——————————————————————————-Result Statistics: √ √ √ √ √ √ √ √ √ × √ √ √ √ √ yaml</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h5><pre><code class="lang-java">    public static int solve(int[] values, int[] amounts, int capacity) &#123;
+        // define dp array
+        int[][] dp = new int[values.length + 1][capacity + 1];
+
+        // init
+        for (int i = 0; i &lt;= values.length; i++) &#123;
+            dp[i][0] = 0;
+        &#125;
+        for (int j = 1; j &lt;= capacity; j++) &#123;
+            dp[0][j] = 0x3f3f3f3f;
+        &#125;
+
+        // only use the first i coins
+        for (int i = 1; i &lt;= values.length; i++) &#123;
+            int value = values[i - 1];
+            // to satisfy j capacity
+            for (int j = 1; j &lt;= capacity; j++) &#123;
+                // how many coins of this type should be used ?
+                for (int k = 0; k &lt;= j / value &amp;&amp; k &lt;= amounts[i - 1]; k++) &#123;
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i - 1][j - k * value] + k);
+                &#125;
+            &#125;
+        &#125;
+
+        int ans = dp[values.length][capacity];
+        return ans == 0x3f3f3f3f ? -1 : ans;
+    &#125;
+</code></pre>
+<h5 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h5><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: COINS0.in &amp; COINS0.out
+Expected  Input: [10, 1 0, 2 12, 5 180, 10 0, 20 109, 50 126, 100 192, 200 107, 500 47, 1000 20, 14758]
+Expected Output: [21]
+Your     Output: [21]
+Time Cost: 25.284600 ms (25284600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS1.in &amp; COINS1.out
+Expected  Input: [10, 1 0, 2 12, 5 180, 10 0, 20 109, 50 126, 100 192, 200 107, 500 47, 1000 20, 14758]
+Expected Output: [21]
+Your     Output: [21]
+Time Cost: 16.951400 ms (16951400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS2.in &amp; COINS2.out
+Expected  Input: [10, 1 0, 2 45, 5 0, 10 148, 20 145, 50 136, 100 181, 200 17, 500 172, 1000 152, 16834]
+Expected Output: [23]
+Your     Output: [23]
+Time Cost: 13.734800 ms (13734800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS3.in &amp; COINS3.out
+Expected  Input: [10, 1 0, 2 22, 5 0, 10 27, 20 52, 50 192, 100 164, 200 110, 500 62, 1000 98, 17397]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 10.814700 ms (10814700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS4.in &amp; COINS4.out
+Expected  Input: [10, 1 0, 2 99, 5 173, 10 11, 20 54, 50 101, 100 6, 200 44, 500 15, 1000 126, 12810]
+Expected Output: [16]
+Your     Output: [16]
+Time Cost: 8.838500 ms (8838500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS5.in &amp; COINS5.out
+Expected  Input: [10, 1 0, 2 133, 5 6, 10 137, 20 196, 50 198, 100 176, 200 0, 500 168, 1000 94, 2253]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 1.159000 ms (1159000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS6.in &amp; COINS6.out
+Expected  Input: [10, 1 0, 2 0, 5 3, 10 131, 20 24, 50 78, 100 66, 200 84, 500 147, 1000 152, 16423]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 8.171400 ms (8171400 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √
+</code></pre>
+<h4 id="Recursive-Method-2-Dimension"><a href="#Recursive-Method-2-Dimension" class="headerlink" title="Recursive Method (2-Dimension)"></a>Recursive Method (2-Dimension)</h4><h5 id="Diagram-1"><a href="#Diagram-1" class="headerlink" title="Diagram"></a>Diagram</h5><pre><code class="lang-yaml">Expected  Input: [3, 2 3, 3 3, 6 1, 12]
+Expected Output: [3]
+</code></pre>
+<pre><code class="lang-mermaid">graph TD;
+root((root)) --#1, 0 * 6--&gt; 47c306e5((12))
+47c306e5 --#2, 0 * 3--&gt; 1c2ac852((12))
+1c2ac852 --#3, 0 * 2--&gt; a6e0b278((12))
+1c2ac852 --#4, 1 * 2--&gt; d03ca462((10))
+1c2ac852 --#5, 2 * 2--&gt; 91c93566((8))
+1c2ac852 --#6, 3 * 2--&gt; 4180836e((6))
+style 4180836e fill: lightgreen,stroke: #333,stroke-width: 4px
+47c306e5 --#7, 1 * 3--&gt; 5ecc1041((9))
+5ecc1041 --#8, 0 * 2--&gt; b759c285((9))
+5ecc1041 --#9, 1 * 2--&gt; 01ecf723((7))
+5ecc1041 --#10, 2 * 2--&gt; a3105e86((5))
+5ecc1041 --#11, 3 * 2--&gt; 25c25e57((3))
+style 25c25e57 fill: lightgreen,stroke: #333,stroke-width: 4px
+47c306e5 --#12, 2 * 3--&gt; be869faa((6))
+style be869faa fill: lightgreen,stroke: #333,stroke-width: 4px
+be869faa --#13, 0 * 2--&gt; 3314f76a((6))
+style 3314f76a fill: lightgray,stroke: #333,stroke-width: 4px
+be869faa --#14, 1 * 2--&gt; e07a5826((4))
+be869faa --#15, 2 * 2--&gt; bdcf5e09((2))
+be869faa --#16, 3 * 2--&gt; b6de7abb((0))
+style b6de7abb fill: lightgreen,stroke: #333,stroke-width: 4px
+47c306e5 --#17, 3 * 3--&gt; 4fd2a78a((3))
+style 4fd2a78a fill: lightgreen,stroke: #333,stroke-width: 4px
+4fd2a78a --#18, 0 * 2--&gt; 24309338((3))
+style 24309338 fill: lightgray,stroke: #333,stroke-width: 4px
+4fd2a78a --#19, 1 * 2--&gt; a9927e68((1))
+root((root)) --#20, 1 * 6--&gt; 30bd713b((6))
+30bd713b --#21, 0 * 3--&gt; 82f6a912((6))
+style 82f6a912 fill: lightgray,stroke: #333,stroke-width: 4px
+30bd713b --#22, 1 * 3--&gt; a1adc784((3))
+style a1adc784 fill: lightgray,stroke: #333,stroke-width: 4px
+30bd713b --#23, 2 * 3--&gt; 2bd1ac23((0))
+2bd1ac23 --#24, 0 * 2--&gt; 9eccd897((0))
+style 9eccd897 fill: lightgray,stroke: #333,stroke-width: 4px
+</code></pre>
+<h5 id="Source-1"><a href="#Source-1" class="headerlink" title="Source"></a>Source</h5><pre><code class="lang-java">    static int n;
+    static int[] values;
+    static int[] amounts;
+    static int capacity;
+    static int[][] dp;
+    static boolean[][] visited;
+    static int INF = 0x3f3f3f3f;
+
+    public static int f(int firstCoins, int capacity) &#123;
+
+        /* Base Case */
+        if (visited[firstCoins][capacity] || firstCoins == 0) return dp[firstCoins][capacity];
+        else visited[firstCoins][capacity] = true;
+
+        /* Recursive Case */
+        int value = values[firstCoins - 1];
+        for (int k = 0; (k &lt;= capacity / value) &amp;&amp; (k &lt;= amounts[firstCoins - 1]); k++) &#123;
+            // the following are the same
+            // dp[firstCoins][capacity] = Math.min(f(firstCoins - 1, capacity), f(firstCoins - 1, capacity - (k * value)) + k);
+            dp[firstCoins][capacity] = Math.min(dp[firstCoins - 1][capacity], f(firstCoins - 1, capacity - (k * value)) + k);
+        &#125;
+
+        return dp[firstCoins][capacity];
+    &#125;
+
+    public static int solve() &#123;
+
+        // define dp array
+        dp = new int[values.length + 1][capacity + 1];
+        visited = new boolean[values.length + 1][capacity + 1];
+
+        // init
+        for (int i = 0; i &lt;= values.length; i++) &#123;
+            for (int j = 0; j &lt;= capacity; j++) &#123;
+                dp[i][j] = INF;
+            &#125;
+        &#125;
+
+        for (int i = 0; i &lt;= values.length; i++) &#123;
+            dp[i][0] = 0;
+        &#125;
+        for (int j = 1; j &lt;= capacity; j++) &#123;
+            dp[0][j] = INF;
+        &#125;
+
+        // dp
+        int ans = f(values.length, capacity);
+        return ans == INF ? -1 : ans;
+    &#125;
+
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            n = scanner.nextInt();
+            values = new int[n];
+            amounts = new int[n];
+            for (int i = 0; i &lt; n; i++) &#123;
+                int value = scanner.nextInt();
+                int amount = scanner.nextInt();
+                values[i] = value;
+                amounts[i] = amount;
+            &#125;
+            capacity = scanner.nextInt();
+            judger.manuallyStartTimer();
+            System.out.println(solve());
+            judger.manuallyStopTimer();
+        &#125;
+    &#125;
+</code></pre>
+<h5 id="Benchmark-1"><a href="#Benchmark-1" class="headerlink" title="Benchmark"></a>Benchmark</h5><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: COINS0.in &amp; COINS0.out
+Expected  Input: [10, 1 0, 2 12, 5 180, 10 0, 20 109, 50 126, 100 192, 200 107, 500 47, 1000 20, 14758]
+Expected Output: [21]
+Your     Output: [21]
+Time Cost: 8.383200 ms (8383200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS1.in &amp; COINS1.out
+Expected  Input: [10, 1 0, 2 12, 5 180, 10 0, 20 109, 50 126, 100 192, 200 107, 500 47, 1000 20, 14758]
+Expected Output: [21]
+Your     Output: [21]
+Time Cost: 5.690600 ms (5690600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS2.in &amp; COINS2.out
+Expected  Input: [10, 1 0, 2 45, 5 0, 10 148, 20 145, 50 136, 100 181, 200 17, 500 172, 1000 152, 16834]
+Expected Output: [23]
+Your     Output: [23]
+Time Cost: 6.921800 ms (6921800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS3.in &amp; COINS3.out
+Expected  Input: [10, 1 0, 2 22, 5 0, 10 27, 20 52, 50 192, 100 164, 200 110, 500 62, 1000 98, 17397]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 1.721700 ms (1721700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS4.in &amp; COINS4.out
+Expected  Input: [10, 1 0, 2 99, 5 173, 10 11, 20 54, 50 101, 100 6, 200 44, 500 15, 1000 126, 12810]
+Expected Output: [16]
+Your     Output: [16]
+Time Cost: 4.294700 ms (4294700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS5.in &amp; COINS5.out
+Expected  Input: [10, 1 0, 2 133, 5 6, 10 137, 20 196, 50 198, 100 176, 200 0, 500 168, 1000 94, 2253]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 1.258100 ms (1258100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS6.in &amp; COINS6.out
+Expected  Input: [10, 1 0, 2 0, 5 3, 10 131, 20 24, 50 78, 100 66, 200 84, 500 147, 1000 152, 16423]
+Expected Output: [-1]
+Your     Output: [-1]
+Time Cost: 2.296300 ms (2296300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: COINS7.in &amp; COINS7.out
+Expected  Input: [3, 1 1, 2 2, 3 3, 11]
+Expected Output: [4]
+Your     Output: [4]
+Time Cost: 0.092600 ms (92600 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √
+</code></pre>
+<h4 id="Recursive-Method-4-Dimension"><a href="#Recursive-Method-4-Dimension" class="headerlink" title="Recursive Method (4-Dimension)"></a>Recursive Method (4-Dimension)</h4><h5 id="Diagram-2"><a href="#Diagram-2" class="headerlink" title="Diagram"></a>Diagram</h5><pre><code class="lang-yaml">Expected  Input: [3, 2 3, 3 3, 6 1, 12]
+Expected Output: [3]
+</code></pre>
+<pre><code class="lang-mermaid">graph TD;
+root((root)) --#36, 0 * 6--&gt; a7411865((12))
+a7411865 --#37, 0 * 3--&gt; 45b1eb92((12))
+45b1eb92 --#38, 0 * 2--&gt; 23c84bd8((12))
+style 23c84bd8 fill: lightgray,stroke: #333,stroke-width: 4px
+45b1eb92 --#39, 1 * 2--&gt; 3a989a55((10))
+style 3a989a55 fill: lightgray,stroke: #333,stroke-width: 4px
+45b1eb92 --#40, 2 * 2--&gt; 01f72111((8))
+style 01f72111 fill: lightgray,stroke: #333,stroke-width: 4px
+45b1eb92 --#41, 3 * 2--&gt; bf018faf((6))
+style bf018faf fill: lightgray,stroke: #333,stroke-width: 4px
+a7411865 --#42, 1 * 3--&gt; e48ee7e2((9))
+e48ee7e2 --#43, 0 * 2--&gt; 4edc439b((9))
+style 4edc439b fill: lightgray,stroke: #333,stroke-width: 4px
+e48ee7e2 --#44, 1 * 2--&gt; f92a6278((7))
+style f92a6278 fill: lightgray,stroke: #333,stroke-width: 4px
+e48ee7e2 --#45, 2 * 2--&gt; 1b25d26a((5))
+style 1b25d26a fill: lightgray,stroke: #333,stroke-width: 4px
+e48ee7e2 --#46, 3 * 2--&gt; 39611a30((3))
+style 39611a30 fill: lightgray,stroke: #333,stroke-width: 4px
+a7411865 --#47, 2 * 3--&gt; 0abad9d3((6))
+0abad9d3 --#48, 0 * 2--&gt; ba8ca012((6))
+style ba8ca012 fill: lightgray,stroke: #333,stroke-width: 4px
+0abad9d3 --#49, 1 * 2--&gt; 0475bb15((4))
+style 0475bb15 fill: lightgray,stroke: #333,stroke-width: 4px
+0abad9d3 --#50, 2 * 2--&gt; ea8374c3((2))
+style ea8374c3 fill: lightgray,stroke: #333,stroke-width: 4px
+0abad9d3 --#51, 3 * 2--&gt; eeff9ef2((0))
+style eeff9ef2 fill: lightgray,stroke: #333,stroke-width: 4px
+a7411865 --#52, 3 * 3--&gt; fbb80b24((3))
+fbb80b24 --#53, 0 * 2--&gt; a96a30bc((3))
+style a96a30bc fill: lightgray,stroke: #333,stroke-width: 4px
+fbb80b24 --#54, 1 * 2--&gt; fc4ee4be((1))
+style fc4ee4be fill: lightgray,stroke: #333,stroke-width: 4px
+root((root)) --#55, 1 * 6--&gt; 8c399954((6))
+8c399954 --#56, 0 * 3--&gt; 59fdd542((6))
+59fdd542 --#57, 0 * 2--&gt; 49d33747((6))
+style 49d33747 fill: lightgray,stroke: #333,stroke-width: 4px
+59fdd542 --#58, 1 * 2--&gt; 8d975ef6((4))
+style 8d975ef6 fill: lightgray,stroke: #333,stroke-width: 4px
+59fdd542 --#59, 2 * 2--&gt; 89d23054((2))
+style 89d23054 fill: lightgray,stroke: #333,stroke-width: 4px
+59fdd542 --#60, 3 * 2--&gt; 1ec22271((0))
+style 1ec22271 fill: lightgray,stroke: #333,stroke-width: 4px
+8c399954 --#61, 1 * 3--&gt; 4de3015f((3))
+4de3015f --#62, 0 * 2--&gt; 010c58d1((3))
+style 010c58d1 fill: lightgray,stroke: #333,stroke-width: 4px
+4de3015f --#63, 1 * 2--&gt; 951f5029((1))
+style 951f5029 fill: lightgray,stroke: #333,stroke-width: 4px
+8c399954 --#64, 2 * 3--&gt; ce3992c9((0))
+style ce3992c9 fill: lightgray,stroke: #333,stroke-width: 4px
+</code></pre>
+<h5 id="Source-2"><a href="#Source-2" class="headerlink" title="Source"></a>Source</h5><pre><code class="lang-java">    static int n;
+    static int[] values;
+    static int[] amounts;
+    static int capacity;
+    static int INF = 0x3f3f3f3f;
+
+    public static class Memo &#123;
+        private static final ArrayList&lt;Memo&gt; memo = new ArrayList&lt;&gt;();
+        public int firstCoins;
+        public int capacity;
+        public int[] amounts;
+        public int value;
+        public boolean visited;
+
+        public Memo(int firstCoins, int capacity, int[] amounts, int value, boolean visited) &#123;
+            this.firstCoins = firstCoins;
+            this.capacity = capacity;
+            this.amounts = amounts;
+            this.value = value;
+            this.visited = visited;
+        &#125;
+
+        @Override
+        public boolean equals(Object o) &#123;
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Memo memo = (Memo) o;
+            if (firstCoins != memo.firstCoins) return false;
+            if (capacity != memo.capacity) return false;
+            return Arrays.equals(amounts, memo.amounts);
+        &#125;
+
+        public static void resetMemo() &#123;
+            memo.clear();
+        &#125;
+
+        public static void set(int firstCoins, int capacity, int[] amounts, int value, boolean visited) &#123;
+            int index = memo.indexOf(new Memo(firstCoins, capacity, amounts, value, visited));
+            if (index == -1) &#123;
+                memo.add(new Memo(firstCoins, capacity, amounts, value, visited));
+            &#125; else &#123;
+                memo.set(index, new Memo(firstCoins, capacity, amounts, value, visited));
+            &#125;
+        &#125;
+
+        public static Memo MEMO_ZERO = new Memo(0, 0, null, 0, true);
+        public static Memo MEMO_INF = new Memo(0, 0, null, INF, true);
+
+        public static Memo get(int firstCoins, int capacity, int[] amounts) &#123;
+
+            /* Special cases */
+            if (capacity == 0) return MEMO_ZERO;
+            else if (firstCoins == 0) return MEMO_INF;
+
+            /* Normal cases */
+            int index = memo.indexOf(new Memo(firstCoins, capacity, amounts, -1, false));
+            if (index == -1) &#123;
+                Memo temp = new Memo(firstCoins, capacity, amounts, INF, false);
+                memo.add(temp);
+                return temp;
+            &#125; else return memo.get(index);
+        &#125;
+
+    &#125;
+
+    public static int f(int firstCoins, int capacity, int[] amounts) &#123;
+
+        /* Base Case */
+        if (Memo.get(firstCoins, capacity, amounts).visited) &#123;
+            return Memo.get(firstCoins, capacity, amounts).value;
+        &#125;
+
+        /* Recursive Case */
+        int value = values[firstCoins - 1];
+        for (int k = 0; (k &lt;= capacity / value) &amp;&amp; (k &lt;= amounts[firstCoins - 1]); k++) &#123;
+            // choice 1
+            int do_not_use_current_type_of_coin = Memo.get(firstCoins - 1, capacity, amounts).value;
+
+            // choice 2
+            int[] amounts_clone = amounts.clone();
+            amounts_clone[firstCoins - 1] -= k;
+            int use_current_type_of_coin = f(firstCoins - 1, capacity - (k * value), amounts_clone) + k;
+
+            // optimal choice
+            Memo.set(firstCoins, capacity, amounts, Math.min(do_not_use_current_type_of_coin, use_current_type_of_coin), true);
+        &#125;
+
+        return Memo.get(firstCoins, capacity, amounts).value;
+    &#125;
+
+    public static int solve() &#123;
+
+        // define dp array
+        Memo.resetMemo();
+
+        // dp
+        int ans = f(values.length, capacity, amounts);
+        return ans == INF ? -1 : ans;
+    &#125;
+
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            n = scanner.nextInt();
+            values = new int[n];
+            amounts = new int[n];
+            for (int i = 0; i &lt; n; i++) &#123;
+                int value = scanner.nextInt();
+                int amount = scanner.nextInt();
+                values[i] = value;
+                amounts[i] = amount;
+            &#125;
+            capacity = scanner.nextInt();
+            judger.manuallyStartTimer();
+            System.out.println(solve());
+            judger.manuallyStopTimer();
+        &#125;
+    &#125;
+</code></pre>
+<h5 id="Benchmark-2"><a href="#Benchmark-2" class="headerlink" title="Benchmark"></a>Benchmark</h5><h6 id="Recursive-Method-with-4-Dimension"><a href="#Recursive-Method-with-4-Dimension" class="headerlink" title="Recursive Method with 4-Dimension"></a>Recursive Method with 4-Dimension</h6><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: COINS7.in &amp; COINS7.out
+Expected  Input: [3, 1 1, 2 2, 3 3, 11]
+Expected Output: [4]
+Your     Output: [4]
+Time Cost: 1.000600 ms (1000600 ns)
+Accepted
+-----------------------------------------------------
+Current Case: COINS8.in &amp; COINS8.out
+Expected  Input: [3, 2 3, 3 3, 6 1, 12]
+Expected Output: [3]
+Your     Output: [3]
+Time Cost: 0.242400 ms (242400 ns)
+Accepted
+-----------------------------------------------------
+Current Case: COINS9.in &amp; COINS9.out
+Expected  Input: [9, 1 1, 2 2, 3 3, 4 4, 5 5, 6 6, 7 7, 8 8, 9 9, 60]
+Expected Output: [7]
+Your     Output: [7]
+Time Cost: 17775.069700 ms (17775069700 ns)
+Accepted
+-----------------------------------------------------
+Result Statistics: √ √ √
+</code></pre>
+<h6 id="Recursive-Method-with-2-Dimention"><a href="#Recursive-Method-with-2-Dimention" class="headerlink" title="Recursive Method with 2-Dimention"></a>Recursive Method with 2-Dimention</h6><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: COINS7.in &amp; COINS7.out
+Expected  Input: [3, 1 1, 2 2, 3 3, 11]
+Expected Output: [4]
+Your     Output: [4]
+Time Cost: 8.181900 ms (8181900 ns)
+Accepted
+-----------------------------------------------------
+Current Case: COINS8.in &amp; COINS8.out
+Expected  Input: [3, 2 3, 3 3, 6 1, 12]
+Expected Output: [3]
+Your     Output: [3]
+Time Cost: 3.047300 ms (3047300 ns)
+Accepted
+-----------------------------------------------------
+Current Case: COINS9.in &amp; COINS9.out
+Expected  Input: [9, 1 1, 2 2, 3 3, 4 4, 5 5, 6 6, 7 7, 8 8, 9 9, 60]
+Expected Output: [7]
+Your     Output: [7]
+Time Cost: 69.721200 ms (69721200 ns)
+Accepted
+-----------------------------------------------------
+Result Statistics: √ √ √
+</code></pre>
+<h2 id="Pebble-Merging-Problem"><a href="#Pebble-Merging-Problem" class="headerlink" title="Pebble Merging Problem"></a>Pebble Merging Problem</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>在一个圆形操场的四周摆放着 n 堆石子。现要将石子有次序地合并成一堆。规定每次只<br>能选相邻的 2 堆石子合并成新的一堆，并将新的一堆石子数记为该次合并的得分。试设计一<br>个算法，计算出将 n 堆石子合并成一堆的最小得分和最大得分。</p>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 提供输入数据。文件的第 1 行是正整数 n，1≤n≤100，表示有 n 堆石子。<br>第二行有 n 个数，分别表示每堆石子的个数。</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><p>程序运行结束时，将计算结果输出到文件 output.txt 中。文件的第 1 行中的数是最小得<br>分；第 2 行中的数是最大得分；。</p>
+<h3 id="Sample-1"><a href="#Sample-1" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong></p>
+<p>input.txt</p>
+<p>4</p>
+<p>4 4 5 9</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt</p>
+<p>43</p>
+<p>54</p>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>我们只考虑<code>最小得分</code>，因为 <code>最小得分</code> 和 <code>最大得分</code> 是<code>对称的</code>。</p>
+<p>然后，由于<code>每次只能合并相邻的两堆石子</code>，所以我们不妨<code>将所有石子从左到右排成线性的一堆石子</code></p>
+<hr>
+<h4 id="Establish-the-Recursive-Equation"><a href="#Establish-the-Recursive-Equation" class="headerlink" title="Establish the Recursive Equation"></a>Establish the Recursive Equation</h4><p>我们不妨考虑 <code>最终 (End)</code> 会发生什么： <code>所有的n堆石子</code> 被合并为 <code>1堆石子</code>。</p>
+<p>而<code>最后一步 (The Final Step)</code>时，我们会将<code>2堆石子</code>合并为<code>1堆石子</code>。</p>
+<p>显然，我们需要<code>为此次合并操作</code>付出的代价为<code>左边那一堆石子的重量 + 右边那一堆石子的重量</code></p>
+<p>此外，我们还要加上<code>为了获得左边那堆石子的所付出的代价</code>和<code>为了获得右边那堆石子所付出的代价</code></p>
+<blockquote>
+<p>注意，这里面已经隐含了<code>递归</code>，这相当于，我们在<code>线性排列的一堆石子里</code>：在<code>第i堆石子</code>和<code>第j堆石子</code>之中，插入了<code>分隔板</code>，使之形成<code>左边那堆石子（第i堆石子~第k堆石子)</code> 和<code>右边那堆石子 (第k+1堆石子~第j堆石子)</code>。</p>
+</blockquote>
+<p>因而，我们可以写出<code>递推方程</code></p>
+<script type="math/tex; mode=display">
+\bt{Just take the final step into considetaion} \\
+dp[i][j] = \lb {
+& \r{dp[i][k]+dp[k+1][j]} \g{+ (sum[j] - sum[i])},&(\t{we find a better plan !}) \\
+& dp[i][j],&(\t{not better than current plan})
+}</script><blockquote>
+<p>其中$sum$表示 <code>前缀和</code></p>
+</blockquote>
+<hr>
+<h4 id="Determine-the-order-of-computation-Iterative-Method"><a href="#Determine-the-order-of-computation-Iterative-Method" class="headerlink" title="Determine the order of computation (Iterative Method)"></a>Determine the order of computation (Iterative Method)</h4><p>为了 <code>保证</code>在  <code>求解原问题</code>时，<code>该原问题所需的所有子问题</code> 均 <code>已经求解完毕</code>，则我们需要 <code>确定合适的运算顺序</code>。</p>
+<p>首先，我们考虑下<code>合并过程刚开始的时候</code>：i=1,j=n 即表示考虑 从<code>第1堆石子</code>到<code>第n堆石子</code>的最少合并代价，</p>
+<p>假设<code>最终这个最优解在第k堆石子处分隔开</code>：</p>
+<p>即可得到<code>2个子问题</code>，<code>从第1堆石子到第k堆石子的最少合并代价</code>和<code>从第k+1堆石子到第n堆石子的最少合并代价</code>。</p>
+<p>不妨继续考虑<code>从第1堆石子到第k堆石子的最少合并代价</code>，我们会发现这里仍然需要 <code>递归</code> ，直到<code>基本情况</code>。</p>
+<p>而<code>基本情况</code>就是<code>只有1堆石子的情况</code>。</p>
+<p>所以，通过<code>分析递归过程</code>得出的<code>基本情况</code>，我们<code>反过来</code>从<code>基本情况</code>逐步建立<code>迭代形式的运算顺序</code>：即我们从<code>只有1堆石子的最少合并代价</code>开始计算，然后计算<code>只有2堆石子的最少合并代价</code>，…，计算<code>只有n堆石子的最少合并代价</code>。</p>
+<p>于是，我们确定了<code>第一个运算顺序：考虑只有[1, n]堆石子的最少合并代价</code></p>
+<p>接下来，我们需要<code>枚举</code> <code>只有len堆石子</code>到底是 <code>哪len堆石子</code> ，由于已经确定了<code>石子的堆数（即区间长度 len，因为所有石子堆是线性排列的）</code>。</p>
+<p>则我们只需要确定<code>起始点</code>即可，于是，我们确定了<code>第二个运算顺序：只有指定堆的石子的起始点为[0,n - len]</code></p>
+<p>而接下来，我们仅需要对<code>指定长度的石子堆</code>进行<code>确定分割点k</code>即可。</p>
+<blockquote>
+<p>而且由于我们前面的运算顺序中，<code>第一个运算顺序</code>为计算<code>石子堆的长度</code>从1~n</p>
+<p>因而，我们在<code>第三个运算顺序</code>时<code>确立分割点</code>时，可以<code>保证 更小区间长度的石子堆的最小合并代价</code>是<code>已经计算好的</code></p>
+</blockquote>
+<hr>
+<p>综上，我们确立好了运算顺序：</p>
+<ol>
+<li>第一个运算顺序：区间长度（连续的len个石子堆）</li>
+<li>第二个运算顺序：区间的起始点（从第i个石子堆开始的连续len个石子堆）</li>
+<li>第三个运算顺序：分割点（在这个选定的 <code>石子堆序列</code> 中，选定 <code>分割点</code>，将这个 <code>石子堆序列</code> 分为 <code>左右两个部分</code>）</li>
+</ol>
+<h4 id="Simply-use-memo-Recursive-Method"><a href="#Simply-use-memo-Recursive-Method" class="headerlink" title="Simply use memo (Recursive Method)"></a>Simply use memo (Recursive Method)</h4><p>在已经得出了 <code>递推方程</code>的情况下，如果不希望 <code>确定运算顺序</code>，则可以直接使用 <code>递归方法</code>。</p>
+<p><code>递归方法</code>可以非常自然地 <code>描述</code>  <code>递推关系</code>。</p>
+<p>在已知 <code>最优子结构</code>的情况下，<code>动态规划 (Dynamic Programming)</code>   和 <code>暴力法 (Brute-Force)</code>最大的区别是：</p>
+<p><code>动态规划</code>利用了 <code>重叠子问题 (Overlapping Subproblem)</code>性质。</p>
+<p>即 <code>递归形式的动态规划 = 递归形式的暴力法 + 备忘录机制</code></p>
+<blockquote>
+<p>如果一开始就打算使用<code>递归形式</code>，那么<code>运算顺序</code>就没有那么重要了，因为我们总可以<code>在需要的时候临时计算</code>，然后<code>利用备忘录机制（这很重要，否则会导致重复地求解相同的子问题）</code>来保存<code>某个子问题的计算结果</code>即可。</p>
+<p>但相比于 <code>迭代形式的动态规划</code>会 <code>产生整颗子问题空间树 (无论某些子问题是否真的被用到)</code>， <code>递归形式的动态规划</code>则只会 <code>生成那些确实需要用到的子问题</code>。</p>
+<p>但是，一般来说，<code>迭代形式的动态规划</code>却会更加快速。</p>
+<blockquote>
+<p><code>编译器</code>对于 <code>迭代算法</code>可以有更多的信息来进行 <code>指令级优化</code>。</p>
+<p>同时，<code>迭代形式</code>也可以避免过多的 <code>过程调用的帧栈创建和销毁的代价</code>，以及获得 <code>更优的高速缓存命中率</code></p>
+</blockquote>
+<p>但通过 <code>递归形式</code>产生的 <code>子问题空间树</code>是 <code>“残缺的”</code>，在只有 <code>少量子问题</code>重复出现的情况下，用 <code>递归形式的动态规划</code>会更加高效。</p>
+</blockquote>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><h4 id="Iterative-Method-1"><a href="#Iterative-Method-1" class="headerlink" title="Iterative Method"></a>Iterative Method</h4><h5 id="Diagram-3"><a href="#Diagram-3" class="headerlink" title="Diagram"></a>Diagram</h5><pre><code class="lang-yaml">Expected  Input: [4, 1 2 3333 2]
+Expected Output: [6676, 10010]
+</code></pre>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i\j</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3339</td>
+<td style="text-align:center">6676</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3335</td>
+<td style="text-align:center">6672</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3335</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">1061109567</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i\j</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">6671</td>
+<td style="text-align:center">10010</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3335</td>
+<td style="text-align:center">6672</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3335</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="Source-3"><a href="#Source-3" class="headerlink" title="Source"></a>Source</h5><pre><code class="lang-java">     public static Judger.Pair&lt;Integer, Integer&gt; solve(int n, int[] sum) &#123;
+
+        int[][] dp = new int[n][n];
+        int min, max;
+
+        // Min cost
+        for (int i = 0; i &lt; n; i++) &#123;
+            for (int j = 0; j &lt; n; j++) &#123;
+                if (i == j) dp[i][j] = 0;
+                else dp[i][j] = 0x3f3f3f3f;
+            &#125;
+        &#125;
+
+        for (int len = 1; len &lt; n; len++) &#123;
+            for (int i = 0; i &lt; (n - len); i++) &#123;
+                int j = i + len;
+                for (int k = i; k &lt; j; k++) &#123;
+                    dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k + 1][j] + (sum[j + 1] - sum[i]));
+                &#125;
+
+            &#125;
+        &#125;
+        min = dp[0][n - 1];
+
+        // Max Cost
+        for (int i = 0; i &lt; n; i++) &#123;
+            for (int j = 0; j &lt; n; j++) &#123;
+                if (i == j) dp[i][j] = 0;
+                else dp[i][j] = 0;
+            &#125;
+        &#125;
+
+        for (int len = 1; len &lt; n; len++) &#123;
+            for (int i = 0; i &lt; (n - len); i++) &#123;
+                int j = i + len;
+                for (int k = i; k &lt; j; k++) &#123;
+                    dp[i][j] = Math.max(dp[i][j], dp[i][k] + (dp[k + 1][j] + sum[j + 1] - sum[i]));
+                &#125;
+
+            &#125;
+        &#125;
+        max = dp[0][n - 1];
+
+        return new Judger.Pair&lt;&gt;(min, max);
+    &#125;
+
+    public static void main(String[] args) &#123;
+
+        for (Scanner scanner : judger) &#123;
+            int n = scanner.nextInt();
+            int[] a = new int[n];
+            for (int i = 0; i &lt; n; i++) &#123;
+                a[i] = scanner.nextInt();
+            &#125;
+
+            // Pre-solve: partial sum
+            int[] sum = new int[n + 1];
+            sum[0] = 0;
+            for (int i = 1; i &lt; sum.length; i++) &#123;
+                sum[i] = sum[i - 1] + a[i - 1];
+            &#125;
+
+            Judger.Pair&lt;Integer, Integer&gt; answer = solve(n, sum);
+            System.out.printf(&quot;%d\n%d&quot;, answer.getKey(), answer.getValue());
+        &#125;
+    &#125;
+</code></pre>
+<h5 id="Benchmark-3"><a href="#Benchmark-3" class="headerlink" title="Benchmark"></a>Benchmark</h5><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MERGE0.in &amp; MERGE0.out
+Expected  Input: [37, 53 49 2 9 9 30 2 35 1 46 39 46 42 33 13 41 35 57 38 59 15 40 18 6 46 30 53 31 34 57 41 20 1 42 59 46 45 ]
+Expected Output: [6186, 25130]
+Your     Output: [6186, 25130]
+Time Cost: 4.828800 ms (4828800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE1.in &amp; MERGE1.out
+Expected  Input: [4, 1 2 3333 2]
+Expected Output: [6676, 10010]
+Your     Output: [6676, 10010]
+Time Cost: 0.929800 ms (929800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE2.in &amp; MERGE2.out
+Expected  Input: [7, 30 35 15 5 10 20 25]
+Expected Output: [370, 580]
+Your     Output: [370, 580]
+Time Cost: 1.354100 ms (1354100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE3.in &amp; MERGE3.out
+Expected  Input: [7, 3 4 5 6 7 8 9]
+Expected Output: [116, 187]
+Your     Output: [116, 187]
+Time Cost: 1.063500 ms (1063500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE4.in &amp; MERGE4.out
+Expected  Input: [30, 3 4 7 11 13 15 18 21 17 14 7 5 8 10 19 16 13 10 7 5 4 3 4 5 6 3 15 3 10 8 ]
+Expected Output: [1342, 5318]
+Your     Output: [1342, 5318]
+Time Cost: 1.857000 ms (1857000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE5.in &amp; MERGE5.out
+Expected  Input: [4, 1 3 15 2 ]
+Expected Output: [42, 59]
+Your     Output: [42, 59]
+Time Cost: 0.901300 ms (901300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE6.in &amp; MERGE6.out
+Expected  Input: [7, 1 7 6 12 3 15 2 ]
+Expected Output: [129, 218]
+Your     Output: [129, 218]
+Time Cost: 1.066700 ms (1066700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE7.in &amp; MERGE7.out
+Expected  Input: [5, 1 1 2 3333 2]
+Expected Output: [6680, 13349]
+Your     Output: [6680, 13349]
+Time Cost: 0.969700 ms (969700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE8.in &amp; MERGE8.out
+Expected  Input: [87, 14 27 48 9 8 14 9 29 25 14 8 30 37 37 4 4 3 6 39 40 19 30 22 37 25 17 41 41 7 5 4 3 10 33 12 28 13 18 42 16 16 33 34 45 16 24 15 38 37 28 36 21 27 30 44 33 6 24 20 6 3 27 33 4 46 42 34 46 14 35 36 25 33 8 12 47 18 7 49 16 3 5 43 28 35 5 33 ]
+Expected Output: [12799, 96955]
+Your     Output: [12799, 96955]
+Time Cost: 6.057900 ms (6057900 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE9.in &amp; MERGE9.out
+Expected  Input: [20, 1 2 3 4 5 6 7 8 9 10 20 19 18 17 16 15 14 13 12 11 ]
+Expected Output: [864, 2850]
+Your     Output: [864, 2850]
+Time Cost: 1.526400 ms (1526400 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ √
+</code></pre>
+<h4 id="Recursive-Method"><a href="#Recursive-Method" class="headerlink" title="Recursive Method"></a>Recursive Method</h4><h5 id="Diagram-4"><a href="#Diagram-4" class="headerlink" title="Diagram"></a>Diagram</h5><pre><code class="lang-yaml\">Expected  Input: [4, 1 2 3333 2]
+Expected Output: [6676, 10010]
+</code></pre>
+<pre><code class="lang-mermaid">graph TD;
+style db2871da fill: gray,stroke: #333,stroke-width: 4px
+style 984401db fill: lightgreen,stroke: #333,stroke-width: 4px
+style 108f3e6e fill: gray,stroke: #333,stroke-width: 4px
+style d053e213 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 3a08e73b fill: gray,stroke: #333,stroke-width: 4px
+style 905d2093 fill: gray,stroke: #333,stroke-width: 4px
+d053e213 --#1L, 3333--&gt; 3a08e73b((2..2&lt;/br&gt;0))
+d053e213 --#1R, 2--&gt; 905d2093((3..3&lt;/br&gt;0))
+984401db --#2L, 2--&gt; 108f3e6e((1..1&lt;/br&gt;0))
+984401db --#2R, 3335--&gt; d053e213((2..3&lt;/br&gt;3335))
+style 9a62f0a0 fill: lightgreen,stroke: #333,stroke-width: 4px
+style d33c7169 fill: gray,stroke: #333,stroke-width: 4px
+style 64212337 fill: gray,stroke: #333,stroke-width: 4px
+9a62f0a0 --#3L, 2--&gt; d33c7169((1..1&lt;/br&gt;0))
+9a62f0a0 --#3R, 3333--&gt; 64212337((2..2&lt;/br&gt;0))
+style c78fd6db fill: gray,stroke: #333,stroke-width: 4px
+984401db --#4L, 3335--&gt; 9a62f0a0((1..2&lt;/br&gt;3335))
+984401db --#4R, 2--&gt; c78fd6db((3..3&lt;/br&gt;0))
+root((root)) --#5L, 1--&gt; db2871da((0..0&lt;/br&gt;0))
+root((root)) --#5R, 3337--&gt; 984401db((1..3&lt;/br&gt;6672))
+style 4361b325 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 1f5338ec fill: gray,stroke: #333,stroke-width: 4px
+style c9c46067 fill: gray,stroke: #333,stroke-width: 4px
+4361b325 --#6L, 1--&gt; 1f5338ec((0..0&lt;/br&gt;0))
+4361b325 --#6R, 2--&gt; c9c46067((1..1&lt;/br&gt;0))
+style 6b63e09f fill: lightgray,stroke: #333,stroke-width: 4px
+root((root)) --#7L, 3--&gt; 4361b325((0..1&lt;/br&gt;3))
+root((root)) --#7R, 3335--&gt; 6b63e09f((2..3&lt;/br&gt;3335))
+style 4bd4d793 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 2c2b9065 fill: gray,stroke: #333,stroke-width: 4px
+style 20a281ee fill: lightgray,stroke: #333,stroke-width: 4px
+4bd4d793 --#8L, 1--&gt; 2c2b9065((0..0&lt;/br&gt;0))
+4bd4d793 --#8R, 3335--&gt; 20a281ee((1..2&lt;/br&gt;3335))
+style 42941b97 fill: lightgray,stroke: #333,stroke-width: 4px
+style 7de997a1 fill: gray,stroke: #333,stroke-width: 4px
+4bd4d793 --#9L, 3--&gt; 42941b97((0..1&lt;/br&gt;3))
+4bd4d793 --#9R, 3333--&gt; 7de997a1((2..2&lt;/br&gt;0))
+style 5565dbef fill: gray,stroke: #333,stroke-width: 4px
+root((root)) --#10L, 3336--&gt; 4bd4d793((0..2&lt;/br&gt;3339))
+root((root)) --#10R, 2--&gt; 5565dbef((3..3&lt;/br&gt;0))
+style root fill: lightgreen,stroke: #333,stroke-width: 4px
+root((0..3&lt;/br&gt;6676))
+</code></pre>
+<pre><code class="lang-mermaid">graph TD;
+style c39dfc51 fill: gray,stroke: #333,stroke-width: 4px
+style 4b5075a2 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 9a8edd98 fill: gray,stroke: #333,stroke-width: 4px
+style 77669c62 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 3525cd7d fill: gray,stroke: #333,stroke-width: 4px
+style 27e0a4da fill: gray,stroke: #333,stroke-width: 4px
+77669c62 --#11L, 3333--&gt; 3525cd7d((2..2&lt;/br&gt;0))
+77669c62 --#11R, 2--&gt; 27e0a4da((3..3&lt;/br&gt;0))
+4b5075a2 --#12L, 2--&gt; 9a8edd98((1..1&lt;/br&gt;0))
+4b5075a2 --#12R, 3335--&gt; 77669c62((2..3&lt;/br&gt;3335))
+style cad53082 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 5dec4f10 fill: gray,stroke: #333,stroke-width: 4px
+style 57160f17 fill: gray,stroke: #333,stroke-width: 4px
+cad53082 --#13L, 2--&gt; 5dec4f10((1..1&lt;/br&gt;0))
+cad53082 --#13R, 3333--&gt; 57160f17((2..2&lt;/br&gt;0))
+style 43d989e7 fill: gray,stroke: #333,stroke-width: 4px
+4b5075a2 --#14L, 3335--&gt; cad53082((1..2&lt;/br&gt;3335))
+4b5075a2 --#14R, 2--&gt; 43d989e7((3..3&lt;/br&gt;0))
+root((root)) --#15L, 1--&gt; c39dfc51((0..0&lt;/br&gt;0))
+root((root)) --#15R, 3337--&gt; 4b5075a2((1..3&lt;/br&gt;6672))
+style 59f09ba9 fill: lightgreen,stroke: #333,stroke-width: 4px
+style ce2df958 fill: gray,stroke: #333,stroke-width: 4px
+style 3b1bc123 fill: gray,stroke: #333,stroke-width: 4px
+59f09ba9 --#16L, 1--&gt; ce2df958((0..0&lt;/br&gt;0))
+59f09ba9 --#16R, 2--&gt; 3b1bc123((1..1&lt;/br&gt;0))
+style 468ac0d5 fill: lightgray,stroke: #333,stroke-width: 4px
+root((root)) --#17L, 3--&gt; 59f09ba9((0..1&lt;/br&gt;3))
+root((root)) --#17R, 3335--&gt; 468ac0d5((2..3&lt;/br&gt;3335))
+style 41c67309 fill: lightgreen,stroke: #333,stroke-width: 4px
+style 62aca470 fill: gray,stroke: #333,stroke-width: 4px
+style b51c743b fill: lightgray,stroke: #333,stroke-width: 4px
+41c67309 --#18L, 1--&gt; 62aca470((0..0&lt;/br&gt;0))
+41c67309 --#18R, 3335--&gt; b51c743b((1..2&lt;/br&gt;3335))
+style 675fda1c fill: lightgray,stroke: #333,stroke-width: 4px
+style 7631db1b fill: gray,stroke: #333,stroke-width: 4px
+41c67309 --#19L, 3--&gt; 675fda1c((0..1&lt;/br&gt;3))
+41c67309 --#19R, 3333--&gt; 7631db1b((2..2&lt;/br&gt;0))
+style c18be7c1 fill: gray,stroke: #333,stroke-width: 4px
+root((root)) --#20L, 3336--&gt; 41c67309((0..2&lt;/br&gt;6671))
+root((root)) --#20R, 2--&gt; c18be7c1((3..3&lt;/br&gt;0))
+root((0..3&lt;/br&gt;10010))
+style root fill: lightgreen,stroke: #333,stroke-width: 4px
+</code></pre>
+<h5 id="Source-4"><a href="#Source-4" class="headerlink" title="Source"></a>Source</h5><pre><code class="lang-cpp">    static int n;
+    static int[] sum;
+    static int[][] dp;
+    static int INF = 0x3f3f3f3f;
+
+    public static int m(int i, int j) &#123;
+
+        /* Base Case */
+        if (dp[i][j] != INF) &#123;
+            return dp[i][j];
+        &#125;
+
+        /* Recursive Case */
+        for (int k = i; k &lt; j; k++) &#123;
+            // it&#39;s also correct: dp[i][j] = Math.min(m(i, j), m(i, k) + m(k + 1, j) + (sum[j + 1] - sum[i]));
+            dp[i][j] = Math.min(dp[i][j], m(i, k) + m(k + 1, j) + (sum[j + 1] - sum[i]));
+        &#125;
+        return dp[i][j];
+    &#125;
+
+    public static int M(int i, int j) &#123;
+
+        /* Base Case */
+        if (dp[i][j] != -INF) &#123;
+            return dp[i][j];
+        &#125;
+
+        /* Recursive Case */
+        for (int k = i; k &lt; j; k++) &#123;
+            dp[i][j] = Math.max(dp[i][j], M(i, k) + M(k + 1, j) + (sum[j + 1] - sum[i]));
+        &#125;
+        return dp[i][j];
+    &#125;
+
+    public static Judger.Pair&lt;Integer, Integer&gt; solve() &#123;
+
+        dp = new int[n][n];
+        int min, max;
+
+        /* Min */
+        for (int i = 0; i &lt; n; i++) &#123;
+            for (int j = 0; j &lt; n; j++) &#123;
+                dp[i][j] = INF;
+            &#125;
+        &#125;
+        for (int i = 0; i &lt; n; i++) &#123;
+            dp[i][i] = 0;
+        &#125;
+        min = m(0, n - 1);
+
+        /* Max */
+        for (int i = 0; i &lt; n; i++) &#123;
+            for (int j = 0; j &lt; n; j++) &#123;
+                dp[i][j] = -INF;
+            &#125;
+        &#125;
+        for (int i = 0; i &lt; n; i++) &#123;
+            dp[i][i] = 0;
+        &#125;
+        max = M(0, n - 1);
+
+        return new Judger.Pair&lt;&gt;(min, max);
+    &#125;
+
+    public static void main(String[] args) &#123;
+
+        for (Scanner scanner : judger) &#123;
+            n = scanner.nextInt();
+            int[] a = new int[n];
+            for (int i = 0; i &lt; n; i++) &#123;
+                a[i] = scanner.nextInt();
+            &#125;
+
+            // Pre-solve: partial sum
+            sum = new int[n + 1];
+            sum[0] = 0;
+            for (int i = 1; i &lt; sum.length; i++) &#123;
+                sum[i] = sum[i - 1] + a[i - 1];
+            &#125;
+
+            Judger.Pair&lt;Integer, Integer&gt; answer = solve();
+            System.out.printf(&quot;%d\n%d&quot;, answer.getKey(), answer.getValue());
+        &#125;
+    &#125;
+</code></pre>
+<h5 id="Benchmark-4"><a href="#Benchmark-4" class="headerlink" title="Benchmark"></a>Benchmark</h5><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MERGE0.in &amp; MERGE0.out
+Expected  Input: [37, 53 49 2 9 9 30 2 35 1 46 39 46 42 33 13 41 35 57 38 59 15 40 18 6 46 30 53 31 34 57 41 20 1 42 59 46 45 ]
+Expected Output: [6186, 25130]
+Your     Output: [6186, 25130]
+Time Cost: 4.601200 ms (4601200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE1.in &amp; MERGE1.out
+Expected  Input: [4, 1 2 3333 2]
+Expected Output: [6676, 10010]
+Your     Output: [6676, 10010]
+Time Cost: 0.888000 ms (888000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE2.in &amp; MERGE2.out
+Expected  Input: [7, 30 35 15 5 10 20 25]
+Expected Output: [370, 580]
+Your     Output: [370, 580]
+Time Cost: 1.097400 ms (1097400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE3.in &amp; MERGE3.out
+Expected  Input: [7, 3 4 5 6 7 8 9]
+Expected Output: [116, 187]
+Your     Output: [116, 187]
+Time Cost: 1.463500 ms (1463500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE4.in &amp; MERGE4.out
+Expected  Input: [30, 3 4 7 11 13 15 18 21 17 14 7 5 8 10 19 16 13 10 7 5 4 3 4 5 6 3 15 3 10 8 ]
+Expected Output: [1342, 5318]
+Your     Output: [1342, 5318]
+Time Cost: 1.491700 ms (1491700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE5.in &amp; MERGE5.out
+Expected  Input: [4, 1 3 15 2 ]
+Expected Output: [42, 59]
+Your     Output: [42, 59]
+Time Cost: 0.847000 ms (847000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE6.in &amp; MERGE6.out
+Expected  Input: [7, 1 7 6 12 3 15 2 ]
+Expected Output: [129, 218]
+Your     Output: [129, 218]
+Time Cost: 0.783500 ms (783500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE7.in &amp; MERGE7.out
+Expected  Input: [5, 1 1 2 3333 2]
+Expected Output: [6680, 13349]
+Your     Output: [6680, 13349]
+Time Cost: 0.795700 ms (795700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE8.in &amp; MERGE8.out
+Expected  Input: [87, 14 27 48 9 8 14 9 29 25 14 8 30 37 37 4 4 3 6 39 40 19 30 22 37 25 17 41 41 7 5 4 3 10 33 12 28 13 18 42 16 16 33 34 45 16 24 15 38 37 28 36 21 27 30 44 33 6 24 20 6 3 27 33 4 46 42 34 46 14 35 36 25 33 8 12 47 18 7 49 16 3 5 43 28 35 5 33 ]
+Expected Output: [12799, 96955]
+Your     Output: [12799, 96955]
+Time Cost: 3.839300 ms (3839300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE9.in &amp; MERGE9.out
+Expected  Input: [20, 1 2 3 4 5 6 7 8 9 10 20 19 18 17 16 15 14 13 12 11 ]
+Expected Output: [864, 2850]
+Your     Output: [864, 2850]
+Time Cost: 1.105300 ms (1105300 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ √
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/">https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/algorithm/">algorithm</a><a class="post-meta__tags" href="/tags/dynamic-programming/">dynamic_programming</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dynamic-Programming-Problems"><span class="toc-number">1.</span> <span class="toc-text">Dynamic Programming Problems</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-Knapsack-Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Multiple-Knapsack Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.1.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.1.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample"><span class="toc-number">1.1.4.</span> <span class="toc-text">Sample</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis"><span class="toc-number">1.1.5.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Analyse-the-Dimensions-amp-Establish-the-Recursive-Equation"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">Analyse the Dimensions &amp; Establish the Recursive Equation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Compress-the-Recursive-Equation"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">Compress the Recursive Equation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">1.1.6.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterative-Method"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">Iterative Method</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diagram"><span class="toc-number">1.1.6.1.1.</span> <span class="toc-text">Diagram</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Source"><span class="toc-number">1.1.6.1.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Benchmark"><span class="toc-number">1.1.6.1.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Recursive-Method-2-Dimension"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">Recursive Method (2-Dimension)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diagram-1"><span class="toc-number">1.1.6.2.1.</span> <span class="toc-text">Diagram</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Source-1"><span class="toc-number">1.1.6.2.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Benchmark-1"><span class="toc-number">1.1.6.2.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Recursive-Method-4-Dimension"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">Recursive Method (4-Dimension)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diagram-2"><span class="toc-number">1.1.6.3.1.</span> <span class="toc-text">Diagram</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Source-2"><span class="toc-number">1.1.6.3.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Benchmark-2"><span class="toc-number">1.1.6.3.3.</span> <span class="toc-text">Benchmark</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Recursive-Method-with-4-Dimension"><span class="toc-number">1.1.6.3.3.1.</span> <span class="toc-text">Recursive Method with 4-Dimension</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Recursive-Method-with-2-Dimention"><span class="toc-number">1.1.6.3.3.2.</span> <span class="toc-text">Recursive Method with 2-Dimention</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pebble-Merging-Problem"><span class="toc-number">1.2.</span> <span class="toc-text">Pebble Merging Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">Sample</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Establish-the-Recursive-Equation"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">Establish the Recursive Equation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Determine-the-order-of-computation-Iterative-Method"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">Determine the order of computation (Iterative Method)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Simply-use-memo-Recursive-Method"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">Simply use memo (Recursive Method)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1"><span class="toc-number">1.2.6.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Iterative-Method-1"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">Iterative Method</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diagram-3"><span class="toc-number">1.2.6.1.1.</span> <span class="toc-text">Diagram</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Source-3"><span class="toc-number">1.2.6.1.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Benchmark-3"><span class="toc-number">1.2.6.1.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Recursive-Method"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">Recursive Method</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Diagram-4"><span class="toc-number">1.2.6.2.1.</span> <span class="toc-text">Diagram</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Source-4"><span class="toc-number">1.2.6.2.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Benchmark-4"><span class="toc-number">1.2.6.2.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

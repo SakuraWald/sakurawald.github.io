@@ -168,6 +168,10 @@ const btf = {
   isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
   getEleTop: ele => {
+    if (ele == null) {
+      console.warn("This post contains embeded html, which can not be indexed by toc.")
+      return;
+    }
     let actualTop = ele.offsetTop
     let current = ele.offsetParent
 

@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SakuraWald</title>
+    <link>https://sakurawald.github.io/</link>
+    
+    <image>
+      <url>https://sakurawald.github.io/icon.png</url>
+      <title>SakuraWald</title>
+      <link>https://sakurawald.github.io/</link>
+    </image>
+    
+    <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description></description>
+    <pubDate>Mon, 23 Jan 2023 01:41:45 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[Database] Design</title>
+      <link>https://sakurawald.github.io/2023/01/22/database-design/</link>
+      <guid>https://sakurawald.github.io/2023/01/22/database-design/</guid>
+      <pubDate>Sun, 22 Jan 2023 13:01:39 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Database-Design&quot;&gt;&lt;a href=&quot;#Database-Design&quot; class=&quot;headerlink&quot; title=&quot;Database Design&quot;&gt;&lt;/a&gt;Database Design&lt;/h1&gt;
+$$
+\boxed{@}
+%</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/database/">database</category>
+      
+      
+      <comments>https://sakurawald.github.io/2023/01/22/database-design/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Favorite] Tool-box</title>
+      <link>https://sakurawald.github.io/2023/01/22/tool-box/</link>
+      <guid>https://sakurawald.github.io/2023/01/22/tool-box/</guid>
+      <pubDate>Sun, 22 Jan 2023 09:37:54 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Tool-Box&quot;&gt;&lt;a href=&quot;#Tool-Box&quot; class=&quot;headerlink&quot; title=&quot;Tool-Box&quot;&gt;&lt;/a&gt;Tool-Box&lt;/h1&gt;&lt;h2 id=&quot;出版网站&quot;&gt;&lt;a href=&quot;#出版网站&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/website/">website</category>
+      
+      <category domain="https://sakurawald.github.io/tags/favorite/">favorite</category>
+      
+      
+      <comments>https://sakurawald.github.io/2023/01/22/tool-box/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Compiler Test</title>
+      <link>https://sakurawald.github.io/2023/01/15/compiler-test/</link>
+      <guid>https://sakurawald.github.io/2023/01/15/compiler-test/</guid>
+      <pubDate>Sun, 15 Jan 2023 03:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+$$
+\boxed{@}
+
+% Color % 
+\newcommand\c[2]{\textcolor{#1}{#2}} 
+\newcommand\r[1]{\textcolor{red}{#1}}</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/test/">test</category>
+      
+      <category domain="https://sakurawald.github.io/tags/web/">web</category>
+      
+      <category domain="https://sakurawald.github.io/tags/jsp/">jsp</category>
+      
+      
+      <comments>https://sakurawald.github.io/2023/01/15/compiler-test/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Computer Organization] - A simple outline</title>
+      <link>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/</link>
+      <guid>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/</guid>
+      <pubDate>Mon, 15 Aug 2022 02:40:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Computer Organization Outline&lt;/h1&gt;
+&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/computer-organization/">computer_organization</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[JSP] Servlet &amp; JSP Short-Hand</title>
+      <link>https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/</link>
+      <guid>https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/</guid>
+      <pubDate>Mon, 13 Jun 2022 03:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Servlets &amp;amp; JSP Short-hand&lt;/h1&gt;
+&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/categories/uncategorized/">uncategorized</category>
+      
+      
+      <category domain="https://sakurawald.github.io/tags/web/">web</category>
+      
+      <category domain="https://sakurawald.github.io/tags/jsp/">jsp</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Anbox] Install android-subsystem on Ubuntu 22.04 LTS</title>
+      <link>https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/</link>
+      <guid>https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/</guid>
+      <pubDate>Thu, 09 Jun 2022 09:41:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Install and Launch Anbox&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot; lang=&quot;shell&quot;&gt;# Install the anbox
+sudo snap install --devmode --edge</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/linux/">linux</category>
+      
+      <category domain="https://sakurawald.github.io/tags/android/">android</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Database] Relational Query Language</title>
+      <link>https://sakurawald.github.io/2022/04/30/database-relational-query-language/</link>
+      <guid>https://sakurawald.github.io/2022/04/30/database-relational-query-language/</guid>
+      <pubDate>Sat, 30 Apr 2022 02:53:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Formal RQL&lt;/h1&gt;
+&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block md-rawblock&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/database/">database</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/30/database-relational-query-language/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Database] Advanced SQL</title>
+      <link>https://sakurawald.github.io/2022/04/29/database-advanced-sql/</link>
+      <guid>https://sakurawald.github.io/2022/04/29/database-advanced-sql/</guid>
+      <pubDate>Fri, 29 Apr 2022 13:35:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Advanced-SQL&quot;&gt;&lt;a href=&quot;#Advanced-SQL&quot; class=&quot;headerlink&quot; title=&quot;Advanced SQL&quot;&gt;&lt;/a&gt;Advanced SQL&lt;/h1&gt;
+$$
+\boxed{@}
+% Color</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/database/">database</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/29/database-advanced-sql/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Database] Intermediate SQL</title>
+      <link>https://sakurawald.github.io/2022/04/29/database-intermediate-sql/</link>
+      <guid>https://sakurawald.github.io/2022/04/29/database-intermediate-sql/</guid>
+      <pubDate>Fri, 29 Apr 2022 08:39:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Intermediate-SQL&quot;&gt;&lt;a href=&quot;#Intermediate-SQL&quot; class=&quot;headerlink&quot; title=&quot;Intermediate SQL&quot;&gt;&lt;/a&gt;Intermediate SQL&lt;/h1&gt;
+$$
+\boxed{@}
+%</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/database/">database</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/29/database-intermediate-sql/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Database] Elementary SQL</title>
+      <link>https://sakurawald.github.io/2022/04/28/database-elementary-sql/</link>
+      <guid>https://sakurawald.github.io/2022/04/28/database-elementary-sql/</guid>
+      <pubDate>Thu, 28 Apr 2022 11:55:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Elementary-SQL&quot;&gt;&lt;a href=&quot;#Elementary-SQL&quot; class=&quot;headerlink&quot; title=&quot;Elementary SQL&quot;&gt;&lt;/a&gt;Elementary SQL&lt;/h1&gt;&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/database/">database</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/28/database-elementary-sql/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Algorithm] Oiling Car &amp; Optimal Merge</title>
+      <link>https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/</link>
+      <guid>https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/</guid>
+      <pubDate>Tue, 26 Apr 2022 22:16:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Greedy-Problems&quot;&gt;&lt;a href=&quot;#Greedy-Problems&quot; class=&quot;headerlink&quot; title=&quot;Greedy Problems&quot;&gt;&lt;/a&gt;Greedy Problems&lt;/h1&gt;
+$$
+\boxed{@}
+%</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
+      
+      <category domain="https://sakurawald.github.io/tags/greedy/">greedy</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Algorithm] Multiple-Knapsack Problem &amp; Pebble Merge Problem</title>
+      <link>https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</link>
+      <guid>https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</guid>
+      <pubDate>Mon, 18 Apr 2022 23:53:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Dynamic-Programming-Problems&quot;&gt;&lt;a href=&quot;#Dynamic-Programming-Problems&quot; class=&quot;headerlink&quot; title=&quot;Dynamic Programming</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
+      
+      <category domain="https://sakurawald.github.io/tags/dynamic-programming/">dynamic_programming</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[STL] Simple Use of STL</title>
+      <link>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</link>
+      <guid>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</guid>
+      <pubDate>Mon, 18 Apr 2022 14:44:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Code Snippet&lt;/h1&gt;
+&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block md-rawblock&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/stl/">stl</category>
+      
+      <category domain="https://sakurawald.github.io/tags/cpp/">cpp</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Branch-Bound] Circle Permutation</title>
+      <link>https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/</link>
+      <guid>https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/</guid>
+      <pubDate>Sun, 17 Apr 2022 03:03:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Circle Permutation&lt;/h1&gt;
+&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block md-rawblock&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
+      
+      <category domain="https://sakurawald.github.io/tags/branch-and-bound/">branch_and_bound</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Combinatorics] Graph Basics II</title>
+      <link>https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/</link>
+      <guid>https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/</guid>
+      <pubDate>Sat, 16 Apr 2022 11:36:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Advanced-Graph&quot;&gt;&lt;a href=&quot;#Advanced-Graph&quot; class=&quot;headerlink&quot; title=&quot;Advanced Graph&quot;&gt;&lt;/a&gt;Advanced Graph&lt;/h1&gt;
+$$
+\boxed{MACRO}
+%</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/combinatorics/">combinatorics</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Algorithm] Back-Tracking &amp; IDDFS</title>
+      <link>https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/</link>
+      <guid>https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/</guid>
+      <pubDate>Tue, 12 Apr 2022 13:15:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+&lt;h1&gt;Backtracking&lt;/h1&gt;
+&lt;h2&gt;Integer Transformation Problem&lt;/h2&gt;
+&lt;h3&gt;Description&lt;/h3&gt;
+&lt;p&gt;整数变换问题。关于整数 i 的变换 f 和 g 定义如下：f(i)=3i；g(i)=i/2</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Combinatorics] Graph Basics</title>
+      <link>https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/</link>
+      <guid>https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/</guid>
+      <pubDate>Sun, 10 Apr 2022 10:40:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Graph-Basics&quot;&gt;&lt;a href=&quot;#Graph-Basics&quot; class=&quot;headerlink&quot; title=&quot;Graph Basics&quot;&gt;&lt;/a&gt;Graph Basics&lt;/h1&gt;
+$$
+\boxed{Macro}
+% Color</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/combinatorics/">combinatorics</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Combinatorics] Arrangement and Combination</title>
+      <link>https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/</link>
+      <guid>https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/</guid>
+      <pubDate>Fri, 08 Apr 2022 12:33:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Arrangement-and-Combination&quot;&gt;&lt;a href=&quot;#Arrangement-and-Combination&quot; class=&quot;headerlink&quot; title=&quot;Arrangement and</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/combinatorics/">combinatorics</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Combinatorics] Recursion and Generating Functions</title>
+      <link>https://sakurawald.github.io/2022/04/07/combinatorics-recursion-and-generating-functions/</link>
+      <guid>https://sakurawald.github.io/2022/04/07/combinatorics-recursion-and-generating-functions/</guid>
+      <pubDate>Thu, 07 Apr 2022 10:38:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>
+
+# Recursion And Generate
+
+## Sequence
+
+### Arithmetic Sequence &amp; Geometric Sequence
+
+$$
+\boxed{\text{Arithmetic Sequence}}</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/combinatorics/">combinatorics</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/07/combinatorics-recursion-and-generating-functions/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>solve linear in-homogeneous recursive relations</title>
+      <link>https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/</link>
+      <guid>https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/</guid>
+      <pubDate>Wed, 06 Apr 2022 16:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h4 id=&quot;Solve-Linear-In-homogeneous-Recursive-Relations&quot;&gt;&lt;a href=&quot;#Solve-Linear-In-homogeneous-Recursive-Relations&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/combinatorics/">combinatorics</category>
+      
+      
+      <comments>https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1246 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Algorithm] Majority Problem | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Algorithm] Majority Problem',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-23 09:41:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Majority-Problem"><a href="#Majority-Problem" class="headerlink" title="Majority Problem"></a>Majority Problem</h1>
+$$
+\boxed{@}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor{miku}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ IN }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\text{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>给定含有 n 个元素的多重集合 S，每个元素在 S 中出现的次数称为该元素的重数。多重</p>
+<p>集 S 中重数最大的元素称为众数。</p>
+<p>例如，S={1，2，2，2，3，5}。</p>
+<p>多重集 S 的众数是 2，其重数为 3。 </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入数据由文件名为 input.txt 的文本文件提供。</p>
+<p>文件的第 1 行多重集 S 中元素个数 n；接下来的 n 行中，每行有一个自然数。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>程序运行结束时，将计算结果输出到文件 output.txt 中。输出文件有 2 行，第 1 行给</p>
+<p>出众数，第 2 行是重数</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><p>input.txt </p>
+<p>6 </p>
+<p>1 </p>
+<p>2 </p>
+<p>2 </p>
+<p>2 </p>
+<p>3 </p>
+<p>5 </p>
+<p>output.txt </p>
+<p>2 </p>
+<p>3 </p>
+<h2 id="Solution-1-（HashMap）"><a href="#Solution-1-（HashMap）" class="headerlink" title="Solution 1 （HashMap）"></a>Solution 1 （HashMap）</h2><h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>对于给定多重集合S，可以通过一个O(n)的线性扫描，将集合的所有元素进行计次。</p>
+<p>使用HashMap实现的解法容易编写，也容易处理答案具有多个众数的情况。</p>
+<p>总体需要一次O(n)的线性扫描，以及在完成计数后再一次O(n)的取最大值。</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><pre><code class="lang-java">    public static Pair&lt;Integer, Integer&gt; getMajority(int[] nums, int L, int R) &#123;
+
+        HashMap&lt;Integer, Integer&gt; counter = new HashMap&lt;&gt;();
+        for (int num : nums) &#123;
+            counter.put(num, counter.getOrDefault(num, 0) + 1);
+        &#125;
+
+        int majorityKey = 0xdead;
+        int majorityValue = -1;
+        for (int key : counter.keySet()) &#123;
+            if (counter.get(key) &gt; majorityValue) &#123;
+                majorityKey = key;
+                majorityValue = counter.get(key);
+            &#125;
+        &#125;
+
+        return new Pair&lt;&gt;(majorityKey, majorityValue);
+    &#125;
+</code></pre>
+<h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MODE1.in &amp; MODE1.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 5]
+Your     Output: [1, 5]
+Time Cost: 0.335700 ms (335700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE10.in &amp; MODE10.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [47527, 38]
+Your     Output: [47527, 38]
+Time Cost: 84.643900 ms (84643900 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE11.in &amp; MODE11.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 6]
+Your     Output: [1, 6]
+Time Cost: 0.025400 ms (25400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE12.in &amp; MODE12.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 5]
+Your     Output: [2, 5]
+Time Cost: 0.013600 ms (13600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE13.in &amp; MODE13.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.011000 ms (11000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE14.in &amp; MODE14.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.010100 ms (10100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE15.in &amp; MODE15.out
+Expected  Input: [10, Omit the remaining 9 lines...]
+Expected Output: [3, 4]
+Your     Output: [3, 4]
+Time Cost: 0.010300 ms (10300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE2.in &amp; MODE2.out
+Expected  Input: [50, Omit the remaining 50 lines...]
+Expected Output: [3, 8]
+Your     Output: [3, 8]
+Time Cost: 0.026100 ms (26100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE3.in &amp; MODE3.out
+Expected  Input: [100, Omit the remaining 100 lines...]
+Expected Output: [28, 9]
+Your     Output: [28, 9]
+Time Cost: 0.035500 ms (35500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE4.in &amp; MODE4.out
+Expected  Input: [500, Omit the remaining 500 lines...]
+Expected Output: [17, 8]
+Your     Output: [17, 8]
+Time Cost: 0.128000 ms (128000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE5.in &amp; MODE5.out
+Expected  Input: [10000, Omit the remaining 10000 lines...]
+Expected Output: [152, 11]
+Your     Output: [152, 11]
+Time Cost: 3.114500 ms (3114500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE6.in &amp; MODE6.out
+Expected  Input: [50000, Omit the remaining 50000 lines...]
+Expected Output: [1507, 11]
+Your     Output: [1507, 11]
+Time Cost: 9.872700 ms (9872700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE7.in &amp; MODE7.out
+Expected  Input: [500000, Omit the remaining 500000 lines...]
+Expected Output: [62872, 23]
+Your     Output: [62872, 23]
+Time Cost: 26.197800 ms (26197800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE8.in &amp; MODE8.out
+Expected  Input: [1000000, Omit the remaining 1000000 lines...]
+Expected Output: [15875, 34]
+Your     Output: [15875, 34]
+Time Cost: 47.612200 ms (47612200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE9.in &amp; MODE9.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [44678, 42]
+Your     Output: [44678, 42]
+Time Cost: 46.967400 ms (46967400 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ √ √ √ √ √ √
+</code></pre>
+<h2 id="Solution-2-（Sort-Two-Way-Divided）"><a href="#Solution-2-（Sort-Two-Way-Divided）" class="headerlink" title="Solution 2 （Sort + Two-Way Divided）"></a>Solution 2 （Sort + Two-Way Divided）</h2><h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>从直观来看，众数是整个数组里<code>出现次数最多的元素</code>，因此众数元素应当占据原始数组的<code>绝大部分位置</code>。更重要地，如果我们对<code>原始数组</code>进行<code>排序</code>，那么所有的众数很显然应当被<code>连续地排列在一起</code>。</p>
+<p>所以，我们可以得到众数在<code>已排序的原始数组</code>中的<code>存在结构</code>。</p>
+<p>假设使用分治法，我们猜测，可以<code>已排序数组中的众数</code>总是可以从<code>前一半已排序数组中的众数</code>和<code>后一半已排序数组中的众数</code>来得到。换句话说，我们希望使用分治法，并且利用<code>前一半已排序数组的众数</code> 和<code>后一半已排序数组中的众数</code>这两个<code>子问题的解</code>来获得<code>原问题的解</code></p>
+<p>为了证明<code>分治法</code>对于<code>已排序数组的求众数问题</code>是有效的，我们尝试归纳所有可能的情况：</p>
+<h4 id="Cases"><a href="#Cases" class="headerlink" title="Cases"></a>Cases</h4><h5 id="Case1-最终解的众数仅从某一半已排序数组之中产生（该众数没有越过分割点）"><a href="#Case1-最终解的众数仅从某一半已排序数组之中产生（该众数没有越过分割点）" class="headerlink" title="Case1: 最终解的众数仅从某一半已排序数组之中产生（该众数没有越过分割点）"></a>Case1: 最终解的众数仅从某一半已排序数组之中产生（该众数没有越过分割点）</h5><p>如 (1 1 1 1 1) (2 2 2 2 3) -&gt; majority = 1, count = 5</p>
+<p><code>最终解众数1</code>只分布仅仅在<code>前一半的已排序数组</code>。</p>
+<p>对于这种情况，很显然<code>后一半的已排序数组</code>中<code>产生的众数</code>不可能<code>战胜``前一半已排序数组</code>所<code>产生的众数</code>（当然，<code>后一半数组</code>的<code>最优情况</code>至多只是和<code>前一半已排序数组</code>打成<code>平手</code>）</p>
+<p><code>前一半已排序数组</code>和<code>后一半已排序数组</code>打成<code>平手</code>的特殊情况：</p>
+<p>(1 1 1 1 1) (2 2 2 2 2) 对于这种情况，我们可以<code>任意</code>取<code>其中一半的已排序数组</code>作为<code>胜出</code>（因为这题我们只要得出1个众数即可，即使输入数据存在多个众数）</p>
+<blockquote>
+<p>如果 前一半已排序数组中产生的众数 = 后一半已排序数组中产生的众数，那么很明显没有任何其他数可以打败这个众数，因此这个众数就是 整个已排序数组的众数。</p>
+</blockquote>
+<pre><code class="lang-java">        Pair&lt;Integer, Integer&gt; majority1 = getMajority(nums, L, M);
+        Pair&lt;Integer, Integer&gt; majority2 = getMajority(nums, M, R);
+
+        if (Objects.equals(majority1.key, majority2.key))
+            return new Pair&lt;&gt;(majority1.key, majority1.value + majority2.value);
+</code></pre>
+<h5 id="Case2-最终解的众数来自某一半已排序数组（且该众数越过分割点）"><a href="#Case2-最终解的众数来自某一半已排序数组（且该众数越过分割点）" class="headerlink" title="Case2: 最终解的众数来自某一半已排序数组（且该众数越过分割点）"></a>Case2: 最终解的众数来自某一半已排序数组（且该众数越过分割点）</h5><p>如 (1 1 1 1 1) (1 2 2 2 3) -&gt; majority = 1, count = 6</p>
+<p>和 (1 1 1 1 2) (2 2 2 2 3) -&gt; majority = 2, count = 5</p>
+<p>这两种情况是<code>对称的</code>，我们这里仅从考虑第前一种情况。</p>
+<p>在这一种情况中，由于<code>最终解的众数从两个已排序数组的并集</code>之中产生。</p>
+<p>而且，我们知道在这种情况下，<code>最终解的众数的分布</code>必然要<code>越过两个已排序数组数组的边界</code>。</p>
+<p>也就是说，这种情况的成立条件是：<code>前一半已排序数组的最后一个元素</code>=<code>后一半已排序数组的第一个元素</code>。对此，我们需要从<code>中点</code>开始，从<code>中点</code>统计<code>前后两个已排序数组</code>中<code>众数最远可以分布到多远</code>。</p>
+<p>也就是说，我们<code>从中点开始</code>对<code>整个已排序数组</code>做<code>二分查找</code>，试图找出<code>lowerBound</code>和<code>upperBound</code>。</p>
+<p>这样，即可算出<code>该候选数的出现的次数</code>=<code>upperBound</code>-<code>lowerBound</code></p>
+<blockquote>
+<p>请注意，对于这种情况，我们仅仅是通过upperBound-lowerBound来算出处于中点附近的那个数（我们称为候选数）的出现次数。但是有可能这个 候选数 并不是 整个已排序数组的众数。</p>
+<p>你可以想象到，这个数只是恰好出现在 中点附近，被分割开。所以我们需要合并它出现的次数，已获得它在整个已排序数组中正确的出现次数。（但这不意味着这个数就是整个已排序数组的众数）</p>
+</blockquote>
+<pre><code class="lang-java">            if (majority1.key == nums[M]) &#123;
+                int extra = upperBound(nums, M, R, majority1.key) - M;
+                majority1.value += extra;
+            &#125; else if (majority2.key == nums[M - 1]) &#123;
+                int extra = M - lowerBound(nums, L, M, majority2.key) - 1;
+                majority2.value += extra;
+            &#125;
+</code></pre>
+<h5 id="Case3-最终解的众数来自两个已排序数组（很显然该众数越过分割点）"><a href="#Case3-最终解的众数来自两个已排序数组（很显然该众数越过分割点）" class="headerlink" title="Case3: 最终解的众数来自两个已排序数组（很显然该众数越过分割点）"></a>Case3: 最终解的众数来自两个已排序数组（很显然该众数越过分割点）</h5><p>如：(1 1 1 3 3) (3 3 2 2 2) -&gt; majority = 3, count = 4</p>
+<p>对于这种情况，<code>这整个已排序数组的众数</code>并不是<code>前半个已排序数组所产生的众数</code> majority1，也不是<code>后半个已排序数组所产生的众数</code> majority2。</p>
+<p>而是，我们在发现<code>中点两侧的元素值相同时</code>（很显然，如果中点两侧的元素值不同，那么这个元素就不可能通过<code>联合</code>来<code>打败</code> <code>majority1</code> 和 <code>majority2</code>），则<code>尝试检查</code>这个<code>元素</code>是否能<code>通过合并前后两半已排序数组中自己的出现次数</code>来分别<code>打败</code> <code>前一半已排序数组所产生的众数 majority1</code>和<code>后一半已排序数组所产生的众数 majority2</code></p>
+<pre><code class="lang-java">            if (nums[M - 1] == nums[M]) &#123;
+                int lower = lowerBound(nums, L, M, nums[M]);
+                int upper = upperBound(nums, M, R, nums[M]);
+                int amount = upper - lower - 1;
+                Pair&lt;Integer, Integer&gt; majority3 = new Pair&lt;&gt;(nums[M], amount);
+                if (majority3.value &gt; majority1.value &amp;&amp; majority3.value &gt; majority2.value) &#123;
+                    return majority3;
+                &#125;
+            &#125;
+</code></pre>
+<h3 id="Source-1"><a href="#Source-1" class="headerlink" title="Source"></a>Source</h3><p>Auxiliary Functions</p>
+<pre><code class="lang-java">/**
+ * Return the first element that greater than the bound in [L, R)
+ * if not found, return array.length
+ */
+// (1 1 2) -&gt; (1) (1 2) -&gt; lower = 0, upper = 1
+// 1 1 2 2 2 2 3
+public static int upperBound(int[] nums, int L, int R, int bound) &#123;
+    if (nums[R - 1] == bound) return R;
+    while (R - L &gt; 1) &#123;
+        int M = L + (R - L) / 2;
+        if (nums[M] &lt;= bound) L = M;
+        else if (nums[M] &gt; bound) R = M;
+    &#125;
+    return R;
+&#125;
+
+/**
+ * if not found, return -1
+ */
+public static int lowerBound(int[] nums, int L, int R, int bound) &#123;
+    if (nums[L] == bound) return -1;
+    while (R - L &gt; 1) &#123;
+        int M = L + (R - L) / 2;
+        if (nums[M] &lt; bound) L = M;
+        else if (nums[M] &gt;= bound) R = M;
+    &#125;
+    return L;
+&#125;
+</code></pre>
+<p>Core</p>
+<pre><code class="lang-java">    public static Pair&lt;Integer, Integer&gt; getMajority(int[] nums, int L, int R) &#123;
+        // Case1: (1 1 1 1 1) (2 2 2 2 3) -&gt; majority = 1, count = 5
+        // Case2: (1 1 1 1 1) (1 2 2 2 3) -&gt; majority = 1, count = 6
+        // Case3: (1 1 1 1 2) (2 2 2 2 3) -&gt; majority = 2, count = 5
+        // Case4: (1 1 1 3 3) (3 3 2 2 2) -&gt; majority = 3, count = 4
+
+        /* Base Case */
+        if (L == R) return new Pair&lt;&gt;(0xdead, 0);
+        if (R - L == 1) return new Pair&lt;&gt;(nums[L], 1);
+
+        /* Recursive Case */
+        int M = L + (R - L) / 2;
+        Pair&lt;Integer, Integer&gt; majority1 = getMajority(nums, L, M);
+        Pair&lt;Integer, Integer&gt; majority2 = getMajority(nums, M, R);
+
+        /* Case1: the majority number of 2 parts are the same. */
+        if (Objects.equals(majority1.key, majority2.key))
+            return new Pair&lt;&gt;(majority1.key, majority1.value + majority2.value);
+        else &#123;
+            /* Case2, Case3, Case4 */
+            if (majority1.key == nums[M]) &#123;
+                // Case2
+                int extra = upperBound(nums, M, R, majority1.key) - M;
+                majority1.value += extra;
+            &#125; else if (majority2.key == nums[M - 1]) &#123;
+                // Case3
+                int extra = M - lowerBound(nums, L, M, majority2.key) - 1;
+                majority2.value += extra;
+            &#125; else if (nums[M - 1] == nums[M]) &#123;
+                // Case4
+                int lower = lowerBound(nums, L, M, nums[M]);
+                int upper = upperBound(nums, M, R, nums[M]);
+                int amount = upper - lower - 1;
+//                System.out.println(&quot;num = &quot; + nums[M] + &quot; amount = &quot; + amount);
+                Pair&lt;Integer, Integer&gt; majority3 = new Pair&lt;&gt;(nums[M], amount);
+
+                // Can we just union and beat majority1 and majority2 ?
+                // Be careful, if majority1 or majority2 equals to majority3, we&#39;ll choose the latter one.
+                // (1 1 2 2) (2 3 3 3 3) -&gt; majority = 3, count = 4
+                // (1 1 2 2 2) (2 3 3 3 3) -&gt; majority = 3, count = 4 (majority = 2, count = 4 is also correct)
+                if (majority3.value &gt; majority1.value &amp;&amp; majority3.value &gt; majority2.value) &#123;
+                    return majority3;
+                &#125;
+            &#125;
+            // Just need to compare the majority1 and majority2
+            return majority1.value &gt; majority2.value ? majority1 : majority2;
+        &#125;
+    &#125;
+</code></pre>
+<h3 id="Benchmark-1"><a href="#Benchmark-1" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MODE1.in &amp; MODE1.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 5]
+Your     Output: [1, 5]
+Time Cost: 0.290600 ms (290600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE10.in &amp; MODE10.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [47527, 38]
+Your     Output: [49879, 38]
+Time Cost: 169.661600 ms (169661600 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE11.in &amp; MODE11.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 6]
+Your     Output: [1, 6]
+Time Cost: 0.003900 ms (3900 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE12.in &amp; MODE12.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 5]
+Your     Output: [2, 5]
+Time Cost: 0.003500 ms (3500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE13.in &amp; MODE13.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.003400 ms (3400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE14.in &amp; MODE14.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [3, 4]
+Time Cost: 0.002500 ms (2500 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE15.in &amp; MODE15.out
+Expected  Input: [10, Omit the remaining 9 lines...]
+Expected Output: [3, 4]
+Your     Output: [3, 4]
+Time Cost: 0.040600 ms (40600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE2.in &amp; MODE2.out
+Expected  Input: [50, Omit the remaining 50 lines...]
+Expected Output: [3, 8]
+Your     Output: [3, 8]
+Time Cost: 0.021600 ms (21600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE3.in &amp; MODE3.out
+Expected  Input: [100, Omit the remaining 100 lines...]
+Expected Output: [28, 9]
+Your     Output: [28, 9]
+Time Cost: 0.037600 ms (37600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE4.in &amp; MODE4.out
+Expected  Input: [500, Omit the remaining 500 lines...]
+Expected Output: [17, 8]
+Your     Output: [29, 8]
+Time Cost: 0.329700 ms (329700 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE5.in &amp; MODE5.out
+Expected  Input: [10000, Omit the remaining 10000 lines...]
+Expected Output: [152, 11]
+Your     Output: [152, 11]
+Time Cost: 1.173000 ms (1173000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE6.in &amp; MODE6.out
+Expected  Input: [50000, Omit the remaining 50000 lines...]
+Expected Output: [1507, 11]
+Your     Output: [13432, 11]
+Time Cost: 6.893800 ms (6893800 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE7.in &amp; MODE7.out
+Expected  Input: [500000, Omit the remaining 500000 lines...]
+Expected Output: [62872, 23]
+Your     Output: [62872, 23]
+Time Cost: 46.909500 ms (46909500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE8.in &amp; MODE8.out
+Expected  Input: [1000000, Omit the remaining 1000000 lines...]
+Expected Output: [15875, 34]
+Your     Output: [15875, 34]
+Time Cost: 103.301900 ms (103301900 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE9.in &amp; MODE9.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [44678, 42]
+Your     Output: [44678, 42]
+Time Cost: 108.699100 ms (108699100 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ × √ √ √ × √ √ √ × √ × √ √ √
+</code></pre>
+<blockquote>
+<p>注: 部分案例出现Wrong Answer是由于解法仅要求找出1个众数，所以对重数相同的众数的选择是任意的。</p>
+</blockquote>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>由于该解法需要对<code>原始数组</code>进行<code>预处理: 排序</code>后再进行<code>分治法</code>，其效率可能会比较低。（而且递归过程中创建对象所消耗的代价较大）</p>
+<h2 id="Solution-3-Sort-Three-Way-Divided"><a href="#Solution-3-Sort-Three-Way-Divided" class="headerlink" title="Solution 3 (Sort + Three-Way Divided)"></a>Solution 3 (Sort + Three-Way Divided)</h2><h3 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h3><p>采用类似QuickSort的方法，但将<code>原始数组</code> 先进行<code>排序</code>，然后从<code>中间</code>进行<code>划分</code>为3个部分：</p>
+<ol>
+<li>Part1 = {x | x &lt; pivot}</li>
+<li>Part2 = {x | x = pivot}</li>
+<li>Part3 = {x | x &gt; pivot}</li>
+</ol>
+<p>首先考虑<code>完整的已排序数组</code>，取<code>该数组的中间元素</code>作为<code>pivot</code>，然后分别用<code>线性扫描</code>的方式，求出<code>该pivot元素</code>的<code>lowerBound</code>和<code>upperBound</code>，进而求得<code>该pivot元素的数量</code>（即Part2，Part2的所有元素均由<code>同一个元素</code>，即<code>pivot元素</code>组成)</p>
+<p>很显然，如果Part2.size() &gt; Part1.size() &amp;&amp; Part2.size() &gt; Part3.size()，那么<code>pivot的值就是整个已排序数组所产生的众数</code></p>
+<p>否则，众数有可能<code>产生自Part1</code>，也可能<code>产生自Part2</code>。因此，我们<code>分别都</code>需要<code>检查Part1和Part2</code>，即<code>递归地对这两部分进行处理</code></p>
+<ul>
+<li><p>此处采用递归的基本原理是：</p>
+<ul>
+<li><p>该问题存在一个平凡问题（即基本问题）：基本问题很简单，我们可以很容易直观地解出来。也就是 子问题的整个已排序数组 仅包含1个元素，那么 该已排序数组所产生的众数 就只能是这个元素。</p>
+</li>
+<li><p>我们可以通过合并2个子问题的解来得到原问题的解：这也很容易，我们可以简单地<code>检查</code>这<code>Part1, Part2, Part3 三者中哪一个部分</code>产生的<code>众数的重数</code>是<code>最大的</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注：此算法也不考虑处理存在多个重数相等的众数的情况。如果重数相等，则任取一个。</p>
+<p>注：该解法和Solution2非常类似，均需要先应排序进行预处理。然后使用分治法划分子问题，区别在于对子问题的划分方式不同。Solution2总是采用固定区间大小的二分法进行划分，而Solution3的划分区间的大小则更加动态，并且是3划分的。</p>
+</blockquote>
+<h3 id="Source-2"><a href="#Source-2" class="headerlink" title="Source"></a>Source</h3><pre><code class="lang-java">    public static Pair&lt;Integer, Integer&gt; getMajority(int[] nums, int L, int R) &#123;
+        /* Base Case */
+        // R - L = &#123;0, 1&#125;
+        if (R - L &lt;= 1) return new Pair&lt;&gt;(nums[L], 1);
+
+        /* Recursive Case */
+        int M = L + (R - L) / 2;
+        int M_Value = nums[M];
+
+        int lowerBound = M, upperBound = M;
+        while (lowerBound &gt;= 0 &amp;&amp; nums[lowerBound] == M_Value) lowerBound--;
+        while (upperBound &lt; nums.length &amp;&amp; nums[upperBound] == M_Value) upperBound++;
+
+        int M_Count = upperBound - lowerBound - 1;
+        Pair&lt;Integer, Integer&gt; majorityMiddle = new Pair&lt;&gt;(M_Value, M_Count);
+
+        // Anyway, Part2 will always win !
+        if (M_Count &gt;= (lowerBound - L + 1) &amp;&amp; M_Count &gt;= (R - upperBound)) return majorityMiddle;
+
+        // Ok, we should choose the largest one among Part1, Part2 and Part3.
+        Pair&lt;Integer, Integer&gt; majorityLeft = getMajority(nums, L, lowerBound + 1);
+        Pair&lt;Integer, Integer&gt; majorityRight = getMajority(nums, upperBound, R);
+        if (M_Count &gt;= majorityLeft.value &amp;&amp; M_Count &gt;= majorityRight.value) return majorityMiddle;
+        else return majorityLeft.value &gt; majorityRight.value ? majorityLeft : majorityRight;
+    &#125;
+</code></pre>
+<h3 id="Benchmark-2"><a href="#Benchmark-2" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MODE1.in &amp; MODE1.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 5]
+Your     Output: [1, 5]
+Time Cost: 0.226700 ms (226700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE10.in &amp; MODE10.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [47527, 38]
+Your     Output: [49879, 38]
+Time Cost: 165.034000 ms (165034000 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE11.in &amp; MODE11.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [1, 6]
+Your     Output: [1, 6]
+Time Cost: 0.003500 ms (3500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE12.in &amp; MODE12.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 5]
+Your     Output: [2, 5]
+Time Cost: 0.002500 ms (2500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE13.in &amp; MODE13.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.003200 ms (3200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE14.in &amp; MODE14.out
+Expected  Input: [10, Omit the remaining 10 lines...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.002800 ms (2800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE15.in &amp; MODE15.out
+Expected  Input: [10, Omit the remaining 9 lines...]
+Expected Output: [3, 4]
+Your     Output: [3, 4]
+Time Cost: 0.042700 ms (42700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE2.in &amp; MODE2.out
+Expected  Input: [50, Omit the remaining 50 lines...]
+Expected Output: [3, 8]
+Your     Output: [3, 8]
+Time Cost: 0.024600 ms (24600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE3.in &amp; MODE3.out
+Expected  Input: [100, Omit the remaining 100 lines...]
+Expected Output: [28, 9]
+Your     Output: [28, 9]
+Time Cost: 0.026300 ms (26300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE4.in &amp; MODE4.out
+Expected  Input: [500, Omit the remaining 500 lines...]
+Expected Output: [17, 8]
+Your     Output: [29, 8]
+Time Cost: 0.174600 ms (174600 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE5.in &amp; MODE5.out
+Expected  Input: [10000, Omit the remaining 10000 lines...]
+Expected Output: [152, 11]
+Your     Output: [152, 11]
+Time Cost: 4.243100 ms (4243100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE6.in &amp; MODE6.out
+Expected  Input: [50000, Omit the remaining 50000 lines...]
+Expected Output: [1507, 11]
+Your     Output: [13432, 11]
+Time Cost: 6.618700 ms (6618700 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE7.in &amp; MODE7.out
+Expected  Input: [500000, Omit the remaining 500000 lines...]
+Expected Output: [62872, 23]
+Your     Output: [62872, 23]
+Time Cost: 38.010200 ms (38010200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE8.in &amp; MODE8.out
+Expected  Input: [1000000, Omit the remaining 1000000 lines...]
+Expected Output: [15875, 34]
+Your     Output: [15875, 34]
+Time Cost: 73.012900 ms (73012900 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MODE9.in &amp; MODE9.out
+Expected  Input: [1234567, Omit the remaining 1234567 lines...]
+Expected Output: [44678, 42]
+Your     Output: [44678, 42]
+Time Cost: 86.186500 ms (86186500 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ × √ √ √ √ √ √ √ × √ × √ √ √
+</code></pre>
+<h2 id="Solution-4-Three-Way-QuickSort"><a href="#Solution-4-Three-Way-QuickSort" class="headerlink" title="Solution 4 (Three-Way QuickSort)"></a>Solution 4 (Three-Way QuickSort)</h2><h3 id="Analysis-3"><a href="#Analysis-3" class="headerlink" title="Analysis"></a>Analysis</h3><p>在前面所提到的 <code>分治法</code> 中，都需要对 <code>原始数组</code> 进行 <code>排序</code> 。</p>
+<p>但实际上，我们可以将 <code>排序</code> 和 <code>寻找众数</code> 的过程 <code>同时进行</code>。</p>
+<p>我们之前所提的 <code>需要预排序的二分法</code> 和 <code>需要预排序的三分法</code> 之所以需要 <code>排序</code>，</p>
+<p>是因为我们 <code>某个数字</code> 可能 <code>零散地分布</code> 在 <code>原始数组</code> 的 <code>各个角落</code>，这将使得 <code>我们的分治方法</code> 必须 <code>把相同的数字</code> 都 <code>聚集</code>在一起，否则将无法 <code>统计</code> <code>该数字的出现次数</code>。</p>
+<blockquote>
+<p>实际上，如果仅仅是为了 <code>寻找众数</code>，我们并不需要使得 <code>原始数组</code> 是 <code>完全地有序的</code>。</p>
+<blockquote>
+<p>当我们发现，<code>在对某个区间的某个元素</code> 进行 <code>3向划分</code>之后，<code>该元素的出现次数</code> <code>大于</code> <code>该区间的长度的一半</code>，</p>
+<p>那么显然，<code>该元素</code> 必定就是 <code>该区间</code> 的 <code>众数</code>。我们就没有必要再对 <code>该区间的其余部分</code> 继续进行 <code>划分</code>。</p>
+</blockquote>
+</blockquote>
+<p>设想，如果对于 <code>任意给定的数组</code>，我们可以 <code>使得该数组中某个数字</code> 进行 <code>聚集</code>，然后求得 <code>该数字的出现次数</code>。</p>
+<p>那么，我们可以采用 <code>摩尔投票法 (Moore Voting Method)</code> 的思想：</p>
+<ul>
+<li><p>如果我们发现，<code>该数字的出现次数</code> <code>大于</code> <code>其余部分的长度</code>，则显然 <code>该数字</code> 就是 <code>众数</code></p>
+<blockquote>
+<p><code>摩尔投票法</code> 将 <code>序列</code> 分成 <code>2部分</code>： <code>等于指定元素</code> 和 <code>不等于指定元素</code></p>
+</blockquote>
+</li>
+<li><p>否则，我们可以对 <code>剩余的部分</code> 继续进行 <code>聚集数字的操作</code></p>
+<blockquote>
+<p>由于我们使用的是 <code>三向快速排序 (Three-Way QuickSort)</code>，所以我们的 <code>划分函数 (Partition Function)</code> 会将 <code>给定的数组</code> 划分为3个部分，使得在部分中的任何元素满足：<code>x &lt; pivot</code>，<code>x = pivot</code> 和 <code>x &gt; pivot</code> </p>
+</blockquote>
+</li>
+</ul>
+<p>在对 <code>指定的数字</code> 进行 <code>划分</code> 之后，我们可以获得以下 <code>信息</code> ：</p>
+<ul>
+<li><p><code>该数字的出现次数</code>：$count = upper_bound - lower_bound + 1$</p>
+</li>
+<li><p>比 <code>该数字的出现次数</code> 少的 <code>部分</code>之中，不可能产生 <code>众数</code>。</p>
+<blockquote>
+<p>n.b. 在 <code>Moore Voting Method</code>中，我们要求 <code>寻找多数</code>。</p>
+<blockquote>
+<p><code>多数</code>：在 <code>序列</code>中，<code>出现次数</code> <code>超过</code> <code>序列的长度的一半</code> 的 <code>元素</code></p>
+</blockquote>
+<p><code>摩尔投票法</code> 并不要求 <code>原始数组</code> 是有序的，因为根据 <code>多数</code> 的定义，<code>多数的出现次数</code> 大于 <code>其他所有元素出现的次数</code>，所以我们可以 <code>确定</code>。</p>
+<p><code>序列中某个元素的出现次数</code>如果超过 <code>序列的长度的一半</code>，则 <code>该元素</code> 必定是 <code>多数</code>。</p>
+<blockquote>
+<p>其实，有另一种求 <code>多数</code> 的 <code>简单策略</code>：直接将 <code>原始序列</code> 进行 <code>排序</code>，然后 <code>位于序列中间的元素</code> 就是 <code>多数</code></p>
+<p><code>Moree Voting Method</code> 最多需要进行 $\roundup{\frac{3n}{2}} - 2$ 次 <code>比较操作</code>。</p>
+<p>而 <code>Three-Way Quicksort Method</code> 在处理 <code>相等元素</code> 非常多且选定 <code>该元素</code>作为 <code>基准元素 (pivot)</code> 的情况下，可以达到 <code>趋近于线性的复杂度</code>。</p>
+<blockquote>
+<p>可以通过 <code>随机化技术</code> 来 <code>透明地</code> 改变 <code>基准元素的选取</code>。</p>
+<pre><code class="lang-java">         // randomize pivot
+         swap(nums, left_index, random.nextInt(right_index - left_index + 1) + left_index);
+</code></pre>
+<p>但根据实际测试，这并不会对本题 <code>有较好的改善</code>。</p>
+<p>由于 <code>众数的出现次数较多</code>，相应地 <code>在指定位置的元素是众数的概率</code> 也 <code>自然</code> 应当较大。而此时 <code>随机化技术</code> 并没有 <code>提高</code> <code>选取到众数的概率</code>，反而我们还需要付出 <code>较为昂贵的随机数生成的代价</code>。</p>
+<p>然而，对于 <code>普通的2向快速排序</code> 和 <code>普通的3向快速排序</code>来说，可以认为 <code>原始数组的元素</code> 是 <code>随机的</code>，但我们可以用 <code>随机化技术</code> 来避免在 <code>某些特殊情况下</code>，选取到 <code>坏的基准元素</code>。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h3 id="Source-3"><a href="#Source-3" class="headerlink" title="Source"></a>Source</h3><pre><code class="lang-java">package Lab3;
+
+import util.Judger;
+
+import java.util.Scanner;
+
+/**
+ * @author Teeth
+ * @date 3/12/2022 07:48
+ */
+public class MajoritySolver_QuickSort &#123;
+
+    public static class Node &#123;
+
+        public int majority;
+        public int count;
+        public int left_index;
+        public int right_index;
+        public int lower_bound;
+        public int upper_bound;
+
+        public Node(int majority, int count, int left_index, int right_index, int lower_bound, int upper_bound) &#123;
+            this.majority = majority;
+            this.count = count;
+            this.left_index = left_index;
+            this.right_index = right_index;
+            this.lower_bound = lower_bound;
+            this.upper_bound = upper_bound;
+        &#125;
+
+        public Node(int left_index, int right_index) &#123;
+            this.left_index = left_index;
+            this.right_index = right_index;
+        &#125;
+
+    &#125;
+
+    private static final Judger judger = new Judger(&quot;.\\Cases\\Lab3\\MAJORITY&quot;).disablePrettyFormat().redirectErrorToErrorFile().setMaxExpectInputLines(1);
+
+    public static void swap(int[] nums, int i, int j) &#123;
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    &#125;
+
+    /*
+    [left_index..left_bound-1] &lt; majority
+    [left_bound..right_bound] = majority
+    [right_bound+1..right_index] &gt; majority
+    array = 2 2 3 5 3 5 1 2 3 4
+     */
+    public static Node partition(int[] nums, int left_index, int right_index) &#123;
+        int lower_bound = left_index;
+        int upper_bound = right_index;
+        int i = left_index + 1;
+
+        while (i &lt;= upper_bound) &#123;
+            // n.b. we use [lower_bound..upper_bound] to present x = majority
+            if (nums[i] &lt; nums[lower_bound]) &#123;
+                swap(nums, lower_bound++, i++);
+            &#125; else if (nums[i] &gt; nums[lower_bound]) &#123;
+                // n.b. index i should not be incremented
+                swap(nums, upper_bound--, i);
+            &#125; else i++;
+        &#125;
+
+        /* Construct node */
+        return new Node(nums[lower_bound], upper_bound - lower_bound + 1, left_index, right_index, lower_bound, upper_bound);
+    &#125;
+
+    public static Node quickSort(int[] nums, int left_index, int right_index) &#123;
+
+        if (left_index &lt; right_index) &#123;
+            Node split = partition(nums, left_index, right_index);
+            int majority_nums_count = split.upper_bound - split.lower_bound + 1;
+            int left_nums_count = split.lower_bound - split.left_index;
+            int right_nums_count = split.right_index - split.upper_bound;
+
+            // n.b. select strategy: non-strict partial order
+            // n.b. use MOORE VOTING METHOD here!
+            if ((majority_nums_count &gt;= left_nums_count &amp;&amp; majority_nums_count &gt;= right_nums_count)) &#123;
+                return new Node(nums[split.lower_bound], majority_nums_count, split.left_index, split.right_index, split.lower_bound, split.upper_bound);
+            &#125; else &#123;
+                Node left_nums_node = quickSort(nums, left_index, split.lower_bound - 1);
+                Node right_nums_node = quickSort(nums, split.upper_bound + 1, right_index);
+
+                // n.b. select strategy: non-strict partial order
+                Node winner = left_nums_node.count &gt;= right_nums_node.count ? left_nums_node : right_nums_node;
+                winner = winner.count &gt;= split.count ? winner : split;
+                return winner;
+            &#125;
+        &#125;
+
+        // empty node
+        return new Node(left_index, right_index);
+    &#125;
+
+    public static Node getMajority(int[] nums, int begin, int end) &#123;
+        return quickSort(nums, begin, end - 1);
+    &#125;
+
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            // Skip the first line.
+            int capacity = scanner.nextInt();
+
+            // Read the numbers.
+            int[] nums = new int[capacity];
+            for (int i = 0; scanner.hasNextInt(); i++) &#123;
+                nums[i] = scanner.nextInt();
+            &#125;
+
+            // call the algorithm
+            judger.manuallyStartTimer();
+            Node node = getMajority(nums, 0, nums.length);
+            judger.manuallyStopTimer();
+
+            // Output
+            System.out.println(node.majority);
+            System.out.println(node.count);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="Benchmark-3"><a href="#Benchmark-3" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MODE1.in &amp; MODE1.out
+Expected  Input: [10, Omit the remaining 10 line(s)...]
+Expected Output: [1, 5]
+Your     Output: [1, 5]
+Time Cost: 0.045200 ms (45200 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE10.in &amp; MODE10.out
+Expected  Input: [1234567, Omit the remaining 1234567 line(s)...]
+Expected Output: [47527, 38]
+Your     Output: [47527, 38]
+Time Cost: 104.330000 ms (104330000 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE11.in &amp; MODE11.out
+Expected  Input: [10, Omit the remaining 10 line(s)...]
+Expected Output: [1, 6]
+Your     Output: [1, 6]
+Time Cost: 0.001100 ms (1100 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE12.in &amp; MODE12.out
+Expected  Input: [10, Omit the remaining 10 line(s)...]
+Expected Output: [2, 5]
+Your     Output: [2, 5]
+Time Cost: 0.001000 ms (1000 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE13.in &amp; MODE13.out
+Expected  Input: [10, Omit the remaining 10 line(s)...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.000901 ms (901 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE14.in &amp; MODE14.out
+Expected  Input: [10, Omit the remaining 10 line(s)...]
+Expected Output: [2, 4]
+Your     Output: [2, 4]
+Time Cost: 0.001200 ms (1200 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE15.in &amp; MODE15.out
+Expected  Input: [10, Omit the remaining 9 line(s)...]
+Expected Output: [3, 4]
+Your     Output: [3, 4]
+Time Cost: 0.001101 ms (1101 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE2.in &amp; MODE2.out
+Expected  Input: [50, Omit the remaining 50 line(s)...]
+Expected Output: [3, 8]
+Your     Output: [3, 8]
+Time Cost: 0.002099 ms (2099 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE3.in &amp; MODE3.out
+Expected  Input: [100, Omit the remaining 100 line(s)...]
+Expected Output: [28, 9]
+Your     Output: [28, 9]
+Time Cost: 0.004400 ms (4400 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE4.in &amp; MODE4.out
+Expected  Input: [500, Omit the remaining 500 line(s)...]
+Expected Output: [17, 8]
+Your     Output: [29, 8]
+Time Cost: 0.029600 ms (29600 ns)
+Wrong Answer.
+-----------------------------------------------------
+Current Case: MODE5.in &amp; MODE5.out
+Expected  Input: [10000, Omit the remaining 10000 line(s)...]
+Expected Output: [152, 11]
+Your     Output: [152, 11]
+Time Cost: 0.564300 ms (564300 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE6.in &amp; MODE6.out
+Expected  Input: [50000, Omit the remaining 50000 line(s)...]
+Expected Output: [1507, 11]
+Your     Output: [1507, 11]
+Time Cost: 3.741200 ms (3741200 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE7.in &amp; MODE7.out
+Expected  Input: [500000, Omit the remaining 500000 line(s)...]
+Expected Output: [62872, 23]
+Your     Output: [62872, 23]
+Time Cost: 37.026301 ms (37026301 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE8.in &amp; MODE8.out
+Expected  Input: [1000000, Omit the remaining 1000000 line(s)...]
+Expected Output: [15875, 34]
+Your     Output: [15875, 34]
+Time Cost: 71.459100 ms (71459100 ns)
+Accepted
+-----------------------------------------------------
+Current Case: MODE9.in &amp; MODE9.out
+Expected  Input: [1234567, Omit the remaining 1234567 line(s)...]
+Expected Output: [44678, 42]
+Your     Output: [44678, 42]
+Time Cost: 83.852201 ms (83852201 ns)
+Accepted
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ × √ √ √ √ √
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/">https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/algorithm/">algorithm</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div><a id="card-friends-btn" href="/friends"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Majority-Problem"><span class="toc-number">1.</span> <span class="toc-text">Majority Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.1.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.1.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample"><span class="toc-number">1.1.4.</span> <span class="toc-text">Sample</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-1-%EF%BC%88HashMap%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">Solution 1 （HashMap）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis"><span class="toc-number">1.2.1.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source"><span class="toc-number">1.2.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark"><span class="toc-number">1.2.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-2-%EF%BC%88Sort-Two-Way-Divided%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">Solution 2 （Sort + Two-Way Divided）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cases"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">Cases</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Case1-%E6%9C%80%E7%BB%88%E8%A7%A3%E7%9A%84%E4%BC%97%E6%95%B0%E4%BB%85%E4%BB%8E%E6%9F%90%E4%B8%80%E5%8D%8A%E5%B7%B2%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B9%8B%E4%B8%AD%E4%BA%A7%E7%94%9F%EF%BC%88%E8%AF%A5%E4%BC%97%E6%95%B0%E6%B2%A1%E6%9C%89%E8%B6%8A%E8%BF%87%E5%88%86%E5%89%B2%E7%82%B9%EF%BC%89"><span class="toc-number">1.3.1.1.1.</span> <span class="toc-text">Case1: 最终解的众数仅从某一半已排序数组之中产生（该众数没有越过分割点）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Case2-%E6%9C%80%E7%BB%88%E8%A7%A3%E7%9A%84%E4%BC%97%E6%95%B0%E6%9D%A5%E8%87%AA%E6%9F%90%E4%B8%80%E5%8D%8A%E5%B7%B2%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%EF%BC%88%E4%B8%94%E8%AF%A5%E4%BC%97%E6%95%B0%E8%B6%8A%E8%BF%87%E5%88%86%E5%89%B2%E7%82%B9%EF%BC%89"><span class="toc-number">1.3.1.1.2.</span> <span class="toc-text">Case2: 最终解的众数来自某一半已排序数组（且该众数越过分割点）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Case3-%E6%9C%80%E7%BB%88%E8%A7%A3%E7%9A%84%E4%BC%97%E6%95%B0%E6%9D%A5%E8%87%AA%E4%B8%A4%E4%B8%AA%E5%B7%B2%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%EF%BC%88%E5%BE%88%E6%98%BE%E7%84%B6%E8%AF%A5%E4%BC%97%E6%95%B0%E8%B6%8A%E8%BF%87%E5%88%86%E5%89%B2%E7%82%B9%EF%BC%89"><span class="toc-number">1.3.1.1.3.</span> <span class="toc-text">Case3: 最终解的众数来自两个已排序数组（很显然该众数越过分割点）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">Benchmark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Summary"><span class="toc-number">1.3.4.</span> <span class="toc-text">Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-3-Sort-Three-Way-Divided"><span class="toc-number">1.4.</span> <span class="toc-text">Solution 3 (Sort + Three-Way Divided)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-2"><span class="toc-number">1.4.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark-2"><span class="toc-number">1.4.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution-4-Three-Way-QuickSort"><span class="toc-number">1.5.</span> <span class="toc-text">Solution 4 (Three-Way QuickSort)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-3"><span class="toc-number">1.5.1.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-3"><span class="toc-number">1.5.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark-3"><span class="toc-number">1.5.3.</span> <span class="toc-text">Benchmark</span></a></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>console.log("mathjax.pug");
+function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script><script>console.log("svg-pan-zoom.pug");
+function renderSvgPanZoom() {
+    Array.from(document.getElementsByTagName('svg')).forEach((item, index) => {
+        var saved_viewbox = item.getAttribute("viewBox");
+        var controller = svgPanZoom(item);
+        item.setAttribute("viewBox", saved_viewbox);
+        controller.fit();
+        controller.center();
+    })
+
+    renderMathjax();
+}</script><script>console.log("mermaid.pug");
+function renderMermaid() {
+  const $mermaidWrap = document.querySelectorAll('#article-container code.lang-mermaid')
+
+  if ($mermaidWrap.length) {
+
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = 'default'
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+
+ renderSvgPanZoom();
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script><script>console.log("highlightjs.pug");
+hljs.highlightAll();
+renderMermaid();</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': '',
+    'data-category-id': '',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
