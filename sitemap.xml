@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/posts/tool-box/</loc>
     
     <lastmod>2023-01-25</lastmod>
@@ -92,43 +83,16 @@
   </url>
   
   <url>
+    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sakurawald.github.io/posts/database-relational-query-language/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-majority-problem/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-set-partition-problem/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -200,6 +164,15 @@
   </url>
   
   <url>
+    <loc>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sakurawald.github.io/posts/algorithm-circle-permutation/</loc>
     
     <lastmod>2023-01-25</lastmod>
@@ -209,7 +182,34 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-majority-problem/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/algorithm-set-partition-problem/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -228,6 +228,13 @@
   
   <url>
     <loc>https://sakurawald.github.io/tags/algorithm/</loc>
+    <lastmod>2023-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/tags/branch-and-bound/</loc>
     <lastmod>2023-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -318,13 +325,6 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/tags/wordpres/</loc>
-    <lastmod>2023-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/tags/hexo/</loc>
     <lastmod>2023-01-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -340,13 +340,6 @@
   
   <url>
     <loc>https://sakurawald.github.io/tags/favorite/</loc>
-    <lastmod>2023-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/tags/branch-and-bound/</loc>
     <lastmod>2023-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

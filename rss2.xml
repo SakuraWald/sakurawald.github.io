@@ -15,7 +15,7 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 25 Jan 2023 07:00:45 GMT</pubDate>
+    <pubDate>Wed, 25 Jan 2023 07:01:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -36,9 +36,9 @@
       
       
       
-      <category domain="https://sakurawald.github.io/tags/blog/">blog</category>
+      <category domain="https://sakurawald.github.io/tags/wordpress/">wordpress</category>
       
-      <category domain="https://sakurawald.github.io/tags/wordpres/">wordpres</category>
+      <category domain="https://sakurawald.github.io/tags/blog/">blog</category>
       
       <category domain="https://sakurawald.github.io/tags/hexo/">hexo</category>
       
