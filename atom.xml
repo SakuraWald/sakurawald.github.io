@@ -6,7 +6,7 @@
   <link href="https://sakurawald.github.io/atom.xml" rel="self"/>
   
   <link href="https://sakurawald.github.io/"/>
-  <updated>2023-01-25T02:50:46.472Z</updated>
+  <updated>2023-01-25T06:38:23.432Z</updated>
   <id>https://sakurawald.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>[Blog] 从WordPress迁移到Hexo</title>
+    <link href="https://sakurawald.github.io/2023/01/25/migrant-from-wordpress/"/>
+    <id>https://sakurawald.github.io/2023/01/25/migrant-from-wordpress/</id>
+    <published>2023-01-25T05:11:58.000Z</published>
+    <updated>2023-01-25T06:38:23.432Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;从WordPress到Hexo&quot;&gt;&lt;a href=&quot;#从WordPress到Hexo&quot; class=&quot;headerlink&quot; title=&quot;从WordPress到Hexo&quot;&gt;&lt;/a&gt;从WordPress到Hexo&lt;/h1&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="blog" scheme="https://sakurawald.github.io/tags/blog/"/>
+    
+    <category term="wordpres" scheme="https://sakurawald.github.io/tags/wordpres/"/>
+    
+    <category term="hexo" scheme="https://sakurawald.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>[Database] Design</title>
     <link href="https://sakurawald.github.io/2023/01/22/database-design/"/>
     <id>https://sakurawald.github.io/2023/01/22/database-design/</id>
     <published>2023-01-22T13:01:39.000Z</published>
-    <updated>2023-01-25T02:50:46.472Z</updated>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -47,7 +74,7 @@ $$
     <link href="https://sakurawald.github.io/2023/01/22/tool-box/"/>
     <id>https://sakurawald.github.io/2023/01/22/tool-box/</id>
     <published>2023-01-22T09:37:54.000Z</published>
-    <updated>2023-01-25T02:50:46.480Z</updated>
+    <updated>2023-01-25T06:38:23.436Z</updated>
     
     
       
@@ -72,7 +99,7 @@ $$
     <link href="https://sakurawald.github.io/2023/01/15/compiler-test/"/>
     <id>https://sakurawald.github.io/2023/01/15/compiler-test/</id>
     <published>2023-01-15T03:00:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -101,37 +128,11 @@ $$
   </entry>
   
   <entry>
-    <title>[Computer Organization] - A simple outline</title>
-    <link href="https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/"/>
-    <id>https://sakurawald.github.io/2022/08/15/computer-organization-a-simple-outline/</id>
-    <published>2022-08-15T02:40:00.000Z</published>
-    <updated>2023-01-25T02:50:46.468Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">
-
-&lt;h1&gt;Computer Organization Outline&lt;/h1&gt;
-&lt;div contenteditable=&quot;true&quot; spellcheck=&quot;false&quot; class=&quot;mathjax-block md-end-block md-math-block</summary>
-        
-      
-    
-    
-    
-    
-    <category term="computer_organization" scheme="https://sakurawald.github.io/tags/computer-organization/"/>
-    
-  </entry>
-  
-  <entry>
     <title>[JSP] Servlet &amp; JSP Short-Hand</title>
     <link href="https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/"/>
     <id>https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/</id>
     <published>2022-06-13T03:00:00.000Z</published>
-    <updated>2023-01-25T02:50:46.476Z</updated>
+    <updated>2023-01-25T06:38:23.432Z</updated>
     
     
       
@@ -159,7 +160,7 @@ $$
     <link href="https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/"/>
     <id>https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/</id>
     <published>2022-06-09T09:41:00.000Z</published>
-    <updated>2023-01-25T02:50:46.476Z</updated>
+    <updated>2023-01-25T06:38:23.432Z</updated>
     
     
       
@@ -188,7 +189,7 @@ sudo snap install --devmode --edge</summary>
     <link href="https://sakurawald.github.io/2022/04/30/database-relational-query-language/"/>
     <id>https://sakurawald.github.io/2022/04/30/database-relational-query-language/</id>
     <published>2022-04-30T02:53:00.000Z</published>
-    <updated>2023-01-25T02:50:46.476Z</updated>
+    <updated>2023-01-25T06:38:23.432Z</updated>
     
     
       
@@ -214,7 +215,7 @@ sudo snap install --devmode --edge</summary>
     <link href="https://sakurawald.github.io/2022/04/29/database-advanced-sql/"/>
     <id>https://sakurawald.github.io/2022/04/29/database-advanced-sql/</id>
     <published>2022-04-29T13:35:00.000Z</published>
-    <updated>2023-01-25T02:50:46.472Z</updated>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -240,7 +241,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/29/database-intermediate-sql/"/>
     <id>https://sakurawald.github.io/2022/04/29/database-intermediate-sql/</id>
     <published>2022-04-29T08:39:00.000Z</published>
-    <updated>2023-01-25T02:50:46.472Z</updated>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -266,7 +267,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/28/database-elementary-sql/"/>
     <id>https://sakurawald.github.io/2022/04/28/database-elementary-sql/</id>
     <published>2022-04-28T11:55:00.000Z</published>
-    <updated>2023-01-25T02:50:46.472Z</updated>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -289,7 +290,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/"/>
     <id>https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/</id>
     <published>2022-04-26T22:16:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <updated>2023-01-25T06:38:23.424Z</updated>
     
     
       
@@ -317,7 +318,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/"/>
     <id>https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</id>
     <published>2022-04-18T23:53:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <updated>2023-01-25T06:38:23.424Z</updated>
     
     
       
@@ -342,7 +343,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/"/>
     <id>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</id>
     <published>2022-04-18T14:44:00.000Z</published>
-    <updated>2023-01-25T02:50:46.480Z</updated>
+    <updated>2023-01-25T06:38:23.436Z</updated>
     
     
       
@@ -370,7 +371,7 @@ $$
     <link href="https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/"/>
     <id>https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/</id>
     <published>2022-04-17T03:03:00.000Z</published>
-    <updated>2023-01-25T02:50:46.460Z</updated>
+    <updated>2023-01-25T06:38:23.424Z</updated>
     
     
       
@@ -394,37 +395,11 @@ $$
   </entry>
   
   <entry>
-    <title>[Combinatorics] Graph Basics II</title>
-    <link href="https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/"/>
-    <id>https://sakurawald.github.io/2022/04/16/combinatorics-graph-basics-ii/</id>
-    <published>2022-04-16T11:36:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Advanced-Graph&quot;&gt;&lt;a href=&quot;#Advanced-Graph&quot; class=&quot;headerlink&quot; title=&quot;Advanced Graph&quot;&gt;&lt;/a&gt;Advanced Graph&lt;/h1&gt;
-$$
-\boxed{MACRO}
-%</summary>
-        
-      
-    
-    
-    
-    
-    <category term="combinatorics" scheme="https://sakurawald.github.io/tags/combinatorics/"/>
-    
-  </entry>
-  
-  <entry>
     <title>[Algorithm] Back-Tracking &amp; IDDFS</title>
     <link href="https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/"/>
     <id>https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/</id>
     <published>2022-04-12T13:15:00.000Z</published>
-    <updated>2023-01-25T02:50:46.460Z</updated>
+    <updated>2023-01-25T06:38:23.424Z</updated>
     
     
       
@@ -448,60 +423,108 @@ $$
   </entry>
   
   <entry>
-    <title>[Combinatorics] Graph Basics</title>
-    <link href="https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/"/>
-    <id>https://sakurawald.github.io/2022/04/10/combinatorics-graph-basics-i/</id>
-    <published>2022-04-10T10:40:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <title>[CodeSnippet] - A Simple Judger for Java</title>
+    <link href="https://sakurawald.github.io/2022/04/05/codesnippet-a-simple-judger-for-java/"/>
+    <id>https://sakurawald.github.io/2022/04/05/codesnippet-a-simple-judger-for-java/</id>
+    <published>2022-04-05T14:22:32.000Z</published>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Graph-Basics&quot;&gt;&lt;a href=&quot;#Graph-Basics&quot; class=&quot;headerlink&quot; title=&quot;Graph Basics&quot;&gt;&lt;/a&gt;Graph Basics&lt;/h1&gt;
+    <summary type="html">&lt;h1 id=&quot;A-Simple-Judger-for-Java&quot;&gt;&lt;a href=&quot;#A-Simple-Judger-for-Java&quot; class=&quot;headerlink&quot; title=&quot;A Simple Judger for Java&quot;&gt;&lt;/a&gt;A Simple</summary>
+        
+      
+    
+    
+    
+    
+    <category term="oj" scheme="https://sakurawald.github.io/tags/oj/"/>
+    
+    <category term="code" scheme="https://sakurawald.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Algorithm] Set Partition Problem</title>
+    <link href="https://sakurawald.github.io/2022/03/26/algorithm-set-partition-problem/"/>
+    <id>https://sakurawald.github.io/2022/03/26/algorithm-set-partition-problem/</id>
+    <published>2022-03-26T19:01:00.000Z</published>
+    <updated>2023-01-25T06:38:23.428Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Set-Partition-Problem&quot;&gt;&lt;a href=&quot;#Set-Partition-Problem&quot; class=&quot;headerlink&quot; title=&quot;Set Partition Problem&quot;&gt;&lt;/a&gt;Set Partition</summary>
+        
+      
+    
+    
+    
+    
+    <category term="algorithm" scheme="https://sakurawald.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[Algorithm] Majority Problem</title>
+    <link href="https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/"/>
+    <id>https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/</id>
+    <published>2022-03-25T11:27:00.000Z</published>
+    <updated>2023-01-25T06:38:23.424Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Majority-Problem&quot;&gt;&lt;a href=&quot;#Majority-Problem&quot; class=&quot;headerlink&quot; title=&quot;Majority Problem&quot;&gt;&lt;/a&gt;Majority Problem&lt;/h1&gt;
 $$
-\boxed{Macro}
-% Color</summary>
+\boxed{@}
+%</summary>
         
       
     
     
     
     
-    <category term="combinatorics" scheme="https://sakurawald.github.io/tags/combinatorics/"/>
+    <category term="algorithm" scheme="https://sakurawald.github.io/tags/algorithm/"/>
     
   </entry>
   
   <entry>
-    <title>[Combinatorics] Arrangement and Combination</title>
-    <link href="https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/"/>
-    <id>https://sakurawald.github.io/2022/04/08/combinatorics-arrangement-and-combination/</id>
-    <published>2022-04-08T12:33:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <title>Expression Evaluation</title>
+    <link href="https://sakurawald.github.io/2021/09/13/expression-evaluation/"/>
+    <id>https://sakurawald.github.io/2021/09/13/expression-evaluation/</id>
+    <published>2021-09-13T00:53:00.000Z</published>
+    <updated>2023-01-25T06:38:23.432Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Arrangement-and-Combination&quot;&gt;&lt;a href=&quot;#Arrangement-and-Combination&quot; class=&quot;headerlink&quot; title=&quot;Arrangement and</summary>
+    <summary type="html">&lt;h1 id=&quot;Expression-Evaluation&quot;&gt;&lt;a href=&quot;#Expression-Evaluation&quot; class=&quot;headerlink&quot; title=&quot;Expression Evaluation&quot;&gt;&lt;/a&gt;Expression</summary>
         
       
     
     
     
     
-    <category term="combinatorics" scheme="https://sakurawald.github.io/tags/combinatorics/"/>
+    <category term="algorithm" scheme="https://sakurawald.github.io/tags/algorithm/"/>
     
   </entry>
   
   <entry>
-    <title>[Combinatorics] Recursion and Generating Functions</title>
-    <link href="https://sakurawald.github.io/2022/04/07/combinatorics-recursion-and-generating-functions/"/>
-    <id>https://sakurawald.github.io/2022/04/07/combinatorics-recursion-and-generating-functions/</id>
-    <published>2022-04-07T10:38:00.000Z</published>
-    <updated>2023-01-25T02:50:46.464Z</updated>
+    <title>[OJ] C语言赐予你的字符串处理函数</title>
+    <link href="https://sakurawald.github.io/2021/02/06/c-string-lib-functions/"/>
+    <id>https://sakurawald.github.io/2021/02/06/c-string-lib-functions/</id>
+    <published>2021-02-06T05:53:00.000Z</published>
+    <updated>2023-01-25T06:38:23.428Z</updated>
     
     
       
@@ -510,44 +533,16 @@ $$
         
     <summary type="html">
 
-# Recursion And Generate
+&lt;article class=&quot;post-718 post type-post status-publish format-standard hentry category-oj category-soj&quot;&gt;	
 
-## Sequence
-
-### Arithmetic Sequence &amp; Geometric Sequence
-
-$$
-\boxed{\text{Arithmetic Sequence}}</summary>
+				&lt;div</summary>
         
       
     
     
     
     
-    <category term="combinatorics" scheme="https://sakurawald.github.io/tags/combinatorics/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>solve linear in-homogeneous recursive relations</title>
-    <link href="https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/"/>
-    <id>https://sakurawald.github.io/2022/04/06/solve-linear-in-homogeneous-recursive-relations/</id>
-    <published>2022-04-06T16:00:00.000Z</published>
-    <updated>2023-01-25T02:50:46.476Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;Solve-Linear-In-homogeneous-Recursive-Relations&quot;&gt;&lt;a href=&quot;#Solve-Linear-In-homogeneous-Recursive-Relations&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="combinatorics" scheme="https://sakurawald.github.io/tags/combinatorics/"/>
+    <category term="oj" scheme="https://sakurawald.github.io/tags/oj/"/>
     
   </entry>
   
