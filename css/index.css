@@ -3187,9 +3187,6 @@ h1.page-title + .tag-cloud-list {
 .medium-zoom-overlay {
   z-index: 99999 !important;
 }
-.katex-wrap {
-  overflow: auto;
-}
 .mathjax-overflow {
   overflow-x: auto;
   overflow-y: hidden;
@@ -3199,6 +3196,9 @@ span.mathjax-overflow {
   padding: 0 2px;
   max-width: 100%;
   vertical-align: bottom;
+}
+#article-container svg[id^="mermaid-"] {
+  line-height: 2 !important;
 }
 .search-dialog {
   position: fixed;
