@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>[Algorithm] Back-Tracking &amp; IDDFS</title>
-    <url>/posts/algorithm-back-tracking-and-iddfs/</url>
+    <url>/./posts/algorithm-back-tracking-and-iddfs/</url>
     <content><![CDATA[
 
 <h1>Backtracking</h1>
@@ -1334,7 +1334,7 @@ Result Statistics: √ √ √ √ √ √ √ √ √ √ √
   </entry>
   <entry>
     <title>[Branch-Bound] Circle Permutation</title>
-    <url>/posts/algorithm-circle-permutation/</url>
+    <url>/./posts/algorithm-circle-permutation/</url>
     <content><![CDATA[
 
 <h1>Circle Permutation</h1>
@@ -2644,7 +2644,7 @@ Result Statistics: √ √ √ √ √ √ √ √ √ √ √ √ √ √ √
   </entry>
   <entry>
     <title>[Algorithm] Majority Problem</title>
-    <url>/posts/algorithm-majority-problem/</url>
+    <url>/./posts/algorithm-majority-problem/</url>
     <content><![CDATA[<h1 id="Majority-Problem"><a href="#Majority-Problem" class="headerlink" title="Majority Problem"></a>Majority Problem</h1>
 $$
 \boxed{@}
@@ -3588,7 +3588,7 @@ Result Statistics: √ √ √ √ √ √ √ √ √ × √ √ √ √ √
   </entry>
   <entry>
     <title>[Algorithm] Multiple-Knapsack Problem &amp; Pebble Merge Problem</title>
-    <url>/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</url>
+    <url>/./posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</url>
     <content><![CDATA[<h1 id="Dynamic-Programming-Problems"><a href="#Dynamic-Programming-Problems" class="headerlink" title="Dynamic Programming Problems"></a>Dynamic Programming Problems</h1>
 $$
 \boxed{@}
@@ -4930,7 +4930,7 @@ Result Statistics: √ √ √ √ √ √ √ √ √ √
   </entry>
   <entry>
     <title>[Algorithm] Oiling Car &amp; Optimal Merge</title>
-    <url>/posts/algorithm-oiling-car-and-optimal-merge/</url>
+    <url>/./posts/algorithm-oiling-car-and-optimal-merge/</url>
     <content><![CDATA[<h1 id="Greedy-Problems"><a href="#Greedy-Problems" class="headerlink" title="Greedy Problems"></a>Greedy Problems</h1>
 $$
 \boxed{@}
@@ -5356,7 +5356,7 @@ Result Statistics: √ √ √ √ √ √ √ √ √ √ √
   </entry>
   <entry>
     <title>[Algorithm] Set Partition Problem</title>
-    <url>/posts/algorithm-set-partition-problem/</url>
+    <url>/./posts/algorithm-set-partition-problem/</url>
     <content><![CDATA[<h1 id="Set-Partition-Problem"><a href="#Set-Partition-Problem" class="headerlink" title="Set Partition Problem"></a>Set Partition Problem</h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>n 个元素的集合{1,2, … , <em>n</em> }可以划分为若干个非空子集。</p>
 <h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>由文件 input.txt 提供输入数据。文件的第 1 行是元素个数 n。 </p>
 <h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>程序运行结束时，将计算出的不同的非空子集数输出到文件 output.txt 中。</p>
@@ -5585,7 +5585,7 @@ Result Statistics: √ √ → → √ √ √ √
   </entry>
   <entry>
     <title>[OJ] C语言赐予你的字符串处理函数</title>
-    <url>/posts/c-string-lib-functions/</url>
+    <url>/./posts/c-string-lib-functions/</url>
     <content><![CDATA[
 
 <article class="post-718 post type-post status-publish format-standard hentry category-oj category-soj">	
@@ -5786,7 +5786,7 @@ token = Third
   </entry>
   <entry>
     <title>[CodeSnippet] - A Simple Judger for Java</title>
-    <url>/posts/codesnippet-a-simple-judger-for-java/</url>
+    <url>/./posts/codesnippet-a-simple-judger-for-java/</url>
     <content><![CDATA[<h1 id="A-Simple-Judger-for-Java"><a href="#A-Simple-Judger-for-Java" class="headerlink" title="A Simple Judger for Java"></a>A Simple Judger for Java</h1><p>一个简单判题机，基于Java语言，于Windows或Linux平台，为了本地测试。</p>
 <h2 id="Function-List"><a href="#Function-List" class="headerlink" title="Function List"></a>Function List</h2><ul>
 <li><p>易于使用的接口设计</p>
@@ -6710,7 +6710,7 @@ public class Judger implements Iterable&lt;Scanner&gt;, Iterator&lt;Scanner&gt; 
   </entry>
   <entry>
     <title>Compiler Test</title>
-    <url>/posts/compiler-test/</url>
+    <url>/./posts/compiler-test/</url>
     <content><![CDATA[
 $$
 \boxed{@}
@@ -6895,7 +6895,7 @@ second
   </entry>
   <entry>
     <title>[Database] Advanced SQL</title>
-    <url>/posts/database-advanced-sql/</url>
+    <url>/./posts/database-advanced-sql/</url>
     <content><![CDATA[<h1 id="Advanced-SQL"><a href="#Advanced-SQL" class="headerlink" title="Advanced SQL"></a>Advanced SQL</h1>
 $$
 \boxed{@}
@@ -7422,7 +7422,7 @@ GROUP BY rollup(item_name, color, clothes_size)
   </entry>
   <entry>
     <title>[Database] Design</title>
-    <url>/posts/database-design/</url>
+    <url>/./posts/database-design/</url>
     <content><![CDATA[<h1 id="Database-Design"><a href="#Database-Design" class="headerlink" title="Database Design"></a>Database Design</h1>
 $$
 \boxed{@}
@@ -7778,7 +7778,7 @@ a3 --- b3
   </entry>
   <entry>
     <title>[Database] Elementary SQL</title>
-    <url>/posts/database-elementary-sql/</url>
+    <url>/./posts/database-elementary-sql/</url>
     <content><![CDATA[<h1 id="Elementary-SQL"><a href="#Elementary-SQL" class="headerlink" title="Elementary SQL"></a>Elementary SQL</h1><h2 id="Primitive-Type"><a href="#Primitive-Type" class="headerlink" title="Primitive Type"></a>Primitive Type</h2><div class="table-container">
 <table>
 <thead>
@@ -8463,7 +8463,7 @@ SET salary = CASE
   </entry>
   <entry>
     <title>[Database] Intermediate SQL</title>
-    <url>/posts/database-intermediate-sql/</url>
+    <url>/./posts/database-intermediate-sql/</url>
     <content><![CDATA[<h1 id="Intermediate-SQL"><a href="#Intermediate-SQL" class="headerlink" title="Intermediate SQL"></a>Intermediate SQL</h1>
 $$
 \boxed{@}
@@ -9044,7 +9044,7 @@ role --&gt; b((B))
   </entry>
   <entry>
     <title>Expression Evaluation</title>
-    <url>/posts/expression-evaluation/</url>
+    <url>/./posts/expression-evaluation/</url>
     <content><![CDATA[<h1 id="Expression-Evaluation"><a href="#Expression-Evaluation" class="headerlink" title="Expression Evaluation"></a>Expression Evaluation</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><ol>
 <li>给定输入表达式字符串：包含 + - * / ^ ()</li>
 <li>表达式的运算使用整数运算, 小数部分向下取整.</li>
@@ -9187,7 +9187,7 @@ int main() &#123;
   </entry>
   <entry>
     <title>世界，您好！</title>
-    <url>/posts/hello-world/</url>
+    <url>/./posts/hello-world/</url>
     <content><![CDATA[<p>欢迎使用WordPress。这是您的第一篇文章。编辑或删除它，然后开始写作吧！</p>
 ]]></content>
       <tags>
@@ -9196,7 +9196,7 @@ int main() &#123;
   </entry>
   <entry>
     <title>[Anbox] Install android-subsystem on Ubuntu 22.04 LTS</title>
-    <url>/posts/install-andbox-on-ubuntu-22-04-LTS/</url>
+    <url>/./posts/install-andbox-on-ubuntu-22-04-LTS/</url>
     <content><![CDATA[
 
 <h1>Install and Launch Anbox</h1>
@@ -9270,7 +9270,7 @@ sudo /snap/anbox/current/bin/anbox-bridge.sh start
   </entry>
   <entry>
     <title>[JSP] Servlet &amp; JSP Short-Hand</title>
-    <url>/posts/jsp-servlet-jsp-short-hand/</url>
+    <url>/./posts/jsp-servlet-jsp-short-hand/</url>
     <content><![CDATA[
 
 <h1>Servlets &amp; JSP Short-hand</h1>
@@ -10359,7 +10359,7 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
   </entry>
   <entry>
     <title>[Blog] 从WordPress迁移到Hexo</title>
-    <url>/posts/migrant-from-wordpress/</url>
+    <url>/./posts/migrant-from-wordpress/</url>
     <content><![CDATA[<h1 id="从WordPress到Hexo"><a href="#从WordPress到Hexo" class="headerlink" title="从WordPress到Hexo"></a>从WordPress到Hexo</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在经历过 <code>WordPress</code> 的数次折磨之后，最终决定将 <code>Blog</code> 系统迁移到 <code>Hexo</code>。</p>
 <h2 id="为什么WordPress不适合作为博客系统"><a href="#为什么WordPress不适合作为博客系统" class="headerlink" title="为什么WordPress不适合作为博客系统"></a>为什么WordPress不适合作为博客系统</h2><p>对于Blog搭建而言，是时候该放弃 WordPress 了，至少出于以下这些原因：</p>
 <ul>
@@ -10463,7 +10463,7 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
   </entry>
   <entry>
     <title>[Favorite] Tool-box</title>
-    <url>/posts/tool-box/</url>
+    <url>/./posts/tool-box/</url>
     <content><![CDATA[<h1 id="Tool-Box"><a href="#Tool-Box" class="headerlink" title="Tool-Box"></a>Tool-Box</h1><h2 id="出版网站"><a href="#出版网站" class="headerlink" title="出版网站"></a>出版网站</h2><ul>
 <li><a href="http://www.hzbook.com/">HzBook</a></li>
 <li><a href="https://www.ituring.com.cn/">ITuring</a></li>
@@ -10497,7 +10497,7 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
   </entry>
   <entry>
     <title>[Database] Relational Query Language</title>
-    <url>/posts/database-relational-query-language/</url>
+    <url>/./posts/database-relational-query-language/</url>
     <content><![CDATA[
 
 <h1>Formal RQL</h1>
@@ -10705,7 +10705,7 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
   </entry>
   <entry>
     <title>[STL] Simple Use of STL</title>
-    <url>/posts/stl-simple-usage-of-stl/</url>
+    <url>/./posts/stl-simple-usage-of-stl/</url>
     <content><![CDATA[
 
 <h1>Code Snippet</h1>

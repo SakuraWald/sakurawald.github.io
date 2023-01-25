@@ -2,42 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sakurawald.github.io/friends/index.html</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/tags/index.html</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/posts/tool-box/</loc>
     
     <lastmod>2023-01-25</lastmod>
@@ -57,6 +21,24 @@
   
   <url>
     <loc>https://sakurawald.github.io/categories/index.html</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/friends/index.html</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/tags/index.html</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -92,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/posts/database-relational-query-language/</loc>
+    <loc>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -101,7 +83,16 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</loc>
+    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/database-relational-query-language/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -210,6 +201,15 @@
   
   <url>
     <loc>https://sakurawald.github.io/posts/database-intermediate-sql/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
