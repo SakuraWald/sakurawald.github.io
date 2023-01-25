@@ -6,7 +6,7 @@
   <link href="https://sakurawald.github.io/atom.xml" rel="self"/>
   
   <link href="https://sakurawald.github.io/"/>
-  <updated>2023-01-25T06:38:23.432Z</updated>
+  <updated>2023-01-25T06:59:29.081Z</updated>
   <id>https://sakurawald.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>[Blog] 从WordPress迁移到Hexo</title>
-    <link href="https://sakurawald.github.io/2023/01/25/migrant-from-wordpress/"/>
-    <id>https://sakurawald.github.io/2023/01/25/migrant-from-wordpress/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2023-01-25T05:11:58.000Z</published>
-    <updated>2023-01-25T06:38:23.432Z</updated>
+    <updated>2023-01-25T06:59:29.081Z</updated>
     
     
       
@@ -45,10 +45,10 @@
   
   <entry>
     <title>[Database] Design</title>
-    <link href="https://sakurawald.github.io/2023/01/22/database-design/"/>
-    <id>https://sakurawald.github.io/2023/01/22/database-design/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2023-01-22T13:01:39.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -71,10 +71,10 @@ $$
   
   <entry>
     <title>[Favorite] Tool-box</title>
-    <link href="https://sakurawald.github.io/2023/01/22/tool-box/"/>
-    <id>https://sakurawald.github.io/2023/01/22/tool-box/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2023-01-22T09:37:54.000Z</published>
-    <updated>2023-01-25T06:38:23.436Z</updated>
+    <updated>2023-01-25T06:59:29.085Z</updated>
     
     
       
@@ -96,10 +96,10 @@ $$
   
   <entry>
     <title>Compiler Test</title>
-    <link href="https://sakurawald.github.io/2023/01/15/compiler-test/"/>
-    <id>https://sakurawald.github.io/2023/01/15/compiler-test/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2023-01-15T03:00:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -129,10 +129,10 @@ $$
   
   <entry>
     <title>[JSP] Servlet &amp; JSP Short-Hand</title>
-    <link href="https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/"/>
-    <id>https://sakurawald.github.io/2022/06/13/jsp-servlet-jsp-short-hand/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-06-13T03:00:00.000Z</published>
-    <updated>2023-01-25T06:38:23.432Z</updated>
+    <updated>2023-01-25T06:59:29.081Z</updated>
     
     
       
@@ -157,10 +157,10 @@ $$
   
   <entry>
     <title>[Anbox] Install android-subsystem on Ubuntu 22.04 LTS</title>
-    <link href="https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/"/>
-    <id>https://sakurawald.github.io/2022/06/09/install-andbox-on-ubuntu-22-04-LTS/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-06-09T09:41:00.000Z</published>
-    <updated>2023-01-25T06:38:23.432Z</updated>
+    <updated>2023-01-25T06:59:29.081Z</updated>
     
     
       
@@ -186,10 +186,10 @@ sudo snap install --devmode --edge</summary>
   
   <entry>
     <title>[Database] Relational Query Language</title>
-    <link href="https://sakurawald.github.io/2022/04/30/database-relational-query-language/"/>
-    <id>https://sakurawald.github.io/2022/04/30/database-relational-query-language/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-30T02:53:00.000Z</published>
-    <updated>2023-01-25T06:38:23.432Z</updated>
+    <updated>2023-01-25T06:59:29.081Z</updated>
     
     
       
@@ -212,10 +212,10 @@ sudo snap install --devmode --edge</summary>
   
   <entry>
     <title>[Database] Advanced SQL</title>
-    <link href="https://sakurawald.github.io/2022/04/29/database-advanced-sql/"/>
-    <id>https://sakurawald.github.io/2022/04/29/database-advanced-sql/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-29T13:35:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -238,10 +238,10 @@ $$
   
   <entry>
     <title>[Database] Intermediate SQL</title>
-    <link href="https://sakurawald.github.io/2022/04/29/database-intermediate-sql/"/>
-    <id>https://sakurawald.github.io/2022/04/29/database-intermediate-sql/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-29T08:39:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -264,10 +264,10 @@ $$
   
   <entry>
     <title>[Database] Elementary SQL</title>
-    <link href="https://sakurawald.github.io/2022/04/28/database-elementary-sql/"/>
-    <id>https://sakurawald.github.io/2022/04/28/database-elementary-sql/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-28T11:55:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -287,10 +287,10 @@ $$
   
   <entry>
     <title>[Algorithm] Oiling Car &amp; Optimal Merge</title>
-    <link href="https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/"/>
-    <id>https://sakurawald.github.io/2022/04/26/algorithm-oiling-car-and-optimal-merge/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-26T22:16:00.000Z</published>
-    <updated>2023-01-25T06:38:23.424Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -315,10 +315,10 @@ $$
   
   <entry>
     <title>[Algorithm] Multiple-Knapsack Problem &amp; Pebble Merge Problem</title>
-    <link href="https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/"/>
-    <id>https://sakurawald.github.io/2022/04/18/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-18T23:53:00.000Z</published>
-    <updated>2023-01-25T06:38:23.424Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -340,10 +340,10 @@ $$
   
   <entry>
     <title>[STL] Simple Use of STL</title>
-    <link href="https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/"/>
-    <id>https://sakurawald.github.io/2022/04/18/stl-simple-usage-of-stl/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-18T14:44:00.000Z</published>
-    <updated>2023-01-25T06:38:23.436Z</updated>
+    <updated>2023-01-25T06:59:29.085Z</updated>
     
     
       
@@ -368,10 +368,10 @@ $$
   
   <entry>
     <title>[Branch-Bound] Circle Permutation</title>
-    <link href="https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/"/>
-    <id>https://sakurawald.github.io/2022/04/17/algorithm-circle-permutation/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-17T03:03:00.000Z</published>
-    <updated>2023-01-25T06:38:23.424Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -396,10 +396,10 @@ $$
   
   <entry>
     <title>[Algorithm] Back-Tracking &amp; IDDFS</title>
-    <link href="https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/"/>
-    <id>https://sakurawald.github.io/2022/04/12/algorithm-back-tracking-and-iddfs/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-12T13:15:00.000Z</published>
-    <updated>2023-01-25T06:38:23.424Z</updated>
+    <updated>2023-01-25T06:59:29.073Z</updated>
     
     
       
@@ -424,10 +424,10 @@ $$
   
   <entry>
     <title>[CodeSnippet] - A Simple Judger for Java</title>
-    <link href="https://sakurawald.github.io/2022/04/05/codesnippet-a-simple-judger-for-java/"/>
-    <id>https://sakurawald.github.io/2022/04/05/codesnippet-a-simple-judger-for-java/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-04-05T14:22:32.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -449,10 +449,10 @@ $$
   
   <entry>
     <title>[Algorithm] Set Partition Problem</title>
-    <link href="https://sakurawald.github.io/2022/03/26/algorithm-set-partition-problem/"/>
-    <id>https://sakurawald.github.io/2022/03/26/algorithm-set-partition-problem/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-03-26T19:01:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -472,10 +472,10 @@ $$
   
   <entry>
     <title>[Algorithm] Majority Problem</title>
-    <link href="https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/"/>
-    <id>https://sakurawald.github.io/2022/03/25/algorithm-majority-problem/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2022-03-25T11:27:00.000Z</published>
-    <updated>2023-01-25T06:38:23.424Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
@@ -498,10 +498,10 @@ $$
   
   <entry>
     <title>Expression Evaluation</title>
-    <link href="https://sakurawald.github.io/2021/09/13/expression-evaluation/"/>
-    <id>https://sakurawald.github.io/2021/09/13/expression-evaluation/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2021-09-13T00:53:00.000Z</published>
-    <updated>2023-01-25T06:38:23.432Z</updated>
+    <updated>2023-01-25T06:59:29.081Z</updated>
     
     
       
@@ -521,10 +521,10 @@ $$
   
   <entry>
     <title>[OJ] C语言赐予你的字符串处理函数</title>
-    <link href="https://sakurawald.github.io/2021/02/06/c-string-lib-functions/"/>
-    <id>https://sakurawald.github.io/2021/02/06/c-string-lib-functions/</id>
+    <link href="https://sakurawald.github.io/:/posts/title/"/>
+    <id>https://sakurawald.github.io/:/posts/title/</id>
     <published>2021-02-06T05:53:00.000Z</published>
-    <updated>2023-01-25T06:38:23.428Z</updated>
+    <updated>2023-01-25T06:59:29.077Z</updated>
     
     
       
