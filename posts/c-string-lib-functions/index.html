@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[OJ] C语言赐予你的字符串处理函数 | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="canonical" href="https://sakurawald.github.io/posts/c-string-lib-functions/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[OJ] C语言赐予你的字符串处理函数',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-25 15:00:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container">
+
+<article class="post-718 post type-post status-publish format-standard hentry category-oj category-soj">	
+
+				<div class="post-category">
+					<a target="_blank" href="https://www.sakurawald.com/?cat=15" rel="category noopener" class="docs-creator">OJ</a> / <a target="_blank" href="https://www.sakurawald.com/?cat=14" rel="category noopener" class="docs-creator">SOJ</a>				</div><!--/.post-category-->
+				
+				<h1 class="post-title outline-heading" id="outline-heading-1">[OJ] C语言赐予你的字符串处理函数</h1>
+				
+				<div class="post-date">
+					<i class="far fa-clock"></i>February 6, 2021				</div><!--/.post-date-->
+
+
+​								
+​				<div class="clear"></div>
+​				
+				<div class="entry">	
+					<h1 class="outline-heading" id="outline-heading-2">C语言赐予你的字符串处理函数</h1>
+<p>string.h库中包含一系列处理字符串常用的函数，来看看吧。<br>
+<a class="wp-editor-md-post-content-link docs-creator" target="_blank" rel="noopener" href="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg"><img data-lazyloaded="1" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg" data-src="https://i.loli.net/2021/02/06/8XI3dLqEgGnZvtA.jpg" alt="" data-ll-status="loaded" class="entered litespeed-loaded"></a></p>
+<p>阅览过string.h的函数列表后，以后遇到类似的字符串处理问题，就可以先查查这个表，看看有没有能直接使用的函数。</p>
+<h1 class="outline-heading" id="outline-heading-3">用字符串函数来解题！</h1>
+<h3 class="outline-heading" id="outline-heading-4">获取字符串长度 -&gt; strlen()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token comment">// 获取指定字符串的长度（不包含'\0'字符）</span>
+<span class="token comment">// str: 目标字符串</span>
+<span class="token class-name">size_t</span> <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>关键点：题目的单词要么是“click”要么是“double click”，因此没有必要真正去解析词语，只需要运用字符串的长度关系，直接计算出“click”出现次数即可。</p>
+<h6 class="outline-heading" id="outline-heading-5">SOJ1409 双击666 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">s[];main(n){gets(&amp;n);strchr(gets(s),'d')?puts("666"):printf("%d",strlen(s)/6+1);}
+</pre>
+<p>实际上，这道题的“click”出现次数也可以不计算。</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">s[];main(n){gets(&amp;n);puts(strchr(gets(s),'d')?"666":&amp;n);}
+</pre>
+<h3 class="outline-heading" id="outline-heading-6">比较字符串 -&gt; strcmp()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str2<span class="token punctuation">)</span>
+<span class="token comment">// str1: 要比较的字符串1</span>
+<span class="token comment">// str2: 要比较的字符串2</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>该函数返回值为int, 分为3种情况.<br>
+1. 字符串相等: 返回 0<br>
+2. 字符串str1 &lt; 字符串str2: 返回负数<br>
+3. 字符串str1 &gt; 字符串str2: 返回正数</p>
+<h3 class="outline-heading" id="outline-heading-7">连接字符串 -&gt; strcat()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strcat</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span>
+<span class="token comment">// dest: 目标字符串</span>
+<span class="token comment">// src: 来源字符串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>将src字符串 连接到 dest字符串的末尾(请保证dest字符串拥有足够的大小)</p>
+<p>strcat(A, B) = A + B</p>
+<h3 class="outline-heading" id="outline-heading-8">找出首个不满足字符集的下标 -&gt; strspn()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token class-name">size_t</span> <span class="token function">strspn</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str2<span class="token punctuation">)</span>
+<span class="token comment">// str1: 被检索的字符串</span>
+<span class="token comment">// str2: 用于检索的字符串 (可为单字符的字符串)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>该函数用于在str1中找出 第一个不在str2中出现的字符的下标</p>
+<h6 class="outline-heading" id="outline-heading-9">SOJ1082 字符串 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">char s[];main(t){t=strspn(gets(s),"#");for(printf("%s",s+t);t--;putchar(35));}
+</pre>
+<h3 class="outline-heading" id="outline-heading-10">大小写转换 -&gt; strupr() &amp; strlwr()</h3>
+<p>注意: strupr()和strlwr()并不是string.h的函数</p>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strupr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> str<span class="token punctuation">)</span>
+<span class="token comment">// str: 被转换的字符串</span>
+
+<span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strlwr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 被转换的字符串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h6 class="outline-heading" id="outline-heading-11">SOJ1279 转换为大写 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">main(n){puts(strupr(gets(&amp;n)));}
+</pre>
+<h6 class="outline-heading" id="outline-heading-12">SOJ1290 转换为小写 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">main(n){puts(strlwr(gets(&amp;n)));}
+</pre>
+<h3 class="outline-heading" id="outline-heading-13">反转字符串 -&gt; strrev()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span> <span class="token function">strrev</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> str<span class="token punctuation">)</span>
+<span class="token comment">// str: 待反转的字符串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>注意: 该方法是原址性的, 如果需要保留原始字符串, 则应该事先用strcpy()复制一份原始字符串的副本.</p>
+<h6 class="outline-heading" id="outline-heading-14">SOJ1284 字符串正反连接 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">s[];S[];main(){gets(s);printf("%s%s",s,strrev(strcpy(S,s)));}
+</pre>
+<h6 class="outline-heading" id="outline-heading-15">SOJ1305 判断是否为对称字符串 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">s1[];s2[];main(){puts(strcmp(s1,strrev(strcpy(s2,gets(s1))))?"No":"Yes");}
+</pre>
+<h6 class="outline-heading" id="outline-heading-16">SOJ1615 英语单词逆序 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">m[];main(){for(;~scanf("%s",&amp;m);printf("%s ",strrev(m)));}
+</pre>
+<h3 class="outline-heading" id="outline-heading-17">找出指定字符的出现下标 -&gt; strchr()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strchr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token comment">// str: 被检索的字符串</span>
+<span class="token comment">// c: 要查找的指定字符 (输入char类型自动转为int)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>注意: 该方法返回的是 首个符合的字符的指针(char*), 因此，如果需要算出该字符在原字符串中的下标, 应该运用指针算术来得到:<br>
+index = strchr(str, 指定字符) – str</p>
+<h6 class="outline-heading" id="outline-heading-18">SOJ1336 我已经不是三岁小孩了 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">s[];main(N,M){gets(s);N=*(strchr(s,45)-1)%48;M=*(strchr(s,45)+1)%48;puts(4&gt;=N&amp;&amp;4&lt;=M?"Yes":"No");}
+</pre>
+<h6 class="outline-heading" id="outline-heading-19">SOJ1604 英语姓名简写 AC.c</h6>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">m[];main(){*strrchr(gets(m),46)=0;puts(m);}
+</pre>
+<h3 class="outline-heading" id="outline-heading-20">连接部分字符串 -&gt; strncat()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strncat</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token class-name">size_t</span> n<span class="token punctuation">)</span>
+<span class="token comment">// dest: 目标字符串</span>
+<span class="token comment">// src: 来源字符串</span>
+<span class="token comment">// n: 将来源字符串的前n个字符 追加到 目标字符串 中</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-21">比较部分字符串 -&gt; strncmp()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">int</span> <span class="token function">strncmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str2<span class="token punctuation">,</span> <span class="token class-name">size_t</span> n<span class="token punctuation">)</span>
+<span class="token comment">// str1: 字符串1</span>
+<span class="token comment">// str2: 字符串2</span>
+<span class="token comment">// n: 比较字符串1和字符串2的 前n个字符</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-22">复制字符串 -&gt; strcpy()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span>
+<span class="token comment">// dest: 目标字符串 (请保证有充足的内存空间)</span>
+<span class="token comment">// src: 来源字符串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-23">复制部分字符串 -&gt; strncpy()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strncpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> <span class="token class-name">size_t</span> n<span class="token punctuation">)</span>
+<span class="token comment">// dest: 目标字符串 (请保证有充足的内存空间)</span>
+<span class="token comment">// src: 来源字符串</span>
+<span class="token comment">// n: 复制src的前n个字符</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-24">检索开头有几个字符不符合条件 -&gt; strnspn()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token class-name">size_t</span> <span class="token function">strcspn</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str2<span class="token punctuation">)</span>
+<span class="token comment">// str1: 被检索的字符串</span>
+<span class="token comment">// str2: 检索字符的列表</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-25">检索第一个匹配指定字符列表的字符 -&gt; strpbrk()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strpbrk</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str2<span class="token punctuation">)</span>
+<span class="token comment">// str1: 被检索的字符串</span>
+<span class="token comment">// str2: 检索字符的列表</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>注意: strpbrk() 与 strspn() 相反.</p>
+<h3 class="outline-heading" id="outline-heading-26">找出指定字符最后一次出现的位置 -&gt; strrchr()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strrchr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">int</span> c<span class="token punctuation">)</span>
+<span class="token comment">// str: 被检索的字符串</span>
+<span class="token comment">// c: 指定字符</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-27">查找指定子串首次出现位置 -&gt; strstr()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>haystack<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>needle<span class="token punctuation">)</span>
+<span class="token comment">// haystack: 被检索的字符串</span>
+<span class="token comment">// needle: 指定子串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<h3 class="outline-heading" id="outline-heading-28">分隔字符串 -&gt; strtok()</h3>
+<div class="code-toolbar"><pre class="line-numbers language-c" tabindex="0"><code class="language-c"><span class="token keyword">char</span> <span class="token operator">*</span><span class="token function">strtok</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>delim<span class="token punctuation">)</span>
+<span class="token comment">// str: 目标字符串</span>
+<span class="token comment">// delim: 用于分割的字符串</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>C</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<p>注意: strtok()函数会破坏str的数据, 若需要保留数据, 请使用str的副本.<br>
+注意: strtok()函数只需要首次调用时传入str即可, 后续调用可传入NULL</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="c">void split(char * str, char * delim) {
+    /* 首次调用strtok(): 初始化strtok()函数 且 获取第一个被切割的子串*/
+    char * token = strtok(str, delim);
+
+    /* 后续调用strtok(): 获取 其他被切割处理的子串 */
+    while (token != NULL) {
+        printf("str = %s\n", str);
+        printf("delim = %s\n", delim);
+        printf("token = %s\n\n", token);
+        
+        token = strtok(NULL, delim);
+    }
+}
+
+int main() {
+    char str1[80] = "First233Second233Third";
+    char str2[80] = "233";
+
+    split(str1, str2);
+}
+
+/* Output:
+str = First
+delim = 233
+token = First
+
+str = First
+delim = 233
+token = Second
+
+str = First
+delim = 233
+token = Third
+*/
+</pre>
+										<div class="clear"></div>				
+				</div><!--/.entry-->
+				
+
+			</article>
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/posts/c-string-lib-functions/">https://sakurawald.github.io/posts/c-string-lib-functions/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/oj/">oj</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description">dig description.sakurawald.com txt</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a></div><div><a id="card-friends-btn" href="/friends/"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#outline-heading-1"><span class="toc-number">1.</span> <span class="toc-text">[OJ] C语言赐予你的字符串处理函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#outline-heading-2"><span class="toc-number">2.</span> <span class="toc-text">C语言赐予你的字符串处理函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#outline-heading-3"><span class="toc-number">3.</span> <span class="toc-text">用字符串函数来解题！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-4"><span class="toc-number">3.0.1.</span> <span class="toc-text">获取字符串长度 -&gt; strlen()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-5"><span class="toc-number">3.0.1.0.0.1.</span> <span class="toc-text">SOJ1409 双击666 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-6"><span class="toc-number">3.0.2.</span> <span class="toc-text">比较字符串 -&gt; strcmp()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-7"><span class="toc-number">3.0.3.</span> <span class="toc-text">连接字符串 -&gt; strcat()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-8"><span class="toc-number">3.0.4.</span> <span class="toc-text">找出首个不满足字符集的下标 -&gt; strspn()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-9"><span class="toc-number">3.0.4.0.0.1.</span> <span class="toc-text">SOJ1082 字符串 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-10"><span class="toc-number">3.0.5.</span> <span class="toc-text">大小写转换 -&gt; strupr() &amp; strlwr()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-11"><span class="toc-number">3.0.5.0.0.1.</span> <span class="toc-text">SOJ1279 转换为大写 AC.c</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-12"><span class="toc-number">3.0.5.0.0.2.</span> <span class="toc-text">SOJ1290 转换为小写 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-13"><span class="toc-number">3.0.6.</span> <span class="toc-text">反转字符串 -&gt; strrev()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-14"><span class="toc-number">3.0.6.0.0.1.</span> <span class="toc-text">SOJ1284 字符串正反连接 AC.c</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-15"><span class="toc-number">3.0.6.0.0.2.</span> <span class="toc-text">SOJ1305 判断是否为对称字符串 AC.c</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-16"><span class="toc-number">3.0.6.0.0.3.</span> <span class="toc-text">SOJ1615 英语单词逆序 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-17"><span class="toc-number">3.0.7.</span> <span class="toc-text">找出指定字符的出现下标 -&gt; strchr()</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-18"><span class="toc-number">3.0.7.0.0.1.</span> <span class="toc-text">SOJ1336 我已经不是三岁小孩了 AC.c</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#outline-heading-19"><span class="toc-number">3.0.7.0.0.2.</span> <span class="toc-text">SOJ1604 英语姓名简写 AC.c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-20"><span class="toc-number">3.0.8.</span> <span class="toc-text">连接部分字符串 -&gt; strncat()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-21"><span class="toc-number">3.0.9.</span> <span class="toc-text">比较部分字符串 -&gt; strncmp()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-22"><span class="toc-number">3.0.10.</span> <span class="toc-text">复制字符串 -&gt; strcpy()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-23"><span class="toc-number">3.0.11.</span> <span class="toc-text">复制部分字符串 -&gt; strncpy()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-24"><span class="toc-number">3.0.12.</span> <span class="toc-text">检索开头有几个字符不符合条件 -&gt; strnspn()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-25"><span class="toc-number">3.0.13.</span> <span class="toc-text">检索第一个匹配指定字符列表的字符 -&gt; strpbrk()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-26"><span class="toc-number">3.0.14.</span> <span class="toc-text">找出指定字符最后一次出现的位置 -&gt; strrchr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-27"><span class="toc-number">3.0.15.</span> <span class="toc-text">查找指定子串首次出现位置 -&gt; strstr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outline-heading-28"><span class="toc-number">3.0.16.</span> <span class="toc-text">分隔字符串 -&gt; strtok()</span></a></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}
+renderMathjax();</script><script>function processSvgPanZoom() {
+    const $targetWrap = document.querySelectorAll('#article-container svg')
+    if ($targetWrap.length) {
+        window.runSvgPanZoom = () => {
+            window.loadSvgPanZoom = true
+
+            Array.from($targetWrap).forEach((item, index) => {
+                var saved_viewbox = item.getAttribute("viewBox");
+                var controller = svgPanZoom(item);
+                item.setAttribute("viewBox", saved_viewbox);
+                controller.fit();
+                controller.center();
+            });
+        }
+        const loadSvgPanZoom = () => {
+            window.loadSvgPanZoom ? runSvgPanZoom() : getScript('https://cdn.jsdelivr.net/npm/svg-pan-zoom/dist/svg-pan-zoom.min.js').then(runSvgPanZoom)
+        }
+        window.pjax ? loadSvgPanZoom() : document.addEventListener('DOMContentLoaded', loadSvgPanZoom)
+    }
+}</script><script>function processMermaid() {
+  const $targetWrap = document.querySelectorAll('#article-container code.lang-mermaid, #article-container code.language-mermaid');
+  if ($targetWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+
+      const theme = 'default'
+      Array.from($targetWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+      processSvgPanZoom(); 
+    }
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+}
+processMermaid();</script><script>function processHighlightjs() {
+  window.runHighlightjs = () => {
+      window.loadHightlightjs = true
+
+      hljs.highlightAll();
+  }
+
+  const loadHightlightjs = () => {
+      if (window.loadHightlightjs) {
+          runHighlightjs();
+      } else {
+          getCSS('/css/third-party/highlightjs-github.css');
+          getScript('/js/third-party/highlight.min.js').then(runHighlightjs);
+      }
+  }
+  window.pjax ? loadHightlightjs() : document.addEventListener('DOMContentLoaded', loadHightlightjs)
+}
+processHighlightjs();</script><script>function loadGiscus () {
+  let nowTheme = 'light' 
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': 'R_kgDOItDE4Q',
+    'data-category-id': 'DIC_kwDOItDE4c4CTv3v',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

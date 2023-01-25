@@ -15,13 +15,13 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 25 Jan 2023 06:59:29 GMT</pubDate>
+    <pubDate>Wed, 25 Jan 2023 07:00:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>[Blog] 从WordPress迁移到Hexo</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/migrant-from-wordpress/</link>
+      <guid>https://sakurawald.github.io/posts/migrant-from-wordpress/</guid>
       <pubDate>Wed, 25 Jan 2023 05:11:58 GMT</pubDate>
       
         
@@ -43,14 +43,14 @@
       <category domain="https://sakurawald.github.io/tags/hexo/">hexo</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/migrant-from-wordpress/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Database] Design</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/database-design/</link>
+      <guid>https://sakurawald.github.io/posts/database-design/</guid>
       <pubDate>Sun, 22 Jan 2023 13:01:39 GMT</pubDate>
       
         
@@ -71,14 +71,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/database/">database</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/database-design/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Favorite] Tool-box</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/tool-box/</link>
+      <guid>https://sakurawald.github.io/posts/tool-box/</guid>
       <pubDate>Sun, 22 Jan 2023 09:37:54 GMT</pubDate>
       
         
@@ -98,14 +98,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/favorite/">favorite</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/tool-box/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Compiler Test</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/compiler-test/</link>
+      <guid>https://sakurawald.github.io/posts/compiler-test/</guid>
       <pubDate>Sun, 15 Jan 2023 03:00:00 GMT</pubDate>
       
         
@@ -133,14 +133,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/jsp/">jsp</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/compiler-test/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[JSP] Servlet &amp; JSP Short-Hand</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/</link>
+      <guid>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/</guid>
       <pubDate>Mon, 13 Jun 2022 03:00:00 GMT</pubDate>
       
         
@@ -163,14 +163,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/jsp/">jsp</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Anbox] Install android-subsystem on Ubuntu 22.04 LTS</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/</link>
+      <guid>https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/</guid>
       <pubDate>Thu, 09 Jun 2022 09:41:00 GMT</pubDate>
       
         
@@ -194,14 +194,14 @@ sudo snap install --devmode --edge</description>
       <category domain="https://sakurawald.github.io/tags/android/">android</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Database] Relational Query Language</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/database-relational-query-language/</link>
+      <guid>https://sakurawald.github.io/posts/database-relational-query-language/</guid>
       <pubDate>Sat, 30 Apr 2022 02:53:00 GMT</pubDate>
       
         
@@ -222,14 +222,14 @@ sudo snap install --devmode --edge</description>
       <category domain="https://sakurawald.github.io/tags/database/">database</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/database-relational-query-language/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Database] Advanced SQL</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/database-advanced-sql/</link>
+      <guid>https://sakurawald.github.io/posts/database-advanced-sql/</guid>
       <pubDate>Fri, 29 Apr 2022 13:35:00 GMT</pubDate>
       
         
@@ -250,14 +250,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/database/">database</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/database-advanced-sql/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Database] Intermediate SQL</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/database-intermediate-sql/</link>
+      <guid>https://sakurawald.github.io/posts/database-intermediate-sql/</guid>
       <pubDate>Fri, 29 Apr 2022 08:39:00 GMT</pubDate>
       
         
@@ -278,14 +278,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/database/">database</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/database-intermediate-sql/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Database] Elementary SQL</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/database-elementary-sql/</link>
+      <guid>https://sakurawald.github.io/posts/database-elementary-sql/</guid>
       <pubDate>Thu, 28 Apr 2022 11:55:00 GMT</pubDate>
       
         
@@ -303,14 +303,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/database/">database</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/database-elementary-sql/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Algorithm] Oiling Car &amp; Optimal Merge</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</guid>
       <pubDate>Tue, 26 Apr 2022 22:16:00 GMT</pubDate>
       
         
@@ -333,14 +333,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/greedy/">greedy</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Algorithm] Multiple-Knapsack Problem &amp; Pebble Merge Problem</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</guid>
       <pubDate>Mon, 18 Apr 2022 23:53:00 GMT</pubDate>
       
         
@@ -360,14 +360,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/dynamic-programming/">dynamic_programming</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[STL] Simple Use of STL</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/stl-simple-usage-of-stl/</link>
+      <guid>https://sakurawald.github.io/posts/stl-simple-usage-of-stl/</guid>
       <pubDate>Mon, 18 Apr 2022 14:44:00 GMT</pubDate>
       
         
@@ -390,14 +390,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/cpp/">cpp</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/stl-simple-usage-of-stl/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Branch-Bound] Circle Permutation</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-circle-permutation/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-circle-permutation/</guid>
       <pubDate>Sun, 17 Apr 2022 03:03:00 GMT</pubDate>
       
         
@@ -420,14 +420,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/branch-and-bound/">branch_and_bound</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-circle-permutation/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Algorithm] Back-Tracking &amp; IDDFS</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</guid>
       <pubDate>Tue, 12 Apr 2022 13:15:00 GMT</pubDate>
       
         
@@ -450,14 +450,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[CodeSnippet] - A Simple Judger for Java</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</link>
+      <guid>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</guid>
       <pubDate>Tue, 05 Apr 2022 14:22:32 GMT</pubDate>
       
         
@@ -477,14 +477,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/code/">code</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Algorithm] Set Partition Problem</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-set-partition-problem/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-set-partition-problem/</guid>
       <pubDate>Sat, 26 Mar 2022 19:01:00 GMT</pubDate>
       
         
@@ -502,14 +502,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-set-partition-problem/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[Algorithm] Majority Problem</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/algorithm-majority-problem/</link>
+      <guid>https://sakurawald.github.io/posts/algorithm-majority-problem/</guid>
       <pubDate>Fri, 25 Mar 2022 11:27:00 GMT</pubDate>
       
         
@@ -530,14 +530,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/algorithm-majority-problem/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Expression Evaluation</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/expression-evaluation/</link>
+      <guid>https://sakurawald.github.io/posts/expression-evaluation/</guid>
       <pubDate>Mon, 13 Sep 2021 00:53:00 GMT</pubDate>
       
         
@@ -555,14 +555,14 @@ $$
       <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/expression-evaluation/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>[OJ] C语言赐予你的字符串处理函数</title>
-      <link>https://sakurawald.github.io/:/posts/title/</link>
-      <guid>https://sakurawald.github.io/:/posts/title/</guid>
+      <link>https://sakurawald.github.io/posts/c-string-lib-functions/</link>
+      <guid>https://sakurawald.github.io/posts/c-string-lib-functions/</guid>
       <pubDate>Sat, 06 Feb 2021 05:53:00 GMT</pubDate>
       
         
@@ -584,7 +584,7 @@ $$
       <category domain="https://sakurawald.github.io/tags/oj/">oj</category>
       
       
-      <comments>https://sakurawald.github.io/:/posts/title/#disqus_thread</comments>
+      <comments>https://sakurawald.github.io/posts/c-string-lib-functions/#disqus_thread</comments>
       
     </item>
     

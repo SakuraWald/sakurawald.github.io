@@ -1,0 +1,730 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Algorithm] Oiling Car &amp; Optimal Merge | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="canonical" href="https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Algorithm] Oiling Car & Optimal Merge',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-25 15:00:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Greedy-Problems"><a href="#Greedy-Problems" class="headerlink" title="Greedy Problems"></a>Greedy Problems</h1>
+$$
+\boxed{@}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor{miku}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\tb[1]{\text{\textcolor{blue}{#1}}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\lrb[1]{\lb{\rb{#1}}}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+\newcommand\step[1]{\textbf{ (#1) }}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\do{\textbf{ do }}
+\newcommand\dowhile{\textbf{ do while }}
+\newcommand\dountil{\textbf{ do until }}
+\newcommand\find{\textbf{ find }}
+\newcommand\until{\textbf{ until }}
+\newcommand\thereisa{\textbf{ There is a }}
+\newcommand\thereisan{\textbf{ There is an }}
+\newcommand\hasno{\textbf{ has no }}
+\newcommand\has{\textbf{ has }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ in }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\textbf{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+<h2 id="Oiling-Car-Problem"><a href="#Oiling-Car-Problem" class="headerlink" title="Oiling Car Problem"></a>Oiling Car Problem</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>一辆汽车加满油后可行驶 n 公里。旅途中有若干个加油站。设计一个有效算法，指出应</p>
+<p>在哪些加油站停靠加油，使沿途加油次数最少。并证明算法能产生一个最优解。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 给出输入数据。第一行有 2 个正整数 n 和 k，表示汽车加满油后可行驶</p>
+<p>n 公里，且旅途中有 k 个加油站。接下来的 1 行中，有 k+1 个整数，表示第 k 个加油站与第</p>
+<p>k-1 个加油站之间的距离。第 0 个加油站表示出发地，汽车已加满油。第 k+1 个加油站表示</p>
+<p>目的地。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>将编程计算出的最少加油次数输出到文件 output.txt。如果无法到达目的地，则输出”No </p>
+<p>Solution”。</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong> </p>
+<p>input.txt </p>
+<p>7 7 </p>
+<p>1 2 3 4 5 1 6 6</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt </p>
+<p>4</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>将该题建模在<code>图</code>上，设<code>节点</code>为<code>加油站</code>，而<code>边</code>的权重表示<code>两个加油站之间的距离</code>，设<code>汽车</code>初始位置在<code>节点0</code>，</p>
+<p>将<code>加油站</code>根据题目所给的相对距离，也建立在<code>数轴</code>上。</p>
+<p>同时，<code>合并</code>我们的<code>终点</code>到<code>最后一个加油站</code></p>
+<blockquote>
+<p>也就是说，我们实际上将<code>源点</code>和<code>终点</code>也一般化为<code>加油站</code>。</p>
+<p>我们将<code>起点</code>视为<code>第0个加油站</code>，<code>距离前一个加油站的距离 = 0</code>。</p>
+<p>同时将<code>终点</code>视为<code>第k个加油站</code>。</p>
+<p>从而，我们得到<code>加油站列表</code>$a_0,\cdots,a_k$</p>
+<p>这样有利于算法逻辑的统一，方便算法进行初始化。</p>
+</blockquote>
+<ul>
+<li>加油次数最少的策略绝对不会存在<code>往左走的路径</code></li>
+</ul>
+<p>设<code>函数</code>$cost(path) = \sum<em>{i=0}^{k}{|a_i - a</em>{i+1}|}$</p>
+<p>假设有<code>任意一个策略为</code>$p_1$，</p>
+<p>设<code>路径$$p_2$为</code>在策略<code>$p_1$$的基础上对路径做出如下修改的策略</code>：</p>
+<p>将<code>路径</code>$a<em>i, a_i \quad (i \gt 0)$修改为$(a_i, a</em>{i-1}, \cdots, a_{i-1}, a_i)$</p>
+<p>而由于$cost{(a<em>{i-1},\cdots,a</em>{i-1})} \ge 0$，</p>
+<p>所以<code>包含这一段子路径</code>并不会对我们<code>减少加油次数</code>有帮助。</p>
+<p>因而，我们得出结论：<code>任何包含环的路径所得出的策略的加油次数，并不会好于把环去掉后的策略</code>。也就是最优的策略必然是无环的路径。</p>
+<ul>
+<li>只在无法到达下一个加油站时才在当前加油站加油可以获得最优解</li>
+</ul>
+<p>由于要求达到优化目标为<code>加油次数最少</code>，但<code>不限制每次加油的量</code>，且<code>每个加油站都可以把油量加到指定的n值</code>，所以<code>在任何加油站进行加油是没有区别的</code>。</p>
+<p>所以，只需要<code>尽可能地不进行加油</code>即可达到<code>最少的加油次数</code>。</p>
+<p>如果<code>初始时的油量是无穷的</code>，则我们不需要进行任何加油。</p>
+<p>但如果油量是有限的，我们除了需要满足<code>能使得汽车到达下一个加油站</code>即可。</p>
+<p>而由于<code>每个加油站除了距离前一个加油站的距离可能不同外，都是相同的加油站</code>。</p>
+<p>因而，我们<code>只需考虑当前油量是否足够让汽车从当前加油站到下一个</code>即可。</p>
+<p>从而，<code>一旦汽车从当前加油站到达下一个加油站</code>，则<code>可以从原问题中删除掉这个加油站</code>，而使得<code>题目的性质没有发生改变</code>。</p>
+<p>换句话说，<code>每次仅考虑前k个加油站时获得的最优步骤，可以组成原问题的最优步骤</code>。</p>
+<p>因此，我们采用这种策略可以获得最优解。</p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><pre><code class="lang-java">    /*
+    *  7
+    *  [0] 1 2 (3) (4) 5 (1) (6) 6
+    *  */
+    public static String solve(int n, ArrayList&lt;Integer&gt; stations) &#123;
+        int ans = 0;
+        int gas = n;
+        for (int i = 0; i &lt; stations.size() - 1; i++) &#123;
+            if (n &lt; stations.get(i+1)) &#123;
+                return &quot;No Solution!&quot;;
+            &#125;
+            gas -= stations.get(i);
+            if (gas &lt; stations.get(i + 1)) &#123;
+                ans++;
+                gas = n;
+            &#125;
+        &#125;
+        return Integer.toString(ans);
+    &#125;
+</code></pre>
+<h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: OIL0.in &amp; OIL0.out
+Expected  Input: [7 7, Omit the remaining 1 line(s)...]
+Expected Output: [4]
+Your     Output: [4]
+Time Cost: 0.138600 ms (138600 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL1.in &amp; OIL1.out
+Expected  Input: [3708 6, Omit the remaining 1 line(s)...]
+Expected Output: [0]
+Your     Output: [0]
+Time Cost: 0.111400 ms (111400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL10.in &amp; OIL10.out
+Expected  Input: [36 942, Omit the remaining 1 line(s)...]
+Expected Output: [No Solution!]
+Your     Output: [No Solution!]
+Time Cost: 0.132500 ms (132500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL2.in &amp; OIL2.out
+Expected  Input: [630 37, Omit the remaining 1 line(s)...]
+Expected Output: [3]
+Your     Output: [3]
+Time Cost: 0.167700 ms (167700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL3.in &amp; OIL3.out
+Expected  Input: [181 46, Omit the remaining 1 line(s)...]
+Expected Output: [18]
+Your     Output: [18]
+Time Cost: 0.156300 ms (156300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL4.in &amp; OIL4.out
+Expected  Input: [809 638, Omit the remaining 1 line(s)...]
+Expected Output: [40]
+Your     Output: [40]
+Time Cost: 0.312200 ms (312200 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL5.in &amp; OIL5.out
+Expected  Input: [887 598, Omit the remaining 1 line(s)...]
+Expected Output: [35]
+Your     Output: [35]
+Time Cost: 0.207000 ms (207000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL6.in &amp; OIL6.out
+Expected  Input: [532 813, Omit the remaining 1 line(s)...]
+Expected Output: [79]
+Your     Output: [79]
+Time Cost: 0.228500 ms (228500 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL7.in &amp; OIL7.out
+Expected  Input: [301 402, Omit the remaining 1 line(s)...]
+Expected Output: [69]
+Your     Output: [69]
+Time Cost: 0.158300 ms (158300 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL8.in &amp; OIL8.out
+Expected  Input: [716 950, Omit the remaining 1 line(s)...]
+Expected Output: [70]
+Your     Output: [70]
+Time Cost: 0.243100 ms (243100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: OIL9.in &amp; OIL9.out
+Expected  Input: [506 448, Omit the remaining 1 line(s)...]
+Expected Output: [49]
+Your     Output: [49]
+Time Cost: 0.162700 ms (162700 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ √ √
+</code></pre>
+<h2 id="Optimal-Merge-Problem"><a href="#Optimal-Merge-Problem" class="headerlink" title="Optimal Merge Problem"></a>Optimal Merge Problem</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>给定<em>k</em> 个排好序的序列<em>s</em>1 ,<em>s</em>2 ,…,sk , 用 2 路合并算法将这<em>k</em> 个序列合并成一个序列。</p>
+<p>假设所采用的 2 路合并算法合并 2 个长度分别为<em>m</em> 和 <em>n</em> 的序列需要<em>m</em> + <em>n</em> - 1次比较。试设</p>
+<p>计一个算法确定合并这个序列的最优合并顺序，使所需的总比较次数最少。</p>
+<p>为了进行比较，还需要确定合并这个序列的最差合并顺序，使所需的总比较次数最多。</p>
+<h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><p>由文件 input.txt 给出输入数据。第一行有 1 个正整数 k，表示有 k 个待合并序列。接下</p>
+<p>来的 1 行中，有 k 个正整数，表示 k 个待合并序列的长度。</p>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><p>将编程计算出的最多比较次数和最少比较次数输出到文件 output.txt。</p>
+<h3 id="Sample-1"><a href="#Sample-1" class="headerlink" title="Sample"></a>Sample</h3><p><strong>输入文件示例</strong> </p>
+<p>input.txt </p>
+<p>4 </p>
+<p>5 12 11 2</p>
+<p><strong>输出文件示例</strong></p>
+<p>output.txt </p>
+<p>78 52</p>
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>假设共有 $k$ 个给定的 <code>序列</code> 的 <code>长度</code> 为 $s_1,s_2,\cdots, s_k$ </p>
+<p>设 <code>第i轮开始时剩余的序列的数量</code> 为 $k_i$</p>
+<p>若需要使用 <code>k路合并</code> 将所有的 <code>序列</code> 都进行 <code>归并</code>，则 <code>每一轮归并操作</code> 需要进行的 <code>比较次数</code> 为 $k_i$，使得一个 <code>元素</code> 有序。</p>
+<p>总共 $s_1 + s_2 + \cdots + s_k = s$ 个元素，共需要进行 $s$ 轮。 </p>
+<p>则整个过程 <code>总共需要比较次数</code> 为</p>
+<script type="math/tex; mode=display">
+\a {
+& (k_1 - 1) + (k_2 - 1) + \cdots + (k_n - 1) \\
+& = (k_1 + k_2 + \cdots + k_n) - n
+}</script><p>由上式可以知道，<code>每轮归并</code> 取走 <code>剩余序列中的其中一个序列的头部元素</code> 所需要进行的 <code>比较次数</code> 与 <code>各个序列自身的长度</code> 无关，仅与 <code>当前剩余的序列数量</code> 有关。</p>
+<p>所以，可以得出结论：</p>
+<ul>
+<li><code>比较次数</code> 最少的情况：每次 <code>取走元素</code> 时，尽可能使得 <code>剩余序列数目</code> 更少。</li>
+<li><code>比较次数</code> 最多的情况：每次 <code>取走元素</code> 时，尽可能使得 <code>剩余序列数目</code> 更多。</li>
+</ul>
+<h3 id="Source-1"><a href="#Source-1" class="headerlink" title="Source"></a>Source</h3><pre><code class="lang-java">package Lab4;
+
+import util.Judger;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class OptimalMergeSolver &#123;
+    public static final Judger judger = new Judger(&quot;/Cases/Lab4/OPTIMAL MERGE&quot;).redirectError().ignoreExceptCase(&quot;11&quot;).setMaxExpectedInputLines(1);
+    public static Judger.Pair&lt;Integer, Integer&gt; solve(ArrayList&lt;Integer&gt; list) &#123;
+
+        // Calc min: Priority-Queue
+        int min = 0;
+        PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;(list);
+        while (minHeap.size() &gt; 1) &#123;
+            int sum = minHeap.poll() + minHeap.poll();
+            min += sum - 1;
+            minHeap.add(sum);
+        &#125;
+
+        // Calc max
+        int max = 0;
+        PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;(Comparator.reverseOrder());
+        maxHeap.addAll(list);
+        while (maxHeap.size() &gt; 1) &#123;
+            int sum = maxHeap.poll() + maxHeap.poll();
+            max += sum - 1;
+            maxHeap.add(sum);
+        &#125;
+        return new Judger.Pair&lt;&gt;(max, min);
+    &#125;
+
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            int k = scanner.nextInt();
+            ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+            for (int i = 0; i &lt; k; i++) &#123;
+                list.add(scanner.nextInt());
+            &#125;
+            judger.manuallyStartTimer();
+            Judger.Pair&lt;Integer, Integer&gt; result = solve(list);
+            System.out.printf(&quot;%d %d\n&quot;, result.getKey(), result.getValue());
+            judger.manuallyStopTimer();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="Benchmark-1"><a href="#Benchmark-1" class="headerlink" title="Benchmark"></a>Benchmark</h3><pre><code class="lang-yaml">-----------------------------------------------------
+Current Case: MERGE0.in &amp; MERGE0.out
+Expected  Input: [4, Omit the remaining 1 line(s)...]
+Expected Output: [78 52]
+Your     Output: [78 52]
+Time Cost: 3.060100 ms (3060100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE1.in &amp; MERGE1.out
+Expected  Input: [620, Omit the remaining 1 line(s)...]
+Expected Output: [13008644 285991]
+Your     Output: [13008644 285991]
+Time Cost: 3.215400 ms (3215400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE10.in &amp; MERGE10.out
+Expected  Input: [813, Omit the remaining 1 line(s)...]
+Expected Output: [22558660 394886]
+Your     Output: [22558660 394886]
+Time Cost: 1.361100 ms (1361100 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE2.in &amp; MERGE2.out
+Expected  Input: [352, Omit the remaining 1 line(s)...]
+Expected Output: [4111334 142290]
+Your     Output: [4111334 142290]
+Time Cost: 0.580700 ms (580700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE3.in &amp; MERGE3.out
+Expected  Input: [235, Omit the remaining 1 line(s)...]
+Expected Output: [1820172 88000]
+Your     Output: [1820172 88000]
+Time Cost: 0.731000 ms (731000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE4.in &amp; MERGE4.out
+Expected  Input: [222, Omit the remaining 1 line(s)...]
+Expected Output: [1643475 82557]
+Your     Output: [1643475 82557]
+Time Cost: 0.396400 ms (396400 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE5.in &amp; MERGE5.out
+Expected  Input: [792, Omit the remaining 1 line(s)...]
+Expected Output: [21235932 375348]
+Your     Output: [21235932 375348]
+Time Cost: 0.848700 ms (848700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE6.in &amp; MERGE6.out
+Expected  Input: [940, Omit the remaining 1 line(s)...]
+Expected Output: [30287355 470933]
+Your     Output: [30287355 470933]
+Time Cost: 0.966800 ms (966800 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE7.in &amp; MERGE7.out
+Expected  Input: [936, Omit the remaining 1 line(s)...]
+Expected Output: [29521637 456380]
+Your     Output: [29521637 456380]
+Time Cost: 1.349700 ms (1349700 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE8.in &amp; MERGE8.out
+Expected  Input: [380, Omit the remaining 1 line(s)...]
+Expected Output: [4837331 157940]
+Your     Output: [4837331 157940]
+Time Cost: 0.618000 ms (618000 ns)
+Accepted.
+-----------------------------------------------------
+Current Case: MERGE9.in &amp; MERGE9.out
+Expected  Input: [924, Omit the remaining 1 line(s)...]
+Expected Output: [28269476 436352]
+Your     Output: [28269476 436352]
+Time Cost: 0.808000 ms (808000 ns)
+Accepted.
+-----------------------------------------------------
+Result Statistics: √ √ √ √ √ √ √ √ √ √ √
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/">https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/algorithm/">algorithm</a><a class="post-meta__tags" href="/tags/greedy/">greedy</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description">dig description.sakurawald.com txt</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a></div><div><a id="card-friends-btn" href="/friends/"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Greedy-Problems"><span class="toc-number">1.</span> <span class="toc-text">Greedy Problems</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Oiling-Car-Problem"><span class="toc-number">1.1.</span> <span class="toc-text">Oiling Car Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-number">1.1.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-number">1.1.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-number">1.1.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample"><span class="toc-number">1.1.4.</span> <span class="toc-text">Sample</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis"><span class="toc-number">1.1.5.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source"><span class="toc-number">1.1.6.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark"><span class="toc-number">1.1.7.</span> <span class="toc-text">Benchmark</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimal-Merge-Problem"><span class="toc-number">1.2.</span> <span class="toc-text">Optimal Merge Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-1"><span class="toc-number">1.2.4.</span> <span class="toc-text">Sample</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Source-1"><span class="toc-number">1.2.6.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark-1"><span class="toc-number">1.2.7.</span> <span class="toc-text">Benchmark</span></a></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}
+renderMathjax();</script><script>function processSvgPanZoom() {
+    const $targetWrap = document.querySelectorAll('#article-container svg')
+    if ($targetWrap.length) {
+        window.runSvgPanZoom = () => {
+            window.loadSvgPanZoom = true
+
+            Array.from($targetWrap).forEach((item, index) => {
+                var saved_viewbox = item.getAttribute("viewBox");
+                var controller = svgPanZoom(item);
+                item.setAttribute("viewBox", saved_viewbox);
+                controller.fit();
+                controller.center();
+            });
+        }
+        const loadSvgPanZoom = () => {
+            window.loadSvgPanZoom ? runSvgPanZoom() : getScript('https://cdn.jsdelivr.net/npm/svg-pan-zoom/dist/svg-pan-zoom.min.js').then(runSvgPanZoom)
+        }
+        window.pjax ? loadSvgPanZoom() : document.addEventListener('DOMContentLoaded', loadSvgPanZoom)
+    }
+}</script><script>function processMermaid() {
+  const $targetWrap = document.querySelectorAll('#article-container code.lang-mermaid, #article-container code.language-mermaid');
+  if ($targetWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+
+      const theme = 'default'
+      Array.from($targetWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+      processSvgPanZoom(); 
+    }
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+}
+processMermaid();</script><script>function processHighlightjs() {
+  window.runHighlightjs = () => {
+      window.loadHightlightjs = true
+
+      hljs.highlightAll();
+  }
+
+  const loadHightlightjs = () => {
+      if (window.loadHightlightjs) {
+          runHighlightjs();
+      } else {
+          getCSS('/css/third-party/highlightjs-github.css');
+          getScript('/js/third-party/highlight.min.js').then(runHighlightjs);
+      }
+  }
+  window.pjax ? loadHightlightjs() : document.addEventListener('DOMContentLoaded', loadHightlightjs)
+}
+processHighlightjs();</script><script>function loadGiscus () {
+  let nowTheme = 'light' 
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': 'R_kgDOItDE4Q',
+    'data-category-id': 'DIC_kwDOItDE4c4CTv3v',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[Database] Advanced SQL | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="canonical" href="https://sakurawald.github.io/posts/database-advanced-sql/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[Database] Advanced SQL',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-25 15:00:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Advanced-SQL"><a href="#Advanced-SQL" class="headerlink" title="Advanced SQL"></a>Advanced SQL</h1>
+$$
+\boxed{@}
+% Color %
+\newcommand\c[2]{\textcolor{#1}{#2}}
+\newcommand\r[1]{\textcolor{red}{#1}}
+\newcommand\g[1]{\textcolor{green}{#1}}
+\newcommand\b[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\black[1]{\textcolor{black}{#1}}
+\newcommand\white[1]{\textcolor{white}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\yellow[1]{\textcolor{yellow}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\lime[1]{\textcolor{lime}{#1}}
+\newcommand\pink[1]{\textcolor{pink}{#1}}
+\newcommand\darkgray[1]{\textcolor{darkgray}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\lightgray[1]{\textcolor{lightgray}{#1}}
+\newcommand\brown[1]{\textcolor{brown}{#1}}
+\newcommand\olive[1]{\textcolor{olive}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\teal[1]{\textcolor{teal}{#1}}
+\newcommand\violet[1]{\textcolor{violet}{#1}}
+\newcommand\hotpink[1]{\textcolor{hotpink}{#1}}
+\newcommand\blueviolet[1]{\textcolor{blueviolet}{#1}}
+\newcommand\navyblue[1]{\textcolor{navyblue}{#1}}
+\newcommand\peach[1]{\textcolor{Peach}{#1}}
+\newcommand\orangeRed[1]{\textcolor{OrangeRed}{#1}}
+\newcommand\salmon[1]{\textcolor{Salmon}{#1}}
+\newcommand\skyblue[1]{\textcolor{SkyBlue}{#1}}
+\newcommand\springreen[1]{\textcolor{SpringGreen}{#1}}
+\newcommand\aqua[1]{\textcolor{aqua}{#1}}
+\newcommand\navy[1]{\textcolor{navy}{#1}}
+\newcommand\silver[1]{\textcolor{silver}{#1}}
+\newcommand\fuchsia[1]{\textcolor{fuchsia}{#1}}
+\newcommand\maroon[1]{\textcolor{maroon}{#1}}
+\definecolor{luo}{RGB}{102,204,255}
+\definecolor{miku}{RGB}{57,197,187} 
+\newcommand\luo[1]{\textcolor{luo}{#1}}
+\newcommand\miku[1]{\textcolor{miku}{#1}}
+
+% Typography %
+\newcommand\a[1]{\begin{aligned}#1\end{aligned}}
+\newcommand\t[1]{\text{#1}}
+\newcommand\tb[1]{\text{\textcolor{blue}{#1}}}
+\newcommand\lb[1]{\left\{\begin{aligned} #1 \end{aligned}\right.}
+\newcommand\lrb[1]{\lb{\rb{#1}}}
+\newcommand\rb[1]{\left.\begin{aligned} #1 \end{aligned}\right\}}
+\newcommand\env[2]{\begin{#1}#2\end{#1}}
+\newcommand\step[1]{\textbf{ (#1) }}
+
+% Misc %
+\newcommand\s[1]{\{#1\}}
+\newcommand\qed{\quad\square}
+\newcommand\define{\dot{=}}
+\newcommand\then{\implies}
+\newcommand\rounddown[1]{\lfloor{#1}\rfloor}
+\newcommand\roundup[1]{\lceil{#1}\rceil}
+\newcommand\graph[4]{#1 = (#2, #3) \quad |#2| = #4}
+\newcommand\G{G = (V, E) \quad |V| = n}
+\newcommand\so{\therefore}
+\newcommand\comment[1]{\quad\text{(#1)}}
+\newcommand\note[1]{\quad\text{(#1)}}
+\newcommand\bt[1]{\boxed{\text{#1}}}
+\newcommand\max[1]{\textbf{ max } \{#1\} }
+\newcommand\min[1]{\textbf{ min } \{#1\} }
+\newcommand\IF{\textbf{ IF }}
+\newcommand\if{\textbf{ if }}
+\newcommand\IS{\textbf{ IS }}
+\newcommand\is{\textbf{ is }}
+\newcommand\do{\textbf{ do }}
+\newcommand\dowhile{\textbf{ do while }}
+\newcommand\dountil{\textbf{ do until }}
+\newcommand\find{\textbf{ find }}
+\newcommand\until{\textbf{ until }}
+\newcommand\thereisa{\textbf{ There is a }}
+\newcommand\thereisan{\textbf{ There is an }}
+\newcommand\hasno{\textbf{ has no }}
+\newcommand\has{\textbf{ has }}
+\newcommand\but{\textbf{ but }}
+\newcommand\however{\textbf{ however }}
+\newcommand\AND{\textbf{ AND }}
+\newcommand\OR{\textbf{ OR }}
+\newcommand\NOT{\textbf{ NOT }}
+\newcommand\THEN{\textbf{ THEN }}
+\newcommand\IN{\textbf{ in }}
+\newcommand\NOTIN{\textbf{ NOT-IN }}
+\newcommand\assume{\textbf{ Assuming that: }}
+\newcommand\contradictory{\textbf{ Thus lead to contradiction }}
+\newcommand\proof{\textbf{Proof: }}
+\newcommand\st{\textbf{ such that }}
+\newcommand\hold{\text{ holds }}
+\newcommand\lhs{\text{ LHS }}
+\newcommand\rhs{\text{ RHS }}
+\newcommand\wlg{\text{ Without loss of generality }}
+\newcommand\nb{\text{ nota bene }}
+\newcommand\analogously{\text{ analogously }}
+\newcommand\viceversa{\textbf{ viceversa }}
+\newcommand\let{\textbf{ let }}
+\newcommand\as{\textbf{ as }}
+\newcommand\for{\textbf{ As for }}
+\newcommand\select{\textbf{ SELECT }}
+\newcommand\m[1]{\mathit{#1}}
+\newcommand\+[1]{\mathcal{#1}}
+\newcommand\warnning[1]{\colorbox{Blue}{\textcolor{Yellow}{#1}}}
+\newcommand\error[1]{\colorbox{Black}{\textcolor{White}{#1}}}
+$$
+
+
+<h2 id="Access-DB-From-PL"><a href="#Access-DB-From-PL" class="headerlink" title="Access DB From PL"></a>Access DB From PL</h2><p>通过 <code>编程语言 (Programming Language)</code>  <code>访问</code> <code>数据库</code> 的方式：</p>
+<ul>
+<li><code>动态SQL</code>：使用 <code>数据库API</code> 来连接 <code>数据库</code><ul>
+<li>JDBC</li>
+<li>ODBC</li>
+<li>ADO.NET</li>
+</ul>
+</li>
+<li><code>嵌入式SQL</code>：可以将 <code>SQL语句</code> 嵌入到 <code>宿主语言</code> 中，通过 <code>预处理器</code> 对 <code>嵌入宿主语言的SQL</code> 进行 <code>转化</code>。</li>
+</ul>
+<hr>
+<p>这里简单地讨论几点 <code>JDBC</code> 的内容。</p>
+<ul>
+<li><p>主要涉及的对象：<code>Connection</code>，<code>Statement</code>，<code>ResultSet</code></p>
+</li>
+<li><p><code>JDBC</code> 并不是仅仅支持 <code>MySQL</code> 的，它可以 <code>指定</code> 用于 <code>建立数据库连接</code> 的 <code>数据库通信的API</code>：如 <code>jdbc:mysql</code>，<code>jdbc:oracle</code> 等来连接 <code>多种类型的数据库</code></p>
+<blockquote>
+<p>更准确地说，<code>JDBC</code> 仅 <code>指定通信所用的API</code>，而不是 <code>指定通信所用的协议</code>。因为一个<code>JDBC驱动器</code> 可能同时支持 <code>多种数据库通信协议</code></p>
+</blockquote>
+</li>
+<li><p><code>Statement</code> 并不是 <code>SQL语句对象</code>本身，但可以用 <code>Statement</code> 来 <code>执行语句</code></p>
+</li>
+<li>使用 <code>PreparedStatement</code> 而不是 <code>拼接字符串的方式</code> 来 <code>构造SQL语句</code>！</li>
+<li><code>数据库</code> 返回的 <code>ResultSet</code> 不仅仅包含 <code>元组数据</code>，还包含许多 <code>元数据</code>。在需要时使用 <code>ResultSet#getMetaData</code> 获得 <code>元数据</code>，而不是 <code>硬编码</code> 它们！</li>
+<li>对 <code>Updatable Result Set</code> 的 <code>修改性操作</code> 会 <code>反映到数据库</code></li>
+<li>如果需要将 <code>接下来的多条SQL语句作为事务</code>，而不是 <code>每条语句都被视为独立的事务</code>，则请用 <code>Connection#setAutoCommit(false)</code></li>
+</ul>
+<h2 id="Function-and-Procedure"><a href="#Function-and-Procedure" class="headerlink" title="Function and Procedure"></a>Function and Procedure</h2><p><code>函数 (Function)</code> 和 <code>过程 (Procedure)</code> 允许 <code>业务逻辑</code> 作为 <code>存储过程</code> 记录在 <code>数据中</code>。</p>
+<p>这使得 <code>业务逻辑代码</code> 是 <code>编程语言独立</code> 和 <code>应用独立</code> 的。</p>
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><ul>
+<li>一个简单的 <code>函数</code> 的例子</li>
+</ul>
+<pre><code class="lang-sql">CREATE FUNCTION dept_count(dept_name varchar(20)) RETURNS integer
+BEGIN
+    DECLARE d_count integer
+    SELECT count(*) INTO d_count
+    FROM instructor
+    WHERE instructor.dept_name = dept_name
+    RETURN d_count
+END
+</code></pre>
+<ul>
+<li><code>带参数的视图 (Parameterized View)</code></li>
+</ul>
+<pre><code class="lang-sql">CREATE FUNCTION instructor_of(dept_name varchar(20)) RETURNS TABLE(ID varchar(5),
+                                                                  name varchar(20),
+                                                                  dept_name varchar(20),
+                                                                  salary numeric(8,2))
+RETURN TABLE(SELECT ID, name, dept_name, salary
+             FROM instructor
+             WHERE instructor.dept_name = instructor_of.dept_name
+            );
+</code></pre>
+<p>我们将 <code>这种函数</code> 视为 <code>广义上的视图</code>。</p>
+<h3 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h3><blockquote>
+<p>对于 <code>函数 (Function)</code> 和 <code>过程 (Procedure)</code> 如果做 <code>详细区分</code>，则我们这样定义：</p>
+<ul>
+<li>函数：带有 <code>返回值</code></li>
+<li>过程：不带有 <code>返回值</code></li>
+</ul>
+<p>从 <code>组成体系结构</code> 的角度看，<code>过程</code> 是比 <code>函数</code>  更加 <code>底层的概念</code></p>
+</blockquote>
+<pre><code class="lang-sql">CREATE PROCEDURE dept_count_proc(IN dept_name varchar(20), OUT d_count integer)
+BEGIN
+    SELECT count(*) INTO d_count
+    FROM instructor
+    WHERE instructor.dept_name = dept_count_proc.dept_name
+END
+</code></pre>
+<blockquote>
+<p><code>IN</code> 表示 <code>输入参数</code>，而 <code>OUT 表示输出参数</code>。</p>
+<p>这种形式的 <code>传参方式</code> 在某些 <code>底层接口调用</code> 中常见。其中 <code>OUT</code> 经常传递的是 <code>指针类型</code>，以便 <code>调用者</code> 可以通过 <code>变量</code> 来 <code>接收</code> 到 <code>过程的结果</code> </p>
+</blockquote>
+<h3 id="Persistent-Storage-Module"><a href="#Persistent-Storage-Module" class="headerlink" title="Persistent Storage Module"></a>Persistent Storage Module</h3><p><code>持久存储模块 (Persistent Storage Module)</code> ：用于处理 <code>构造</code> </p>
+<p>这里不详细讨论 <code>PSM</code> 的 <code>语法</code>，只给出一个 <code>大号的例子</code></p>
+<pre><code class="lang-sql">DECLARE out_of_classroom_seats CONDITION
+DECLARE EXIT HANDLER FOR out_of_classroom_seats
+BEGIN
+    sequence of statements
+END
+
+CREATE FUNCTION registerStudnet(
+    IN s_id varchar(5),
+    IN s_courseid varchar(8),
+    IN s_secid varchar(8),
+    IN s_semester varchar(6),
+    IN s_year numeric(4,0),
+    OUT errorMsg varchar(100)
+    RETURNS integer
+BEGIN
+    DECLARE currEnrol int;
+    SELECT count(*) INTO currEnrol
+    FROM takes
+    WHERE course_id = s_courseid AND sec_id = s_secid
+    AND semester = s_semester AND year = s_year;
+
+    DECLARE limit int;
+    SELECT capacity INTO limit
+    FROM capacity NATURAL JOIN section
+    WHERE course_id = s_courseid AND sec_id = s_secid
+    AND semester = s_semester AND year = s_year;
+
+    IF (currEnrol &lt; limit) 
+        BEGIN
+            INSERT INTO takes VALUES (s_id, s_courseid, s_secid, s_semester, s_year, null);
+            RETURN(0);
+        END
+    -- capacity overflow !
+    SET errorMsg = &#39;Enrollment limit reached for course&#39; || s_courseid || &#39;section&#39; || s_secid;
+    RETURN(-1);
+END    
+)
+</code></pre>
+<h3 id="External-Language-Procedure"><a href="#External-Language-Procedure" class="headerlink" title="External Language Procedure"></a>External Language Procedure</h3><p><code>数据库</code> 可以将 <code>过程</code> 委托给 <code>外部语言程序</code> 来执行，像这样的 <code>过程</code> 称作 <code>外部语言过程</code></p>
+<pre><code class="lang-sql">CREATE PROCEDURE dept_count_proc(IN dept_name varchar(20), OUT count integer)
+LANGUAGE C
+EXTERNAL NAME &#39;/usr/avi/bin/dept_course_proc&#39;
+</code></pre>
+<blockquote>
+<p>如果为了 <code>性能</code> 而将 <code>任务</code> 委托给 <code>C</code> 这样的语言，可能会导致 <code>安全问题</code>。</p>
+<p>而如果委托给 <code>Java</code>，<code>C#</code> 这样的语言，通过 <code>进程间通信</code> 和 <code>沙盒执行</code> 则会导致 <code>效率低下</code>。</p>
+<p>此外，编写能 <code>正确处理</code> <code>数据库数据</code> 的 <code>外部例程</code> 的 <code>编码量</code> 通常较多。</p>
+</blockquote>
+<h2 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h2><p><code>触发器 (Trigger)</code>：用于在 <code>数据库</code> 发生 <code>指定事件</code> 时，<code>自动</code> 被 <code>执行的语句</code></p>
+<hr>
+<pre><code class="lang-sql">CREATE TRIGGER credits_earned AFTER UPDATE OF takes ON(grade)
+    REFERENCING NEW ROW AS nrow
+    REFERENCING OLD ROW AS orow
+    FOR EACH ROW
+    WHEN nrow.grade &lt;&gt; &#39;F&#39; AND nrow.grade IS NOT NULL
+        AND (orow.grade = &#39;F&#39; OR orow.grade IS NULL)
+    BEGIN ATOMIC
+        UPDATE student
+        SET tot_cred = tot_cred + 
+            (SELECT credits
+            FROM course
+            WHERE course.course_id = nrow.course_id)
+        WHERE student.id = nrow.id;
+    END
+</code></pre>
+<blockquote>
+<p><code>触发器类型</code>：</p>
+<ul>
+<li><code>语句级触发器 (FOR EACH STATEMENT)</code>：对于 <code>引起修改的整个SQL语句</code> <code>仅执行1次</code> <code>触发器</code></li>
+<li><code>行级触发器 (FOR EACH ROW)</code>：对 <code>每个受影响的行</code> <code>都执行1次</code> <code>触发器</code></li>
+</ul>
+<p><code>过渡变量 (Transition Variable)</code>：</p>
+<ul>
+<li><code>REFERENCING OLD ROW AS symbol</code>：存储 <code>已经更新或删除的行的旧值</code></li>
+<li><code>REFERENCING NEW ROW AS symbol</code>：可用于 <code>插入</code> 或 <code>删除</code> 的 <code>行的引用</code></li>
+</ul>
+<p><code>触发时机</code>：</p>
+<ul>
+<li><code>BEFORE</code>：用于 <code>避免非法更新</code>，<code>附加额外约束</code></li>
+<li><code>AFTER</code>：用于 <code>为某些修改做善后处理</code>，<code>维护某些修改性操作的合法性</code></li>
+</ul>
+</blockquote>
+<p>如果可以使用 <code>存储过程</code>  的话，则尽量不要使用 <code>触发器</code>。</p>
+<h2 id="Recursive-Query"><a href="#Recursive-Query" class="headerlink" title="Recursive Query"></a>Recursive Query</h2><p><code>递归查询 (Recursive Query)</code> 的典型例子是寻找 <code>传递闭包 (Transitive Closure)</code> ，比如 <code>找出某个课程的所有前置课程</code>。</p>
+<hr>
+<p>寻找 <code>传递闭包</code></p>
+<h3 id="Iteration"><a href="#Iteration" class="headerlink" title="Iteration"></a>Iteration</h3><pre><code class="lang-sql">CREATE FUNCTION findAllPrereqs(cid varchar(8))
+RETURN TABLE(course_id varchar(8))
+BEGIN
+    -- define variables
+    CREATE TEMPORARY TABLE c_prereq(course_id varchar(8));
+    CREATE TEMPORARY TABLE new_c_prereq(course_id varchar(8));
+    CREATE TEMPORARY TABLE temp(course_id varchar(8));
+    -- init and continue
+    INSERT INTO new_c_prereq
+        SELECT prereq_id
+        FROM prereq
+        WHERE course_id = cid;
+    -- loop until not new course is added
+    REPEAT
+        INSERT INTO c_prereq
+            SELECT INTO temp
+            FROM new_c_prereq;
+        INSERT INTO temp
+            (SELECT prereq.course_id
+            FROM new_C_prereq, prereq
+            WHERE new_c_prereq.course_id = prereq.course_id)
+            EXCEPT
+            (SELECT course_id
+            FROM c_prereq);
+        DELETE FROM new_c_prereq;
+        INSERT INTO new_c_prereq
+            SELECT *
+            FROM temp;
+        DELETE FROM temp;
+    UNTIL NOT EXISTS (SELECT * FROM new_c_prereq)
+    END REPEAT
+    -- return the result table
+    RETURN TABLE c_prereq;
+END
+</code></pre>
+<h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><pre><code class="lang-sql">-- define recursive query
+WITH RECURSIVE rec_prereq(course_id, prereq_id) AS (SELECT course_id, prereq_id
+                                                   FROM prereq)
+                                                   UNION 
+                                                   (SELECT rec_prereq, course_id, prereq.prereq_id
+                                                   FROM prereq, rec_prereq
+                                                   WHERE prereq.course_id = rec_prereq.prereq_id)
+-- call recursive query
+SELECT *
+FROM rec_prereq;
+</code></pre>
+<blockquote>
+<p>上述的SQL中，首先通过 <code>基查询</code> 找到 <code>每门课程的先修课程</code>，然后 <code>递归查询</code> 在 <code>每次迭代过程</code> 中 <code>增加一层课程</code>，直到到达 <code>课程-先修课程的最大层次</code>。</p>
+<p>通过 <code>FROM子句</code> 对 <code>递归视图 prc_prereq</code> 进行 <code>递归查询</code>。</p>
+<p><code>WITH RECURSIVE</code> 用于声明 <code>递归视图</code>，它会使得 <code>递归</code> 在到达 <code>不动点</code> 时 <code>自动被终止</code></p>
+<p><code>SQL标准</code> 要求 <code>递归过程</code> 返回的 <code>结果</code> 是 <code>单调递增的</code>，并且最终到达 <code>不动点 (Fixed Point)</code></p>
+<blockquote>
+<p>也就是说，每次 <code>递归过程</code> 返回的 <code>结果</code> 必须是 <code>之前的结果的超集</code></p>
+<p>只要 <code>递归过程是递增的</code>，就可以使用 <code>迭代过程来定义递归过程</code>。</p>
+</blockquote>
+</blockquote>
+<p>任何的 <code>递归查询 (Recursive Query)</code> = <code>基查询 (Base Query)</code> UNION <code>递归查询 (Recursive Query)</code></p>
+<h2 id="Advanced-Aggregate"><a href="#Advanced-Aggregate" class="headerlink" title="Advanced Aggregate"></a>Advanced Aggregate</h2><h3 id="Rank"><a href="#Rank" class="headerlink" title="Rank"></a>Rank</h3><h4 id="Sparse-Rank-amp-Dense-Rank"><a href="#Sparse-Rank-amp-Dense-Rank" class="headerlink" title="Sparse Rank &amp; Dense Rank"></a>Sparse Rank &amp; Dense Rank</h4><ul>
+<li><code>rank()</code></li>
+</ul>
+<pre><code class="lang-sql">-- SQL 1
+SELECT ID, rank() OVER (ORDER BY (GPA) DESC) AS s_rank
+FROM student_grades
+ORDER BY &#39;s_rank&#39;
+</code></pre>
+<blockquote>
+<p>单纯的 <code>rank</code> 并不会对 <code>结果关系中的元组</code> <code>按rank进行排序</code>。</p>
+<p>故添加 <code>ORDER BY &#39;s_rank&#39;</code>  来对 <code>结果关系的元组</code> 进行 <code>排序</code></p>
+<p>其他类型的 <code>排序函数</code>：<code>percent_rank()</code>，<code>cume_dist()</code>，<code>row_number()</code></p>
+<p>关于 <code>空值</code> 的处理，可以设置策略：<code>NULL FIRST</code> 或 <code>NULL LAST</code></p>
+<pre><code class="lang-sql">SELECT ID, rank() OVER (ORDER BY (GPA) DESC NULL LAST) AS s_rank
+FROM student_grades
+ORDER BY &#39;s_rank&#39;
+</code></pre>
+</blockquote>
+<p>$SQL 1 = SQL 2$</p>
+<pre><code class="lang-sql">-- SQL 2
+SELECT ID, (1 + (SELECT count(*)
+                FROM student_grades B
+                WHERE B.GPA &gt; A.GPA)) AS s_rank
+FROM student_grades A
+ORDER BY s_rank
+</code></pre>
+<ul>
+<li><code>dense_rank()</code></li>
+</ul>
+<p><code>rank()</code> 产生的 <code>排名</code> 是 <code>间断的</code>：如果 <code>分数最高的人</code> 有2人，则 <code>这两个人的排名</code> 均为 <code>1</code>，但 <code>分数次高的人</code> 的 <code>排名</code> 则为 <code>3</code></p>
+<p>相反的，如果使用 <code>dense_rank()</code>，则产生 <code>不间断</code> 的 <code>排名</code>：<code>分数最高的两人</code> 排名均为 <code>1</code>，但 <code>分数次高的人</code> 的 <code>排名</code> 则为 <code>2</code></p>
+<pre><code class="lang-sql">-- SQL 3
+SELECT ID, dense_rank() OVER (ORDER BY (GPA) DESC) AS s_rank
+FROM student_grades
+ORDER BY &#39;s_rank&#39;
+</code></pre>
+<h4 id="Partition-before-Rank"><a href="#Partition-before-Rank" class="headerlink" title="Partition before Rank"></a>Partition before Rank</h4><pre><code class="lang-sql">-- SQL 4
+SELECT ID, dept_name, rank() OVER (PARTITION BY dept_name ORDER BY GPA DESC) AS DEPT_RANK
+FROM dept_grades
+ORDER BY dept_name, dept_rank;
+</code></pre>
+<blockquote>
+<p>当存在 <code>GROUP BY</code> 时， <code>PARTION</code> 在 <code>GROUP BY</code> 之后执行。</p>
+<p>可以认为，如果在 <code>聚集</code> 时没有 <code>显示地指定 PARTITION</code>，则认为 <code>将所有的集合</code> 分为 <code>唯一的一个分区</code></p>
+</blockquote>
+<h4 id="Grading"><a href="#Grading" class="headerlink" title="Grading"></a>Grading</h4><p> <code>ntile(n)</code> 按 <code>给定顺序</code> 取得 <code>每个分区 (Partion) 中的元组</code>，然后将 <code>元组</code> 分成 <code>n个具有相同元组数目的桶</code></p>
+<pre><code class="lang-sql">SELECT ID, ntile(4) OVER (ORDER BY (GPA DESC)) AS quartile
+FROM student_grades;
+</code></pre>
+<p> 可用于构造 <code>百分比直方图</code></p>
+<h3 id="Window-Query"><a href="#Window-Query" class="headerlink" title="Window Query"></a>Window Query</h3><p><code>窗口查询</code>：可用于对 <code>一定范围内的元组</code> 进行 <code>聚集</code></p>
+<blockquote>
+<p>不同于 <code>分区查询</code> 中的 <code>1个元组</code> 只对 <code>1个分区 (Partion)</code> 有贡献，<code>分窗查询</code> 中的 <code>窗口 (Window)</code> 是可以 <code>重叠的</code>。</p>
+</blockquote>
+<pre><code class="lang-sql">SELECT year, avg(num_credits) OVER(ORDER BY year ROWS 3 PRECEDING) AS avg_total_credits
+FROM tot_credits;
+</code></pre>
+<blockquote>
+<p>n.b. 如果 <code>某个年份的元组</code> 具有 <code>多个</code>，则 <code>为某个年份到底选择哪个元组</code> 将 <code>取决于具体实现</code>。</p>
+<p><code>窗口</code> 的大小界定参数：</p>
+<ul>
+<li><code>ROWS n PRECEDING/FOLLOWING</code></li>
+<li><code>ROWS UNBOUNDED PRECEDING/FOLLOWING</code></li>
+<li><code>ROWS BETWEEN a PRECEEDING AND b FOLLOWING</code></li>
+<li><code>RANGE BETWEEN a AND b</code></li>
+</ul>
+</blockquote>
+<h2 id="OLAP"><a href="#OLAP" class="headerlink" title="OLAP"></a>OLAP</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p><code>联机分析处理 (OLAP)</code> 是一个 <code>交互式系统</code>，允许 <code>分析人员</code> 查看 <code>多维数据</code> 的 <code>不同种类的汇总数据</code></p>
+<hr>
+<p>假如我们有 <code>模式</code> $sales(item_name, color, clothes_size, quantity)$</p>
+<p>可以对 <code>关系中的某些属性</code>  <code>分组 (Group)</code>  为 <code>度量属性</code> 和 <code>维属性</code>：</p>
+<ul>
+<li><code>度量属性 (Measure Attribute)</code>：对 <code>某个值</code> 进行 <code>度量</code>，并且可以对 <code>这个值</code> 进行 <code>聚集操作</code></li>
+<li><code>维属性 (Dimension Attribute)</code>：<code>剩余的属性</code> 称为 <code>维属性</code></li>
+</ul>
+<p>能够 <code>模式化</code> 为 <code>度量属性</code> 和 <code>维属性</code> 的 <code>数据</code> 统称为 <code>多维数据 (Multi-Dimensional Data)</code></p>
+<hr>
+<p><code>数据立方体 (Data Cube)</code>：可以用于描述 <code>n维数据</code>。</p>
+<blockquote>
+<p><code>交叉表 (Cross-Tabulation / Pivot Table)</code>：可以用于描述 <code>二维属性</code>，是 <code>数据立方体</code> 的 <code>2维情形</code></p>
+<p>某些 <code>交叉表</code> 可能还含有 <code>汇总行 (Total Row)</code> 和 <code>汇总列 (Total Column)</code></p>
+</blockquote>
+<p><code>单元 (Cell)</code>：<code>n维的数据单元</code> 可用 <code>n维向量</code> 进行 <code>定位</code>，每个 <code>单元</code> 存储 <code>1个值</code></p>
+<blockquote>
+<p> 当 <code>某个维度</code> 的 <code>取值</code> 为 <code>all</code> 时，则表示 <code>对该维度的数据进行聚集</code>，即 <code>对该维度进行压缩</code>！</p>
+<p> 如 <code>clothes_size</code>  的 <code>all值</code> 是对 ：<code>small</code>，<code>medium</code> 和 <code>large</code> 进行 <code>聚集</code> 得到的。</p>
+</blockquote>
+<hr>
+<ul>
+<li>Select <code>attribute_list</code></li>
+</ul>
+<p><code>转轴 (Pivot)</code>：改变 <code>交叉表</code> 中 <code>维</code> 的操作</p>
+<p><code>切片 (Slice) / 切块 (Dicing)</code>：<code>固定</code> <code>某个维度</code>，<code>观察</code> <code>其余的维度</code></p>
+<blockquote>
+<p>一般将 <code>切片</code> 用于 <code>固定1个维度</code>时，<code>切块</code> 用于 <code>固定多个维度</code> 时。</p>
+</blockquote>
+<ul>
+<li>Change <code>observation granularity</code></li>
+</ul>
+<p><code>上卷 (RollUp)</code> ：即 <code>粒度变粗</code></p>
+<p><code>下钻 (Drill Down)</code>：即 <code>粒度变细</code></p>
+<blockquote>
+<p><code>较粗粒度的数据</code> 可以由 <code>较细粒度的数据</code> 所产生，反之则不能。</p>
+<p>即 <code>高维数据</code> 可以产生 <code>低维数据</code>，反之不能。</p>
+</blockquote>
+<p>一个 <code>属性</code> 可以有不同的 <code>粒度</code>，这些 <code>不同粒度</code> 组成 <code>层次结构</code>，如 <code>Datetime的层次结构</code>：</p>
+<pre><code class="lang-mermaid">graph TD;
+date_time(DateTime) --&gt; hour_of_day(Hour of Day)
+date_time --&gt; date(Date)
+date --&gt; day_of_week(Day of Week)
+date --&gt; month(Month)
+month --&gt; quarter(Quarter)
+quarter --&gt; year(Year)
+</code></pre>
+<blockquote>
+<p>当我们讨论 <code>属性的粒度</code> 时， 我们应当把 <code>粒度树</code> <code>倒过来看</code>，这样正好符合 <code>上卷</code> 和 <code>下钻</code>。</p>
+<blockquote>
+<p>计算机的 <code>树</code> 就是 <code>倒过来的自然界的树</code>，而 <code>粒度树</code> 是 <code>倒过来的树</code>，也就正好符合 <code>自然界的树</code>。</p>
+</blockquote>
+</blockquote>
+<h3 id="OLAP-in-SQL"><a href="#OLAP-in-SQL" class="headerlink" title="OLAP in SQL"></a>OLAP in SQL</h3><p> <code>模式</code> $sales(item_name, color, clothes_size, quantity)$</p>
+<ul>
+<li><code>pivot()</code></li>
+</ul>
+<pre><code class="lang-sql">SELECT *
+FROM sales
+pivot(
+    sum(quantity)
+    FOR color IN (&#39;dark&#39;, &#39;pastel&#39;, &#39;white&#39;)
+)
+</code></pre>
+<blockquote>
+<p><code>pivot中的for</code> 的 <code>语义</code> 是：<code>解包</code>  <code>指定属性的指定值</code> ，将 <code>这些值</code> 作为 <code>新属性</code> 插入。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>item_name</th>
+<th>clothes_size</th>
+<th>dark</th>
+<th>pastel</th>
+<th>white</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>skirt</td>
+<td>small</td>
+<td>2</td>
+<td>11</td>
+<td>2</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><code>cube()</code></li>
+</ul>
+<pre><code class="lang-sql">SELECT item_name, color, clothes_size, sum(quantity)
+FROM sales
+GROUP BY cube(item_name, color, clothes_size)
+</code></pre>
+<blockquote>
+<p>如果需要处理 <code>all值</code>，则可以使用 <code>decode()</code> 和 <code>grouping()</code>。</p>
+</blockquote>
+<p>该查询返回的是一个 <code>关系</code> $ (item_name, color, clothes_size, quantity)$</p>
+<p>该关系表示1个 <code>3维的数据立方体</code></p>
+<ul>
+<li><code>rollup()</code></li>
+</ul>
+<pre><code class="lang-sql">SELECT item_name, color, clothes_size, sum(quantity)
+FROM sales
+GROUP BY rollup(item_name, color, clothes_size)
+</code></pre>
+<p>从 <code>返回的结果关系的模式</code> 来看，<code>rollup()</code> 和 <code>cube()</code> 返回的 <code>结果关系</code> 具有 <code>相同的模式</code>。</p>
+<p>实际上，<code>rollup()</code> 生成的是：1个 <code>0维立方体</code>，1个 <code>1维立方体</code>，1个 <code>2维立方体</code>， 1个 <code>3维立方体</code></p>
+<blockquote>
+<p>无论是用 <code>cube()</code> 还是 <code>rollup()</code>，我们都无法 <code>精准控制分组的产生</code>，即无法 <code>精准指定分组具有哪些属性</code>。</p>
+<p>但我们可以通过 <code>HAVING子句</code> 来去除 <code>GROUP子句</code> 产生的 <code>我们不想要的分组</code></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/posts/database-advanced-sql/">https://sakurawald.github.io/posts/database-advanced-sql/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/database/">database</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description">dig description.sakurawald.com txt</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a></div><div><a id="card-friends-btn" href="/friends/"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Advanced-SQL"><span class="toc-number">1.</span> <span class="toc-text">Advanced SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-DB-From-PL"><span class="toc-number">1.1.</span> <span class="toc-text">Access DB From PL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-and-Procedure"><span class="toc-number">1.2.</span> <span class="toc-text">Function and Procedure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Function"><span class="toc-number">1.2.1.</span> <span class="toc-text">Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Procedure"><span class="toc-number">1.2.2.</span> <span class="toc-text">Procedure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Persistent-Storage-Module"><span class="toc-number">1.2.3.</span> <span class="toc-text">Persistent Storage Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#External-Language-Procedure"><span class="toc-number">1.2.4.</span> <span class="toc-text">External Language Procedure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Trigger"><span class="toc-number">1.3.</span> <span class="toc-text">Trigger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Query"><span class="toc-number">1.4.</span> <span class="toc-text">Recursive Query</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Iteration"><span class="toc-number">1.4.1.</span> <span class="toc-text">Iteration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursion"><span class="toc-number">1.4.2.</span> <span class="toc-text">Recursion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Aggregate"><span class="toc-number">1.5.</span> <span class="toc-text">Advanced Aggregate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rank"><span class="toc-number">1.5.1.</span> <span class="toc-text">Rank</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sparse-Rank-amp-Dense-Rank"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">Sparse Rank &amp; Dense Rank</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Partition-before-Rank"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">Partition before Rank</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Grading"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">Grading</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Window-Query"><span class="toc-number">1.5.2.</span> <span class="toc-text">Window Query</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OLAP"><span class="toc-number">1.6.</span> <span class="toc-text">OLAP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduction"><span class="toc-number">1.6.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OLAP-in-SQL"><span class="toc-number">1.6.2.</span> <span class="toc-text">OLAP in SQL</span></a></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}
+renderMathjax();</script><script>function processSvgPanZoom() {
+    const $targetWrap = document.querySelectorAll('#article-container svg')
+    if ($targetWrap.length) {
+        window.runSvgPanZoom = () => {
+            window.loadSvgPanZoom = true
+
+            Array.from($targetWrap).forEach((item, index) => {
+                var saved_viewbox = item.getAttribute("viewBox");
+                var controller = svgPanZoom(item);
+                item.setAttribute("viewBox", saved_viewbox);
+                controller.fit();
+                controller.center();
+            });
+        }
+        const loadSvgPanZoom = () => {
+            window.loadSvgPanZoom ? runSvgPanZoom() : getScript('https://cdn.jsdelivr.net/npm/svg-pan-zoom/dist/svg-pan-zoom.min.js').then(runSvgPanZoom)
+        }
+        window.pjax ? loadSvgPanZoom() : document.addEventListener('DOMContentLoaded', loadSvgPanZoom)
+    }
+}</script><script>function processMermaid() {
+  const $targetWrap = document.querySelectorAll('#article-container code.lang-mermaid, #article-container code.language-mermaid');
+  if ($targetWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+
+      const theme = 'default'
+      Array.from($targetWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+      processSvgPanZoom(); 
+    }
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+}
+processMermaid();</script><script>function processHighlightjs() {
+  window.runHighlightjs = () => {
+      window.loadHightlightjs = true
+
+      hljs.highlightAll();
+  }
+
+  const loadHightlightjs = () => {
+      if (window.loadHightlightjs) {
+          runHighlightjs();
+      } else {
+          getCSS('/css/third-party/highlightjs-github.css');
+          getScript('/js/third-party/highlight.min.js').then(runHighlightjs);
+      }
+  }
+  window.pjax ? loadHightlightjs() : document.addEventListener('DOMContentLoaded', loadHightlightjs)
+}
+processHighlightjs();</script><script>function loadGiscus () {
+  let nowTheme = 'light' 
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': 'R_kgDOItDE4Q',
+    'data-category-id': 'DIC_kwDOItDE4c4CTv3v',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

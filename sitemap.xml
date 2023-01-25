@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -11,7 +11,16 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/tool-box/</loc>
+    
+    <lastmod>2023-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/stl-simple-usage-of-stl/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -47,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/expression-evaluation/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -56,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/hello-world/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -65,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -74,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/database-relational-query-language/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -92,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-majority-problem/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -101,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -110,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -119,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-set-partition-problem/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/c-string-lib-functions/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -146,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/compiler-test/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -155,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/database-advanced-sql/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/database-design/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -173,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/database-elementary-sql/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -182,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/database-intermediate-sql/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -191,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-circle-permutation/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -200,16 +209,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
-    
-    <lastmod>2023-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/:/posts/title/</loc>
+    <loc>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/</loc>
     
     <lastmod>2023-01-25</lastmod>
     
@@ -228,13 +228,6 @@
   
   <url>
     <loc>https://sakurawald.github.io/tags/algorithm/</loc>
-    <lastmod>2023-01-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/tags/branch-and-bound/</loc>
     <lastmod>2023-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -347,6 +340,13 @@
   
   <url>
     <loc>https://sakurawald.github.io/tags/favorite/</loc>
+    <lastmod>2023-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/tags/branch-and-bound/</loc>
     <lastmod>2023-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -1,0 +1,1228 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>[CodeSnippet] - A Simple Judger for Java | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="canonical" href="https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '[CodeSnippet] - A Simple Judger for Java',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-01-25 15:00:45'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="A-Simple-Judger-for-Java"><a href="#A-Simple-Judger-for-Java" class="headerlink" title="A Simple Judger for Java"></a>A Simple Judger for Java</h1><p>一个简单判题机，基于Java语言，于Windows或Linux平台，为了本地测试。</p>
+<h2 id="Function-List"><a href="#Function-List" class="headerlink" title="Function List"></a>Function List</h2><ul>
+<li><p>易于使用的接口设计</p>
+</li>
+<li><p>规格化的信息格式</p>
+</li>
+<li><p>链式配置函数</p>
+</li>
+<li><p>输入/输出文件模糊扫描</p>
+</li>
+<li><p>支持ForEach的迭代器模式</p>
+</li>
+<li><p>自动案例计时</p>
+</li>
+<li><p>自动重定向IO</p>
+</li>
+<li><p>自动异常捕获</p>
+</li>
+<li><p>设置单案例运行时间限制</p>
+</li>
+<li><p>全局判题结果统计</p>
+</li>
+<li><p>可选的手动计时器控制</p>
+</li>
+<li><p>可选的忽略输入和输出</p>
+</li>
+<li><p>可选的输入输出行数限制</p>
+</li>
+<li><p>可自定义的错误流文件</p>
+</li>
+<li><p>输出Judger调试信息</p>
+</li>
+<li><p>跳过特定案例</p>
+</li>
+<li><p>忽略/不忽略特定案例</p>
+</li>
+<li><p>延迟初始化</p>
+</li>
+<li><p>优雅退出</p>
+</li>
+<li><p>内建输出函数</p>
+</li>
+<li><p>安全运行块</p>
+</li>
+</ul>
+<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><pre><code class="lang-java">package util;
+
+import java.awt.*;
+import java.io.*;
+import java.net.URI;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.Queue;
+import java.util.*;
+import java.util.stream.Stream;
+
+/**
+ * @author Teeth
+ * @date 3/5/2022 07:16
+ * A simple judger to read in the input and output files and compare them.
+ */
+@SuppressWarnings(&#123;&quot;UnusedReturnValue&quot;, &quot;SpellCheckingInspection&quot;&#125;)
+public class Judger implements Iterable&lt;Scanner&gt;, Iterator&lt;Scanner&gt; &#123;
+
+
+    /* Pair Define */
+    @SuppressWarnings(&quot;unused&quot;)
+    public static class Pair&lt;K, V&gt; &#123;
+        public K key;
+        public V value;
+
+        public Pair(K key, V value) &#123;
+            this.key = key;
+            this.value = value;
+        &#125;
+
+        public K getKey() &#123;
+            return key;
+        &#125;
+
+        public V getValue() &#123;
+            return value;
+        &#125;
+
+        public void setKey(K key) &#123;
+            this.key = key;
+        &#125;
+
+        public void setValue(V value) &#123;
+            this.value = value;
+        &#125;
+    &#125;
+
+    /* Special Flags */
+    private static final String ignoreCaseFileNamePrefix = &quot;_&quot;;
+    private static final int defaultEndTimestamp = 0xdead;
+
+    /* Redirect System.out */
+    private PrintStream tempOutPrintStream;
+    private File tempOutFile;
+    private Pair&lt;File, File&gt; currentCase;
+
+    /* Case Queue */
+    private boolean judgerInitialized = false;
+    private final File inDirectory;
+    private final File outDirectory;
+    private final Queue&lt;Pair&lt;File, File&gt;&gt; caseQueue = new LinkedList&lt;&gt;();
+
+    /* Judger Flags */
+    private final ArrayList&lt;String&gt; joinCaseFileKeywords = new ArrayList&lt;&gt;();
+    private final ArrayList&lt;String&gt; ignoreExceptCaseFileKeywords = new ArrayList&lt;&gt;();
+    private final ArrayList&lt;String&gt; ignoreCaseFileKeywords = new ArrayList&lt;&gt;();
+    private boolean skipCurrentCaseFlag = false;
+    private long timeLimitMS = Long.MAX_VALUE;
+    private boolean hideInputAndOutputFlag = false;
+    private boolean prettyFormat = false;
+    private int maxExpectInputLines = 0xbadc0de;
+    private int maxExpectOutputLines = 0xbadc0de;
+    private int maxYourOutputLines = 0xbadc0de;
+    private boolean debugPrintFunctions = true;
+
+    /* Statistics */
+    private StringBuilder resultStatistics = new StringBuilder();
+    private long startTimestamp;
+    private long endTimestamp;
+
+    /* Use this constructor if you don&#39;t know how to fill the paths */
+    public Judger(File inDirectory, File outDirectory) &#123;
+        this.inDirectory = inDirectory;
+        this.outDirectory = outDirectory;
+    &#125;
+
+    /* It&#39;s recommended to use this constructor. */
+    public Judger(String casePath) &#123;
+        this(&quot;.&quot;, casePath);
+    &#125;
+
+    public Judger(String basePath, String casePath) &#123;
+        this(basePath, casePath, &quot;TEST&quot;, &quot;ANSWER&quot;);
+    &#125;
+
+    public Judger(String basePath, String casePath, String inDirectoryName, String outDirectoryName) &#123;
+        this.inDirectory = new File(basePath + File.separator + casePath + File.separator + inDirectoryName);
+        this.outDirectory = new File(basePath + File.separator + casePath + File.separator + outDirectoryName);
+    &#125;
+
+    private String getInPath() &#123;
+        return this.inDirectory.getAbsolutePath();
+    &#125;
+
+    private String getOutPath() &#123;
+        return this.outDirectory.getAbsolutePath();
+    &#125;
+
+    private void initJudger() &#123;
+        /* Init the exception handler */
+        registerJudgerUncaughtExceptionHandler();
+
+        /* Init file queue */
+        initFileQueue();
+    &#125;
+
+    private void initFileQueue() &#123;
+        try &#123;
+            for (File file : new File(this.getInPath()).listFiles()) &#123;
+                String entryName = file.getName();
+
+                /* Ignore Cases */
+                // Ignore Case File-Name-Prefix
+                if (entryName.startsWith(ignoreCaseFileNamePrefix) &amp;&amp; this.joinCaseFileKeywords.stream().noneMatch(entryName::contains)) &#123;
+                    continue;
+                &#125;
+
+                // Ignore Case File-Name-Keywords
+                if (this.ignoreExceptCaseFileKeywords.size() &gt; 0) &#123;
+                    if (this.ignoreExceptCaseFileKeywords.stream().noneMatch(entryName::contains) &amp;&amp; this.joinCaseFileKeywords.stream().noneMatch(entryName::contains)) &#123;
+                        continue;
+                    &#125;
+                &#125;
+
+                if (this.ignoreCaseFileKeywords.stream().anyMatch(entryName::contains) &amp;&amp; this.joinCaseFileKeywords.stream().noneMatch(entryName::contains))
+                    continue;
+
+                entryName = entryName.substring(0, entryName.lastIndexOf(&quot;.&quot;));
+
+                File inEntity = new File(this.getInPath() + File.separator + entryName + &quot;.in&quot;);
+                File outEntity = new File(this.getOutPath() + File.separator + entryName + &quot;.out&quot;);
+                Pair&lt;File, File&gt; pair = new Pair&lt;&gt;(inEntity, outEntity);
+                this.caseQueue.add(pair);
+            &#125;
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+            this.displayDebugInfo();
+        &#125;
+    &#125;
+
+    private Scanner redirectInput(Pair&lt;File, File&gt; pair) &#123;
+        try &#123;
+            return new Scanner(pair.getKey());
+        &#125; catch (FileNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return null;
+    &#125;
+
+    private void redirectOutput() &#123;
+        try &#123;
+            this.tempOutFile = File.createTempFile(&quot;temp&quot;, &quot;.out&quot;);
+            this.tempOutPrintStream = new PrintStream(new FileOutputStream(this.tempOutFile));
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+        System.setOut(this.tempOutPrintStream);
+    &#125;
+
+    public Judger redirectError(String file) &#123;
+        return this.redirectError(new File(file));
+    &#125;
+
+    public Judger redirectError(File file) &#123;
+        try &#123;
+            System.setErr(new PrintStream(new FileOutputStream(file)));
+        &#125; catch (FileNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return this;
+    &#125;
+
+    /* This method assumes that the in-case and out-case have the same parent directory,
+     *  and will write error file to the parent direcotry.
+     *  */
+    public Judger redirectError() &#123;
+        /* Get main() java file name */
+        StackTraceElement[] stackTrace = new Exception().getStackTrace();
+        String runningJavaFileName = stackTrace[stackTrace.length - 1].getFileName();
+
+        /* Redirect */
+        String errorFileName = runningJavaFileName + &quot;.error&quot;;
+        this.redirectError(new File(this.inDirectory.getParent() + File.separator + errorFileName));
+        return this;
+    &#125;
+
+    private void displayExpectationIO(Pair&lt;File, File&gt; pair) &#123;
+        System.err.println(&quot;Current Case: &quot; + pair.getKey().getName() + &quot; &amp; &quot; + pair.getValue().getName());
+
+        /* Display Expectation IO */
+        if (this.hideInputAndOutputFlag) return;
+        try &#123;
+            List&lt;String&gt; expectInput = Files.readAllLines(pair.getKey().toPath());
+            List&lt;String&gt; expectOutput = Files.readAllLines(pair.getValue().toPath());
+
+            // Limit Expect Input/Output
+            if (this.maxExpectInputLines &lt; expectInput.size()) &#123;
+                int omit = expectInput.size() - this.maxExpectInputLines;
+                expectInput = expectInput.subList(0, this.maxExpectInputLines);
+                this.addLimitedMessage(expectInput, omit);
+            &#125;
+            if (this.maxYourOutputLines &lt; expectOutput.size()) &#123;
+                int omit = expectOutput.size() - this.maxExpectOutputLines;
+                expectOutput = expectOutput.subList(0, this.maxExpectOutputLines);
+                this.addLimitedMessage(expectOutput, omit);
+            &#125;
+
+            System.err.println(&quot;Expected  Input: &quot; + expectInput);
+            System.err.println(&quot;Expected Output: &quot; + expectOutput);
+            // Flush to make sure the message is displayed
+            System.err.flush();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    private void displaySeparator() &#123;
+        System.err.println(&quot;-----------------------------------------------------&quot;);
+    &#125;
+
+    private void displayStatistics() &#123;
+        this.displaySeparator();
+        System.err.println(&quot;Result Statistics: &quot; + this.resultStatistics);
+    &#125;
+
+    private long displayTimeCost() &#123;
+        // If the timer didn&#39;t be stopped manually, stop it.
+        if (this.endTimestamp == defaultEndTimestamp) &#123;
+            this.manuallyStopTimer();
+        &#125;
+
+        // Calc the time cost.
+        long timeCost = this.endTimestamp - this.startTimestamp;
+        System.err.printf(&quot;Time Cost: %f ms (%d ns)%n&quot;, timeCost / 1E6, timeCost);
+        return timeCost;
+    &#125;
+
+    @Override
+    public Iterator&lt;Scanner&gt; iterator() &#123;
+        return this;
+    &#125;
+
+    @Override
+    public boolean hasNext() &#123;
+
+        /* Delay the initialization of judger */
+        if (!this.judgerInitialized) &#123;
+            this.initJudger();
+            this.judgerInitialized = true;
+            // Special case: if no case files are valid (the case directory is empty or the case is filtered).
+            if (this.caseQueue.isEmpty()) &#123;
+                System.err.println(&quot;No case files are valid.&quot;);
+                System.err.println(&quot;1. The case directory is empty.&quot;);
+                System.err.println(&quot;2. The case is filtered.&quot;);
+                return false;
+            &#125;
+        &#125;
+
+        /* All the cases processed ? */
+        if (this.caseQueue.isEmpty()) &#123;
+            // Judge the last case.
+            this.judgeCase();
+
+            // Output the statistics.
+            this.displayStatistics();
+            return false;
+        &#125;
+        return true;
+    &#125;
+
+    @Override
+    public Scanner next() &#123;
+        /* No more cases ? */
+        if (this.caseQueue.isEmpty()) throw new IllegalStateException(&quot;No more cases.&quot;);
+
+        /* Judge previous case ? */
+        if (this.currentCase != null) &#123;
+            // Judge the previous case.
+            this.judgeCase();
+        &#125;
+
+        /* Get a new case */
+        Pair&lt;File, File&gt; aCase = this.currentCase = this.caseQueue.poll();
+        this.displaySeparator();
+        this.displayExpectationIO(aCase);
+        this.redirectOutput();
+        Scanner scanner = this.redirectInput(aCase);
+
+        /* Start the timer */
+        this.manuallyStartTimer();
+        return scanner;
+    &#125;
+
+    public Pair&lt;File, File&gt; getCurrentCase() &#123;
+        return this.currentCase;
+    &#125;
+
+    public String getCurrentCaseName() &#123;
+        return this.currentCase.getKey().getName();
+    &#125;
+
+    /**
+     * Call this function if you want to reset the timer.
+     */
+    public void manuallyStartTimer() &#123;
+        this.startTimestamp = System.nanoTime();
+        this.endTimestamp = defaultEndTimestamp;
+    &#125;
+
+    public void manuallyStopTimer() &#123;
+        this.endTimestamp = System.nanoTime();
+    &#125;
+
+    public Judger displayDebugInfo() &#123;
+        this.displaySeparator();
+        System.err.println(&quot;● Java Program Run Path = &quot; + new File(&quot;.&quot;).getAbsolutePath());
+        try &#123;
+            System.err.println(&quot;☆ InPath = &quot; + this.getInPath());
+            System.err.println(&quot;☆ InPath (Absolute) = &quot; + new File(this.getInPath()).getAbsolutePath());
+            System.err.println(&quot;★ InPath (Canonical) = &quot; + new File(this.getInPath()).getCanonicalPath());
+            System.err.println(&quot;☆ OutPath = &quot; + this.getOutPath());
+            System.err.println(&quot;☆ OutPath (Absolute) = &quot; + new File(this.getOutPath()).getAbsolutePath());
+            System.err.println(&quot;★ OutPath (Canonical) = &quot; + new File(this.getOutPath()).getCanonicalPath());
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+        this.displaySeparator();
+        return this;
+    &#125;
+
+
+    public Judger hideInputAndOutput() &#123;
+        this.hideInputAndOutputFlag = true;
+        return this;
+    &#125;
+
+    public Judger setTimeLimitMS(long timeLimitMS) &#123;
+        this.timeLimitMS = timeLimitMS;
+        return this;
+    &#125;
+
+    public Judger setMaxExpectedInputLines(int limit) &#123;
+        this.maxExpectInputLines = limit;
+        return this;
+    &#125;
+
+    public Judger setMaxExpectedOutputLines(int limit) &#123;
+        this.maxExpectOutputLines = limit;
+        return this;
+    &#125;
+
+    public Judger setMaxYourOutputLines(int limit) &#123;
+        this.maxYourOutputLines = limit;
+        return this;
+    &#125;
+
+    public Judger enablePrettyFormat() &#123;
+        this.prettyFormat = true;
+        return this;
+    &#125;
+
+    public Judger disablePrettyFormat() &#123;
+        this.prettyFormat = false;
+        return this;
+    &#125;
+
+    public Judger enableDebugPrintFunctions() &#123;
+        this.debugPrintFunctions = true;
+        return this;
+    &#125;
+
+    public Judger disableDebugPrintFunctions() &#123;
+        this.debugPrintFunctions = false;
+        return this;
+    &#125;
+
+    private void addLimitedMessage(List&lt;String&gt; list, int omit) &#123;
+        list.add(String.format(&quot;Omit the remaining %d line(s)...&quot;, omit));
+    &#125;
+
+    private String prettyFormat(List&lt;String&gt; list) &#123;
+        StringBuilder sb = new StringBuilder(&quot;\n&quot;);
+        sb.append(&quot;[SOF]&quot;);
+        for (int i = 0; i &lt; list.size(); i++) &#123;
+            sb.append(list.get(i));
+            if (i == list.size() - 1) &#123;
+                sb.append(&quot;[EOF]&quot;);
+            &#125; else sb.append(&quot;\n&quot;);
+        &#125;
+        // Special case: empty list
+        if (list.isEmpty()) sb.append(&quot;[EOF]&quot;);
+        return sb.toString();
+    &#125;
+
+    private String formatList(List&lt;String&gt; list) &#123;
+        if (this.prettyFormat) &#123;
+            return this.prettyFormat(list);
+        &#125; else return list.toString();
+    &#125;
+
+    /* Judger will set a skip flag, but you should manually skip your algorithm steps. */
+    public Judger skipCurrentCase() &#123;
+        this.skipCurrentCaseFlag = true;
+        return this;
+    &#125;
+
+    public Judger ignoreExceptCase(String keywords) &#123;
+        this.ignoreExceptCaseFileKeywords.add(keywords);
+        return this;
+    &#125;
+
+    public Judger ignoreCase(String keywords) &#123;
+        this.ignoreCaseFileKeywords.add(keywords);
+        return this;
+    &#125;
+
+    /* Join a case and guarantee the case will be added into cases queue */
+    public Judger joinCase(String keywords) &#123;
+        this.joinCaseFileKeywords.add(keywords);
+        return this;
+    &#125;
+
+    @SuppressWarnings(&quot;UnusedAssignment&quot;)
+    private void judgeCase() &#123;
+
+        /* Read from the temp out file */
+        List&lt;String&gt; tempOutFileContent = null;
+        try &#123;
+            tempOutFileContent = Files.readAllLines(this.tempOutFile.toPath());
+            if (!this.hideInputAndOutputFlag) &#123;
+
+                if (this.maxYourOutputLines &lt; tempOutFileContent.size()) &#123;
+                    int omit = tempOutFileContent.size() - this.maxYourOutputLines;
+                    tempOutFileContent = tempOutFileContent.subList(0, this.maxYourOutputLines);
+                    this.addLimitedMessage(tempOutFileContent, omit);
+                &#125;
+
+                System.err.println(&quot;Your     Output: &quot; + formatList(tempOutFileContent));
+            &#125;
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+        /* End the timer. */
+        // it&#39;s better to stop the timer earlier, but it&#39;s not necessary.
+        long timeCost = 0;
+        if (!this.skipCurrentCaseFlag) &#123;
+            timeCost = this.displayTimeCost();
+        &#125;
+
+        /* Judge Result Type */
+        List&lt;String&gt; expectedOutFileContent;
+        try &#123;
+            /* Handle Judger Flags */
+            if (this.skipCurrentCaseFlag) &#123;
+                this.skipCurrentCaseFlag = false;
+                this.resultStatistics.append(&quot;→ &quot;);
+                System.err.println(&quot;Skipped.&quot;);
+                return;
+            &#125;
+
+            /* Compare the texts */
+            expectedOutFileContent = Files.readAllLines(this.currentCase.getValue().toPath());
+            boolean accepted = true;
+            String message = &quot;Accepted&quot;;
+            String symbol = &quot;√&quot;;
+
+            // Your Output == Expect Output ?
+            if (!Boolean.logicalAnd(accepted, tempOutFileContent.toString().equals(expectedOutFileContent.toString()))) &#123;
+                accepted = false;
+                message = &quot;Wrong Answer.&quot;;
+                symbol = &quot;×&quot;;
+            &#125;
+            // Time Limit Exceed ?
+            else if (!Boolean.logicalAnd(accepted, (timeCost / 1E6) &lt;= this.timeLimitMS)) &#123;
+                accepted = false;
+                message = &quot;Time Limit Exceed.&quot;;
+                symbol = &quot;▲&quot;;
+            &#125;
+
+            this.resultStatistics.append(symbol).append(&quot; &quot;);
+            System.err.println(message);
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+            this.resultStatistics.append(&quot;? &quot;);
+            System.err.println(&quot;Unexpected Error !&quot;);
+        &#125;
+    &#125;
+
+    public void gracefullyExit(boolean closeStreams, boolean exit) &#123;
+        System.err.println(&quot;===== Begin gracefully exit =====&quot;);
+
+        /* Judge case before exit */
+        this.judgeCase();
+
+        /* Flush and close the System.in stream. */
+        // Nobody cares the input stream.
+
+        /* Flush and close the System.out stream. */
+        System.out.flush();
+        if (closeStreams) &#123;
+            System.out.close();
+        &#125;
+
+        /* Flush and close the System.err stream. */
+        System.err.println(&quot;===== End gracefully Exit. =====&quot;);
+        System.err.flush();
+        if (closeStreams) &#123;
+            System.err.close();
+        &#125;
+
+        /* Exit the JVM */
+        if (exit) &#123;
+            System.exit(0);
+        &#125;
+    &#125;
+
+    private void setThreadUncaughtExceptionHandler(Thread thread) &#123;
+        thread.setUncaughtExceptionHandler((t, e) -&gt; &#123;
+            /* Handle the exception. */
+            this.displayThrowable(t, e);
+
+            /* Gracefully exit. */
+            gracefullyExit(true, true);
+        &#125;);
+    &#125;
+
+    private void displayThrowable(Thread t, Throwable e) &#123;
+        System.err.println(&quot;===== Exception Occurred. =====&quot;);
+        System.err.println(&quot;Current Thread: &quot; + t);
+        e.printStackTrace();
+        System.err.println(&quot;\n&quot;);
+    &#125;
+
+    private void registerJudgerUncaughtExceptionHandler() &#123;
+        this.setThreadUncaughtExceptionHandler(Thread.currentThread());
+    &#125;
+
+    public Judger println(Object object) &#123;
+        if (this.debugPrintFunctions) &#123;
+            System.out.println(object);
+        &#125;
+        return this;
+    &#125;
+
+    public Judger print(Object object) &#123;
+        if (this.debugPrintFunctions) &#123;
+            System.out.print(object);
+        &#125;
+        return this;
+    &#125;
+
+    public Judger printf(String format, Object... args) &#123;
+        if (this.debugPrintFunctions) &#123;
+            System.out.printf(format, args);
+        &#125;
+        return this;
+    &#125;
+
+    public Judger safeRun(Runnable runnable) &#123;
+        try &#123;
+            runnable.run();
+        &#125; catch (Exception e) &#123;
+            /* Display Throwable */
+            this.displayThrowable(Thread.currentThread(), e);
+
+            /* Handle Throwable */
+            // Store judger context
+            StringBuilder $resultStatistics = this.resultStatistics;
+            this.resultStatistics = new StringBuilder();
+            // Gracefully exit (but don&#39;t exit the JVM)
+            this.gracefullyExit(false, false);
+            // Load judger context
+            this.resultStatistics = $resultStatistics;
+        &#125;
+        return this;
+    &#125;
+
+    public abstract static class MermaidBuilder &#123;
+
+        public final Style style = new Style(this);
+        public final Counter counter = new Counter();
+        private ArrayList&lt;String&gt; mermaidStatements;
+
+        public MermaidBuilder() &#123;
+            this.reset();
+        &#125;
+
+        public abstract void preStatement();
+
+        public abstract void postStatement();
+
+        public void uniqueStatement() &#123;
+            HashSet&lt;String&gt; visited = new HashSet&lt;&gt;();
+            ArrayList&lt;String&gt; result = new ArrayList&lt;&gt;();
+            for (String statement : this.mermaidStatements) &#123;
+                if (!visited.contains(statement)) &#123;
+                    visited.add(statement);
+                    result.add(statement);
+                &#125;
+            &#125;
+            this.mermaidStatements = result;
+        &#125;
+
+        public void reset() &#123;
+            this.mermaidStatements = new ArrayList&lt;&gt;();
+            this.preStatement();
+        &#125;
+
+        public String build() &#123;
+            /* PostStatement */
+            this.postStatement();
+
+            /* Build Mermaid String */
+            StringBuilder mermaidStringBuilder = new StringBuilder();
+            for (String mermaidStatement : this.mermaidStatements) &#123;
+                mermaidStringBuilder.append(mermaidStatement).append(&quot;\n&quot;);
+            &#125;
+            return mermaidStringBuilder.toString();
+        &#125;
+
+        protected abstract Stream&lt;String&gt; parseNode(Object... args);
+
+        public void addStatement(String statement) &#123;
+            this.mermaidStatements.add(statement);
+        &#125;
+
+        public void addNode(Object... args) &#123;
+            Optional.ofNullable(this.parseNode(args)).ifPresent(o -&gt; o.forEach(statement -&gt; &#123;
+                if (statement != null) &#123;
+                    this.addStatement(statement);
+                &#125;
+            &#125;));
+        &#125;
+
+        public void print() &#123;
+            System.out.println();
+            System.out.println(&quot;===== Begin Mermaid Statements =====&quot;);
+            System.out.println(this.build());
+            System.out.println(&quot;===== End Mermaid Statements =====&quot;);
+        &#125;
+
+        public void image() &#123;
+            String base64 = new String(Base64.getEncoder().encode(this.build().getBytes()));
+            String URL = &quot;https://mermaid.ink/img/&quot; + base64;
+            try &#123;
+                Desktop.getDesktop().browse(new URI(URL));
+            &#125; catch (Exception e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+
+        public String ofID(Object... args) &#123;
+            StringBuilder id = new StringBuilder();
+            for (int i = 0; i &lt; args.length; i++) &#123;
+                id.append(args[i]);
+                if (i != args.length - 1) &#123;
+                    id.append(&quot;#&quot;);
+                &#125;
+            &#125;
+            return id.toString();
+        &#125;
+
+        public String uuid() &#123;
+            return UUID.randomUUID().toString().substring(0, 8);
+        &#125;
+
+        public static class Style &#123;
+            private final MermaidBuilder builder;
+
+            public Style(MermaidBuilder builder) &#123;
+                this.builder = builder;
+            &#125;
+
+            public void stress(String nodeID, String color) &#123;
+                builder.addStatement(String.format(&quot;style %s fill: %s,stroke: #333,stroke-width: 4px&quot;, nodeID, color));
+            &#125;
+
+            public void css(String nodeID, String css) &#123;
+                builder.addStatement(String.format(&quot;style %s %s&quot;, nodeID, css));
+            &#125;
+        &#125;
+
+        public static class Counter &#123;
+            private int counter;
+
+            public Counter() &#123;
+                this.reset();
+            &#125;
+
+            public void reset() &#123;
+                this.counter = 0;
+            &#125;
+
+            public int increment(int delta) &#123;
+                return this.counter += delta;
+            &#125;
+
+            public int increment() &#123;
+                return this.increment(+1);
+            &#125;
+
+            public int get() &#123;
+                return counter;
+            &#125;
+
+            public void set(int value) &#123;
+                this.counter = value;
+            &#125;
+        &#125;
+
+    &#125;
+
+    public static class MarkdownBuilder &#123;
+
+        public static String buildMatrix(Object origin, Object[] rows, Object[] cols, Object[][] data) &#123;
+
+            /* Default value */
+            if (origin == null) &#123;
+                origin = &quot;&quot;;
+            &#125;
+
+            if (rows == null) &#123;
+                rows = new String[data.length];
+                for (int i = 0; i &lt; data.length; i++) &#123;
+                    rows[i] = String.valueOf(i);
+                &#125;
+            &#125;
+
+            if (cols == null) &#123;
+                cols = new String[data[0].length];
+                for (int i = 0; i &lt; data[0].length; i++) &#123;
+                    cols[i] = String.valueOf(i);
+                &#125;
+            &#125;
+
+            /* Construct */
+            StringBuilder result = new StringBuilder();
+            result.append(&quot;\\begin&#123;bmatrix&#125;\n&quot;);
+            for (int i = 0; i &lt; data.length; i++) &#123;
+                // first row
+                if (i == 0) &#123;
+                    for (int j = 0; j &lt; cols.length; j++) &#123;
+                        // origin cell
+                        if (j == 0) &#123;
+                            result.append(origin);
+                            continue;
+                        &#125;
+                        result.append(&quot;&amp;&quot;).append(cols[j]);
+                    &#125;
+                    result.append(&quot;\\\\\n&quot;);
+                    continue;
+                &#125;
+                // first column
+                for (int j = 0; j &lt; data[i].length; j++) &#123;
+                    if (j == 0) &#123;
+                        result.append(rows[i]);
+                        continue;
+                    &#125;
+                    result.append(&quot;&amp;&quot;).append(data[i][j]);
+                &#125;
+                result.append(&quot;\\\\&quot;).append(&quot;\n&quot;);
+            &#125;
+
+            result.append(&quot;\\end&#123;bmatrix&#125;\n&quot;);
+            return result.toString();
+        &#125;
+
+        public static String buildTable(Object origin, Object[] rows, Object[] cols, Object[][] data) &#123;
+
+            /* Default value */
+            if (origin == null) &#123;
+                origin = &quot;&quot;;
+            &#125;
+
+            if (rows == null) &#123;
+                rows = new String[data.length];
+                for (int i = 0; i &lt; data.length; i++) &#123;
+                    rows[i] = String.valueOf(i);
+                &#125;
+            &#125;
+
+            if (cols == null) &#123;
+                cols = new String[data[0].length];
+                for (int i = 0; i &lt; data[0].length; i++) &#123;
+                    cols[i] = String.valueOf(i);
+                &#125;
+            &#125;
+
+            /* Construct */
+            StringBuilder result = new StringBuilder().append(&quot;\n&quot;);
+            for (int i = 0; i &lt; data.length; i++) &#123;
+                // first row
+                if (i == 0) &#123;
+                    for (int j = 0; j &lt; cols.length; j++) &#123;
+                        // origin cell
+                        if (j == 0) &#123;
+                            result.append(&quot;&quot;).append(origin).append(&quot;&quot;);
+                            continue;
+                        &#125;
+                        result.append(cols[j]).append(&quot;&quot;);
+                    &#125;
+                    result.append(&quot;\n&quot;);
+
+                    // second row -&gt; table properties
+                    for (int j = 0; j &lt; cols.length; j++) &#123;
+                        result.append(&quot; :-: &quot;);
+                    &#125;
+                    result.append(&quot;&quot;).append(&quot;\n&quot;);
+                &#125;
+
+                for (int j = 0; j &lt; data[i].length; j++) &#123;
+                    // first column
+                    if (j == 0) &#123;
+                        result.append(&quot;&quot;).append(rows[i]).append(&quot;&quot;);
+                    &#125;
+                    result.append(data[i][j]).append(&quot;&quot;);
+                &#125;
+                result.append(&quot;\n&quot;);
+            &#125;
+            return result.append(&quot;\n&quot;).toString();
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h4 id="Simple-Demo"><a href="#Simple-Demo" class="headerlink" title="Simple Demo"></a>Simple Demo</h4><pre><code class="lang-java">    public static Judger judger = new Judger(&quot;/Cases/Two&#39;s Sum&quot;);
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int sum = a + b;
+            System.out.println(sum);
+        &#125;
+    &#125;
+</code></pre>
+<h4 id="Advanced-Demo"><a href="#Advanced-Demo" class="headerlink" title="Advanced Demo"></a>Advanced Demo</h4><pre><code class="lang-java">    public static Judger judger = new Judger(&quot;/Cases/Two&#39;s Sum&quot;)
+        .redirectError()
+        .enablePrettyFormat()
+        .ignoreExceptCase(&quot;CASES&quot;)
+        .ignoreCase(&quot;CASE5&quot;)
+        .joinCase(&quot;CASE3&quot;)
+        .setMaxExpectedInputLines(1)
+        .setTimeLimitMS(1000);
+
+    public static void main(String[] args) &#123;
+        for (Scanner scanner : judger) &#123;
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int sum = a + b;
+            System.out.println(sum);
+        &#125;
+    &#125;
+</code></pre>
+<blockquote>
+<p>解释：让 <code>Judger</code> 从 <code>&quot;/Cases/Lab5/COIN CHANGING&quot;</code> 路径下 <code>扫描</code> 所有的 <code>案例文件</code>，然后 <code>重定向错误</code>到合适的路径，并且期望启用 <code>自由格式输出</code>，还需要设置 <code>期望输出的最大显示限制</code>，此外，每个案例的 <code>运行时间</code>限定为 1000ms。</p>
+<p>所有 <code>被扫描到且有效的案例文件</code> 将被创建为 <code>Scanner实例序列</code>，通过 <code>foreach语法糖</code>即可获得所有的 <code>案例实例</code></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/">https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/oj/">oj</a><a class="post-meta__tags" href="/tags/code/">code</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description">dig description.sakurawald.com txt</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a></div><div><a id="card-friends-btn" href="/friends/"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Simple-Judger-for-Java"><span class="toc-number">1.</span> <span class="toc-text">A Simple Judger for Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-List"><span class="toc-number">1.1.</span> <span class="toc-text">Function List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source"><span class="toc-number">1.2.</span> <span class="toc-text">Source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number">1.3.</span> <span class="toc-text">Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Simple-Demo"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">Simple Demo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Advanced-Demo"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">Advanced Demo</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }
+
+}
+renderMathjax();</script><script>function processSvgPanZoom() {
+    const $targetWrap = document.querySelectorAll('#article-container svg')
+    if ($targetWrap.length) {
+        window.runSvgPanZoom = () => {
+            window.loadSvgPanZoom = true
+
+            Array.from($targetWrap).forEach((item, index) => {
+                var saved_viewbox = item.getAttribute("viewBox");
+                var controller = svgPanZoom(item);
+                item.setAttribute("viewBox", saved_viewbox);
+                controller.fit();
+                controller.center();
+            });
+        }
+        const loadSvgPanZoom = () => {
+            window.loadSvgPanZoom ? runSvgPanZoom() : getScript('https://cdn.jsdelivr.net/npm/svg-pan-zoom/dist/svg-pan-zoom.min.js').then(runSvgPanZoom)
+        }
+        window.pjax ? loadSvgPanZoom() : document.addEventListener('DOMContentLoaded', loadSvgPanZoom)
+    }
+}</script><script>function processMermaid() {
+  const $targetWrap = document.querySelectorAll('#article-container code.lang-mermaid, #article-container code.language-mermaid');
+  if ($targetWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+
+      const theme = 'default'
+      Array.from($targetWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+      processSvgPanZoom(); 
+    }
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+}
+processMermaid();</script><script>function processHighlightjs() {
+  window.runHighlightjs = () => {
+      window.loadHightlightjs = true
+
+      hljs.highlightAll();
+  }
+
+  const loadHightlightjs = () => {
+      if (window.loadHightlightjs) {
+          runHighlightjs();
+      } else {
+          getCSS('/css/third-party/highlightjs-github.css');
+          getScript('/js/third-party/highlight.min.js').then(runHighlightjs);
+      }
+  }
+  window.pjax ? loadHightlightjs() : document.addEventListener('DOMContentLoaded', loadHightlightjs)
+}
+processHighlightjs();</script><script>function loadGiscus () {
+  let nowTheme = 'light' 
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': 'R_kgDOItDE4Q',
+    'data-category-id': 'DIC_kwDOItDE4c4CTv3v',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
