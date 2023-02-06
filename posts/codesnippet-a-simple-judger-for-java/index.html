@@ -33,7 +33,7 @@ gtag('config', 'G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = {
   isPost: true,
   isHome: false,
   isToc: true,
-  postUpdate: '2023-02-06 12:03:46'
+  postUpdate: '2023-02-06 22:13:28'
 }</script><noscript><style type="text/css">
   #recent-posts time,
   #post-meta time {
@@ -1075,6 +1075,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
                 btf.wrap(node, 'span', { class: 'mathjax-overflow' })
               }
             });
+
           }, '', false]
         }
       }
@@ -1085,11 +1086,12 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
     script.id = 'MathJax-script'
     script.async = true
     document.head.appendChild(script)
-
   } else {
-    MathJax.startup.document.state(0)
-    MathJax.texReset()
-    MathJax.typeset()
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      // If the first page you visited doesn't contain any math codes, then the second time you visit a page contains math codes, you will get "Mathjax Retry" error.
+      //- MathJax.typeset()
+      MathJax.typesetPromise()
   }
 
 }
