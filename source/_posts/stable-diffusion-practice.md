@@ -9,6 +9,12 @@ tags:
   - cg
   - practice
   - novel_ai
+  - cuda
+  - nvidia
+  - python
+  - computation
+  - anime
+  - draw
 ---
 
 # Stable-Diffusion Practice
