@@ -15,8 +15,45 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 07 Feb 2023 23:30:07 GMT</pubDate>
+    <pubDate>Wed, 08 Feb 2023 07:22:29 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[SD] Stable-Diffusion Practice</title>
+      <link>https://sakurawald.github.io/posts/stable-diffusion-practice/</link>
+      <guid>https://sakurawald.github.io/posts/stable-diffusion-practice/</guid>
+      <pubDate>Wed, 08 Feb 2023 00:35:54 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Stable-Diffusion-Practice&quot;&gt;&lt;a href=&quot;#Stable-Diffusion-Practice&quot; class=&quot;headerlink&quot; title=&quot;Stable-Diffusion</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/ai/">ai</category>
+      
+      <category domain="https://sakurawald.github.io/tags/gpt/">gpt</category>
+      
+      <category domain="https://sakurawald.github.io/tags/diffusion/">diffusion</category>
+      
+      <category domain="https://sakurawald.github.io/tags/art/">art</category>
+      
+      <category domain="https://sakurawald.github.io/tags/cg/">cg</category>
+      
+      <category domain="https://sakurawald.github.io/tags/practice/">practice</category>
+      
+      <category domain="https://sakurawald.github.io/tags/novel-ai/">novel_ai</category>
+      
+      
+      <comments>https://sakurawald.github.io/posts/stable-diffusion-practice/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[Blog] 从WordPress迁移到Hexo</title>
@@ -556,35 +593,6 @@ $$
       
       
       <comments>https://sakurawald.github.io/posts/expression-evaluation/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[OJ] C语言赐予你的字符串处理函数</title>
-      <link>https://sakurawald.github.io/posts/c-string-lib-functions/</link>
-      <guid>https://sakurawald.github.io/posts/c-string-lib-functions/</guid>
-      <pubDate>Sat, 06 Feb 2021 05:53:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>
-
-&lt;article class=&quot;post-718 post type-post status-publish format-standard hentry category-oj category-soj&quot;&gt;	
-
-				&lt;div</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://sakurawald.github.io/tags/oj/">oj</category>
-      
-      
-      <comments>https://sakurawald.github.io/posts/c-string-lib-functions/#disqus_thread</comments>
       
     </item>
     
