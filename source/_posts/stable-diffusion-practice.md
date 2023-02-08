@@ -71,7 +71,7 @@ You can download the models from this link: https://rentry.org/sdmodels
 >
 > A: Maybe not, just wait for it to leak.
 >
-> ![image-20230208150000465](https://s2.loli.net/2023/02/08/T6yjaURKqbxSZtF.png)
+> ![image-20230208150000465](https://i.imgur.com/rUECnlx.png)
 
 #### Configuration
 
@@ -172,9 +172,9 @@ Some recommended params:
 
 ![image-20230208150646685](https://s2.loli.net/2023/02/08/JEYKqwusSLAfFeO.png)
 
-![image-20230208150706389](https://s2.loli.net/2023/02/08/JEq27bNOTpcawCf.png)
+![image-20230208150706389](https://i.imgur.com/prvxzTx.jpg)
 
-![image-20230208150714475](https://s2.loli.net/2023/02/08/jWySUf3dGnAc4BE.png)
+![image-20230208150714475](https://i.imgur.com/2kbKLTC.png)
 
 ##### Case 2
 
@@ -182,9 +182,9 @@ Some recommended params:
 1girl, :d, animal_ears, architecture, bangs, blue_hair, blush, breasts, building, east_asian_architecture, eyebrows_visible_through_hair, fox_mask, hakama, hakama_skirt, holding, japanese_clothes, kimono, long_hair, long_sleeves, looking_at_viewer, mask, mask_on_head, miko, open_mouth, outdoors, purple_eyes, ribbon-trimmed_sleeves, ribbon_trim, sash, smile, solo, white_kimono, wide_sleeves
 ```
 
-![img](https://s2.loli.net/2023/02/08/MnD5KiBXuOsajQG.png)
+![img](https://i.imgur.com/zOzzrDS.png)
 
-![img](https://s2.loli.net/2023/02/08/axviN79dAbKhQfM.png)
+![image-20230208153950160](https://i.imgur.com/17mvLyB.png)
 
 
 
@@ -215,13 +215,13 @@ Steps: 40, Sampler: Euler a, CFG scale: 6, Seed: [?], Size: 1024x702, Model hash
 
 **original-image**
 
-![original-image](https://s2.loli.net/2023/02/08/TEqQ13NMXKr945V.png)
+![original-image](https://i.imgur.com/aO6AiKo.png)
 
 **generated-image**
 
-![image-20230208144027488](https://s2.loli.net/2023/02/08/lkI6USADpwHGVor.png)
+![image-20230208154144700](https://i.imgur.com/5NduXwU.jpg)
 
-![image-20230208144901544](https://s2.loli.net/2023/02/08/UeQHlgbjyGhAwKa.png)
+![image-20230208144901544](https://i.imgur.com/An8tRdq.jpg)
 
 ## References
 
