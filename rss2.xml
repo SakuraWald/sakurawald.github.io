@@ -15,8 +15,45 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 14 Feb 2023 21:20:19 GMT</pubDate>
+    <pubDate>Wed, 22 Feb 2023 00:12:51 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[Note] Android solutions for linux</title>
+      <link>https://sakurawald.github.io/posts/Note-Android-emulator-solutions-for-linux/</link>
+      <guid>https://sakurawald.github.io/posts/Note-Android-emulator-solutions-for-linux/</guid>
+      <pubDate>Tue, 21 Feb 2023 22:38:07 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Android-solutions-for-linux&quot;&gt;&lt;a href=&quot;#Android-solutions-for-linux&quot; class=&quot;headerlink&quot; title=&quot;Android solutions for</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/android/">android</category>
+      
+      <category domain="https://sakurawald.github.io/tags/emulator/">emulator</category>
+      
+      <category domain="https://sakurawald.github.io/tags/linux/">linux</category>
+      
+      <category domain="https://sakurawald.github.io/tags/note/">note</category>
+      
+      <category domain="https://sakurawald.github.io/tags/practice/">practice</category>
+      
+      <category domain="https://sakurawald.github.io/tags/solution/">solution</category>
+      
+      <category domain="https://sakurawald.github.io/tags/virtualize/">virtualize</category>
+      
+      
+      <comments>https://sakurawald.github.io/posts/Note-Android-emulator-solutions-for-linux/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[SD] Stable-Diffusion Practice</title>
@@ -36,6 +73,8 @@
       
       
       
+      <category domain="https://sakurawald.github.io/tags/practice/">practice</category>
+      
       <category domain="https://sakurawald.github.io/tags/ai/">ai</category>
       
       <category domain="https://sakurawald.github.io/tags/gpt/">gpt</category>
@@ -45,8 +84,6 @@
       <category domain="https://sakurawald.github.io/tags/art/">art</category>
       
       <category domain="https://sakurawald.github.io/tags/cg/">cg</category>
-      
-      <category domain="https://sakurawald.github.io/tags/practice/">practice</category>
       
       <category domain="https://sakurawald.github.io/tags/novel-ai/">novel_ai</category>
       
@@ -238,9 +275,9 @@ sudo snap install --devmode --edge</description>
       
       
       
-      <category domain="https://sakurawald.github.io/tags/linux/">linux</category>
-      
       <category domain="https://sakurawald.github.io/tags/android/">android</category>
+      
+      <category domain="https://sakurawald.github.io/tags/linux/">linux</category>
       
       
       <comments>https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/#disqus_thread</comments>
@@ -580,31 +617,6 @@ $$
       
       
       <comments>https://sakurawald.github.io/posts/algorithm-majority-problem/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Expression Evaluation</title>
-      <link>https://sakurawald.github.io/posts/expression-evaluation/</link>
-      <guid>https://sakurawald.github.io/posts/expression-evaluation/</guid>
-      <pubDate>Mon, 13 Sep 2021 00:53:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Expression-Evaluation&quot;&gt;&lt;a href=&quot;#Expression-Evaluation&quot; class=&quot;headerlink&quot; title=&quot;Expression Evaluation&quot;&gt;&lt;/a&gt;Expression</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
-      
-      
-      <comments>https://sakurawald.github.io/posts/expression-evaluation/#disqus_thread</comments>
       
     </item>
     
