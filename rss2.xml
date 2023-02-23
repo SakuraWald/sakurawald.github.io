@@ -15,8 +15,41 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 22 Feb 2023 00:12:51 GMT</pubDate>
+    <pubDate>Thu, 23 Feb 2023 01:43:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[Record] My robots.txt template</title>
+      <link>https://sakurawald.github.io/posts/robots-txt-template/</link>
+      <guid>https://sakurawald.github.io/posts/robots-txt-template/</guid>
+      <pubDate>Thu, 23 Feb 2023 01:37:55 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Your-robots-txt-template&quot;&gt;&lt;a href=&quot;#Your-robots-txt-template&quot; class=&quot;headerlink&quot; title=&quot;Your robots.txt template&quot;&gt;&lt;/a&gt;Your</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/information/">information</category>
+      
+      <category domain="https://sakurawald.github.io/tags/search-engine/">search_engine</category>
+      
+      <category domain="https://sakurawald.github.io/tags/crawler/">crawler</category>
+      
+      <category domain="https://sakurawald.github.io/tags/record/">record</category>
+      
+      <category domain="https://sakurawald.github.io/tags/template/">template</category>
+      
+      
+      <comments>https://sakurawald.github.io/posts/robots-txt-template/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[Note] Android solutions for linux</title>
@@ -589,34 +622,6 @@ $$
       
       
       <comments>https://sakurawald.github.io/posts/algorithm-set-partition-problem/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[Algorithm] Majority Problem</title>
-      <link>https://sakurawald.github.io/posts/algorithm-majority-problem/</link>
-      <guid>https://sakurawald.github.io/posts/algorithm-majority-problem/</guid>
-      <pubDate>Fri, 25 Mar 2022 11:27:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;Majority-Problem&quot;&gt;&lt;a href=&quot;#Majority-Problem&quot; class=&quot;headerlink&quot; title=&quot;Majority Problem&quot;&gt;&lt;/a&gt;Majority Problem&lt;/h1&gt;
-$$
-\boxed{@}
-%</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://sakurawald.github.io/tags/algorithm/">algorithm</category>
-      
-      
-      <comments>https://sakurawald.github.io/posts/algorithm-majority-problem/#disqus_thread</comments>
       
     </item>
     
