@@ -9159,9 +9159,9 @@ role --&gt; b((B))
 <p>关于 <code>操作符的优先级</code> , 在处理 <code>4*3^2</code> 时, 我们仍按照 <code>字符串的高位优先</code> 规则来进行扫描。</p>
 <p>每一个 <code>token_value()函数调用栈</code> 包含 <code>1个 操作符或操作数</code></p>
 <p>在 <code>递归的自顶向下过程完成时</code> , 我们扫描读入了 <code>整个表达式</code></p>
-<p><img src="https://i.loli.net/2021/09/13/THBhFCmW4A71xPn.png" alt="image-20210913083454343"></p>
+<p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/imagesTHBhFCmW4A71xPn.png" alt="image-20210913083454343"></p>
 <p><img src="https://s2.loli.net/2023/01/22/5d7BXZAumQFCx3p.png" alt="image-20210913083434355"></p>
-<p><img src="https://s2.loli.net/2023/01/22/mLDihEPNRXAy7dc.png" alt="image-20210913083422195"></p>
+<p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/mLDihEPNRXAy7dc.png" alt="image-20210913083422195"></p>
 <p><img src="https://s2.loli.net/2023/01/22/eiVE6UL8csyO7Gh.png" alt="image-20210913083413587"></p>
 <p>紧接着, 在 <code>递归的自低向上过程中</code>, 我们会逐个计算 <code>表达式的各个部分</code>, 并且把 <code>表达式部分的计算结果</code> 重新代入 <code>表达式中</code></p>
 <p><img src="https://s2.loli.net/2023/01/22/jh2MkrO3Z5H4v9x.png" alt="image-20210913084005455"></p>
