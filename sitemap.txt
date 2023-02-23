@@ -11,8 +11,6 @@ https://sakurawald.github.io/posts/migrant-from-wordpress/
 https://sakurawald.github.io/posts/robots-txt-template/
 https://sakurawald.github.io/posts/stable-diffusion-practice/
 https://sakurawald.github.io/posts/database-relational-query-language/
-https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/
-https://sakurawald.github.io/posts/compiler-test/
 https://sakurawald.github.io/posts/database-advanced-sql/
 https://sakurawald.github.io/posts/database-design/
 https://sakurawald.github.io/posts/database-elementary-sql/
@@ -25,6 +23,8 @@ https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebbl
 https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/
 https://sakurawald.github.io/posts/algorithm-set-partition-problem/
 https://sakurawald.github.io/posts/c-string-lib-functions/
+https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/
+https://sakurawald.github.io/posts/compiler-test/
 https://sakurawald.github.io/
 https://sakurawald.github.io/tags/android/
 https://sakurawald.github.io/tags/emulator/
