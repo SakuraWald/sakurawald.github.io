@@ -1,3 +1,19 @@
+---
+title: "[Record] My robots.txt template"
+date: 2023-02-23 09:37:55
+tags:
+  - information
+  - search_engine
+  - crawler
+  - record
+  - template
+---
+
+# Your robots.txt template
+
+君子應該遵守君子協議，如果他們是的話。
+
+```
 User-agent: *
 Allow: /
 
@@ -24,5 +40,5 @@ Disallow: /
 Noindex: /
 
 Sitemap: https://sakurawald.com/sitemap.xml
-
+```
 
