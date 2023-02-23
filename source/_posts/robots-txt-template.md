@@ -22,7 +22,6 @@ User-agent: Baiduspider-image
 User-agent: Baiduspider-mobile
 User-agent: Baiduspider-news
 User-agent: Baiduspider-video
-User-agent: Baiduspider-video
 User-agent: 360Spider
 User-agent: 360Spider-Image
 User-agent: 360Spider-Video
