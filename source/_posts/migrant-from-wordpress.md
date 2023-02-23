@@ -33,7 +33,7 @@ tags:
   >
   > 相比于直接修改原生代码而言，麻烦很多。
   >
-  > ![image-20230125133135140](https://s2.loli.net/2023/01/25/4saLYcGC6A7eNrb.png)
+  > ![image-20230125133135140](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/4saLYcGC6A7eNrb.png)
   >
   > > 更糟糕的是，WordPress的开发团队**根本不清楚**什么东西应该被加入到核心之中。
   > >
@@ -45,21 +45,21 @@ tags:
   >
   > 尽管可以使用OpenLiteSpeed（提供HTTP 3.0 QUIC协议） + CachePlugin（静态资源，数据库缓存） 进行极大地优化，但是仍然略显笨重。
   >
-  > ![image-20230125133354174](https://s2.loli.net/2023/01/25/jgToz6hDynfvV8l.png)
+  > ![image-20230125133354174](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/jgToz6hDynfvV8l.png)
   >
   > 以下是经过高度优化之后的Google Lighthouse分析。
   >
   > 尽管如此，在用户的实际体验上，WordPress 仍然会存在 **明显的卡顿感**。
   >
-  > ![image-20230125133711341](https://s2.loli.net/2023/01/25/4TQ9guNr1ohRPsv.png)
+  > ![image-20230125133711341](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/4TQ9guNr1ohRPsv.png)
 
 - WordPress容易收到垃圾回复。
 
   > 针对 WordPress 站点存在大量的自动爬虫。
   >
-  > ![image-20230125133345387](https://s2.loli.net/2023/01/25/WuQh5fFmOLvrGD9.png)
+  > ![image-20230125133345387](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/WuQh5fFmOLvrGD9.png)
   >
-  > ![image-20230125133327838](https://s2.loli.net/2023/01/25/JsYa49fvQcCpdSL.png)
+  > ![image-20230125133327838](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/JsYa49fvQcCpdSL.png)
 
   
 
@@ -126,7 +126,7 @@ tags:
 
 此外，再加上 `toc` 功能和一些必要的 `跳转链接` 即可。
 
-![image-20230125141549951](https://s2.loli.net/2023/01/25/mCrvBHM68IQGwN1.png)
+![image-20230125141549951](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/mCrvBHM68IQGwN1.png)
 
 ### 评论
 
@@ -138,7 +138,7 @@ tags:
 
 `markdown` 和 `syntax` 的 `style` 均复刻 `github style`，实现一致性。
 
-![image-20230125141805248](https://s2.loli.net/2023/01/25/6kGMenzcrhUBIJx.png)
+![image-20230125141805248](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/6kGMenzcrhUBIJx.png)
 
 ### 过滤器
 
@@ -152,6 +152,6 @@ tags:
 
 ## 截图
 
-![image-20230125140808447](https://s2.loli.net/2023/01/25/f1u4Ckpw2SrQmPo.png)
+![image-20230125140808447](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/f1u4Ckpw2SrQmPo.png)
 
-![image-20230125140749365](https://s2.loli.net/2023/01/25/eaRkUsD74CMYfHI.png)
+![image-20230125140749365](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/eaRkUsD74CMYfHI.png)

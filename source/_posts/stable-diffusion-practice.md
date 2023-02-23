@@ -77,7 +77,7 @@ You can download the models from this link: https://rentry.org/sdmodels
 >
 > A: Maybe not, just wait for it to leak.
 >
-> ![image-20230208150000465](https://i.imgur.com/TSL9TF0.png)
+> ![image-20230208150000465](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/TSL9TF0.png)
 
 #### Configuration
 
@@ -176,9 +176,9 @@ Some recommended params:
 (extremely detailed CG unity 8k wallpaper), (official concept art), (outline), (ultra-detailed), (lightfast), (highly detailed reflection), (best shadow),(schematic), (anime coloring), 1girl, animal_ears, bell, bracelet, choker, collar, fox_mask, fox_tail, fur_trim, gradient, gradient_background, grey_background, hair_bell, japanese_clothes, jingle_bell, kimono, mask, mask_on_head, mask_removed, multiple_tails, neck_bell, red_eyes, short_hair, solo, tail, tail_bell, tail_ornament, white_hair, wide_sleeves
 ```
 
-![image-20230208150646685](https://i.imgur.com/Q283LSb.jpg)
+![image-20230208150646685](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/Q283LSb.jpg)
 
-![image-20230208150706389](https://i.imgur.com/lijzFhH.jpg)
+![image-20230208150706389](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/lijzFhH.jpg)
 
 ![image-20230208150714475](https://i.imgur.com/x9rov6R.png)
 
@@ -188,9 +188,9 @@ Some recommended params:
 1girl, :d, animal_ears, architecture, bangs, blue_hair, blush, breasts, building, east_asian_architecture, eyebrows_visible_through_hair, fox_mask, hakama, hakama_skirt, holding, japanese_clothes, kimono, long_hair, long_sleeves, looking_at_viewer, mask, mask_on_head, miko, open_mouth, outdoors, purple_eyes, ribbon-trimmed_sleeves, ribbon_trim, sash, smile, solo, white_kimono, wide_sleeves
 ```
 
-![img](https://i.imgur.com/vw69NCp.png)
+![img](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/vw69NCp.png)
 
-![image-20230208153950160](https://i.imgur.com/nYSG36u.png)
+![image-20230208153950160](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/nYSG36u.png)
 
 
 
@@ -221,13 +221,13 @@ Steps: 40, Sampler: Euler a, CFG scale: 6, Seed: [?], Size: 1024x702, Model hash
 
 **original-image**
 
-![original-image](https://i.imgur.com/9y5jBfQ.png)
+![original-image](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/9y5jBfQ.png)
 
 **generated-image**
 
-![image-20230208154144700](https://i.imgur.com/tXKbX94.jpg)
+![image-20230208154144700](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/tXKbX94.jpg)
 
-![image-20230208144901544](https://i.imgur.com/BZUntu6.jpg)
+![image-20230208144901544](https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/BZUntu6.jpg)
 
 ## References
 
