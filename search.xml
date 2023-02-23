@@ -10462,110 +10462,6 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
       </tags>
   </entry>
   <entry>
-    <title>[Blog] 从WordPress迁移到Hexo</title>
-    <url>/./posts/migrant-from-wordpress/</url>
-    <content><![CDATA[<h1 id="从WordPress到Hexo"><a href="#从WordPress到Hexo" class="headerlink" title="从WordPress到Hexo"></a>从WordPress到Hexo</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在经历过 <code>WordPress</code> 的数次折磨之后，最终决定将 <code>Blog</code> 系统迁移到 <code>Hexo</code>。</p>
-<h2 id="为什么WordPress不适合作为博客系统"><a href="#为什么WordPress不适合作为博客系统" class="headerlink" title="为什么WordPress不适合作为博客系统"></a>为什么WordPress不适合作为博客系统</h2><p>对于Blog搭建而言，是时候该放弃 WordPress 了，至少出于以下这些原因：</p>
-<ul>
-<li><p>WordPress定位早已不属于Blog系统，它更像一个 <code>复杂易用</code> 的全能的建站网站。</p>
-</li>
-<li><p>WordPress过于臃肿。</p>
-<blockquote>
-<p>存在大量的陈年代码，想修改和新增功能必须按照官方那套繁琐的文档进行。</p>
-<p>WordPress有丰富的现成 <code>plugin</code> ，尽管使用门槛很低，但是自定义的门槛较高。</p>
-<p>并且想找到合适的 <code>plugin</code> 并配置到完美工作的状态，也需要耗费不少的时间。 </p>
-<p>一般来说，你很难直接修改WordPress的核心代码（版本更新的时候会覆盖，况且不优雅），只能通过大量的 <code>hook</code> 来完成。</p>
-<p>相比于直接修改原生代码而言，麻烦很多。</p>
-<p><img src="https://s2.loli.net/2023/01/25/4saLYcGC6A7eNrb.png" alt="image-20230125133135140"></p>
-<blockquote>
-<p>更糟糕的是，WordPress的开发团队<strong>根本不清楚</strong>什么东西应该被加入到核心之中。</p>
-<p>如果你仍然使用 WordPress，请 <code>务必关闭自动更新</code>，否则你不会预料到，你的站点会突然多出什么神奇的东西。</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>WordPress的访问速度过慢。</p>
-<blockquote>
-<p>有很大一部分原因是因为它需要使用PHP来进行数据库查询，动态生成网页。</p>
-<p>尽管可以使用OpenLiteSpeed（提供HTTP 3.0 QUIC协议） + CachePlugin（静态资源，数据库缓存） 进行极大地优化，但是仍然略显笨重。</p>
-<p><img src="https://s2.loli.net/2023/01/25/jgToz6hDynfvV8l.png" alt="image-20230125133354174"></p>
-<p>以下是经过高度优化之后的Google Lighthouse分析。</p>
-<p>尽管如此，在用户的实际体验上，WordPress 仍然会存在 <strong>明显的卡顿感</strong>。</p>
-<p><img src="https://s2.loli.net/2023/01/25/4TQ9guNr1ohRPsv.png" alt="image-20230125133711341"></p>
-</blockquote>
-</li>
-<li><p>WordPress容易收到垃圾回复。</p>
-<blockquote>
-<p>针对 WordPress 站点存在大量的自动爬虫。</p>
-<p><img src="https://s2.loli.net/2023/01/25/WuQh5fFmOLvrGD9.png" alt="image-20230125133345387"></p>
-<p><img src="https://s2.loli.net/2023/01/25/JsYa49fvQcCpdSL.png" alt="image-20230125133327838"></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="迁移到新的博客系统"><a href="#迁移到新的博客系统" class="headerlink" title="迁移到新的博客系统"></a>迁移到新的博客系统</h2><p>  对于 <code>博客系统</code> 来说，首要考虑的是 <code>是否能满足写作的纯粹性</code>。</p>
-<p>  它应该至少能提供 <code>较为舒适</code> 的  <code>写作环境</code> 和 <code>阅读环境</code></p>
-<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><p>  比如说，我期望使用 <code>Markdown</code> 这门简单但功能完备的标记语言来进行写作  ，并且除了自带的网页编辑器以外，可以选择独立的编辑器。</p>
-<p>  至少要 <code>完美地</code> 支持以下几种 <code>渲染器</code>：</p>
-<ul>
-<li>Markdown</li>
-<li>Highlightjs/Prism</li>
-<li>Mathjax/Katex</li>
-<li>Mermaid</li>
-</ul>
-<blockquote>
-<p>WordPress的 <code>Gutenberg Editor</code> 是很糟糕的，甚至远远差于 <code>Classic Editor</code>。</p>
-<p>它的语言是 <code>Rich Text</code>，或者说，它根本没有一种适合写作的语言。</p>
-<p>当你使用它的时候，你更像是在做 <code>设计 (Design)</code> 工作，而不是单纯的 <code>写作 (Writing)</code> 。</p>
-<p>总之，富文本很难使用，而且难以协调。</p>
-<blockquote>
-<p>当然，WordPress也可以安装第三方的渲染插件，比如 <code>Markdown插件</code>。</p>
-<p>但是我要说的是，直到2023年，WordPress还没有一个 <code>能用的Markdown插件</code>。</p>
-<p>更致命的是，如果你选择在 <code>WordPress的后台页面</code> 通过 <code>Live Preview</code> 来书写 Markdown，那么神奇的事情会发生在 <code>草稿被发布之后</code>：你将看到由于 <code>前后台CSS样式的不一致性</code>，导致 <code>渲染结果</code> 错乱。</p>
-<p>可以说，WordPress从来没有考虑过打造一个更舒适的写作环境。</p>
-<blockquote>
-<p>Hexo在尝试打造一个更舒适的写作环境，但 <code>失败</code> 了。</p>
-<blockquote>
-<p>尽管经过多年的发展，Hexo的 <code>renders</code> 仍然存在一些问题：</p>
-<ul>
-<li><p>因为调用 <code>syntax render</code> 与渲染引擎存在的冲突，无法正确识别 <code>blockquote</code> 中的代码。（你必须手动实现。）</p>
-</li>
-<li><p>因为模板引擎的原因，你甚至会因为一些在文章中输入<code> {# </code>而直接引发整个渲染系统的悄无声息的崩溃。</p>
-<blockquote>
-<p>当你使用 <code>Mathjax</code> 进行书写 <code>macro</code> 的时候，你就可以很自然地发现这个问题。（使用繁琐转义语法可以解决）</p>
-</blockquote>
-</li>
-<li><p>采用 <code>hexo-renderer-marked</code> 导致 <code>mathjax</code> 必须用 <code>\\\\</code> 才能实现换行。</p>
-</li>
-<li><code>extented-tag</code> 使用繁琐，无法保证与本地Markdown编辑器的一致性。</li>
-<li>…</li>
-</ul>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>目前为止，我所发现的在WordPress上 <code>完美</code> 实现 <code>Markdown</code> 写作的方式是：自定义CSS + Typora导出为HTML代码进行嵌入</p>
-<p>对于 Hexo 来说，可以自行通过引用 <code>CSS</code> + <code>JS</code> 的方式，来实现自己喜欢的 <code>render</code></p>
-<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>我更倾向于选择 <code>minimalism theme</code>，前端所展示的界面应当只有 <code>article container</code> 和 <code>comment container</code>。</p>
-<p>此外，再加上 <code>toc</code> 功能和一些必要的 <code>跳转链接</code> 即可。</p>
-<p><img src="https://s2.loli.net/2023/01/25/mCrvBHM68IQGwN1.png" alt="image-20230125141549951"></p>
-<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>评论系统必须基于 <code>Github Issue/Discussion</code>，以便将所有的数据存放在 <code>Github Repository</code> 之中。</p>
-<p>没有任何理由选择 <strong>某些</strong> 要求 <code>实名认证信息</code> 甚至 <code>人脸识别数据</code> 的 评论系统。</p>
-<blockquote>
-<p>在 <code>后互联网时代</code>，<code>每个人</code> 都应该有属于自己的 <code>Github</code> 账号。</p>
-</blockquote>
-<p><code>markdown</code> 和 <code>syntax</code> 的 <code>style</code> 均复刻 <code>github style</code>，实现一致性。</p>
-<p><img src="https://s2.loli.net/2023/01/25/6kGMenzcrhUBIJx.png" alt="image-20230125141805248"></p>
-<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>基于 <code>本地搜索</code>，提供按 <code>keyword</code> 查询的能力。</p>
-<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><p>通过 <code>tag</code> 来分类文章。（<code>category</code> 的功能和 <code>tag</code> 重复了，并且可以被后者所替代。）</p>
-<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://s2.loli.net/2023/01/25/f1u4Ckpw2SrQmPo.png" alt="image-20230125140808447"></p>
-<p><img src="https://s2.loli.net/2023/01/25/eaRkUsD74CMYfHI.png" alt="image-20230125140749365"></p>
-]]></content>
-      <tags>
-        <tag>wordpress</tag>
-        <tag>blog</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Record] My robots.txt template</title>
     <url>/./posts/robots-txt-template/</url>
     <content><![CDATA[<h1 id="Your-robots-txt-template"><a href="#Your-robots-txt-template" class="headerlink" title="Your robots.txt template"></a>Your robots.txt template</h1><p>君子應該遵守君子協議，如果他們是的話。</p>
@@ -10767,6 +10663,110 @@ Steps: 40, Sampler: Euler a, CFG scale: 6, Seed: [?], Size: 1024x702, Model hash
       <tags>
         <tag>website</tag>
         <tag>favorite</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Blog] 从WordPress迁移到Hexo</title>
+    <url>/./posts/migrant-from-wordpress/</url>
+    <content><![CDATA[<h1 id="从WordPress到Hexo"><a href="#从WordPress到Hexo" class="headerlink" title="从WordPress到Hexo"></a>从WordPress到Hexo</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在经历过 <code>WordPress</code> 的数次折磨之后，最终决定将 <code>Blog</code> 系统迁移到 <code>Hexo</code>。</p>
+<h2 id="为什么WordPress不适合作为博客系统"><a href="#为什么WordPress不适合作为博客系统" class="headerlink" title="为什么WordPress不适合作为博客系统"></a>为什么WordPress不适合作为博客系统</h2><p>对于Blog搭建而言，是时候该放弃 WordPress 了，至少出于以下这些原因：</p>
+<ul>
+<li><p>WordPress定位早已不属于Blog系统，它更像一个 <code>复杂易用</code> 的全能的建站网站。</p>
+</li>
+<li><p>WordPress过于臃肿。</p>
+<blockquote>
+<p>存在大量的陈年代码，想修改和新增功能必须按照官方那套繁琐的文档进行。</p>
+<p>WordPress有丰富的现成 <code>plugin</code> ，尽管使用门槛很低，但是自定义的门槛较高。</p>
+<p>并且想找到合适的 <code>plugin</code> 并配置到完美工作的状态，也需要耗费不少的时间。 </p>
+<p>一般来说，你很难直接修改WordPress的核心代码（版本更新的时候会覆盖，况且不优雅），只能通过大量的 <code>hook</code> 来完成。</p>
+<p>相比于直接修改原生代码而言，麻烦很多。</p>
+<p><img src="https://s2.loli.net/2023/01/25/4saLYcGC6A7eNrb.png" alt="image-20230125133135140"></p>
+<blockquote>
+<p>更糟糕的是，WordPress的开发团队<strong>根本不清楚</strong>什么东西应该被加入到核心之中。</p>
+<p>如果你仍然使用 WordPress，请 <code>务必关闭自动更新</code>，否则你不会预料到，你的站点会突然多出什么神奇的东西。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>WordPress的访问速度过慢。</p>
+<blockquote>
+<p>有很大一部分原因是因为它需要使用PHP来进行数据库查询，动态生成网页。</p>
+<p>尽管可以使用OpenLiteSpeed（提供HTTP 3.0 QUIC协议） + CachePlugin（静态资源，数据库缓存） 进行极大地优化，但是仍然略显笨重。</p>
+<p><img src="https://s2.loli.net/2023/01/25/jgToz6hDynfvV8l.png" alt="image-20230125133354174"></p>
+<p>以下是经过高度优化之后的Google Lighthouse分析。</p>
+<p>尽管如此，在用户的实际体验上，WordPress 仍然会存在 <strong>明显的卡顿感</strong>。</p>
+<p><img src="https://s2.loli.net/2023/01/25/4TQ9guNr1ohRPsv.png" alt="image-20230125133711341"></p>
+</blockquote>
+</li>
+<li><p>WordPress容易收到垃圾回复。</p>
+<blockquote>
+<p>针对 WordPress 站点存在大量的自动爬虫。</p>
+<p><img src="https://s2.loli.net/2023/01/25/WuQh5fFmOLvrGD9.png" alt="image-20230125133345387"></p>
+<p><img src="https://s2.loli.net/2023/01/25/JsYa49fvQcCpdSL.png" alt="image-20230125133327838"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="迁移到新的博客系统"><a href="#迁移到新的博客系统" class="headerlink" title="迁移到新的博客系统"></a>迁移到新的博客系统</h2><p>  对于 <code>博客系统</code> 来说，首要考虑的是 <code>是否能满足写作的纯粹性</code>。</p>
+<p>  它应该至少能提供 <code>较为舒适</code> 的  <code>写作环境</code> 和 <code>阅读环境</code></p>
+<h3 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h3><p>  比如说，我期望使用 <code>Markdown</code> 这门简单但功能完备的标记语言来进行写作  ，并且除了自带的网页编辑器以外，可以选择独立的编辑器。</p>
+<p>  至少要 <code>完美地</code> 支持以下几种 <code>渲染器</code>：</p>
+<ul>
+<li>Markdown</li>
+<li>Highlightjs/Prism</li>
+<li>Mathjax/Katex</li>
+<li>Mermaid</li>
+</ul>
+<blockquote>
+<p>WordPress的 <code>Gutenberg Editor</code> 是很糟糕的，甚至远远差于 <code>Classic Editor</code>。</p>
+<p>它的语言是 <code>Rich Text</code>，或者说，它根本没有一种适合写作的语言。</p>
+<p>当你使用它的时候，你更像是在做 <code>设计 (Design)</code> 工作，而不是单纯的 <code>写作 (Writing)</code> 。</p>
+<p>总之，富文本很难使用，而且难以协调。</p>
+<blockquote>
+<p>当然，WordPress也可以安装第三方的渲染插件，比如 <code>Markdown插件</code>。</p>
+<p>但是我要说的是，直到2023年，WordPress还没有一个 <code>能用的Markdown插件</code>。</p>
+<p>更致命的是，如果你选择在 <code>WordPress的后台页面</code> 通过 <code>Live Preview</code> 来书写 Markdown，那么神奇的事情会发生在 <code>草稿被发布之后</code>：你将看到由于 <code>前后台CSS样式的不一致性</code>，导致 <code>渲染结果</code> 错乱。</p>
+<p>可以说，WordPress从来没有考虑过打造一个更舒适的写作环境。</p>
+<blockquote>
+<p>Hexo在尝试打造一个更舒适的写作环境，但 <code>失败</code> 了。</p>
+<blockquote>
+<p>尽管经过多年的发展，Hexo的 <code>renders</code> 仍然存在一些问题：</p>
+<ul>
+<li><p>因为调用 <code>syntax render</code> 与渲染引擎存在的冲突，无法正确识别 <code>blockquote</code> 中的代码。（你必须手动实现。）</p>
+</li>
+<li><p>因为模板引擎的原因，你甚至会因为一些在文章中输入<code> {# </code>而直接引发整个渲染系统的悄无声息的崩溃。</p>
+<blockquote>
+<p>当你使用 <code>Mathjax</code> 进行书写 <code>macro</code> 的时候，你就可以很自然地发现这个问题。（使用繁琐转义语法可以解决）</p>
+</blockquote>
+</li>
+<li><p>采用 <code>hexo-renderer-marked</code> 导致 <code>mathjax</code> 必须用 <code>\\\\</code> 才能实现换行。</p>
+</li>
+<li><code>extented-tag</code> 使用繁琐，无法保证与本地Markdown编辑器的一致性。</li>
+<li>…</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>目前为止，我所发现的在WordPress上 <code>完美</code> 实现 <code>Markdown</code> 写作的方式是：自定义CSS + Typora导出为HTML代码进行嵌入</p>
+<p>对于 Hexo 来说，可以自行通过引用 <code>CSS</code> + <code>JS</code> 的方式，来实现自己喜欢的 <code>render</code></p>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>我更倾向于选择 <code>minimalism theme</code>，前端所展示的界面应当只有 <code>article container</code> 和 <code>comment container</code>。</p>
+<p>此外，再加上 <code>toc</code> 功能和一些必要的 <code>跳转链接</code> 即可。</p>
+<p><img src="https://s2.loli.net/2023/01/25/mCrvBHM68IQGwN1.png" alt="image-20230125141549951"></p>
+<h3 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h3><p>评论系统必须基于 <code>Github Issue/Discussion</code>，以便将所有的数据存放在 <code>Github Repository</code> 之中。</p>
+<p>没有任何理由选择 <strong>某些</strong> 要求 <code>实名认证信息</code> 甚至 <code>人脸识别数据</code> 的 评论系统。</p>
+<blockquote>
+<p>在 <code>后互联网时代</code>，<code>每个人</code> 都应该有属于自己的 <code>Github</code> 账号。</p>
+</blockquote>
+<p><code>markdown</code> 和 <code>syntax</code> 的 <code>style</code> 均复刻 <code>github style</code>，实现一致性。</p>
+<p><img src="https://s2.loli.net/2023/01/25/6kGMenzcrhUBIJx.png" alt="image-20230125141805248"></p>
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>基于 <code>本地搜索</code>，提供按 <code>keyword</code> 查询的能力。</p>
+<h4 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h4><p>通过 <code>tag</code> 来分类文章。（<code>category</code> 的功能和 <code>tag</code> 重复了，并且可以被后者所替代。）</p>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://s2.loli.net/2023/01/25/f1u4Ckpw2SrQmPo.png" alt="image-20230125140808447"></p>
+<p><img src="https://s2.loli.net/2023/01/25/eaRkUsD74CMYfHI.png" alt="image-20230125140749365"></p>
+]]></content>
+      <tags>
+        <tag>wordpress</tag>
+        <tag>blog</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>

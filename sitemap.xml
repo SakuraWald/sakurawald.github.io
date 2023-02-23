@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/friends/index.html</loc>
+    <loc>https://sakurawald.github.io/tags/index.html</loc>
     
     <lastmod>2023-02-23</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/tags/index.html</loc>
+    <loc>https://sakurawald.github.io/friends/index.html</loc>
     
     <lastmod>2023-02-23</lastmod>
     
@@ -83,15 +83,6 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
-    
-    <lastmod>2023-02-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/posts/robots-txt-template/</loc>
     
     <lastmod>2023-02-23</lastmod>
@@ -102,6 +93,15 @@
   
   <url>
     <loc>https://sakurawald.github.io/posts/stable-diffusion-practice/</loc>
+    
+    <lastmod>2023-02-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/posts/migrant-from-wordpress/</loc>
     
     <lastmod>2023-02-23</lastmod>
     
@@ -380,20 +380,6 @@
   </url>
   
   <url>
-    <loc>https://sakurawald.github.io/tags/blog/</loc>
-    <lastmod>2023-02-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sakurawald.github.io/tags/hexo/</loc>
-    <lastmod>2023-02-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sakurawald.github.io/tags/information/</loc>
     <lastmod>2023-02-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -521,6 +507,20 @@
   
   <url>
     <loc>https://sakurawald.github.io/tags/favorite/</loc>
+    <lastmod>2023-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/tags/blog/</loc>
+    <lastmod>2023-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sakurawald.github.io/tags/hexo/</loc>
     <lastmod>2023-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
