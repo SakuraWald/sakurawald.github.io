@@ -10770,6 +10770,46 @@ Steps: 40, Sampler: Euler a, CFG scale: 6, Seed: [?], Size: 1024x702, Model hash
       </tags>
   </entry>
   <entry>
+    <title>Vim cheat sheet</title>
+    <url>/./posts/vim-playground/</url>
+    <content><![CDATA[<h1 id="Vim-Cheat-Sheet"><a href="#Vim-Cheat-Sheet" class="headerlink" title="Vim Cheat-Sheet"></a>Vim Cheat-Sheet</h1><h2 id="Gallery"><a href="#Gallery" class="headerlink" title="Gallery"></a>Gallery</h2><p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/image-20230224070054563.png" alt="image-20230224070054563"></p>
+<p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/image-20230224070257167.png" alt="image-20230224070257167"></p>
+<blockquote>
+<p>They show too many things and too less.</p>
+</blockquote>
+<h2 id="Cheat-sheet"><a href="#Cheat-sheet" class="headerlink" title="Cheat-sheet"></a>Cheat-sheet</h2><p>VIM是一個非常具有 <code>創造性</code> 的 <code>editor</code>，也有很多人認爲，“VIM不僅僅是editor，更是一種pattern，或者thinking”。</p>
+<p>這一點體現在，大部分的主流IDE/Editor其實都有提供 <code>VIM Plugin</code>，使得你可以使用 <code>VIM的方式</code> 進行 <code>文本編輯</code>。</p>
+<blockquote>
+<p>實際上，<code>IDE + VIM</code> 是一個非常恐怖的生產力殺手。</p>
+<p>這裡點名提出，<code>Jetbrains Platform + IdeaVIM</code> 的組合，使得每個人都可以 <code>輕鬆地</code> 創建屬於自己的 <code>monster</code></p>
+<blockquote>
+<p>個人發現，很多人在關於 <code>如何熟練使用Idea</code> 這個話題上，有個非常大的誤解：<strong>如果你想熟練使用Idea，你需要熟練地記憶好Shortcut</strong></p>
+<p>我在這裡直接給出結論：<strong>如果你認爲熟練記憶Idea的那些所謂的人體工程學的Shortcut，足以證明你對Idea這個工具的熟練掌握程度，那麼我可以說，你對Idea，或者說，對Jetbrains Platform是一竅不通的。JP是action-based，而不是shortcut-based。如果只能使用1個Shortcut，那麼我將會選擇Ctrl + Shift + A，並且，在大部分的情況下，僅記憶這個Shortcut就足夠使用了。（搭配IdeaVim的前提下）</strong></p>
+<p>當然，讀者在嘗試完該方案後，也可以自然地得出該結論。</p>
+</blockquote>
+<p>個人暫時沒有在 <code>Editor + VIM</code> 的組合上看到多大的進步，雖然 <code>Visual Studio Code</code> 也有 <code>VIM Plugin</code>，但是 <code>難用</code>。</p>
+<blockquote>
+<p>或者應該說，<code>VSC</code> 的官方沒有多在意這個插件，它與 <code>VSC</code> 的集成度不是很高。</p>
+</blockquote>
+<p>另外，如果一個 <code>editor</code> 僅僅是像其他大多數的 <code>editor</code> 那樣，完成基本的 <code>edit</code> 功能，那麼它其實沒有多大的吸引力。</p>
+<p><code>VSC</code> 的定位比較尷尬，雖然本質上仍然認爲它是一個 <code>editor</code>，但是作爲 <code>基於chromium的內存殺手</code>，它並沒有其他大部分 <code>editor</code> 所具有的 <code>小巧</code> 的優點，也沒有 <code>快速的冷啓動</code> 優勢。</p>
+<p>此外，雖然 <code>VSC</code> 可以 <code>integrate</code> 很多的 <code>extension</code>，但是實際的效果遠遠不如開箱即用的 <code>IDE</code>。</p>
+<blockquote>
+<p>IDE knows what the hell thing happened, while editor knows nothing.</p>
+</blockquote>
+<p>對於使用 <code>VSC</code> 來進行 <code>工程代碼</code> 的情況來說，<code>VSC</code> 更是顯得 <code>尷尬</code>：對這種情況，一般 <code>小巧</code> 和 <code>啓動速度</code> 並不是那麼關鍵。</p>
+</blockquote>
+<p>如你所見，下面放出2張 <code>cheat-sheet</code>，<code>VIM</code> 提供了非常多的 <code>原子操作</code>，使得你可以擁有非常多的 <code>創造性的</code> 操作組合。</p>
+<p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/vim_cheat_sheet_for_programmers_screen.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/SakuraWald/sakurawald.github.io/main/images/iigrixvxp5aYN9ox7Gr1dfI_rhLRotWlLsCafjJqjEQ.png" alt="img"></p>
+]]></content>
+      <tags>
+        <tag>note</tag>
+        <tag>vim</tag>
+        <tag>editor</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[Database] Relational Query Language</title>
     <url>/./posts/database-relational-query-language/</url>
     <content><![CDATA[
