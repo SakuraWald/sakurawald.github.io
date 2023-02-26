@@ -12,12 +12,6 @@ https://sakurawald.github.io/posts/migrant-from-wordpress/
 https://sakurawald.github.io/posts/robots-txt-template/
 https://sakurawald.github.io/posts/stable-diffusion-practice/
 https://sakurawald.github.io/posts/database-relational-query-language/
-https://sakurawald.github.io/posts/algorithm-circle-permutation/
-https://sakurawald.github.io/posts/algorithm-majority-problem/
-https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/
-https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/
-https://sakurawald.github.io/posts/algorithm-set-partition-problem/
-https://sakurawald.github.io/posts/c-string-lib-functions/
 https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/
 https://sakurawald.github.io/posts/compiler-test/
 https://sakurawald.github.io/posts/database-advanced-sql/
@@ -26,6 +20,12 @@ https://sakurawald.github.io/posts/database-elementary-sql/
 https://sakurawald.github.io/posts/database-intermediate-sql/
 https://sakurawald.github.io/posts/Note-Android-emulator-solutions-for-linux/
 https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/
+https://sakurawald.github.io/posts/algorithm-majority-problem/
+https://sakurawald.github.io/posts/algorithm-multiple-knapsack-problem-and-pebble-merge-problem/
+https://sakurawald.github.io/posts/algorithm-oiling-car-and-optimal-merge/
+https://sakurawald.github.io/posts/algorithm-set-partition-problem/
+https://sakurawald.github.io/posts/c-string-lib-functions/
+https://sakurawald.github.io/posts/algorithm-circle-permutation/
 https://sakurawald.github.io/
 https://sakurawald.github.io/tags/android/
 https://sakurawald.github.io/tags/emulator/
@@ -35,7 +35,6 @@ https://sakurawald.github.io/tags/practice/
 https://sakurawald.github.io/tags/solution/
 https://sakurawald.github.io/tags/virtualize/
 https://sakurawald.github.io/tags/algorithm/
-https://sakurawald.github.io/tags/branch-and-bound/
 https://sakurawald.github.io/tags/dynamic-programming/
 https://sakurawald.github.io/tags/greedy/
 https://sakurawald.github.io/tags/oj/
@@ -68,5 +67,6 @@ https://sakurawald.github.io/tags/website/
 https://sakurawald.github.io/tags/favorite/
 https://sakurawald.github.io/tags/vim/
 https://sakurawald.github.io/tags/editor/
+https://sakurawald.github.io/tags/branch-and-bound/
 https://sakurawald.github.io/tags/stl/
 https://sakurawald.github.io/tags/cpp/
