@@ -9,14 +9,11 @@ tags:
   - template
 ---
 
-# Your robots.txt template
+# My robots.txt template
 
 君子應該遵守君子協議，如果他們是的話。
 
 ```
-User-agent: *
-Allow: /
-
 User-agent: Baiduspider
 User-agent: Baiduspider-image
 User-agent: Baiduspider-mobile
@@ -37,6 +34,9 @@ User-agent: Sogou web spider
 User-agent: YoudaoBot
 Disallow: /
 Noindex: /
+
+User-agent: *
+Allow: /
 
 Sitemap: https://sakurawald.com/sitemap.xml
 ```
