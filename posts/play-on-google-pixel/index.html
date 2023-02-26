@@ -1,0 +1,399 @@
+<!DOCTYPE html><html lang="en" style="display:none;"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Play on Google Pixel | SakuraWald</title><meta name="author" content="SakuraWald"><meta name="copyright" content="SakuraWald"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><link rel="canonical" href="https://sakurawald.github.io/posts/play-on-google-pixel/index.html"><!-- purify--><script>if (navigator.language === "zh-CN") {
+    window.location.replace("https://www.baidu.com");
+}
+
+fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+        if (data.country === "CN") {
+            window.location.replace("https://www.baidu.com");
+        } else {
+            document.querySelector('html').style.display = 'block';
+        }
+    })</script><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-5C7FQ1MX7K"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5C7FQ1MX7K');</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: SakuraWald","link":"Link: ","source":"Source: SakuraWald","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'mediumZoom',
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Play on Google Pixel',
+  isPost: true,
+  isHome: false,
+  isToc: true,
+  postUpdate: '2023-02-27 06:38:09'
+}</script><noscript><style type="text/css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="SakuraWald" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="SakuraWald" type="application/rss+xml">
+</head><body><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div class="post" id="body-wrap"><main class="layout" id="content-inner"><div id="post"><article class="github-markdown-body post-content" id="article-container"><h1 id="Play-on-Google-Pixel"><a href="#Play-on-Google-Pixel" class="headerlink" title="Play on Google Pixel"></a>Play on Google Pixel</h1><h2 id="Install-magisk"><a href="#Install-magisk" class="headerlink" title="Install magisk"></a>Install magisk</h2><h3 id="Enable-developter-options"><a href="#Enable-developter-options" class="headerlink" title="Enable developter options"></a>Enable developter options</h3><p>We need to tap <code>kernel build version</code> and enable <code>developer options</code>.</p>
+<h3 id="Enable-adb"><a href="#Enable-adb" class="headerlink" title="Enable adb"></a>Enable adb</h3><p>Turn on <code>USB debugging</code></p>
+<h3 id="Unlock-bootloader"><a href="#Unlock-bootloader" class="headerlink" title="Unlock bootloader"></a>Unlock bootloader</h3><blockquote>
+<p>WARNING: IF YOU UNLOCK BOOTLOADER, ALL YOU DATA WILL BE WIPED.</p>
+</blockquote>
+<p>Inside <code>developer options</code>  , we need to <code>unlock OEM</code> so that we can unlock <code>bootloader</code> after.</p>
+<pre><code class="lang-shell">adb reboot bootloader
+fastboot flashing unlock
+</code></pre>
+<h3 id="Download-the-factory-images"><a href="#Download-the-factory-images" class="headerlink" title="Download the factory images"></a>Download the factory images</h3><ol>
+<li><p>Install <code>magisk.apk</code> from <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk">https://github.com/topjohnwu/Magisk</a> </p>
+</li>
+<li><p>Go to <a href="https://link.zhihu.com/?target=https%3A//developers.google.com/android/images">https://link.zhihu.com/?target=https%3A//developers.google.com/android/images</a> to download the <code>relative factory image</code> file. </p>
+</li>
+<li><p>Unzip this <code>image file</code> to get <code>init_boot.img</code> file.</p>
+</li>
+<li><p>Use <code>adb push ./init_boot.img /storage/emulated/0/Downloads/</code> to send <code>init_boot.img</code> file to your mobile device.</p>
+</li>
+<li><p>Use <code>magisk.apk</code> to patch this <code>init_boot.img</code></p>
+</li>
+<li><p>Use <code>adb pull /storage/emulated/0/Downloads/&#123;the_patched_init_boot.img&#125; ./</code> to get <code>patched init_boot.img</code> from the mobile device.</p>
+</li>
+<li><p>Flash <code>the_patched_init_boot.img</code> file into your mobie device</p>
+<pre><code class="lang-shell">adb reboot bootloader
+fastboot flash init_boot &#123;the_patched_init_boot.img&#125;
+fastboot reboot
+</code></pre>
+</li>
+<li><p>Done.</p>
+</li>
+</ol>
+<h2 id="Install-OTA-Images"><a href="#Install-OTA-Images" class="headerlink" title="Install OTA Images"></a>Install OTA Images</h2><blockquote>
+<p>The key difference between <code>factory image</code> and <code>OTA image</code> is that:</p>
+<p>when you use <code>OTA image</code>, you don’t need to <code>wipe you mobile</code> or <code>unlock the bootloader</code> .</p>
+<p>Please note that: install a OTA may <strong>cover</strong> the <code>rooted boot_init.img</code>.</p>
+<p>So, if you want to install a <code>specific kernel version</code> with <code>root</code> and without <code>wipe your mobile</code>. You should use <code>factory image</code> instead of <code>OTA image</code></p>
+<blockquote>
+<p>If you don’t want to <code>wipe your mobile</code>, just modify <code>flash-all.sh</code> :</p>
+<pre><code class="lang-shell"># fastboot -w update image-cheetah-td1a.220804.009.a2.zip
+fastboot update image-cheetah-td1a.220804.009.a2.zip
+</code></pre>
+</blockquote>
+</blockquote>
+<ol>
+<li>Download the OTA that you want in <a target="_blank" rel="noopener" href="https://developers.google.com/android/ota">https://developers.google.com/android/ota</a></li>
+<li>Follow the tutorial.</li>
+</ol>
+<h2 id="Support-32-Bit-Applications"><a href="#Support-32-Bit-Applications" class="headerlink" title="Support 32-Bit Applications"></a>Support 32-Bit Applications</h2><blockquote>
+<p>WARNING: If you want to support 32-bit applications, then you must un-install <code>the installed magisk (if existed)</code> and then use <code>forked-magisk</code> to replace <code>magisk</code>, and do the same as previous.</p>
+</blockquote>
+<p>Although Google Pixel 7 / 7 Pro is the first mobile that <code>only support 64 bit apps</code>, <strong>the fact is that: all the 32-bit libraries are still available, but Google delete tle supported-abi-list on props.</strong></p>
+<p>So, if we modify the props back, then we still can run 32-bit applications perfectly.</p>
+<p>There are 2 forked-magisk can do this, just choose one of them:  </p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/ThomasKing2014/Pixel7_32bit_helper">https://github.com/ThomasKing2014/Pixel7_32bit_helper</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MN312001/Magisk-Delta">https://github.com/MN312001/Magisk-Delta</a></li>
+</ol>
+<h2 id="Enable-VoLTE"><a href="#Enable-VoLTE" class="headerlink" title="Enable VoLTE"></a>Enable VoLTE</h2><p>If your <code>SIM</code> card can use <code>access the Internet</code>, but can’t send/receive any messages. Then you should enable <code>VoLTE</code> to make it work.</p>
+<p>Steps:</p>
+<ol>
+<li>Install <code>Shizuku</code> : <a target="_blank" rel="noopener" href="https://github.com/RikkaApps/Shizuku">https://github.com/RikkaApps/Shizuku</a></li>
+<li>Install <code>Pixel-IMS</code>: <a target="_blank" rel="noopener" href="https://github.com/kyujin-cho/pixel-volte-patch">https://github.com/kyujin-cho/pixel-volte-patch</a></li>
+<li>Follow the tutorial in <code>Pixel-IMS</code> and you are fine.</li>
+</ol>
+<h2 id="Enable-5G"><a href="#Enable-5G" class="headerlink" title="Enable 5G"></a>Enable 5G</h2><p>Not recommended in PRC. </p>
+<p>Some reviews say the 5G speed depends on which city you are in, and 4G is enough in most cases.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.androidgreek.com/now-you-can-use-32-bit-apps-on-your-pixel-7-unofficially/">Now you can use 32-bit apps on your Pixel 7 (unofficially)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.xda-developers.com/how-to-unlock-bootloader-root-magisk-google-pixel-7-pro/">https://www.xda-developers.com/how-to-unlock-bootloader-root-magisk-google-pixel-7-pro/</a></li>
+<li><a target="_blank" rel="noopener" href="https://forum.xda-developers.com/t/guide-root-pixel-7-pro-with-magisk-unlock-bootloader-pass-safetynet-more.4505353/">https://forum.xda-developers.com/t/guide-root-pixel-7-pro-with-magisk-unlock-bootloader-pass-safetynet-more.4505353/</a></li>
+<li><a target="_blank" rel="noopener" href="https://k.sina.com.cn/article_1914010467_72157b6301901ozz5.html?from=tech">让新手机发挥全部实力，在国内如何「正确」使用 Pixel 7|pixel_新浪新闻</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io">SakuraWald</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sakurawald.github.io/posts/play-on-google-pixel/">https://sakurawald.github.io/posts/play-on-google-pixel/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/android/">android</a><a class="post-meta__tags" href="/tags/pixel/">pixel</a><a class="post-meta__tags" href="/tags/phone/">phone</a><a class="post-meta__tags" href="/tags/root/">root</a><a class="post-meta__tags" href="/tags/magisk/">magisk</a><a class="post-meta__tags" href="/tags/os/">os</a></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://avatars.githubusercontent.com/u/10484271?v=4" alt="avatar"/></div><div class="author-info__name">SakuraWald</div><div class="author-info__description">dig description.sakurawald.com txt</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">48</div></a></div><div><a id="card-friends-btn" href="/friends/"><i class="fa fa-user"></i><span>Friends</span></a><a id="card-search-btn" href="#"><i class="fa fa-search"></i><span>Search</span></a></div><a id="card-info-btn" href="https://github.com/SakuraWald" target="_blank"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Play-on-Google-Pixel"><span class="toc-number">1.</span> <span class="toc-text">Play on Google Pixel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-magisk"><span class="toc-number">1.1.</span> <span class="toc-text">Install magisk</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-developter-options"><span class="toc-number">1.1.1.</span> <span class="toc-text">Enable developter options</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-adb"><span class="toc-number">1.1.2.</span> <span class="toc-text">Enable adb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unlock-bootloader"><span class="toc-number">1.1.3.</span> <span class="toc-text">Unlock bootloader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Download-the-factory-images"><span class="toc-number">1.1.4.</span> <span class="toc-text">Download the factory images</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-OTA-Images"><span class="toc-number">1.2.</span> <span class="toc-text">Install OTA Images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Support-32-Bit-Applications"><span class="toc-number">1.3.</span> <span class="toc-text">Support 32-Bit Applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enable-VoLTE"><span class="toc-number">1.4.</span> <span class="toc-text">Enable VoLTE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enable-5G"><span class="toc-number">1.5.</span> <span class="toc-text">Enable 5G</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol></div></div></div></div></main></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function renderMathjax() {
+  if (!window.MathJax) {
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ["\\(","\\)"]],
+        tags: 'ams',
+        displayMath: [
+              ['$$', '$$'],
+              ['\\[', '\\]']
+        ],
+        maxMacros: 1000,           // maximum number of macro substitutions per expression
+        maxBuffer: 5 * 1024,       // maximum size for the internal TeX string (5K)
+        processEscapes: true,
+        formatError: (jax, err) => {
+          jax.formatError(err);
+          console.warN(err);
+        }
+      },
+      chtml: {
+        scale: 1.1
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              if (node.hasAttribute('display')) {
+                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+              } else {
+                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+              }
+            });
+
+          }, '', false]
+        }
+      }
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      // If the first page you visited doesn't contain any math codes, then the second time you visit a page contains math codes, you will get "Mathjax Retry" error.
+      //- MathJax.typeset()
+      MathJax.typesetPromise();
+  }
+
+}
+renderMathjax();</script><script>function processSvgPanZoom() {
+    const $targetWrap = document.querySelectorAll('#article-container svg')
+    if ($targetWrap.length) {
+        window.runSvgPanZoom = () => {
+            window.loadSvgPanZoom = true
+
+            Array.from($targetWrap).forEach((item, index) => {
+                var saved_viewbox = item.getAttribute("viewBox");
+                var controller = svgPanZoom(item);
+                item.setAttribute("viewBox", saved_viewbox);
+                controller.fit();
+                controller.center();
+            });
+        }
+        const loadSvgPanZoom = () => {
+            window.loadSvgPanZoom ? runSvgPanZoom() : getScript('https://cdn.jsdelivr.net/npm/svg-pan-zoom/dist/svg-pan-zoom.min.js').then(runSvgPanZoom)
+        }
+        window.pjax ? loadSvgPanZoom() : document.addEventListener('DOMContentLoaded', loadSvgPanZoom)
+    }
+}</script><script>function processMermaid() {
+  const $targetWrap = document.querySelectorAll('#article-container code.lang-mermaid, #article-container code.language-mermaid');
+  if ($targetWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+
+      const theme = 'default'
+      Array.from($targetWrap).forEach((item, index) => {
+        const mermaidSrc = item
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode);
+          mermaidSrc.remove();
+        })
+      })
+      processSvgPanZoom(); 
+    }
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+}
+processMermaid();</script><script>function processHighlightjs() {
+  window.runHighlightjs = () => {
+      window.loadHightlightjs = true
+
+      hljs.highlightAll();
+  }
+
+  const loadHightlightjs = () => {
+      if (window.loadHightlightjs) {
+          runHighlightjs();
+      } else {
+          getCSS('/css/third-party/highlightjs-github.css');
+          getScript('/js/third-party/highlight.min.js').then(runHighlightjs);
+      }
+  }
+  window.pjax ? loadHightlightjs() : document.addEventListener('DOMContentLoaded', loadHightlightjs)
+}
+processHighlightjs();</script><script>function loadGiscus () {
+  let nowTheme = 'light' 
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'sakurawald/sakurawald.github.io',
+    'data-repo-id': 'R_kgDOItDE4Q',
+    'data-category-id': 'DIC_kwDOItDE4c4CTv3v',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+
+if ('Giscus' === 'Giscus' || !true) {
+  if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["link[rel=\"canonical\"]","meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof typed === 'object' && typed.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-5C7FQ1MX7K', {'page_path': window.location.pathname});
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

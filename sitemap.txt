@@ -3,6 +3,7 @@ https://sakurawald.github.io/posts/hello-world/
 https://sakurawald.github.io/posts/install-andbox-on-ubuntu-22-04-LTS/
 https://sakurawald.github.io/posts/jsp-servlet-jsp-short-hand/
 https://sakurawald.github.io/posts/migrant-from-wordpress/
+https://sakurawald.github.io/posts/play-on-google-pixel/
 https://sakurawald.github.io/posts/robots-txt-template/
 https://sakurawald.github.io/posts/stable-diffusion-practice/
 https://sakurawald.github.io/posts/tool-box/
@@ -47,6 +48,11 @@ https://sakurawald.github.io/tags/database/
 https://sakurawald.github.io/tags/wordpress/
 https://sakurawald.github.io/tags/blog/
 https://sakurawald.github.io/tags/hexo/
+https://sakurawald.github.io/tags/pixel/
+https://sakurawald.github.io/tags/phone/
+https://sakurawald.github.io/tags/root/
+https://sakurawald.github.io/tags/magisk/
+https://sakurawald.github.io/tags/os/
 https://sakurawald.github.io/tags/information/
 https://sakurawald.github.io/tags/search-engine/
 https://sakurawald.github.io/tags/crawler/

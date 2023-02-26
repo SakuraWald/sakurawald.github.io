@@ -15,8 +15,43 @@
     <atom:link href="https://sakurawald.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 26 Feb 2023 06:06:10 GMT</pubDate>
+    <pubDate>Sun, 26 Feb 2023 22:38:09 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Play on Google Pixel</title>
+      <link>https://sakurawald.github.io/posts/play-on-google-pixel/</link>
+      <guid>https://sakurawald.github.io/posts/play-on-google-pixel/</guid>
+      <pubDate>Sun, 26 Feb 2023 21:46:02 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;Play-on-Google-Pixel&quot;&gt;&lt;a href=&quot;#Play-on-Google-Pixel&quot; class=&quot;headerlink&quot; title=&quot;Play on Google Pixel&quot;&gt;&lt;/a&gt;Play on Google</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://sakurawald.github.io/tags/android/">android</category>
+      
+      <category domain="https://sakurawald.github.io/tags/pixel/">pixel</category>
+      
+      <category domain="https://sakurawald.github.io/tags/phone/">phone</category>
+      
+      <category domain="https://sakurawald.github.io/tags/root/">root</category>
+      
+      <category domain="https://sakurawald.github.io/tags/magisk/">magisk</category>
+      
+      <category domain="https://sakurawald.github.io/tags/os/">os</category>
+      
+      
+      <comments>https://sakurawald.github.io/posts/play-on-google-pixel/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Vim cheat sheet</title>
@@ -599,33 +634,6 @@ $$
       
       
       <comments>https://sakurawald.github.io/posts/algorithm-back-tracking-and-iddfs/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[CodeSnippet] - A Simple Judger for Java</title>
-      <link>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</link>
-      <guid>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/</guid>
-      <pubDate>Tue, 05 Apr 2022 14:22:32 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h1 id=&quot;A-Simple-Judger-for-Java&quot;&gt;&lt;a href=&quot;#A-Simple-Judger-for-Java&quot; class=&quot;headerlink&quot; title=&quot;A Simple Judger for Java&quot;&gt;&lt;/a&gt;A Simple</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://sakurawald.github.io/tags/oj/">oj</category>
-      
-      <category domain="https://sakurawald.github.io/tags/code/">code</category>
-      
-      
-      <comments>https://sakurawald.github.io/posts/codesnippet-a-simple-judger-for-java/#disqus_thread</comments>
       
     </item>
     
