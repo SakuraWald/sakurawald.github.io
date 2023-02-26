@@ -10568,11 +10568,8 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
   <entry>
     <title>[Record] My robots.txt template</title>
     <url>/./posts/robots-txt-template/</url>
-    <content><![CDATA[<h1 id="Your-robots-txt-template"><a href="#Your-robots-txt-template" class="headerlink" title="Your robots.txt template"></a>Your robots.txt template</h1><p>君子應該遵守君子協議，如果他們是的話。</p>
-<pre><code>User-agent: *
-Allow: /
-
-User-agent: Baiduspider
+    <content><![CDATA[<h1 id="My-robots-txt-template"><a href="#My-robots-txt-template" class="headerlink" title="My robots.txt template"></a>My robots.txt template</h1><p>君子應該遵守君子協議，如果他們是的話。</p>
+<pre><code>User-agent: Baiduspider
 User-agent: Baiduspider-image
 User-agent: Baiduspider-mobile
 User-agent: Baiduspider-news
@@ -10592,6 +10589,9 @@ User-agent: Sogou web spider
 User-agent: YoudaoBot
 Disallow: /
 Noindex: /
+
+User-agent: *
+Allow: /
 
 Sitemap: https://sakurawald.com/sitemap.xml
 </code></pre>]]></content>
