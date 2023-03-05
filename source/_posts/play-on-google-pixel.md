@@ -24,7 +24,7 @@ Turn on `USB debugging`
 
 ### Unlock bootloader
 
-> WARNING: IF YOU UNLOCK BOOTLOADER, ALL YOU DATA WILL BE WIPED.
+> WARNING: IF YOU UNLOCK BOOTLOADER, ALL YOUR DATA WILL BE WIPED.
 
 Inside `developer options`  , we need to `unlock OEM` so that we can unlock `bootloader` after.
 
