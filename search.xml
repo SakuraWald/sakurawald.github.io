@@ -10571,7 +10571,7 @@ public class SimpleTagTest1 extends SimpleTagSupport &#123;
     <content><![CDATA[<h1 id="Play-on-Google-Pixel"><a href="#Play-on-Google-Pixel" class="headerlink" title="Play on Google Pixel"></a>Play on Google Pixel</h1><h2 id="Install-magisk"><a href="#Install-magisk" class="headerlink" title="Install magisk"></a>Install magisk</h2><h3 id="Enable-developter-options"><a href="#Enable-developter-options" class="headerlink" title="Enable developter options"></a>Enable developter options</h3><p>We need to tap <code>kernel build version</code> and enable <code>developer options</code>.</p>
 <h3 id="Enable-adb"><a href="#Enable-adb" class="headerlink" title="Enable adb"></a>Enable adb</h3><p>Turn on <code>USB debugging</code></p>
 <h3 id="Unlock-bootloader"><a href="#Unlock-bootloader" class="headerlink" title="Unlock bootloader"></a>Unlock bootloader</h3><blockquote>
-<p>WARNING: IF YOU UNLOCK BOOTLOADER, ALL YOU DATA WILL BE WIPED.</p>
+<p>WARNING: IF YOU UNLOCK BOOTLOADER, ALL YOUR DATA WILL BE WIPED.</p>
 </blockquote>
 <p>Inside <code>developer options</code>  , we need to <code>unlock OEM</code> so that we can unlock <code>bootloader</code> after.</p>
 <pre><code class="lang-shell">adb reboot bootloader
